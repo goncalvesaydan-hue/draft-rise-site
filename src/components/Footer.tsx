@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
+import { Instagram, Link as Linkedin, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
