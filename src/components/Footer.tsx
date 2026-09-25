@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Instagram, Link as Linkedin, Mail, MapPin } from 'lucide-react';
+import * as Lucide from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -55,17 +55,17 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-2">Conecte-se</h4>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all">
-                <Instagram className="w-5 h-5" />
+                <Lucide.Instagram className="w-5 h-5" />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all">
-                <Linkedin className="w-5 h-5" />
+                <Lucide.Link className="w-5 h-5" />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all">
-                <Mail className="w-5 h-5" />
+                <Lucide.Mail className="w-5 h-5" />
               </a>
             </div>
             <div className="flex items-center gap-2 text-gray-400 text-sm mt-4">
-              <MapPin className="w-4 h-4" />
+              <Lucide.MapPin className="w-4 h-4" />
               <span>Atendimento Presencial & Remoto</span>
             </div>
           </div>
