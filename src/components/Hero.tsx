@@ -31,7 +31,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up-delayed-more">
           <Link href="#tangibilidade">
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,79,0,0.4)]">
-              Quero Digitalizar
+              Explorar Soluções
             </Button>
           </Link>
           <Link href="#metodologia">

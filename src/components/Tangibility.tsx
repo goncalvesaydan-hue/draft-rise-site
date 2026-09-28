@@ -1,6 +1,5 @@
 import React from 'react';
 import { CheckCircle2, CreditCard, Star, Smartphone } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 export default function Tangibility() {
   const touchpoints = [

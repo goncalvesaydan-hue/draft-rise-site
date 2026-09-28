@@ -1,6 +1,4 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
-
 export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-md bg-background/80 border-b border-border">
@@ -12,9 +10,6 @@ export default function Navbar() {
           Draft & Rise
         </span>
       </div>
-      <Button variant="outline" className="hidden md:flex border-primary text-secondary hover:bg-primary hover:text-white transition-all">
-        Área de Cliente
-      </Button>
     </nav>
   );
 }

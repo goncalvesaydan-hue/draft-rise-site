@@ -1,6 +1,5 @@
 import React from 'react';
-import { ArrowRight, Search, Zap, MessageSquare, Smartphone } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Search, Zap, MessageSquare, Smartphone } from 'lucide-react';
 
 export default function Methodology() {
   return (
@@ -74,7 +73,7 @@ export default function Methodology() {
                 </ul>
               </div>
               <div className="mt-12 p-6 rounded-2xl bg-white/5 border border-white/10 italic text-gray-400 text-sm">
-                "Ser a primeira e melhor opção nas buscas locais."
+                &ldquo;Ser a primeira e melhor opção nas buscas locais.&rdquo;
               </div>
             </div>
 
@@ -105,7 +104,7 @@ export default function Methodology() {
                 </ul>
               </div>
               <div className="mt-12 p-6 rounded-2xl bg-slate-50 border border-slate-100 italic text-gray-500 text-sm">
-                "Tornar o negócio invisível para a concorrência e irresistível para o cliente."
+                &ldquo;Tornar o negócio invisível para a concorrência e irresistível para o cliente.&rdquo;
               </div>
             </div>
 
