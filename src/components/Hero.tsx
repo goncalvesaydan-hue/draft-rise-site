@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowDownRight, MapPin, Radio, ScanLine } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -36,7 +37,7 @@ export default function Hero() {
             <div aria-hidden="true" className="absolute inset-0 opacity-40 map-grid" />
             <div className="relative flex items-center justify-between text-xs font-semibold text-slate-300"><span className="rounded-full border border-white/10 bg-white/5 px-3 py-2">Ponto de presença</span><Radio className="size-4 text-primary" /></div>
             <div className="relative mt-10 max-w-[15rem] rounded-2xl border border-white/10 bg-white/[0.07] p-4 backdrop-blur">
-              <div className="flex items-center gap-2 text-sm font-semibold"><span className="grid size-8 place-items-center rounded-full bg-primary text-xs">D&amp;R</span> O seu negócio</div>
+              <div className="flex items-center gap-2 text-sm font-semibold"><span className="grid size-8 place-items-center overflow-hidden rounded-full bg-white p-0.5"><Image src="/brand/draft-rise-mark.png" alt="" width={600} height={600} className="size-full object-contain" /></span> O seu negócio</div>
               <div className="mt-3 h-2 rounded-full bg-white/10"><div className="h-full w-2/3 rounded-full bg-primary" /></div>
               <p className="mt-3 text-xs leading-5 text-slate-300">Visibilidade, serviço e uma próxima ação simples.</p>
             </div>

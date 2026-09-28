@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { CreditCard, Star, Smartphone } from 'lucide-react';
 
 export default function Tangibility() {
@@ -86,7 +87,7 @@ export default function Tangibility() {
                <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl animate-pulse" />
                <div className="relative z-10 w-full h-full rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center p-12 text-center">
                   <div>
-                    <div className="mx-auto mb-6 grid size-20 place-items-center rounded-2xl bg-primary text-3xl font-black shadow-lg shadow-primary/40">D&amp;R</div>
+                    <div className="mx-auto mb-6 grid size-20 place-items-center overflow-hidden rounded-2xl bg-white p-2 shadow-lg shadow-primary/40"><Image src="/brand/draft-rise-mark.png" alt="" width={600} height={600} className="size-full object-contain" /></div>
                     <h3 className="text-2xl font-bold mb-2">O próximo nível, bem desenhado.</h3>
                     <p className="text-slate-400">Cada interação deve tornar o negócio mais fácil de escolher.</p>
                   </div>

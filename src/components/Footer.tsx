@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-secondary px-5 pb-9 pt-20 text-white md:px-8">
@@ -22,9 +23,9 @@ export default function Footer() {
         <div className="grid gap-12 pt-2 md:grid-cols-3">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-6 h-6 bg-primary rounded flex items-center justify-center font-bold text-white text-xs">
-                D&R
-              </div>
+              <span className="grid size-8 place-items-center overflow-hidden rounded-md bg-white p-0.5">
+                <Image src="/brand/draft-rise-mark.png" alt="" width={600} height={600} className="size-full object-contain" />
+              </span>
               <span className="font-heading font-bold text-lg tracking-tight">
                 Draft & Rise
               </span>
