@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export default function Hero() {
@@ -28,12 +29,16 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up-delayed-more">
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,79,0,0.4)]">
-            Quero Digitalizar
-          </Button>
-          <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg rounded-full backdrop-blur-sm">
-            Conhecer Metodologia
-          </Button>
+          <Link href="#tangibilidade">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,79,0,0.4)]">
+              Quero Digitalizar
+            </Button>
+          </Link>
+          <Link href="#metodologia">
+            <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg rounded-full backdrop-blur-sm">
+              Conhecer Metodologia
+            </Button>
+          </Link>
         </div>
 
         {/* Placeholder for Visuals */}

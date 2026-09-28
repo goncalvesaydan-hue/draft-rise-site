@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export default function Methodology() {
   return (
-    <section className="py-24 px-6 bg-background">
+    <section id="metodologia" className="py-24 px-6 bg-background">
       <div className="container max-w-6xl mx-auto">
 
         {/* Section 1: The Pain (Connection) */}
