@@ -6,12 +6,15 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
+      <a className="skip-link" href="#main-content">Saltar para o conteúdo</a>
       <Navbar />
-      <Hero />
-      <Methodology />
-      <Tangibility />
+      <main id="main-content" className="min-h-screen overflow-hidden">
+        <Hero />
+        <Methodology />
+        <Tangibility />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

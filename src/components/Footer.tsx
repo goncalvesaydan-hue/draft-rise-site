@@ -1,26 +1,25 @@
 import React from 'react';
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-white pt-20 pb-10 px-6 relative overflow-hidden">
+    <footer className="relative overflow-hidden bg-secondary px-5 pb-9 pt-20 text-white md:px-8">
       {/* Decorative Background Element */}
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-primary/10 blur-[120px] rounded-full -z-10" />
 
-      <div className="container max-w-6xl mx-auto">
+      <div className="mx-auto max-w-7xl">
         {/* Brand statement */}
-        <div className="text-center mb-24 p-12 md:p-20 rounded-[40px] bg-white/5 border border-white/10 backdrop-blur-sm relative overflow-hidden group">
+        <div className="relative mb-24 overflow-hidden border-y border-white/10 py-12 md:py-20">
           <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/20 blur-3xl rounded-full group-hover:bg-primary/40 transition-colors duration-500" />
 
-          <h2 className="text-3xl md:text-6xl font-heading font-extrabold mb-8 leading-tight">
-            O digital feito para elevar <br />
-            <span className="text-primary">do seu negócio?</span>
+          <h2 className="max-w-4xl font-heading text-4xl font-semibold leading-[1.02] tracking-[-0.055em] md:text-6xl">
+            O digital feito para elevar o que já funciona no seu negócio.
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-400">
             Estratégia, tecnologia e experiência para tornar o seu negócio mais visível, eficiente e memorável.
           </p>
         </div>
 
         {/* Footer Bottom */}
-        <div className="grid md:grid-cols-3 gap-12 pt-12 border-t border-white/10">
+        <div className="grid gap-12 pt-2 md:grid-cols-3">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-6 h-6 bg-primary rounded flex items-center justify-center font-bold text-white text-xs">
@@ -36,7 +35,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h4 className="font-bold text-white mb-2">Navegação</h4>
+            <h3 className="mb-2 font-bold text-white">Navegação</h3>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li><a href="#metodologia" className="hover:text-primary transition-colors">Metodologia</a></li>
               <li><a href="#tangibilidade" className="hover:text-primary transition-colors">Soluções NFC</a></li>
@@ -45,7 +44,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h4 className="font-bold text-white mb-2">Draft & Rise</h4>
+            <h3 className="mb-2 font-bold text-white">Draft & Rise</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               Soluções digitais para negócios locais que querem crescer com clareza e consistência.
             </p>

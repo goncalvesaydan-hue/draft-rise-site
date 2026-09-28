@@ -1,54 +1,49 @@
 import React from 'react';
 import Link from 'next/link';
+import { ArrowDownRight, MapPin, Radio, ScanLine } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center pt-20 px-6 overflow-hidden bg-secondary text-white">
-      {/* Background Ambient Light */}
-      <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/20 blur-[120px] rounded-full" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[100px] rounded-full" />
-
-      <div className="container max-w-6xl mx-auto text-center relative z-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-accent text-sm font-medium mb-6 animate-fade-in">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-          </span>
-          Digitalização de Negócios Locais
-        </div>
-
-        <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter leading-[1.1] mb-6 animate-slide-up">
-          Tornamos o seu negócio local <br />
-          <span className="text-primary">invisível para a concorrência</span> <br />
-          e irresistível para o cliente.
-        </h1>
-
-        <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed animate-slide-up-delayed">
-          Do Google ao pagamento NFC: construímos o ecossistema de conversão que transforma a visibilidade em lucro real.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up-delayed-more">
+    <section className="relative isolate overflow-hidden bg-secondary px-5 pb-16 pt-32 text-white md:px-8 md:pb-24 md:pt-44">
+      <div aria-hidden="true" className="absolute inset-0 hero-grid opacity-35" />
+      <div aria-hidden="true" className="absolute -right-48 top-24 size-[36rem] rounded-full bg-primary/20 blur-[130px]" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.02fr_.98fr] lg:gap-20">
+        <div className="max-w-3xl">
+          <p className="mb-7 flex items-center gap-2 text-sm font-semibold text-accent"><span className="size-2 rounded-full bg-primary" /> Digitalização para negócios locais</p>
+          <h1 className="font-heading text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.065em] text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+            Faça do seu espaço físico uma presença impossível de ignorar.
+          </h1>
+          <p className="mt-8 max-w-xl text-pretty text-lg leading-8 text-slate-300 md:text-xl">
+            Ligamos descoberta, experiência e pagamento num percurso digital claro para quem já faz um trabalho excelente no mundo real.
+          </p>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link href="#tangibilidade">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,79,0,0.4)]">
-              Explorar Soluções
+            <Button size="lg" className="h-14 rounded-full bg-primary px-7 text-base font-bold text-white shadow-[0_16px_40px_rgba(255,79,0,0.24)] transition-transform hover:scale-[1.02] hover:bg-primary/90 focus-visible:ring-primary">
+              Ver as soluções <ArrowDownRight className="size-5" />
             </Button>
           </Link>
           <Link href="#metodologia">
-            <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg rounded-full backdrop-blur-sm">
-              Conhecer Metodologia
+            <Button size="lg" variant="outline" className="h-14 rounded-full border-white/20 bg-white/[0.03] px-7 text-base text-white hover:bg-white/10 hover:text-white">
+              Como trabalhamos
             </Button>
           </Link>
         </div>
+        </div>
 
-        {/* Placeholder for Visuals */}
-        <div className="mt-20 relative w-full max-w-5xl mx-auto aspect-video bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm flex items-center justify-center group overflow-hidden">
-          <div className="text-center p-8">
-            <p className="text-gray-400 italic">Visual: Mockup de alta qualidade (Smartphone + Placa NFC)</p>
-            <div className="mt-4 flex justify-center gap-4 opacity-50 group-hover:opacity-100 transition-opacity">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">📱</div>
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">🪪</div>
+        <div aria-label="Painel que representa a ligação entre presença local e experiência digital" className="relative mx-auto w-full max-w-xl rounded-[2rem] border border-white/15 bg-[#102440] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
+          <div className="relative aspect-[1.08] overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0b1d36] p-5 sm:p-7">
+            <div aria-hidden="true" className="absolute inset-0 opacity-40 map-grid" />
+            <div className="relative flex items-center justify-between text-xs font-semibold text-slate-300"><span className="rounded-full border border-white/10 bg-white/5 px-3 py-2">Ponto de presença</span><Radio className="size-4 text-primary" /></div>
+            <div className="relative mt-10 max-w-[15rem] rounded-2xl border border-white/10 bg-white/[0.07] p-4 backdrop-blur">
+              <div className="flex items-center gap-2 text-sm font-semibold"><span className="grid size-8 place-items-center rounded-full bg-primary text-xs">D&amp;R</span> O seu negócio</div>
+              <div className="mt-3 h-2 rounded-full bg-white/10"><div className="h-full w-2/3 rounded-full bg-primary" /></div>
+              <p className="mt-3 text-xs leading-5 text-slate-300">Visibilidade, serviço e uma próxima ação simples.</p>
             </div>
+            <div className="absolute bottom-6 right-6 grid size-24 place-items-center rounded-2xl border border-primary/40 bg-primary/15 text-primary shadow-[0_0_40px_rgba(255,79,0,0.2)]"><ScanLine className="size-10" /></div>
+            <span className="absolute left-[61%] top-[40%] size-3 rounded-full bg-primary ring-8 ring-primary/15" />
+            <span className="absolute bottom-[29%] left-[26%] size-2 rounded-full bg-white ring-8 ring-white/10" />
+            <div className="absolute bottom-7 left-7 flex items-center gap-2 text-xs text-slate-300"><MapPin className="size-4 text-primary" /> Da rua ao ecrã, sem fricção.</div>
           </div>
         </div>
       </div>
