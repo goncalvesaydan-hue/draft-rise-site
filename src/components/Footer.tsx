@@ -43,8 +43,8 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h4 className="font-bold text-white mb-2">Navegação</h4>
             <ul className="space-y-2 text-gray-400 text-sm">
-              <li><a href="#" className="hover:text-primary transition-colors">Metodologia</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Soluções NFC</a></li>
+              <li><a href="#metodologia" className="hover:text-primary transition-colors">Metodologia</a></li>
+              <li><a href="#tangibilidade" className="hover:text-primary transition-colors">Soluções NFC</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Sobre Nós</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Contacto</a></li>
             </ul>
@@ -65,13 +65,19 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2 text-gray-400 text-sm mt-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span>Atendimento Presencial & Remoto</span>
+              <span className="italic">Atendimento Presencial & Remoto</span>
             </div>
           </div>
         </div>
 
-        <div className="text-center mt-20 pt-8 border-t border-white/5 text-gray-500 text-xs">
-          © {new Date().getFullYear()} Draft & Rise. Todos os direitos reservados.
+        <div className="flex flex-col md:flex-row justify-between items-center mt-20 pt-8 border-t border-white/5 text-gray-500 text-xs gap-4">
+          <div>
+            © {new Date().getFullYear()} Draft & Rise. Todos os direitos reservados.
+          </div>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-white transition-colors">Política de Privacidade</a>
+            <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>
+          </div>
         </div>
       </div>
     </footer>
