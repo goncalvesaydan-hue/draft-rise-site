@@ -1,116 +1,79 @@
-import React from 'react';
-import { Search, Zap, MessageSquare, Smartphone } from 'lucide-react';
+import { ArrowUpRight, MessageSquare, Search, Smartphone, Zap } from 'lucide-react';
+import { BlurFade } from '@/components/ui/blur-fade';
+
+const phases = [
+  {
+    number: '01',
+    title: 'Draft',
+    label: 'Ser encontrado',
+    description: 'Organizamos os sinais que fazem alguém parar, confiar e visitar.',
+    items: ['Google Business otimizado', 'Website desenhado para conversão'],
+    icon: Search,
+  },
+  {
+    number: '02',
+    title: 'Rise',
+    label: 'Ser escolhido',
+    description: 'Tiramos fricção do caminho entre a intenção e a ação.',
+    items: ['Menu online sempre atualizado', 'Marcações e respostas automáticas'],
+    icon: Zap,
+  },
+];
 
 export default function Methodology() {
   return (
-    <section id="metodologia" className="bg-background px-5 py-24 md:px-8 md:py-32">
+    <section id="metodologia" className="bg-white px-5 py-24 md:px-8 md:py-32">
       <div className="mx-auto max-w-7xl">
-
-        {/* Section 1: The Pain (Connection) */}
-        <div className="mb-20 grid gap-8 border-b border-slate-200 pb-16 lg:grid-cols-[.78fr_1.22fr] lg:items-end">
-          <p className="section-kicker font-bold text-primary">O ponto de partida</p>
+        <BlurFade className="grid gap-8 border-b border-secondary/15 pb-16 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
+          <p className="text-sm font-semibold text-primary">O ponto de partida</p>
           <div>
-          <h2 className="font-heading text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.055em] text-secondary md:text-6xl">
-            O melhor trabalho do mundo não ajuda se ninguém o encontra.
-          </h2>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-            Transformamos pontos soltos da presença digital num caminho coerente, desde a descoberta até à experiência no estabelecimento.
-          </p>
-          </div>
-        </div>
-
-        <div className="grid gap-px overflow-hidden border hairline bg-[#D8E0EB] md:grid-cols-2">
-          <div className="bg-white p-8 md:p-10 lg:p-12">
-            <div className="mb-8 grid size-12 place-items-center rounded-full bg-slate-100 text-secondary">
-              <Search className="w-6 h-6" />
-            </div>
-            <h3 className="text-2xl font-semibold tracking-tight text-secondary">Invisível no mapa</h3>
-            <p className="mt-3 max-w-md leading-7 text-slate-600">
-              O cliente pesquisa pelo seu serviço e decide em segundos. Se a sua presença não responde primeiro, a escolha acontece noutro lugar.
-            </p>
-          </div>
-
-          <div className="bg-white p-8 md:p-10 lg:p-12">
-            <div className="mb-8 grid size-12 place-items-center rounded-full bg-slate-100 text-secondary">
-              <MessageSquare className="w-6 h-6" />
-            </div>
-            <h3 className="text-2xl font-semibold tracking-tight text-secondary">Sobrecarga manual</h3>
-            <p className="mt-3 max-w-md leading-7 text-slate-600">
-              Perguntas repetidas, marcações dispersas e tarefas que dependem sempre de si. A operação não deve travar o crescimento.
-            </p>
-          </div>
-        </div>
-
-        {/* Section 2: The Methodology (Draft -> Rise) */}
-        <div className="mt-28">
-          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <h2 className="font-heading text-4xl font-semibold tracking-[-0.05em] text-secondary md:text-5xl">
-              Da intenção à ação
+            <h2 className="max-w-4xl text-balance font-heading text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-secondary md:text-6xl">
+              O melhor trabalho do mundo não ajuda se ninguém o encontra.
             </h2>
-            <p className="max-w-sm text-base leading-7 text-slate-600">Primeiro tornamos o negócio fácil de encontrar. Depois, fácil de escolher.</p>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-secondary/60">
+              A presença digital não é uma montra. É o caminho que leva alguém da dúvida ao primeiro passo.
+            </p>
           </div>
+        </BlurFade>
 
-          <div className="grid overflow-hidden rounded-[2rem] border border-slate-200 lg:grid-cols-2">
-
-            {/* DRAFT - Visibilidade */}
-            <div className="flex flex-col justify-between bg-secondary p-9 text-white md:p-14">
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold tracking-wide">01</span>
-                  <h3 className="font-heading text-4xl font-semibold tracking-[-0.05em]">Draft</h3>
-                </div>
-                <p className="mb-8 text-lg leading-8 text-slate-300">
-                  O foco é a <strong>visibilidade</strong>. Organizamos os sinais que fazem alguém parar, confiar e visitar.
-                </p>
-                <ul className="space-y-4">
-                  {[
-                    { icon: <Search className="w-5 h-5" />, text: "Otimização Estratégica de Google Business" },
-                    { icon: <Smartphone className="w-5 h-5" />, text: "Website Design Premium focado em Conversão" },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-300">
-                      <span className="rounded-md bg-primary/20 p-1 text-primary">{item.icon}</span>
-                      {item.text}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-12 border-t border-white/10 pt-5 text-sm italic text-slate-400">
-                &ldquo;Ser a primeira e melhor opção nas buscas locais.&rdquo;
-              </div>
+        <div className="mt-20 grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
+          <BlurFade delay={0.05} className="lg:pt-3">
+            <p className="max-w-sm text-2xl font-medium leading-tight tracking-[-0.04em] text-secondary md:text-3xl">
+              Quando tudo comunica a mesma coisa, escolher fica natural.
+            </p>
+            <div className="mt-10 flex items-center gap-4 text-sm text-secondary/55">
+              <span className="grid size-10 place-items-center rounded-full bg-[#EDF2F8] text-secondary"><MessageSquare className="size-4" /></span>
+              Menos ruído. Mais próximos passos.
             </div>
+          </BlurFade>
 
-            {/* RISE - Conversão */}
-            <div className="relative flex flex-col justify-between bg-[#EDF2F8] p-9 text-secondary md:p-14">
-              <div className="absolute top-0 right-0 p-6 opacity-10">
-                <Zap className="w-24 h-24 text-primary" />
-              </div>
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold tracking-wide text-primary">02</span>
-                  <h3 className="font-heading text-4xl font-semibold tracking-[-0.05em] text-secondary">Rise</h3>
-                </div>
-                <p className="mb-8 text-lg leading-8 text-slate-600">
-                  O foco é a <strong>experiência</strong>. Tiramos fricção do caminho entre intenção e ação.
-                </p>
-                <ul className="space-y-4">
-                  {[
-                    { icon: <Zap className="w-5 h-5" />, text: "Menu Online as a Service (SaaS)" },
-                    { icon: <MessageSquare className="w-5 h-5" />, text: "WhatsApp Bot para Automação de Marcações" },
-                    { icon: <Smartphone className="w-5 h-5" />, text: "Touchpoints Inteligentes (Placas NFC/QR)" },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-600">
-                      <span className="rounded-md bg-primary/10 p-1 text-primary">{item.icon}</span>
-                      {item.text}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-12 border-t border-slate-200 pt-5 text-sm italic text-slate-500">
-                &ldquo;Tornar o negócio invisível para a concorrência e irresistível para o cliente.&rdquo;
-              </div>
-            </div>
-
+          <div className="divide-y divide-secondary/15 border-y border-secondary/15">
+            {phases.map((phase, index) => {
+              const Icon = phase.icon;
+              return (
+                <BlurFade key={phase.number} delay={0.1 + index * 0.08} className="group grid gap-7 py-9 md:grid-cols-[5rem_1fr_auto] md:items-start md:gap-8">
+                  <span className="text-sm font-semibold text-primary">{phase.number}</span>
+                  <div>
+                    <div className="flex items-center gap-3">
+                      <Icon className="size-5 text-primary" />
+                      <h3 className="text-3xl font-semibold tracking-[-0.05em] text-secondary">{phase.title}</h3>
+                    </div>
+                    <p className="mt-3 text-sm font-semibold text-secondary/50">{phase.label}</p>
+                    <p className="mt-4 max-w-lg leading-7 text-secondary/65">{phase.description}</p>
+                    <ul className="mt-5 grid gap-2 text-sm text-secondary/70 sm:grid-cols-2">
+                      {phase.items.map((item) => <li key={item} className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-primary" />{item}</li>)}
+                    </ul>
+                  </div>
+                  <ArrowUpRight className="hidden size-5 text-secondary/30 transition-colors group-hover:text-primary md:block" />
+                </BlurFade>
+              );
+            })}
           </div>
+        </div>
+
+        <div className="mt-16 flex flex-col gap-5 border-t border-secondary/15 pt-6 text-sm text-secondary/55 sm:flex-row sm:items-center sm:justify-between">
+          <span>Da rua ao ecrã, sem fricção.</span>
+          <span className="flex items-center gap-2"><Smartphone className="size-4 text-primary" /> Pensado para o momento certo.</span>
         </div>
       </div>
     </section>
