@@ -108,6 +108,8 @@
   html { @apply scroll-smooth;
     @apply font-sans;
   }
+  ::selection { background: var(--primary); color: white; }
+  a { text-underline-offset: 0.2em; }
 }
 
 .skip-link {
@@ -127,6 +129,10 @@
 .skip-link:focus { transform: translateY(0); outline: 3px solid var(--primary); }
 .hero-grid { background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 4rem 4rem; mask-image: linear-gradient(to bottom, black, transparent 82%); }
 .map-grid { background-image: linear-gradient(115deg, transparent 0 45%, rgba(255,255,255,.18) 45.5% 46%, transparent 46.5% 100%), linear-gradient(20deg, transparent 0 43%, rgba(255,255,255,.12) 43.5% 44%, transparent 44.5% 100%); background-size: 10rem 10rem; }
+
+@media (min-width: 768px) {
+  .hero-grid { background-size: 5rem 5rem; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }

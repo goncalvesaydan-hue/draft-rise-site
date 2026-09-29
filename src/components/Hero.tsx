@@ -2,37 +2,33 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowDownRight, MapPin, Radio, ScanLine } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 
 export default function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-secondary px-5 pb-16 pt-32 text-white md:px-8 md:pb-24 md:pt-44">
       <div aria-hidden="true" className="absolute inset-0 hero-grid opacity-35" />
       <div aria-hidden="true" className="absolute -right-48 top-24 size-[36rem] rounded-full bg-primary/20 blur-[130px]" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.02fr_.98fr] lg:gap-20">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.08fr_.92fr] lg:gap-20">
         <div className="max-w-3xl">
-          <p className="mb-7 flex items-center gap-2 text-sm font-semibold text-accent"><span className="size-2 rounded-full bg-primary" /> Digitalização para negócios locais</p>
+          <p className="mb-7 flex items-center gap-3 text-sm font-semibold text-accent"><span className="grid size-6 place-items-center rounded-full border border-primary/40 bg-primary/15"><span className="size-2 rounded-full bg-primary" /></span> Digitalização para negócios locais</p>
           <h1 className="font-heading text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.065em] text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-            Faça do seu espaço físico uma presença impossível de ignorar.
+            O seu espaço físico merece uma presença à altura.
           </h1>
           <p className="mt-8 max-w-xl text-pretty text-lg leading-8 text-slate-300 md:text-xl">
             Ligamos descoberta, experiência e pagamento num percurso digital claro para quem já faz um trabalho excelente no mundo real.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <Link href="#tangibilidade">
-            <Button size="lg" className="h-14 rounded-full bg-primary px-7 text-base font-bold text-white shadow-[0_16px_40px_rgba(255,79,0,0.24)] transition-transform hover:scale-[1.02] hover:bg-primary/90 focus-visible:ring-primary">
+          <Link href="#tangibilidade" className={buttonVariants({ size: 'lg', className: 'h-14 rounded-full bg-primary px-7 text-base font-bold text-white shadow-[0_16px_40px_rgba(255,79,0,0.24)] transition-transform hover:scale-[1.02] hover:bg-primary/90 focus-visible:ring-primary' })}>
               Ver as soluções <ArrowDownRight className="size-5" />
-            </Button>
           </Link>
-          <Link href="#metodologia">
-            <Button size="lg" variant="outline" className="h-14 rounded-full border-white/20 bg-white/[0.03] px-7 text-base text-white hover:bg-white/10 hover:text-white">
+          <Link href="#metodologia" className={buttonVariants({ variant: 'outline', size: 'lg', className: 'h-14 rounded-full border-white/20 bg-white/[0.03] px-7 text-base text-white hover:bg-white/10 hover:text-white' })}>
               Como trabalhamos
-            </Button>
           </Link>
         </div>
         </div>
 
-        <div aria-label="Painel que representa a ligação entre presença local e experiência digital" className="relative mx-auto w-full max-w-xl rounded-[2rem] border border-white/15 bg-[#102440] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
+        <div role="img" aria-label="Painel que representa a ligação entre presença local e experiência digital" className="relative mx-auto w-full max-w-xl rounded-[2rem] border border-white/15 bg-[#102440] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
           <div className="relative aspect-[1.08] overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0b1d36] p-5 sm:p-7">
             <div aria-hidden="true" className="absolute inset-0 opacity-40 map-grid" />
             <div className="relative flex items-center justify-between text-xs font-semibold text-slate-300"><span className="rounded-full border border-white/10 bg-white/5 px-3 py-2">Ponto de presença</span><Radio className="size-4 text-primary" /></div>
@@ -47,6 +43,11 @@ export default function Hero() {
             <div className="absolute bottom-7 left-7 flex items-center gap-2 text-xs text-slate-300"><MapPin className="size-4 text-primary" /> Da rua ao ecrã, sem fricção.</div>
           </div>
         </div>
+      </div>
+      <div className="relative mx-auto mt-16 grid max-w-7xl grid-cols-1 border-t border-white/10 pt-6 text-sm text-slate-400 sm:grid-cols-3">
+        <div className="flex items-center gap-3 py-3 sm:border-r sm:border-white/10"><span className="text-primary">01</span> Ser encontrado</div>
+        <div className="flex items-center gap-3 py-3 sm:pl-6 sm:border-r sm:border-white/10"><span className="text-primary">02</span> Ser escolhido</div>
+        <div className="flex items-center gap-3 py-3 sm:pl-6"><span className="text-primary">03</span> Ser lembrado</div>
       </div>
     </section>
   );
