@@ -56,46 +56,52 @@
 }
 
 :root {
-  --background: #FBFAF8;
-  --foreground: #0A192F;
+  --background: #F7F8FB;
+  --foreground: #202B38;
   --card: #FFFFFF;
-  --card-foreground: #0A192F;
+  --card-foreground: #202B38;
   --popover: #FFFFFF;
-  --popover-foreground: #0A192F;
-  --primary: #FF4F00;
+  --popover-foreground: #202B38;
+  --primary: #FF4D1F;
   --primary-foreground: #FFFFFF;
-  --secondary: #0A192F;
+  --secondary: #202B38;
   --secondary-foreground: #FFFFFF;
-  --muted: #F3F1ED;
+  --muted: #EDF2F8;
   --muted-foreground: #6B7280;
-  --accent: #FFB380;
-  --accent-foreground: #0A192F;
+  --accent: #FFB39F;
+  --accent-foreground: #202B38;
   --destructive: #EF4444;
-  --border: #E7E3DC;
-  --input: #E7E3DC;
-  --ring: #FF4F00;
+  --border: #D8E0EB;
+  --input: #D8E0EB;
+  --ring: #FF4D1F;
+  --brand-coral: #FF704C;
+  --brand-salmon: #FF9278;
+  --brand-peach: #FFB39F;
+  --brand-apricot: #FFB17F;
+  --brand-pale: #FFCAA8;
+  --brand-blue: #DFE7F2;
   --radius: 0.75rem;
 }
 
 .dark {
-  --background: #0A192F;
+  --background: #202B38;
   --foreground: #FFFFFF;
-  --card: #0F172A;
+  --card: #273544;
   --card-foreground: #FFFFFF;
-  --popover: #0F172A;
+  --popover: #273544;
   --popover-foreground: #FFFFFF;
-  --primary: #FF4F00;
+  --primary: #FF4D1F;
   --primary-foreground: #FFFFFF;
-  --secondary: #1E293B;
+  --secondary: #2D3A49;
   --secondary-foreground: #FFFFFF;
-  --muted: #1E293B;
+  --muted: #2D3A49;
   --muted-foreground: #94A3B8;
-  --accent: #FFB380;
-  --accent-foreground: #0A192F;
+  --accent: #FFB39F;
+  --accent-foreground: #202B38;
   --destructive: #7F1D1D;
-  --border: #1E293B;
-  --input: #1E293B;
-  --ring: #FF4F00;
+  --border: #3B4A5B;
+  --input: #3B4A5B;
+  --ring: #FF4D1F;
 }
 
 @layer base {
@@ -129,6 +135,9 @@
 .skip-link:focus { transform: translateY(0); outline: 3px solid var(--primary); }
 .hero-grid { background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 4rem 4rem; mask-image: linear-gradient(to bottom, black, transparent 82%); }
 .map-grid { background-image: linear-gradient(115deg, transparent 0 45%, rgba(255,255,255,.18) 45.5% 46%, transparent 46.5% 100%), linear-gradient(20deg, transparent 0 43%, rgba(255,255,255,.12) 43.5% 44%, transparent 44.5% 100%); background-size: 10rem 10rem; }
+.signal-line { background: linear-gradient(90deg, transparent, rgba(255,77,31,.8), transparent); }
+.section-kicker { letter-spacing: .08em; text-transform: uppercase; font-size: .68rem; }
+.hairline { border-color: rgba(32,43,56,.14); }
 
 @media (min-width: 768px) {
   .hero-grid { background-size: 5rem 5rem; }

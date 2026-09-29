@@ -6,12 +6,12 @@ import { buttonVariants } from '@/components/ui/button';
 
 export default function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-secondary px-5 pb-16 pt-32 text-white md:px-8 md:pb-24 md:pt-44">
+    <section className="relative isolate overflow-hidden bg-secondary px-5 pb-10 pt-32 text-white md:px-8 md:pb-16 md:pt-44">
       <div aria-hidden="true" className="absolute inset-0 hero-grid opacity-35" />
       <div aria-hidden="true" className="absolute -right-48 top-24 size-[36rem] rounded-full bg-primary/20 blur-[130px]" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.08fr_.92fr] lg:gap-20">
         <div className="max-w-3xl">
-          <p className="mb-7 flex items-center gap-3 text-sm font-semibold text-accent"><span className="grid size-6 place-items-center rounded-full border border-primary/40 bg-primary/15"><span className="size-2 rounded-full bg-primary" /></span> Digitalização para negócios locais</p>
+          <p className="section-kicker mb-7 flex items-center gap-3 font-semibold text-accent"><span className="grid size-6 place-items-center rounded-full border border-primary/40 bg-primary/15"><span className="size-2 rounded-full bg-primary" /></span> Presença local com intenção</p>
           <h1 className="font-heading text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.065em] text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
             O seu negócio local, escolhido antes de ser visitado.
           </h1>
@@ -28,9 +28,12 @@ export default function Hero() {
         </div>
         </div>
 
-        <div role="img" aria-label="Painel que representa a ligação entre presença local e experiência digital" className="relative mx-auto w-full max-w-xl rounded-[2rem] border border-white/15 bg-[#102440] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
-          <div className="relative aspect-[1.08] overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0b1d36] p-5 sm:p-7">
+        <div role="img" aria-label="Painel que representa a ligação entre presença local e experiência digital" className="relative mx-auto w-full max-w-xl rounded-[2rem] border border-white/15 bg-[#2D3A49] p-3 shadow-[0_30px_100px_rgba(32,43,56,0.35)]">
+          <div className="relative aspect-[1.08] overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#202B38] p-5 sm:p-7">
             <div aria-hidden="true" className="absolute inset-0 opacity-40 map-grid" />
+            <div aria-hidden="true" className="absolute left-[14%] top-[24%] h-px w-[72%] signal-line opacity-80" />
+            <div aria-hidden="true" className="absolute left-[14%] top-[24%] h-[52%] w-[72%] rounded-[50%] border border-primary/20" />
+            <div aria-hidden="true" className="absolute left-[23%] top-[33%] h-[34%] w-[54%] rounded-[50%] border border-primary/15" />
             <div className="relative flex items-center justify-between text-xs font-semibold text-slate-300"><span className="rounded-full border border-white/10 bg-white/5 px-3 py-2">Mapa de presença</span><Radio className="size-4 text-primary" /></div>
             <div className="relative mt-10 max-w-[15rem] rounded-2xl border border-white/10 bg-white/[0.07] p-4 backdrop-blur">
               <div className="flex items-center gap-2 text-sm font-semibold"><span className="grid size-8 place-items-center overflow-hidden rounded-full bg-white p-0.5"><Image src="/brand/draft-rise-mark.png" alt="" width={600} height={600} className="size-full object-contain" /></span> O seu negócio</div>

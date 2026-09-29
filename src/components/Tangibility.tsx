@@ -25,10 +25,10 @@ export default function Tangibility() {
   ];
 
   return (
-    <section id="solucoes" className="bg-[#f6f7f9] px-5 py-24 md:px-8 md:py-32">
+    <section id="solucoes" className="bg-[#EDF2F8] px-5 py-24 md:px-8 md:py-32">
       <div id="tangibilidade" className="mx-auto max-w-7xl">
         <div className="mb-16 grid gap-7 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
-          <p className="text-sm font-bold text-primary">Na experiência</p>
+          <p className="section-kicker font-bold text-primary">Na experiência</p>
           <div>
           <h2 className="font-heading text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.055em] text-secondary md:text-6xl">
             Pequenos pontos de contacto. Uma experiência muito mais clara.
@@ -39,9 +39,9 @@ export default function Tangibility() {
           </div>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-3">
           {touchpoints.map((item, i) => (
-            <article key={i} className="group min-h-[23rem] border border-slate-200 bg-white p-7 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_18px_45px_rgba(10,25,47,0.08)] md:p-8">
+            <article key={i} className="group min-h-[23rem] border hairline bg-white p-7 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_18px_45px_rgba(32,43,56,0.08)] md:p-8">
               <div className="flex items-start justify-between">
                 <span className="grid size-12 place-items-center rounded-full bg-primary/10">{item.icon}</span>
                 <span className="text-xs font-bold text-slate-500">0{i + 1}</span>
@@ -58,7 +58,7 @@ export default function Tangibility() {
         </div>
 
         {/* About Section: Performance over Presence */}
-        <div className="relative mt-20 overflow-hidden rounded-[2rem] bg-secondary p-8 text-white md:mt-28 md:p-16">
+        <div id="contacto" className="relative mt-20 overflow-hidden rounded-[2rem] bg-secondary p-8 text-white md:mt-28 md:p-16">
           <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/10 blur-[100px] rounded-full" />
 
           <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">

@@ -8,7 +8,7 @@ export default function Methodology() {
 
         {/* Section 1: The Pain (Connection) */}
         <div className="mb-20 grid gap-8 border-b border-slate-200 pb-16 lg:grid-cols-[.78fr_1.22fr] lg:items-end">
-          <p className="text-sm font-bold text-primary">O ponto de partida</p>
+          <p className="section-kicker font-bold text-primary">O ponto de partida</p>
           <div>
           <h2 className="font-heading text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.055em] text-secondary md:text-6xl">
             O melhor trabalho do mundo não ajuda se ninguém o encontra.
@@ -19,8 +19,8 @@ export default function Methodology() {
           </div>
         </div>
 
-        <div className="grid gap-px overflow-hidden border border-slate-200 bg-slate-200 md:grid-cols-2">
-          <div className="bg-white p-8 md:p-10">
+        <div className="grid gap-px overflow-hidden border hairline bg-[#D8E0EB] md:grid-cols-2">
+          <div className="bg-white p-8 md:p-10 lg:p-12">
             <div className="mb-8 grid size-12 place-items-center rounded-full bg-slate-100 text-secondary">
               <Search className="w-6 h-6" />
             </div>
@@ -30,7 +30,7 @@ export default function Methodology() {
             </p>
           </div>
 
-          <div className="bg-white p-8 md:p-10">
+          <div className="bg-white p-8 md:p-10 lg:p-12">
             <div className="mb-8 grid size-12 place-items-center rounded-full bg-slate-100 text-secondary">
               <MessageSquare className="w-6 h-6" />
             </div>
@@ -45,7 +45,7 @@ export default function Methodology() {
         <div className="mt-28">
           <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <h2 className="font-heading text-4xl font-semibold tracking-[-0.05em] text-secondary md:text-5xl">
-              Draft → Rise
+              Da intenção à ação
             </h2>
             <p className="max-w-sm text-base leading-7 text-slate-600">Primeiro tornamos o negócio fácil de encontrar. Depois, fácil de escolher.</p>
           </div>
@@ -80,7 +80,7 @@ export default function Methodology() {
             </div>
 
             {/* RISE - Conversão */}
-            <div className="relative flex flex-col justify-between bg-[#f6f7f9] p-9 text-secondary md:p-14">
+            <div className="relative flex flex-col justify-between bg-[#EDF2F8] p-9 text-secondary md:p-14">
               <div className="absolute top-0 right-0 p-6 opacity-10">
                 <Zap className="w-24 h-24 text-primary" />
               </div>
