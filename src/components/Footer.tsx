@@ -9,13 +9,13 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl">
         {/* Brand statement */}
         <div className="relative mb-24 overflow-hidden border-y border-white/10 py-12 md:py-20">
-          <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/20 blur-3xl rounded-full group-hover:bg-primary/40 transition-colors duration-500" />
+          <div aria-hidden="true" className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/20 blur-3xl rounded-full" />
 
           <h2 className="max-w-4xl font-heading text-4xl font-semibold leading-[1.02] tracking-[-0.055em] md:text-6xl">
             O digital feito para elevar o que já funciona no seu negócio.
           </h2>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-400">
-            Estratégia, tecnologia e experiência para tornar o seu negócio mais visível, eficiente e memorável.
+            Estratégia, tecnologia e experiência para tornar o seu negócio mais fácil de encontrar e escolher.
           </p>
         </div>
 
@@ -31,7 +31,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Especialistas em digitalização de negócios locais. Transformamos visibilidade em conversão através de ecossistemas digitais de alta performance.
+              Estratégia digital para negócios locais que querem crescer sem perder a clareza do que os torna especiais.
             </p>
           </div>
 
@@ -47,7 +47,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h3 className="mb-2 font-bold text-white">Draft & Rise</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Soluções digitais para negócios locais que querem crescer com clareza e consistência.
+              Presença digital com intenção: menos ruído, mais próximos passos.
             </p>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Draft & Rise. Todos os direitos reservados.
           </div>
           <div className="flex gap-6">
-            <span>Conteúdo institucional</span>
+            <span>Estratégia · Experiência · Presença</span>
           </div>
         </div>
       </div>

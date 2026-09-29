@@ -14,7 +14,6 @@ export default function Navbar() {
         <div className="flex items-center gap-4 text-sm font-medium text-slate-300 md:gap-7">
           <a className="transition-colors hover:text-white focus-visible:outline-none focus-visible:text-white" href="#metodologia">Método</a>
           <a className="transition-colors hover:text-white focus-visible:outline-none focus-visible:text-white" href="#solucoes">Soluções</a>
-          <a className="hidden rounded-full bg-primary px-4 py-2 font-semibold text-white transition-colors hover:bg-primary/90 sm:inline-flex" href="#tangibilidade">Começar</a>
         </div>
       </div>
     </nav>

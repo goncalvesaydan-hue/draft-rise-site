@@ -13,14 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Draft & Rise | Digitalização de Negócios Locais",
-  description: "Tornamos o seu negócio local invisível para a concorrência e irresistível para o cliente. Estratégias de visibilidade e conversão digital.",
+  title: "Draft & Rise — O seu negócio local, escolhido antes de ser visitado",
+  description: "Estratégia digital para negócios locais que querem ser encontrados, escolhidos e lembrados.",
+  openGraph: {
+    title: "Draft & Rise — Presença digital para negócios locais",
+    description: "Da rua ao ecrã, uma experiência digital pensada para o próximo passo.",
+    type: "website",
+    locale: "pt_PT",
+    siteName: "Draft & Rise",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
-      lang="pt"
+      lang="pt-PT"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>

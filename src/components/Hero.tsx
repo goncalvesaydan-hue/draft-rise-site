@@ -13,10 +13,10 @@ export default function Hero() {
         <div className="max-w-3xl">
           <p className="mb-7 flex items-center gap-3 text-sm font-semibold text-accent"><span className="grid size-6 place-items-center rounded-full border border-primary/40 bg-primary/15"><span className="size-2 rounded-full bg-primary" /></span> Digitalização para negócios locais</p>
           <h1 className="font-heading text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.065em] text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-            O seu espaço físico merece uma presença à altura.
+            O seu negócio local, escolhido antes de ser visitado.
           </h1>
           <p className="mt-8 max-w-xl text-pretty text-lg leading-8 text-slate-300 md:text-xl">
-            Ligamos descoberta, experiência e pagamento num percurso digital claro para quem já faz um trabalho excelente no mundo real.
+            Tornamos mais fácil encontrar o que já faz bem — e mais natural dar o próximo passo.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link href="#tangibilidade" className={buttonVariants({ size: 'lg', className: 'h-14 rounded-full bg-primary px-7 text-base font-bold text-white shadow-[0_16px_40px_rgba(255,79,0,0.24)] transition-transform hover:scale-[1.02] hover:bg-primary/90 focus-visible:ring-primary' })}>
@@ -31,11 +31,11 @@ export default function Hero() {
         <div role="img" aria-label="Painel que representa a ligação entre presença local e experiência digital" className="relative mx-auto w-full max-w-xl rounded-[2rem] border border-white/15 bg-[#102440] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
           <div className="relative aspect-[1.08] overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0b1d36] p-5 sm:p-7">
             <div aria-hidden="true" className="absolute inset-0 opacity-40 map-grid" />
-            <div className="relative flex items-center justify-between text-xs font-semibold text-slate-300"><span className="rounded-full border border-white/10 bg-white/5 px-3 py-2">Ponto de presença</span><Radio className="size-4 text-primary" /></div>
+            <div className="relative flex items-center justify-between text-xs font-semibold text-slate-300"><span className="rounded-full border border-white/10 bg-white/5 px-3 py-2">Mapa de presença</span><Radio className="size-4 text-primary" /></div>
             <div className="relative mt-10 max-w-[15rem] rounded-2xl border border-white/10 bg-white/[0.07] p-4 backdrop-blur">
               <div className="flex items-center gap-2 text-sm font-semibold"><span className="grid size-8 place-items-center overflow-hidden rounded-full bg-white p-0.5"><Image src="/brand/draft-rise-mark.png" alt="" width={600} height={600} className="size-full object-contain" /></span> O seu negócio</div>
               <div className="mt-3 h-2 rounded-full bg-white/10"><div className="h-full w-2/3 rounded-full bg-primary" /></div>
-              <p className="mt-3 text-xs leading-5 text-slate-300">Visibilidade, serviço e uma próxima ação simples.</p>
+              <p className="mt-3 text-xs leading-5 text-slate-300">Encontrar. Confiar. Escolher.</p>
             </div>
             <div className="absolute bottom-6 right-6 grid size-24 place-items-center rounded-2xl border border-primary/40 bg-primary/15 text-primary shadow-[0_0_40px_rgba(255,79,0,0.2)]"><ScanLine className="size-10" /></div>
             <span className="absolute left-[61%] top-[40%] size-3 rounded-full bg-primary ring-8 ring-primary/15" />

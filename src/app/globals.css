@@ -56,7 +56,7 @@
 }
 
 :root {
-  --background: #FFFFFF;
+  --background: #FBFAF8;
   --foreground: #0A192F;
   --card: #FFFFFF;
   --card-foreground: #0A192F;
@@ -66,13 +66,13 @@
   --primary-foreground: #FFFFFF;
   --secondary: #0A192F;
   --secondary-foreground: #FFFFFF;
-  --muted: #F3F4F6;
+  --muted: #F3F1ED;
   --muted-foreground: #6B7280;
   --accent: #FFB380;
   --accent-foreground: #0A192F;
   --destructive: #EF4444;
-  --border: #E5E7EB;
-  --input: #E5E7EB;
+  --border: #E7E3DC;
+  --input: #E7E3DC;
   --ring: #FF4F00;
   --radius: 0.75rem;
 }

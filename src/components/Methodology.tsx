@@ -8,10 +8,10 @@ export default function Methodology() {
 
         {/* Section 1: The Pain (Connection) */}
         <div className="mb-20 grid gap-8 border-b border-slate-200 pb-16 lg:grid-cols-[.78fr_1.22fr] lg:items-end">
-          <p className="text-sm font-bold text-primary">O que muda</p>
+          <p className="text-sm font-bold text-primary">O ponto de partida</p>
           <div>
           <h2 className="font-heading text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.055em] text-secondary md:text-6xl">
-            Um bom negócio merece ser encontrado no momento certo.
+            O melhor trabalho do mundo não ajuda se ninguém o encontra.
           </h2>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
             Transformamos pontos soltos da presença digital num caminho coerente, desde a descoberta até à experiência no estabelecimento.
@@ -26,7 +26,7 @@ export default function Methodology() {
             </div>
             <h3 className="text-2xl font-semibold tracking-tight text-secondary">Invisível no mapa</h3>
             <p className="mt-3 max-w-md leading-7 text-slate-600">
-              O seu cliente potencial pesquisa pelo seu serviço, mas encontra o seu concorrente. Se não domina o Google Business, você não existe para o novo cliente.
+              O cliente pesquisa pelo seu serviço e decide em segundos. Se a sua presença não responde primeiro, a escolha acontece noutro lugar.
             </p>
           </div>
 
@@ -36,7 +36,7 @@ export default function Methodology() {
             </div>
             <h3 className="text-2xl font-semibold tracking-tight text-secondary">Sobrecarga manual</h3>
             <p className="mt-3 max-w-md leading-7 text-slate-600">
-              Perder horas a responder as mesmas perguntas no WhatsApp ou a gerir marcações manualmente. A falta de automação rouba o seu tempo de gestão.
+              Perguntas repetidas, marcações dispersas e tarefas que dependem sempre de si. A operação não deve travar o crescimento.
             </p>
           </div>
         </div>
@@ -47,7 +47,7 @@ export default function Methodology() {
             <h2 className="font-heading text-4xl font-semibold tracking-[-0.05em] text-secondary md:text-5xl">
               Draft → Rise
             </h2>
-            <p className="max-w-sm text-base leading-7 text-slate-600">Uma sequência pensada para criar presença antes de acelerar conversão.</p>
+            <p className="max-w-sm text-base leading-7 text-slate-600">Primeiro tornamos o negócio fácil de encontrar. Depois, fácil de escolher.</p>
           </div>
 
           <div className="grid overflow-hidden rounded-[2rem] border border-slate-200 lg:grid-cols-2">
@@ -60,7 +60,7 @@ export default function Methodology() {
                   <h3 className="font-heading text-4xl font-semibold tracking-[-0.05em]">Draft</h3>
                 </div>
                 <p className="mb-8 text-lg leading-8 text-slate-300">
-                  O foco é a <strong>Visibilidade</strong>. Tornamos o seu negócio irresistível e visível para quem procura.
+                  O foco é a <strong>visibilidade</strong>. Organizamos os sinais que fazem alguém parar, confiar e visitar.
                 </p>
                 <ul className="space-y-4">
                   {[
@@ -90,7 +90,7 @@ export default function Methodology() {
                   <h3 className="font-heading text-4xl font-semibold tracking-[-0.05em] text-secondary">Rise</h3>
                 </div>
                 <p className="mb-8 text-lg leading-8 text-slate-600">
-                  O foco é a <strong>Conversão</strong>. Maximizamos a experiência do cliente e a eficiência operacional.
+                  O foco é a <strong>experiência</strong>. Tiramos fricção do caminho entre intenção e ação.
                 </p>
                 <ul className="space-y-4">
                   {[
