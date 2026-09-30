@@ -204,9 +204,8 @@ h2 { font-size: clamp(37px, 4vw, 65px); line-height: 1.06; letter-spacing: -.055
 .contact fieldset { margin: 0; padding: 0; border: none; }
 .contact legend { font-size: 12px; margin-bottom: 17px; }
 .interest-chips { display: flex; flex-wrap: wrap; gap: 8px; max-width: 620px; }
-.interest-chips button { padding: 10px 15px; min-height: 44px; border: 1px solid #9aaeb7; border-radius: 99px; background: transparent; font-size: 11px; display: flex; align-items: center; gap: 6px; transition: background .2s, color .2s, border-color .2s; }
-.interest-chips button:hover { background: rgb(255 255 255 / 50%); }
-.interest-chips button[aria-pressed="true"] { background: var(--ink); color: white; border-color: var(--ink); }
+.interest-chips a { padding: 10px 15px; min-height: 44px; border: 1px solid #9aaeb7; border-radius: 99px; background: transparent; font-size: 11px; display: flex; align-items: center; gap: 6px; transition: background .2s, color .2s, border-color .2s; }
+.interest-chips a:hover { background: rgb(255 255 255 / 50%); }
 .contact-actions { text-align: center; }
 .email-copy { display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 11px; margin-top: 7px; }
 .email-copy button { border: 0; background: transparent; width: 44px; height: 44px; display: grid; place-items: center; }
@@ -301,7 +300,7 @@ h2 { font-size: clamp(37px, 4vw, 65px); line-height: 1.06; letter-spacing: -.055
   .contact-heading h2 { font-size: clamp(34px,6.3vw,51px); }
   .contact-arrow { width: 65px; }
   .contact-bottom { grid-template-columns: 1fr; gap: 30px; }
-  .interest-chips button { font-size: 10px; padding-inline: 12px; }
+  .interest-chips a { font-size: 10px; padding-inline: 12px; }
   .contact-actions { text-align: left; }
   .email-copy { justify-content: start; width: fit-content; }
   .footer { padding-top: 40px; }
