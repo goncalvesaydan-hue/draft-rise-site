@@ -1,79 +1,46 @@
-import { ArrowUpRight, MessageSquare, Search, Smartphone, Zap } from 'lucide-react';
-import { BlurFade } from '@/components/ui/blur-fade';
+'use client';
+
+import Image from 'next/image';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { ArrowUpRight, Check, MapPin, Search, Star, Heart, Plus, Minus } from 'lucide-react';
+import { useState } from 'react';
 
 const phases = [
-  {
-    number: '01',
-    title: 'Draft',
-    label: 'Ser encontrado',
-    description: 'Organizamos os sinais que fazem alguém parar, confiar e visitar.',
-    items: ['Google Business otimizado', 'Website desenhado para conversão'],
-    icon: Search,
-  },
-  {
-    number: '02',
-    title: 'Rise',
-    label: 'Ser escolhido',
-    description: 'Tiramos fricção do caminho entre a intenção e a ação.',
-    items: ['Menu online sempre atualizado', 'Marcações e respostas automáticas'],
-    icon: Zap,
-  },
+  { title: 'Ser encontrado.', text: 'Aparecer quando alguém procura o que faz. Uma presença local organizada, com a informação certa e um website que abre portas.', tags: ['Google Business', 'Website & SEO local'], label: 'Da pesquisa à descoberta', icon: Search },
+  { title: 'Ser escolhido.', text: 'Transformar curiosidade em vontade de entrar. Uma identidade consistente, informação clara e um caminho simples até à primeira visita.', tags: ['Design & identidade', 'Marcações & menus'], label: 'Da descoberta à primeira visita', icon: MapPin },
+  { title: 'Ser lembrado.', text: 'A experiência não termina à saída. Facilitamos as avaliações e criamos pontos de contacto que dão vontade de voltar.', tags: ['Avaliações & reputação', 'Experiência no espaço'], label: 'Da primeira visita à próxima', icon: Heart },
 ];
 
 export default function Methodology() {
+  const [active, setActive] = useState(0);
+  const reduced = useReducedMotion();
+  const phase = phases[active];
   return (
-    <section id="metodologia" className="bg-white px-5 py-24 md:px-8 md:py-32">
-      <div className="mx-auto max-w-7xl">
-        <BlurFade className="grid gap-8 border-b border-secondary/15 pb-16 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
-          <p className="text-sm font-semibold text-primary">O ponto de partida</p>
-          <div>
-            <h2 className="max-w-4xl text-balance font-heading text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-secondary md:text-6xl">
-              O melhor trabalho do mundo não ajuda se ninguém o encontra.
-            </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-secondary/60">
-              A presença digital não é uma montra. É o caminho que leva alguém da dúvida ao primeiro passo.
-            </p>
-          </div>
-        </BlurFade>
-
-        <div className="mt-20 grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
-          <BlurFade delay={0.05} className="lg:pt-3">
-            <p className="max-w-sm text-2xl font-medium leading-tight tracking-[-0.04em] text-secondary md:text-3xl">
-              Quando tudo comunica a mesma coisa, escolher fica natural.
-            </p>
-            <div className="mt-10 flex items-center gap-4 text-sm text-secondary/55">
-              <span className="grid size-10 place-items-center rounded-full bg-[#EDF2F8] text-secondary"><MessageSquare className="size-4" /></span>
-              Menos ruído. Mais próximos passos.
+    <section id="metodologia" className="method section-shell" aria-labelledby="method-title">
+      <div className="section-heading"><p className="section-label"><span /> O nosso método</p><h2 id="method-title">Não é só estar online.<br />É fazer parte da vida.</h2><p>Ligamos o que acontece no ecrã<br className="desktop-break" /> ao que faz o seu negócio especial.</p></div>
+      <div className="method-grid">
+        <div className="method-steps">
+          {phases.map((item, index) => (
+            <div key={item.title} className={`method-step ${index === active ? 'is-active' : ''}`}>
+              <h3><button aria-expanded={index === active} aria-controls={`phase-content-${index}`} onClick={() => setActive(index)}><span className="step-number">0{index + 1}</span><span>{item.title}</span>{active === index ? <Minus size={20} /> : <Plus size={20} />}</button></h3>
+              <div id={`phase-content-${index}`} hidden={active !== index} className="step-content"><p>{item.text}</p><div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
             </div>
-          </BlurFade>
-
-          <div className="divide-y divide-secondary/15 border-y border-secondary/15">
-            {phases.map((phase, index) => {
-              const Icon = phase.icon;
-              return (
-                <BlurFade key={phase.number} delay={0.1 + index * 0.08} className="group grid gap-7 py-9 md:grid-cols-[5rem_1fr_auto] md:items-start md:gap-8">
-                  <span className="text-sm font-semibold text-primary">{phase.number}</span>
-                  <div>
-                    <div className="flex items-center gap-3">
-                      <Icon className="size-5 text-primary" />
-                      <h3 className="text-3xl font-semibold tracking-[-0.05em] text-secondary">{phase.title}</h3>
-                    </div>
-                    <p className="mt-3 text-sm font-semibold text-secondary/50">{phase.label}</p>
-                    <p className="mt-4 max-w-lg leading-7 text-secondary/65">{phase.description}</p>
-                    <ul className="mt-5 grid gap-2 text-sm text-secondary/70 sm:grid-cols-2">
-                      {phase.items.map((item) => <li key={item} className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-primary" />{item}</li>)}
-                    </ul>
-                  </div>
-                  <ArrowUpRight className="hidden size-5 text-secondary/30 transition-colors group-hover:text-primary md:block" />
-                </BlurFade>
-              );
-            })}
-          </div>
+          ))}
+          <a href="#contacto" className="text-link">Encontre o seu ponto de partida <ArrowUpRight size={18} /></a>
         </div>
-
-        <div className="mt-16 flex flex-col gap-5 border-t border-secondary/15 pt-6 text-sm text-secondary/55 sm:flex-row sm:items-center sm:justify-between">
-          <span>Da rua ao ecrã, sem fricção.</span>
-          <span className="flex items-center gap-2"><Smartphone className="size-4 text-primary" /> Pensado para o momento certo.</span>
+        <div className={`method-preview preview-${active}`}>
+          <div className="preview-top"><span className="status-dot" /><span>{phase.label}</span><span className="preview-counter">0{active + 1} / 03</span></div>
+          <div className="preview-stage">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div key={active} className="demo-card" initial={reduced ? false : { opacity: 0, y: 14, rotate: -2 }} animate={{ opacity: 1, y: 0, rotate: 0 }} exit={reduced ? { opacity: 0 } : { opacity: 0, y: -10, rotate: 2 }} transition={{ duration: reduced ? 0 : 0.24 }}>
+                {active === 0 && <><div className="demo-search"><Search size={17} /><span>Um bom café perto de mim</span></div><div className="demo-image"><Image src="/images/neighbourhood-cafe.webp" alt="" fill sizes="360px" /><span><MapPin size={13} /> Mesmo aqui ao lado</span></div><div className="demo-info"><div><strong>O café da esquina</strong><p>O seu novo lugar favorito.</p></div><span className="demo-arrow"><ArrowUpRight /></span></div></>}
+                {active === 1 && <><div className="demo-brand">O café da esquina<span>Est. hoje</span></div><div className="demo-image"><Image src="/images/neighbourhood-cafe.webp" alt="" fill sizes="360px" /></div><div className="demo-info"><div><strong>Há sempre lugar<br />para mais um.</strong><p>Bom café. Boas conversas.</p></div></div><div className="demo-action"><span>Uma mesa à sua espera</span><Check size={18} /></div></>}
+                {active === 2 && <div className="review-demo"><span className="review-heart"><Heart size={38} /></span><div className="demo-stars" aria-label="Cinco estrelas">{Array.from({ length: 5 }, (_, i) => <Star key={i} size={22} fill="currentColor" />)}</div><strong>Daqueles lugares<br />a que apetece voltar.</strong><p>Uma boa experiência merece<br />ser partilhada.</p><div className="demo-action"><span>A próxima visita começa aqui</span><Heart size={17} /></div></div>}
+              </motion.div>
+            </AnimatePresence>
+            <span className="preview-orbit orbit-one" aria-hidden="true" /><span className="preview-orbit orbit-two" aria-hidden="true" />
+          </div>
+          <p className="demo-disclaimer">Exemplo ilustrativo de uma experiência local.</p>
         </div>
       </div>
     </section>

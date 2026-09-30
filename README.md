@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Draft & Rise
 
-## Getting Started
+Website em português para a Draft & Rise, com apresentação do negócio, método interativo, soluções e contacto por email.
 
-First, run the development server:
+## Desenvolvimento
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir http://localhost:3000. Para usar outra porta:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run dev -- --port 3100
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Verificação e produção local
 
-## Learn More
+```bash
+npm run lint
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+O projeto usa Next.js 16, React 19, Tailwind CSS 4 e Motion. Antes de alterar APIs do Next.js, consultar a documentação da versão instalada em `node_modules/next/dist/docs/`, conforme `AGENTS.md`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Conteúdo e edição
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `src/app/page.tsx`: composição da página.
+- `src/app/layout.tsx`: idioma, fontes e metadados.
+- `src/app/globals.css`: estilos, tamanhos de ecrã e movimento reduzido.
+- `src/components/`: navegação, abertura, método, soluções, contacto e rodapé.
+- `public/images/`: fotografia conceptual; direção visual e origem em [DESIGN.md](DESIGN.md).
 
-## Deploy on Vercel
+O contacto usa `mailto:ola@draftrise.pt` e abre a aplicação de email do visitante. A escolha de interesse preenche o assunto. Não existe envio de mensagens pelo servidor nem armazenamento de dados de contacto.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Validação realizada em 30 de setembro de 2026
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- ESLint e compilação de produção concluídos com sucesso.
+- Imagens carregadas e ausência de erros ou avisos na consola durante a verificação no Chrome.
+- Sem deslocamento horizontal da página nas larguras de 302, 390, 768 e 1440 px.
+- Menu móvel: abertura, fecho com Escape e devolução do foco ao botão.
+- Seleção das etapas do método e atualização do assunto do email verificadas no navegador.
+
+Estas verificações não substituem uma auditoria completa de acessibilidade ou testes em outros navegadores.

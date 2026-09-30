@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <a className="skip-link" href="#main-content">Saltar para o conteúdo</a>
       <Navbar />
-      <main id="main-content" className="min-h-screen overflow-hidden">
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <Methodology />
         <Tangibility />
