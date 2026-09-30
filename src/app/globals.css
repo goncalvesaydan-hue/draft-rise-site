@@ -101,7 +101,13 @@ h2 { font-size: clamp(37px, 4vw, 65px); line-height: 1.06; letter-spacing: -.055
 .method-step { border-top: 1px solid var(--line); }
 .method-step:last-of-type { border-bottom: 1px solid var(--line); }
 .method-step h3 button { width: 100%; display: flex; align-items: center; gap: 24px; padding: 25px 0; border: none; background: none; text-align: left; font-family: var(--font-display),sans-serif; font-size: clamp(22px,2.5vw,36px); letter-spacing: -.045em; transition: color .2s; }
-.method-step h3 button > svg { margin-left: auto; }
+.step-toggle { position: relative; width: 20px; height: 20px; margin-left: auto; flex-shrink: 0; }
+.step-toggle::before, .step-toggle::after { content: ''; position: absolute; top: 9px; left: 4px; width: 12px; height: 2px; border-radius: 1px; background: currentColor; }
+.step-toggle::after { transform: rotate(90deg); transition: transform .25s var(--ease), opacity .25s var(--ease); }
+[aria-expanded="true"] .step-toggle::after { transform: rotate(0); opacity: 0; }
+.disclosure-panel { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; transition: grid-template-rows .25s var(--ease), opacity .25s var(--ease), visibility 0s .25s; }
+.disclosure-panel[data-open="true"] { grid-template-rows: 1fr; opacity: 1; visibility: visible; transition-delay: 0s; }
+.disclosure-inner { min-height: 0; overflow: hidden; }
 .step-number { font-family: var(--font-geist-sans),sans-serif; font-size: 11px; letter-spacing: 0; color: var(--muted); }
 .is-active .step-number { color: #bf421d; }
 .method-step h3 button:hover { color: #bf421d; }
@@ -156,12 +162,11 @@ h2 { font-size: clamp(37px, 4vw, 65px); line-height: 1.06; letter-spacing: -.055
 .service-content h3 { font-size: clamp(25px,2.25vw,34px); line-height: 1.04; letter-spacing: -.045em; max-width: 300px; }
 .service-content > p { margin-top: 17px; font-size: 12px; line-height: 1.8; color: var(--muted); }
 .service-details { border-top: 1px solid var(--line); margin-top: 26px; }
-.service-details summary { list-style: none; display: flex; align-items: center; justify-content: space-between; min-height: 53px; padding-top: 7px; font-size: 11px; }
-.service-details summary::-webkit-details-marker { display: none; }
-.service-details summary svg { transition: transform .25s var(--ease); }
-.service-details[open] summary svg { transform: rotate(90deg); }
-.service-details > p { padding-top: 9px; font-size: 12px; line-height: 1.7; color: var(--muted); }
-.service-details > span { display: block; font-size: 10px; line-height: 1.8; margin-top: 15px; }
+.service-details > button { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 53px; padding: 7px 0 0; border: 0; background: transparent; text-align: left; font-size: 11px; }
+.service-details > button svg { transition: transform .25s var(--ease); }
+.service-details > button[aria-expanded="true"] svg { transform: rotate(90deg); }
+.service-details-content > p { padding-top: 9px; font-size: 12px; line-height: 1.7; color: var(--muted); }
+.service-details-content > span { display: block; font-size: 10px; line-height: 1.8; margin-top: 15px; }
 .mini-browser { position: relative; width: 75%; min-width: 190px; height: 183px; background: var(--paper); border-radius: 7px; box-shadow: 0 12px 28px rgb(32 45 50 / 10%); transform: rotate(-6deg) translateY(6px); transition: transform .6s var(--ease); }
 .browser-chrome { height: 23px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 3px; padding-inline: 10px; }
 .browser-chrome i { width: 3px; height: 3px; border-radius: 50%; background: #9fa9ab; }
@@ -284,7 +289,7 @@ h2 { font-size: clamp(37px, 4vw, 65px); line-height: 1.06; letter-spacing: -.055
   .service-content { padding: 25px; }
   .service-content h3 { font-size: 33px; max-width: 100%; }
   .service-content > p { font-size: 14px; }
-  .service-details summary { font-size: 12px; }
+  .service-details > button { font-size: 12px; }
   .mini-browser { width: 235px; height: 185px; }
   .browser-body > span { font-size: 26px; }
   .appointment-art { width: 210px; padding: 23px 20px; }
@@ -325,5 +330,5 @@ h2 { font-size: clamp(37px, 4vw, 65px); line-height: 1.06; letter-spacing: -.055
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition-duration: 0s !important; scroll-behavior: auto !important; }
+  *, *::before, *::after { animation: none !important; transition-duration: 0s !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
 }

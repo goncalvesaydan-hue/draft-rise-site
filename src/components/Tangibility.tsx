@@ -1,5 +1,6 @@
 import { ArrowUpRight, Globe2, MapPin, MessageCircle, Smartphone, Star, Zap } from 'lucide-react';
 import Contact from './Contact';
+import ServiceDetails from './ServiceDetails';
 
 const services = [
   { title: 'Uma presença que abre portas.', description: 'Websites e presença no Google que mostram quem é e tornam mais fácil chegar até si.', icon: Globe2, className: 'service-web', tags: 'Web design · Google Business · SEO local', details: 'Estrutura, conteúdo e design pensados para telemóvel. Informação útil, contactos à mão e uma identidade que se reconhece do primeiro clique à porta do espaço.' },
@@ -20,7 +21,7 @@ export default function Tangibility() {
               {index === 1 && <div className="appointment-art"><span className="appointment-zap"><Zap size={25} /></span><span className="appointment-title">Até já!</span><div className="appointment-line"><span>O próximo encontro</span><CheckMark /></div><div className="appointment-message"><MessageCircle size={18} /><span>Tudo tratado.<br /><strong>Só falta aparecer.</strong></span></div></div>}
               {index === 2 && <div className="reputation-art"><span className="reputation-star"><Star size={72} strokeWidth={1.2} /></span><span className="reputation-note">Vale a pena<br />partilhar.</span><span className="reputation-rating">{[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}</span></div>}
             </div>
-            <div className="service-content"><Icon className="service-icon" size={21} /><h3>{service.title}</h3><p>{service.description}</p><details className="service-details"><summary>Explorar solução <ArrowUpRight size={19} /></summary><p>{service.details}</p><span>{service.tags}</span></details></div>
+            <div className="service-content"><Icon className="service-icon" size={21} /><h3>{service.title}</h3><p>{service.description}</p><ServiceDetails details={service.details} tags={service.tags} /></div>
           </article>;
         })}</div>
       </section>

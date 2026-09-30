@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { ArrowUpRight, Check, MapPin, Search, Star, Heart, Plus, Minus } from 'lucide-react';
+import { ArrowUpRight, Check, MapPin, Search, Star, Heart } from 'lucide-react';
 import { useState } from 'react';
 
 const phases = [
@@ -23,8 +23,8 @@ export default function Methodology() {
         <div className="method-steps">
           {phases.map((item, index) => (
             <div key={item.title} className={`method-step ${expanded && index === active ? 'is-active' : ''}`}>
-              <h3><button aria-expanded={expanded && index === active} aria-controls={`phase-content-${index}`} onClick={() => { setExpanded(current => index === active ? !current : true); setActive(index); }}><span className="step-number">0{index + 1}</span><span>{item.title}</span>{expanded && active === index ? <Minus size={20} /> : <Plus size={20} />}</button></h3>
-              <div id={`phase-content-${index}`} hidden={!expanded || active !== index} className="step-content"><p>{item.text}</p><div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
+              <h3><button aria-expanded={expanded && index === active} aria-controls={`phase-content-${index}`} onClick={() => { setExpanded(current => index === active ? !current : true); setActive(index); }}><span className="step-number">0{index + 1}</span><span>{item.title}</span><span className="step-toggle" aria-hidden="true" /></button></h3>
+              <div id={`phase-content-${index}`} className="disclosure-panel" data-open={expanded && active === index} aria-hidden={!expanded || active !== index} inert={!expanded || active !== index}><div className="disclosure-inner"><div className="step-content"><p>{item.text}</p><div className="tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div></div></div>
             </div>
           ))}
           <a href="#contacto" className="text-link">Encontre o seu ponto de partida <ArrowUpRight size={18} /></a>
