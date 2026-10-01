@@ -152,6 +152,8 @@ h2 { font-size: clamp(37px, 4vw, 65px); line-height: 1.06; letter-spacing: -.055
 .solutions-heading h2 { margin-top: 24px; }
 .solutions-heading > p { font-size: 13px; line-height: 1.8; color: var(--muted); padding-bottom: 4px; }
 .services-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; align-items: start; }
+.services-carousel { min-width: 0; }
+.services-pagination { display: none; }
 .service-card { background: var(--paper); border-radius: 11px; overflow: hidden; }
 .service-art { height: 250px; position: relative; display: grid; place-items: center; overflow: hidden; margin: 7px 7px 0; border-radius: 6px; }
 .service-web .service-art { background: #d4e2e8; }
@@ -284,7 +286,13 @@ h2 { font-size: clamp(37px, 4vw, 65px); line-height: 1.06; letter-spacing: -.055
   .solutions { margin-inline: 10px; padding-block: 60px; border-radius: 12px; }
   .solutions-heading { flex-direction: column; align-items: start; gap: 21px; margin-bottom: 32px; }
   .solutions-heading h2 { margin-top: 20px; }
-  .services-grid { grid-template-columns: 1fr; gap: 24px; }
+  .services-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc(100% - 32px); gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
+  .services-grid::-webkit-scrollbar { display: none; }
+  .service-card { scroll-snap-align: start; min-width: 0; }
+  .services-pagination { display: flex; justify-content: center; margin-top: 12px; }
+  .services-pagination button { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: transparent; }
+  .services-pagination button span { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); opacity: .25; transition: opacity .2s var(--ease), transform .2s var(--ease); }
+  .services-pagination button[aria-current="true"] span { opacity: 1; transform: scale(1.3); }
   .service-art { height: 260px; }
   .service-content { padding: 25px; }
   .service-content h3 { font-size: 33px; max-width: 100%; }
