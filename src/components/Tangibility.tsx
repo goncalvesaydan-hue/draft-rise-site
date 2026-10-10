@@ -2,9 +2,10 @@ import { ArrowUpRight, Globe2, MapPin, MessageCircle, Smartphone, Star, Zap } fr
 import Contact from './Contact';
 import ServiceDetails from './ServiceDetails';
 import ServicesCarousel from './ServicesCarousel';
+import GooglePresence from './GooglePresence';
 
 const services = [
-  { title: 'Uma presença que abre portas.', description: 'Websites e presença no Google que mostram quem é e tornam mais fácil chegar até si.', icon: Globe2, className: 'service-web', tags: 'Web design · Google Business · SEO local', details: 'Estrutura, conteúdo e design pensados para telemóvel. Informação útil, contactos à mão e uma identidade que se reconhece do primeiro clique à porta do espaço.' },
+  { title: 'Uma presença que abre portas.', description: 'Um website com a sua identidade. Um perfil no Google com informação clara. Dois caminhos para chegar até si.', icon: Globe2, className: 'service-web', tags: 'Web design · Perfil da Empresa no Google · SEO local', details: '' },
   { title: 'Menos passos. Mais encontros.', description: 'Menus digitais, marcações e respostas que tornam o dia mais simples para todos.', icon: Smartphone, className: 'service-experience', tags: 'Menus digitais · Marcações · Automação', details: 'Identificamos as tarefas que se repetem e os pontos onde os clientes hesitam. Desenhamos caminhos mais curtos para consultar, marcar ou pedir informação.' },
   { title: 'Boas experiências circulam.', description: 'Pontos de contacto no espaço que transformam uma visita numa relação.', icon: Star, className: 'service-reputation', tags: 'Avaliações · QR & NFC · Reputação', details: 'Ligamos o espaço físico ao digital com suportes de avaliação e acesso rápido à informação. Um convite à partilha, no momento em que faz sentido.' },
 ];
@@ -22,9 +23,15 @@ export default function Tangibility() {
               {index === 1 && <div className="appointment-art"><span className="appointment-zap"><Zap size={25} /></span><span className="appointment-title">Até já!</span><div className="appointment-line"><span>O próximo encontro</span><CheckMark /></div><div className="appointment-message"><MessageCircle size={18} /><span>Tudo tratado.<br /><strong>Só falta aparecer.</strong></span></div></div>}
               {index === 2 && <div className="reputation-art"><span className="reputation-star"><Star size={72} strokeWidth={1.2} /></span><span className="reputation-note">Vale a pena<br />partilhar.</span><span className="reputation-rating">{[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}</span></div>}
             </div>
-            <div className="service-content"><Icon className="service-icon" size={21} /><h3>{service.title}</h3><p>{service.description}</p><ServiceDetails details={service.details} tags={service.tags} /></div>
+            <div className="service-content"><Icon className="service-icon" size={21} /><h3>{service.title}</h3><p>{service.description}</p><ServiceDetails details={service.details} tags={service.tags}>
+              {index === 0 ? <div className="service-offerings">
+                <div><h4>Website</h4><p>Estrutura, conteúdo e design pensados para telemóvel, com a sua identidade e informação útil desde o primeiro clique.</p></div>
+                <div><h4>Perfil da Empresa no Google</h4><p>Informação organizada, serviços bem apresentados e uma presença que acompanha o dia a dia do negócio.</p></div>
+              </div> : undefined}
+            </ServiceDetails></div>
           </article>;
         })}</ServicesCarousel>
+        <GooglePresence />
       </section>
       <section className="manifesto section-shell"><span className="manifesto-symbol" aria-hidden="true">&</span><div><p>O que nos move</p><h2>Por trás de cada negócio,<br />há alguém que acredita.<br />Nós também.</h2></div><p className="manifesto-copy">Trabalhamos perto de quem faz acontecer. Ouvimos primeiro, desenhamos com intenção e ligamos cada ideia ao dia a dia do seu negócio.</p></section>
       <Contact />

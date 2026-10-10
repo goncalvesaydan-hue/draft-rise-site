@@ -169,6 +169,28 @@ h2 { font-size: clamp(37px, 4vw, 65px); line-height: 1.06; letter-spacing: -.055
 .service-details > button[aria-expanded="true"] svg { transform: rotate(90deg); }
 .service-details-content > p { padding-top: 9px; font-size: 12px; line-height: 1.7; color: var(--muted); }
 .service-details-content > span { display: block; font-size: 10px; line-height: 1.8; margin-top: 15px; }
+.service-offerings { display: grid; gap: 18px; padding-top: 12px; }
+.service-offerings h4 { margin: 0 0 6px; font-size: 13px; font-weight: 600; }
+.service-offerings p { color: var(--muted); font-size: 12px; line-height: 1.7; }
+.demo-profile-facts { display: flex; flex-wrap: wrap; gap: 10px 14px; padding: 0 18px 18px; color: var(--muted); font-size: 10px; }
+.demo-profile-facts span { display: inline-flex; align-items: center; gap: 5px; }
+
+/* A closer look at the Google service, within the existing solutions section. */
+.google-presence { margin-top: 64px; padding-top: 52px; border-top: 1px solid #c9d0c7; display: grid; grid-template-columns: 1fr 1fr; gap: 40px clamp(32px, 5vw, 80px); }
+.google-presence-intro h3 { margin-top: 23px; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.08; letter-spacing: -.05em; }
+.google-presence-intro > p:last-child { margin-top: 20px; max-width: 460px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+.google-presence-caption { color: var(--muted); font-size: 11px; font-weight: 500; line-height: 1.5; }
+.google-presence-areas { align-self: center; min-width: 0; }
+.google-presence-areas > .google-presence-caption { margin-bottom: 15px; }
+.google-presence-detail { border-bottom: 1px solid #c9d0c7; }
+.google-presence-detail summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 66px; padding-block: 17px; list-style: none; font-size: 15px; font-weight: 500; }
+.google-presence-detail summary::-webkit-details-marker { display: none; }
+.google-presence-detail summary svg { transition: transform .2s var(--ease); }
+.google-presence-detail[open] summary svg { transform: rotate(45deg); }
+.google-presence-detail > p { padding: 0 28px 21px 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.google-presence-process { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 80px); padding: 28px 30px; background: var(--paper); border-radius: 11px; }
+.google-presence-process h4 { margin: 9px 0 10px; font-family: var(--font-display), sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -.035em; line-height: 1.15; }
+.google-presence-process p:last-child { max-width: 460px; color: var(--muted); font-size: 13px; line-height: 1.8; }
 .mini-browser { position: relative; width: 75%; min-width: 190px; height: 183px; background: var(--paper); border-radius: 7px; box-shadow: 0 12px 28px rgb(32 45 50 / 10%); transform: rotate(-6deg) translateY(6px); transition: transform .6s var(--ease); }
 .browser-chrome { height: 23px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 3px; padding-inline: 10px; }
 .browser-chrome i { width: 3px; height: 3px; border-radius: 50%; background: #9fa9ab; }
@@ -297,6 +319,12 @@ h2 { font-size: clamp(37px, 4vw, 65px); line-height: 1.06; letter-spacing: -.055
   .service-content { padding: 25px; }
   .service-content h3 { font-size: 33px; max-width: 100%; }
   .service-content > p { font-size: 14px; }
+  .google-presence { grid-template-columns: 1fr; margin-top: 42px; padding-top: 36px; gap: 28px; }
+  .google-presence-intro h3 { font-size: clamp(30px, 6.5vw, 42px); }
+  .google-presence-intro > p:last-child { max-width: none; }
+  .google-presence-process { grid-template-columns: 1fr; padding: 24px; gap: 24px; }
+  .google-presence-process > div + div { padding-top: 24px; border-top: 1px solid var(--line); }
+  .google-presence-detail summary { font-size: 14px; }
   .service-details > button { font-size: 12px; }
   .mini-browser { width: 235px; height: 185px; }
   .browser-body > span { font-size: 26px; }
