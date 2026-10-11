@@ -44,3 +44,23 @@ O contacto usa `mailto:Suporte.draftandrise@gmail.com` e abre a aplicação de e
 - Seleção das etapas do método e atualização do assunto do email verificadas no navegador.
 
 Estas verificações não substituem uma auditoria completa de acessibilidade ou testes em outros navegadores.
+
+## Questionário integrado (branch local)
+
+O portal está agora nesta aplicação: `/questionario`, `/acesso`, `/cliente` e `/equipa`.
+
+Com Node 24 ou superior:
+
+```sh
+npm ci
+npm run dev:portal -- --port 3001
+```
+
+Abrir `http://127.0.0.1:3001/questionario`. Este comando ativa exclusivamente a demonstração local, com dados fictícios. `npm run dev` mantém o modo local desligado por defeito; sem configuração remota mostra o estado de preparação.
+
+- [Estado e limitações](docs/execution/STATUS.md)
+- [Configuração Supabase](docs/SUPABASE.md)
+- [Verificações](docs/execution/VERIFICATION.md)
+- [Cobertura das perguntas](docs/question-mapping.md)
+
+Verificações: `npm test`, `npm run lint`, `npm run typecheck`, `npm run test:e2e`, `npm run build`. Para testar a compilação sem acesso remoto: `PORTAL_E2E_PUBLIC=1 npm run test:e2e`. Os testes de navegador usam Chrome e portas 3200/3201; o teste de domínio usa apenas dados fictícios.

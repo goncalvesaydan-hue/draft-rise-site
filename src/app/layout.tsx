@@ -28,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="pt-PT"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${display.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>

@@ -1,0 +1,61 @@
+{
+  "schema_overview": {
+    "total_tables": 5,
+    "total_columns": 5,
+    "tables_with_primary_keys": 5,
+    "total_foreign_keys": 0,
+    "total_indexes": 4
+  },
+  "normalization_analysis": {
+    "total_issues": 0,
+    "by_severity": {
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "warning": 0
+    },
+    "issues": []
+  },
+  "data_type_analysis": {
+    "total_issues": 0,
+    "issues": []
+  },
+  "constraint_analysis": {
+    "total_issues": 0,
+    "by_severity": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "issues": []
+  },
+  "naming_analysis": {
+    "total_issues": 3,
+    "issues": [
+      {
+        "table": "portal_team",
+        "column": null,
+        "issue": "Table name should be plural",
+        "current_name": "portal_team",
+        "suggested_name": "portal_teams"
+      },
+      {
+        "table": "portal_outbox",
+        "column": null,
+        "issue": "Table name should be plural",
+        "current_name": "portal_outbox",
+        "suggested_name": "portal_outboxs"
+      },
+      {
+        "table": "portal_audit",
+        "column": null,
+        "issue": "Table name should be plural",
+        "current_name": "portal_audit",
+        "suggested_name": "portal_audits"
+      }
+    ]
+  },
+  "missing_indexes": [],
+  "recommendations": [],
+  "mermaid_erd": "erDiagram\n    PORTAL_TEAM {\n        UUID user_id \"PK\"\n    }\n    PORTAL_INTAKES {\n        UUID id \"PK\"\n    }\n    PORTAL_SUBMISSIONS {\n        UUID id \"PK\"\n    }\n    PORTAL_OUTBOX {\n        UUID id \"PK\"\n    }\n    PORTAL_AUDIT {\n        UUID id \"PK\"\n    }"
+}

@@ -1,0 +1,2334 @@
+[
+  {
+    "id": "company.name",
+    "label": "Nome da empresa",
+    "step": 1,
+    "section": "Identificação",
+    "source": "1",
+    "type": "text",
+    "required": true,
+    "allowUnknown": false,
+    "allowNotApplicable": false
+  },
+  {
+    "id": "contact.name",
+    "label": "Responsável pelo projeto",
+    "step": 1,
+    "section": "Identificação",
+    "source": "1",
+    "type": "text",
+    "required": true,
+    "allowUnknown": false,
+    "allowNotApplicable": false
+  },
+  {
+    "id": "contact.email",
+    "label": "Email do responsável",
+    "step": 1,
+    "section": "Identificação",
+    "source": "1",
+    "type": "email",
+    "required": true,
+    "allowUnknown": false,
+    "allowNotApplicable": false
+  },
+  {
+    "id": "contact.phone",
+    "label": "Telefone do responsável",
+    "step": 1,
+    "section": "Identificação",
+    "source": "1",
+    "type": "text",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "contact.approver",
+    "label": "Quem aprova as informações e respostas do bot?",
+    "step": 1,
+    "section": "Identificação",
+    "source": "1",
+    "type": "text",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "company.sector",
+    "label": "Setor de atividade",
+    "step": 2,
+    "section": "Objetivos",
+    "source": "1",
+    "type": "select",
+    "required": true,
+    "allowUnknown": false,
+    "allowNotApplicable": false,
+    "options": [
+      {
+        "value": "restaurant",
+        "label": "Restaurante"
+      },
+      {
+        "value": "beauty",
+        "label": "Cabeleireiro e estética"
+      },
+      {
+        "value": "clinic",
+        "label": "Clínica e consultório"
+      },
+      {
+        "value": "gym",
+        "label": "Ginásio e estúdio"
+      },
+      {
+        "value": "garage",
+        "label": "Oficina"
+      },
+      {
+        "value": "realestate",
+        "label": "Imobiliária"
+      },
+      {
+        "value": "shop",
+        "label": "Loja e comércio eletrónico"
+      },
+      {
+        "value": "hotel",
+        "label": "Hotel e alojamento"
+      },
+      {
+        "value": "home",
+        "label": "Serviços ao domicílio"
+      },
+      {
+        "value": "agency",
+        "label": "Consultoria e agência"
+      },
+      {
+        "value": "other",
+        "label": "Outro setor"
+      }
+    ]
+  },
+  {
+    "id": "project.objectives",
+    "label": "O que gostarias de automatizar?",
+    "step": 2,
+    "section": "Objetivos",
+    "source": "2.2",
+    "type": "multiselect",
+    "required": true,
+    "allowUnknown": false,
+    "allowNotApplicable": false,
+    "options": [
+      {
+        "value": "atendimento",
+        "label": "Responder a dúvidas"
+      },
+      {
+        "value": "reservas",
+        "label": "Receber reservas"
+      },
+      {
+        "value": "marcacoes",
+        "label": "Marcar serviços"
+      },
+      {
+        "value": "encomendas",
+        "label": "Receber encomendas"
+      },
+      {
+        "value": "orcamentos",
+        "label": "Preparar orçamentos"
+      },
+      {
+        "value": "qualificacao",
+        "label": "Qualificar contactos"
+      }
+    ]
+  },
+  {
+    "id": "q2.1.02",
+    "label": "Como descreverias o negócio em duas ou três frases?",
+    "step": 1,
+    "section": "Empresa",
+    "source": "2.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.1.03",
+    "label": "Qual é a localização e quais as zonas atendidas?",
+    "step": 1,
+    "section": "Empresa",
+    "source": "2.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.1.04",
+    "label": "Existem várias instalações, lojas ou unidades? Quais?",
+    "step": 1,
+    "section": "Empresa",
+    "source": "2.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.1.05",
+    "label": "Quais são os contactos, site e redes sociais oficiais?",
+    "step": 1,
+    "section": "Empresa",
+    "source": "2.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.2.01",
+    "label": "Que problemas deve resolver?",
+    "step": 2,
+    "section": "Objetivo do bot",
+    "source": "2.2",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.2.03",
+    "label": "Qual é a tarefa prioritária para a primeira versão?",
+    "step": 2,
+    "section": "Objetivo do bot",
+    "source": "2.2",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.2.04",
+    "label": "Que tarefas ficam fora do âmbito do bot?",
+    "step": 2,
+    "section": "Objetivo do bot",
+    "source": "2.2",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.3.01",
+    "label": "Que produtos e serviços são disponibilizados?",
+    "step": 3,
+    "section": "Produtos e serviços",
+    "source": "2.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.3.02",
+    "label": "Quais as descrições, preços, variantes e condições?",
+    "step": 3,
+    "section": "Produtos e serviços",
+    "source": "2.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.3.03",
+    "label": "Os preços são fixos ou exigem orçamento?",
+    "step": 3,
+    "section": "Produtos e serviços",
+    "source": "2.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.3.04",
+    "label": "Qual é a duração de cada serviço?",
+    "step": 3,
+    "section": "Produtos e serviços",
+    "source": "2.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.3.05",
+    "label": "Existem catálogos, menus ou tabelas de preços atualizados?",
+    "step": 3,
+    "section": "Produtos e serviços",
+    "source": "2.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.3.06",
+    "label": "Existem limitações de stock, capacidade ou disponibilidade?",
+    "step": 3,
+    "section": "Produtos e serviços",
+    "source": "2.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.3.table1",
+    "label": "Produtos e serviços — detalhes",
+    "step": 3,
+    "section": "Produtos e serviços",
+    "source": "2.3",
+    "type": "repeatable",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "fields": [
+      {
+        "id": "field1",
+        "label": "Produto ou serviço"
+      },
+      {
+        "id": "field2",
+        "label": "Descrição"
+      },
+      {
+        "id": "field3",
+        "label": "Preço ou regra de orçamento"
+      },
+      {
+        "id": "field4",
+        "label": "Duração"
+      },
+      {
+        "id": "field5",
+        "label": "Condições ou limitações"
+      }
+    ]
+  },
+  {
+    "id": "q2.4.01",
+    "label": "Quais são os dias e horários de funcionamento?",
+    "step": 3,
+    "section": "Horários",
+    "source": "2.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.4.02",
+    "label": "Em que horários existe atendimento humano?",
+    "step": 3,
+    "section": "Horários",
+    "source": "2.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.4.03",
+    "label": "Existem turnos, pausas ou horários diferentes por unidade?",
+    "step": 3,
+    "section": "Horários",
+    "source": "2.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.4.04",
+    "label": "Como funcionam feriados, férias e encerramentos excecionais?",
+    "step": 3,
+    "section": "Horários",
+    "source": "2.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.4.05",
+    "label": "Qual é o fuso horário usado para marcações?",
+    "step": 3,
+    "section": "Horários",
+    "source": "2.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.5.01",
+    "label": "Por que canais chegam os pedidos?",
+    "step": 3,
+    "section": "Processo atual",
+    "source": "2.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.5.02",
+    "label": "Quem recebe e trata cada tipo de pedido?",
+    "step": 3,
+    "section": "Processo atual",
+    "source": "2.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.5.03",
+    "label": "Que etapas existem até à conclusão?",
+    "step": 3,
+    "section": "Processo atual",
+    "source": "2.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.5.04",
+    "label": "Quando é que um pedido passa a estar confirmado?",
+    "step": 3,
+    "section": "Processo atual",
+    "source": "2.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.5.05",
+    "label": "Como são tratados os pedidos recebidos por telefone, presencialmente ou por outros canais?",
+    "step": 3,
+    "section": "Processo atual",
+    "source": "2.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.5.06",
+    "label": "Onde surgem atualmente atrasos, erros ou trabalho repetitivo?",
+    "step": 3,
+    "section": "Processo atual",
+    "source": "2.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.6.01",
+    "label": "Quais são as condições para aceitar e confirmar um pedido?",
+    "step": 3,
+    "section": "Regras do negócio",
+    "source": "2.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.6.02",
+    "label": "Que antecedência mínima e máxima é permitida?",
+    "step": 3,
+    "section": "Regras do negócio",
+    "source": "2.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.6.03",
+    "label": "Existem limites de pessoas, unidades, valor ou quantidade?",
+    "step": 3,
+    "section": "Regras do negócio",
+    "source": "2.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.6.04",
+    "label": "Quais são as regras de alteração, cancelamento, atraso e falta de comparência?",
+    "step": 3,
+    "section": "Regras do negócio",
+    "source": "2.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.6.05",
+    "label": "Existem sinais, depósitos ou pagamentos prévios?",
+    "step": 3,
+    "section": "Regras do negócio",
+    "source": "2.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.6.06",
+    "label": "Que descontos ou condições especiais podem ser aplicados e por quem?",
+    "step": 3,
+    "section": "Regras do negócio",
+    "source": "2.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.6.07",
+    "label": "Que situações exigem análise manual?",
+    "step": 3,
+    "section": "Regras do negócio",
+    "source": "2.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.7.01",
+    "label": "Quem pode consultar estes dados?",
+    "step": 4,
+    "section": "Dados do cliente",
+    "source": "2.7",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.7.02",
+    "label": "Durante quanto tempo precisam de ser mantidos?",
+    "step": 4,
+    "section": "Dados do cliente",
+    "source": "2.7",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.7.table1",
+    "label": "Dados do cliente — detalhes",
+    "step": 4,
+    "section": "Dados do cliente",
+    "source": "2.7",
+    "type": "repeatable",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "fields": [
+      {
+        "id": "field1",
+        "label": "Dado"
+      },
+      {
+        "id": "field2",
+        "label": "Para que serve"
+      },
+      {
+        "id": "field3",
+        "label": "Em que pedido é necessário"
+      },
+      {
+        "id": "field4",
+        "label": "Obrigatório?"
+      },
+      {
+        "id": "field5",
+        "label": "Onde fica guardado"
+      }
+    ]
+  },
+  {
+    "id": "q2.8.table1",
+    "label": "Perguntas frequentes — detalhes",
+    "step": 4,
+    "section": "Perguntas frequentes",
+    "source": "2.8",
+    "type": "repeatable",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "fields": [
+      {
+        "id": "field1",
+        "label": "Pergunta do cliente"
+      },
+      {
+        "id": "field2",
+        "label": "Resposta aprovada"
+      },
+      {
+        "id": "field3",
+        "label": "Fonte da informação"
+      },
+      {
+        "id": "field4",
+        "label": "Quando encaminhar para a equipa"
+      }
+    ]
+  },
+  {
+    "id": "q2.9.01",
+    "label": "Em que idiomas deve responder?",
+    "step": 4,
+    "section": "Comunicação",
+    "source": "2.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.9.02",
+    "label": "Deve tratar o cliente por «tu» ou «você», ou usar uma formulação neutra?",
+    "step": 4,
+    "section": "Comunicação",
+    "source": "2.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.9.03",
+    "label": "O tom deve ser informal, próximo, formal ou técnico?",
+    "step": 4,
+    "section": "Comunicação",
+    "source": "2.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.9.04",
+    "label": "Pode usar emojis? Em que medida?",
+    "step": 4,
+    "section": "Comunicação",
+    "source": "2.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.9.05",
+    "label": "Como se deve apresentar e identificar como assistente automático?",
+    "step": 4,
+    "section": "Comunicação",
+    "source": "2.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.9.06",
+    "label": "Existem expressões a usar ou evitar?",
+    "step": 4,
+    "section": "Comunicação",
+    "source": "2.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.9.07",
+    "label": "Que exemplos de respostas representam bem a empresa?",
+    "step": 4,
+    "section": "Comunicação",
+    "source": "2.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.10.01",
+    "label": "Em que situações deve encaminhar a conversa para uma pessoa?",
+    "step": 4,
+    "section": "Intervenção humana",
+    "source": "2.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.10.02",
+    "label": "Para quem deve encaminhar cada assunto?",
+    "step": 4,
+    "section": "Intervenção humana",
+    "source": "2.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.10.03",
+    "label": "Como é que a equipa recebe o aviso?",
+    "step": 4,
+    "section": "Intervenção humana",
+    "source": "2.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.10.04",
+    "label": "O que deve dizer ao cliente quando ninguém estiver disponível?",
+    "step": 4,
+    "section": "Intervenção humana",
+    "source": "2.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.10.05",
+    "label": "Que prazo de resposta pode comunicar?",
+    "step": 4,
+    "section": "Intervenção humana",
+    "source": "2.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.10.06",
+    "label": "Como deve parar de responder quando um colaborador assume a conversa?",
+    "step": 4,
+    "section": "Intervenção humana",
+    "source": "2.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.10.07",
+    "label": "Quando pode voltar a assumir o atendimento?",
+    "step": 4,
+    "section": "Intervenção humana",
+    "source": "2.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.11.01",
+    "label": "Qual é o número de WhatsApp Business utilizado?",
+    "step": 5,
+    "section": "Ferramentas e acessos",
+    "source": "2.11",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.11.02",
+    "label": "Que agendas, folhas de cálculo, CRM, lojas online, sistemas de faturação ou pagamentos são usados?",
+    "step": 5,
+    "section": "Ferramentas e acessos",
+    "source": "2.11",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.11.03",
+    "label": "Existem integrações já configuradas?",
+    "step": 5,
+    "section": "Ferramentas e acessos",
+    "source": "2.11",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.11.04",
+    "label": "Quem tem acesso de administrador a cada sistema?",
+    "step": 5,
+    "section": "Ferramentas e acessos",
+    "source": "2.11",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.11.05",
+    "label": "Que conta deve ser proprietária dos ficheiros e das automações?",
+    "step": 5,
+    "section": "Ferramentas e acessos",
+    "source": "2.11",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.11.table1",
+    "label": "Ferramentas e acessos — detalhes",
+    "step": 5,
+    "section": "Ferramentas e acessos",
+    "source": "2.11",
+    "type": "repeatable",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "fields": [
+      {
+        "id": "field1",
+        "label": "Ferramenta"
+      },
+      {
+        "id": "field2",
+        "label": "Utilização atual"
+      },
+      {
+        "id": "field3",
+        "label": "Informação a consultar"
+      },
+      {
+        "id": "field4",
+        "label": "Ações pretendidas"
+      },
+      {
+        "id": "field5",
+        "label": "Responsável pelo acesso"
+      }
+    ]
+  },
+  {
+    "id": "q2.12.01",
+    "label": "Onde estão os preços e condições oficiais?",
+    "step": 5,
+    "section": "Fonte dos dados",
+    "source": "2.12",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.12.02",
+    "label": "Qual é o sistema que determina a disponibilidade real?",
+    "step": 5,
+    "section": "Fonte dos dados",
+    "source": "2.12",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.12.03",
+    "label": "Onde é consultado o estado de cada pedido?",
+    "step": 5,
+    "section": "Fonte dos dados",
+    "source": "2.12",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.12.04",
+    "label": "Quem mantém estas informações atualizadas?",
+    "step": 5,
+    "section": "Fonte dos dados",
+    "source": "2.12",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.12.05",
+    "label": "Se dois sistemas tiverem informações diferentes, qual prevalece?",
+    "step": 5,
+    "section": "Fonte dos dados",
+    "source": "2.12",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.12.06",
+    "label": "Como entram no sistema os pedidos dos restantes canais?",
+    "step": 5,
+    "section": "Fonte dos dados",
+    "source": "2.12",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.13.table1",
+    "label": "Permissões do bot — detalhes",
+    "step": 5,
+    "section": "Permissões do bot",
+    "source": "2.13",
+    "type": "repeatable",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "fields": [
+      {
+        "id": "field1",
+        "label": "Ação"
+      },
+      {
+        "id": "field2",
+        "label": "Pode executar sozinho?"
+      },
+      {
+        "id": "field3",
+        "label": "Exige confirmação do cliente?"
+      },
+      {
+        "id": "field4",
+        "label": "Exige aprovação da equipa?"
+      },
+      {
+        "id": "field5",
+        "label": "Limites"
+      }
+    ]
+  },
+  {
+    "id": "q2.14.01",
+    "label": "O que fazer quando falta informação ou o pedido é ambíguo?",
+    "step": 5,
+    "section": "Exceções e falhas",
+    "source": "2.14",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.14.02",
+    "label": "O que fazer quando não há disponibilidade ou stock?",
+    "step": 5,
+    "section": "Exceções e falhas",
+    "source": "2.14",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.14.03",
+    "label": "O que fazer quando um sistema está indisponível?",
+    "step": 5,
+    "section": "Exceções e falhas",
+    "source": "2.14",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.14.04",
+    "label": "Como evitar pedidos ou marcações duplicados?",
+    "step": 5,
+    "section": "Exceções e falhas",
+    "source": "2.14",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.14.05",
+    "label": "O que dizer se a operação não tiver sido concluída?",
+    "step": 5,
+    "section": "Exceções e falhas",
+    "source": "2.14",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.14.06",
+    "label": "Quem é avisado quando ocorre um erro?",
+    "step": 5,
+    "section": "Exceções e falhas",
+    "source": "2.14",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.14.07",
+    "label": "Como retomar um pedido interrompido?",
+    "step": 5,
+    "section": "Exceções e falhas",
+    "source": "2.14",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.15.01",
+    "label": "O que deverá melhorar com a automação?",
+    "step": 5,
+    "section": "Resultados esperados",
+    "source": "2.15",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.15.02",
+    "label": "Que indicadores serão acompanhados?",
+    "step": 5,
+    "section": "Resultados esperados",
+    "source": "2.15",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.15.03",
+    "label": "Qual é a situação atual e qual a meta pretendida?",
+    "step": 5,
+    "section": "Resultados esperados",
+    "source": "2.15",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.15.04",
+    "label": "Quem irá rever os resultados e com que frequência?",
+    "step": 5,
+    "section": "Resultados esperados",
+    "source": "2.15",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "q2.15.table1",
+    "label": "Resultados esperados — detalhes",
+    "step": 5,
+    "section": "Resultados esperados",
+    "source": "2.15",
+    "type": "repeatable",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "fields": [
+      {
+        "id": "field1",
+        "label": "Indicador"
+      },
+      {
+        "id": "field2",
+        "label": "Situação atual"
+      },
+      {
+        "id": "field3",
+        "label": "Meta"
+      },
+      {
+        "id": "field4",
+        "label": "Forma de medição"
+      }
+    ]
+  },
+  {
+    "id": "q3.1.01",
+    "label": "Identificadores das mesas e capacidade mínima e máxima de cada uma.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.1.02",
+    "label": "Zonas: interior, esplanada, sala privada ou outras.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.1.03",
+    "label": "Mesas que podem ser juntas e capacidade de cada combinação.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.1.04",
+    "label": "Mesas destinadas a clientes sem reserva.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.1.05",
+    "label": "Turnos de almoço e jantar; primeira e última hora de reserva.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.1.06",
+    "label": "Duração das reservas e intervalo para preparar a mesa.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.1.07",
+    "label": "Tamanho máximo de grupo para confirmação automática.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.1.08",
+    "label": "Tolerância para atrasos, cancelamentos, sinais e faltas de comparência.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.1.09",
+    "label": "Preferências de zona garantidas ou sujeitas a disponibilidade.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.1.10",
+    "label": "Cadeiras de bebé e necessidades que afetem a disposição das mesas.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.1.11",
+    "label": "Menu, takeaway, zonas de entrega, taxas e tempos de preparação, se aplicável.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["encomendas"]
+  },
+  {
+    "id": "q3.1.12",
+    "label": "Funcionamento da lista de espera e alternativas quando estiver cheio.",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.1.table1",
+    "label": "Restaurantes — detalhes",
+    "step": 6,
+    "section": "Restaurantes",
+    "source": "3.1",
+    "type": "repeatable",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "fields": [
+      {
+        "id": "field1",
+        "label": "Mesa"
+      },
+      {
+        "id": "field2",
+        "label": "Capacidade mínima"
+      },
+      {
+        "id": "field3",
+        "label": "Capacidade máxima"
+      },
+      {
+        "id": "field4",
+        "label": "Zona"
+      },
+      {
+        "id": "field5",
+        "label": "Pode juntar com"
+      },
+      {
+        "id": "field6",
+        "label": "Restrições"
+      }
+    ],
+    "sector": "restaurant",
+    "objectives": ["reservas"]
+  },
+  {
+    "id": "q3.2.01",
+    "label": "Profissionais disponíveis e serviços realizados por cada um.",
+    "step": 6,
+    "section": "Cabeleireiros e estética",
+    "source": "3.2",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "beauty"
+  },
+  {
+    "id": "q3.2.02",
+    "label": "Duração e preço de cada serviço, incluindo variações.",
+    "step": 6,
+    "section": "Cabeleireiros e estética",
+    "source": "3.2",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "beauty"
+  },
+  {
+    "id": "q3.2.03",
+    "label": "Horários, pausas e ausências dos profissionais.",
+    "step": 6,
+    "section": "Cabeleireiros e estética",
+    "source": "3.2",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "beauty"
+  },
+  {
+    "id": "q3.2.04",
+    "label": "Equipamentos e salas partilhados entre serviços.",
+    "step": 6,
+    "section": "Cabeleireiros e estética",
+    "source": "3.2",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "beauty"
+  },
+  {
+    "id": "q3.2.05",
+    "label": "Possibilidade de combinar serviços na mesma visita.",
+    "step": 6,
+    "section": "Cabeleireiros e estética",
+    "source": "3.2",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "beauty"
+  },
+  {
+    "id": "q3.2.06",
+    "label": "Intervalos de preparação ou limpeza.",
+    "step": 6,
+    "section": "Cabeleireiros e estética",
+    "source": "3.2",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "beauty"
+  },
+  {
+    "id": "q3.2.07",
+    "label": "Sinais, cancelamentos, atrasos e faltas de comparência.",
+    "step": 6,
+    "section": "Cabeleireiros e estética",
+    "source": "3.2",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "beauty"
+  },
+  {
+    "id": "q3.3.01",
+    "label": "Especialidades, profissionais e unidades.",
+    "step": 6,
+    "section": "Clínicas e consultórios",
+    "source": "3.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "clinic"
+  },
+  {
+    "id": "q3.3.02",
+    "label": "Tipos de consulta, duração e horários disponíveis.",
+    "step": 6,
+    "section": "Clínicas e consultórios",
+    "source": "3.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "clinic"
+  },
+  {
+    "id": "q3.3.03",
+    "label": "Distinção entre primeira consulta e acompanhamento.",
+    "step": 6,
+    "section": "Clínicas e consultórios",
+    "source": "3.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "clinic"
+  },
+  {
+    "id": "q3.3.04",
+    "label": "Seguros, acordos, preços e condições administrativas.",
+    "step": 6,
+    "section": "Clínicas e consultórios",
+    "source": "3.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "clinic"
+  },
+  {
+    "id": "q3.3.05",
+    "label": "Instruções de preparação aprovadas pela clínica.",
+    "step": 6,
+    "section": "Clínicas e consultórios",
+    "source": "3.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "clinic"
+  },
+  {
+    "id": "q3.3.06",
+    "label": "Dados estritamente necessários para a marcação.",
+    "step": 6,
+    "section": "Clínicas e consultórios",
+    "source": "3.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "clinic"
+  },
+  {
+    "id": "q3.3.07",
+    "label": "Regras de encaminhamento de questões clínicas para a equipa.",
+    "step": 6,
+    "section": "Clínicas e consultórios",
+    "source": "3.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "clinic"
+  },
+  {
+    "id": "q3.3.08",
+    "label": "Procedimento definido pela clínica para mensagens que indiquem urgência.",
+    "step": 6,
+    "section": "Clínicas e consultórios",
+    "source": "3.3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "clinic"
+  },
+  {
+    "id": "q3.4.01",
+    "label": "Planos, mensalidades e condições de adesão.",
+    "step": 6,
+    "section": "Ginásios e estúdios",
+    "source": "3.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "gym"
+  },
+  {
+    "id": "q3.4.02",
+    "label": "Modalidades, horários, professores e espaços.",
+    "step": 6,
+    "section": "Ginásios e estúdios",
+    "source": "3.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "gym"
+  },
+  {
+    "id": "q3.4.03",
+    "label": "Capacidade de cada aula e lugares disponíveis.",
+    "step": 6,
+    "section": "Ginásios e estúdios",
+    "source": "3.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "gym"
+  },
+  {
+    "id": "q3.4.04",
+    "label": "Aulas experimentais e condições de participação.",
+    "step": 6,
+    "section": "Ginásios e estúdios",
+    "source": "3.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "gym"
+  },
+  {
+    "id": "q3.4.05",
+    "label": "Regras de inscrição, cancelamento e lista de espera.",
+    "step": 6,
+    "section": "Ginásios e estúdios",
+    "source": "3.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "gym"
+  },
+  {
+    "id": "q3.4.06",
+    "label": "Limites de utilização por plano.",
+    "step": 6,
+    "section": "Ginásios e estúdios",
+    "source": "3.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "gym"
+  },
+  {
+    "id": "q3.4.07",
+    "label": "Disponibilidade para sessões individuais.",
+    "step": 6,
+    "section": "Ginásios e estúdios",
+    "source": "3.4",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "gym"
+  },
+  {
+    "id": "q3.5.01",
+    "label": "Tipos de veículos e serviços aceites.",
+    "step": 6,
+    "section": "Oficinas",
+    "source": "3.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "garage"
+  },
+  {
+    "id": "q3.5.02",
+    "label": "Dados necessários do veículo e descrição do problema.",
+    "step": 6,
+    "section": "Oficinas",
+    "source": "3.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "garage"
+  },
+  {
+    "id": "q3.5.03",
+    "label": "Capacidade diária, técnicos e equipamentos disponíveis.",
+    "step": 6,
+    "section": "Oficinas",
+    "source": "3.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "garage"
+  },
+  {
+    "id": "q3.5.04",
+    "label": "Duração estimada ou necessidade de diagnóstico prévio.",
+    "step": 6,
+    "section": "Oficinas",
+    "source": "3.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "garage"
+  },
+  {
+    "id": "q3.5.05",
+    "label": "Condições de diagnóstico e preparação de orçamento.",
+    "step": 6,
+    "section": "Oficinas",
+    "source": "3.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "garage"
+  },
+  {
+    "id": "q3.5.06",
+    "label": "Processo de aprovação do orçamento pelo cliente.",
+    "step": 6,
+    "section": "Oficinas",
+    "source": "3.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "garage"
+  },
+  {
+    "id": "q3.5.07",
+    "label": "Estados da reparação e forma de os atualizar.",
+    "step": 6,
+    "section": "Oficinas",
+    "source": "3.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "garage"
+  },
+  {
+    "id": "q3.5.08",
+    "label": "Entrega e recolha de veículos.",
+    "step": 6,
+    "section": "Oficinas",
+    "source": "3.5",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "garage"
+  },
+  {
+    "id": "q3.6.01",
+    "label": "Imóveis disponíveis, referências, preços e localização.",
+    "step": 6,
+    "section": "Imobiliárias",
+    "source": "3.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "realestate"
+  },
+  {
+    "id": "q3.6.02",
+    "label": "Características, fotografias e condições de cada imóvel.",
+    "step": 6,
+    "section": "Imobiliárias",
+    "source": "3.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "realestate"
+  },
+  {
+    "id": "q3.6.03",
+    "label": "Agente responsável por cada imóvel ou zona.",
+    "step": 6,
+    "section": "Imobiliárias",
+    "source": "3.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "realestate"
+  },
+  {
+    "id": "q3.6.04",
+    "label": "Horários e regras para visitas.",
+    "step": 6,
+    "section": "Imobiliárias",
+    "source": "3.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "realestate"
+  },
+  {
+    "id": "q3.6.05",
+    "label": "Critérios de procura: compra ou arrendamento, zona, orçamento e tipologia.",
+    "step": 6,
+    "section": "Imobiliárias",
+    "source": "3.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "realestate"
+  },
+  {
+    "id": "q3.6.06",
+    "label": "Informação necessária para qualificar o pedido.",
+    "step": 6,
+    "section": "Imobiliárias",
+    "source": "3.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "realestate"
+  },
+  {
+    "id": "q3.6.07",
+    "label": "Processo para atualizar imóveis reservados ou indisponíveis.",
+    "step": 6,
+    "section": "Imobiliárias",
+    "source": "3.6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "realestate"
+  },
+  {
+    "id": "q3.7.01",
+    "label": "Produtos, referências, variantes e preços.",
+    "step": 6,
+    "section": "Lojas e comércio eletrónico",
+    "source": "3.7",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "shop"
+  },
+  {
+    "id": "q3.7.02",
+    "label": "Sistema que mantém o stock atualizado.",
+    "step": 6,
+    "section": "Lojas e comércio eletrónico",
+    "source": "3.7",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "shop"
+  },
+  {
+    "id": "q3.7.03",
+    "label": "Zonas de entrega, portes e prazos.",
+    "step": 6,
+    "section": "Lojas e comércio eletrónico",
+    "source": "3.7",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "shop"
+  },
+  {
+    "id": "q3.7.04",
+    "label": "Métodos e condições de pagamento.",
+    "step": 6,
+    "section": "Lojas e comércio eletrónico",
+    "source": "3.7",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "shop"
+  },
+  {
+    "id": "q3.7.05",
+    "label": "Regras para trocas, devoluções e cancelamentos.",
+    "step": 6,
+    "section": "Lojas e comércio eletrónico",
+    "source": "3.7",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "shop"
+  },
+  {
+    "id": "q3.7.06",
+    "label": "Estados das encomendas e acompanhamento do envio.",
+    "step": 6,
+    "section": "Lojas e comércio eletrónico",
+    "source": "3.7",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "shop"
+  },
+  {
+    "id": "q3.7.07",
+    "label": "Dados necessários para identificar uma encomenda.",
+    "step": 6,
+    "section": "Lojas e comércio eletrónico",
+    "source": "3.7",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "shop"
+  },
+  {
+    "id": "q3.7.08",
+    "label": "Regras sobre descontos, promoções e produtos esgotados.",
+    "step": 6,
+    "section": "Lojas e comércio eletrónico",
+    "source": "3.7",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "shop"
+  },
+  {
+    "id": "q3.8.01",
+    "label": "Unidades ou tipos de quarto e respetiva ocupação.",
+    "step": 6,
+    "section": "Hotéis e alojamentos",
+    "source": "3.8",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "hotel"
+  },
+  {
+    "id": "q3.8.02",
+    "label": "Disponibilidade e sistema de reservas utilizado.",
+    "step": 6,
+    "section": "Hotéis e alojamentos",
+    "source": "3.8",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "hotel"
+  },
+  {
+    "id": "q3.8.03",
+    "label": "Tarifas por data, época, ocupação e duração da estadia.",
+    "step": 6,
+    "section": "Hotéis e alojamentos",
+    "source": "3.8",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "hotel"
+  },
+  {
+    "id": "q3.8.04",
+    "label": "Estadia mínima e outras restrições.",
+    "step": 6,
+    "section": "Hotéis e alojamentos",
+    "source": "3.8",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "hotel"
+  },
+  {
+    "id": "q3.8.05",
+    "label": "Horários e condições de check-in e check-out.",
+    "step": 6,
+    "section": "Hotéis e alojamentos",
+    "source": "3.8",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "hotel"
+  },
+  {
+    "id": "q3.8.06",
+    "label": "Extras, refeições, estacionamento e serviços incluídos.",
+    "step": 6,
+    "section": "Hotéis e alojamentos",
+    "source": "3.8",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "hotel"
+  },
+  {
+    "id": "q3.8.07",
+    "label": "Sinais, pagamentos e políticas de cancelamento.",
+    "step": 6,
+    "section": "Hotéis e alojamentos",
+    "source": "3.8",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "hotel"
+  },
+  {
+    "id": "q3.8.08",
+    "label": "Regras relativas a crianças, camas extra e animais.",
+    "step": 6,
+    "section": "Hotéis e alojamentos",
+    "source": "3.8",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "hotel"
+  },
+  {
+    "id": "q3.9.01",
+    "label": "Serviços prestados e zonas atendidas.",
+    "step": 6,
+    "section": "Serviços ao domicílio",
+    "source": "3.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "home"
+  },
+  {
+    "id": "q3.9.02",
+    "label": "Custos e tempos de deslocação.",
+    "step": 6,
+    "section": "Serviços ao domicílio",
+    "source": "3.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "home"
+  },
+  {
+    "id": "q3.9.03",
+    "label": "Equipas, competências e disponibilidade.",
+    "step": 6,
+    "section": "Serviços ao domicílio",
+    "source": "3.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "home"
+  },
+  {
+    "id": "q3.9.04",
+    "label": "Duração estimada de cada serviço.",
+    "step": 6,
+    "section": "Serviços ao domicílio",
+    "source": "3.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "home"
+  },
+  {
+    "id": "q3.9.05",
+    "label": "Materiais incluídos ou cobrados separadamente.",
+    "step": 6,
+    "section": "Serviços ao domicílio",
+    "source": "3.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "home"
+  },
+  {
+    "id": "q3.9.06",
+    "label": "Fotografias e informações necessárias para avaliar o pedido.",
+    "step": 6,
+    "section": "Serviços ao domicílio",
+    "source": "3.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "home"
+  },
+  {
+    "id": "q3.9.07",
+    "label": "Condições para orçamento remoto ou visita técnica.",
+    "step": 6,
+    "section": "Serviços ao domicílio",
+    "source": "3.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "home"
+  },
+  {
+    "id": "q3.9.08",
+    "label": "Tratamento de pedidos urgentes.",
+    "step": 6,
+    "section": "Serviços ao domicílio",
+    "source": "3.9",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "home"
+  },
+  {
+    "id": "q3.10.01",
+    "label": "Serviços, pacotes e condições comerciais.",
+    "step": 6,
+    "section": "Consultoria e agências",
+    "source": "3.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "agency"
+  },
+  {
+    "id": "q3.10.02",
+    "label": "Perfil do cliente pretendido.",
+    "step": 6,
+    "section": "Consultoria e agências",
+    "source": "3.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "agency"
+  },
+  {
+    "id": "q3.10.03",
+    "label": "Perguntas de qualificação: necessidade, dimensão, orçamento e prazo.",
+    "step": 6,
+    "section": "Consultoria e agências",
+    "source": "3.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "agency"
+  },
+  {
+    "id": "q3.10.04",
+    "label": "Agenda e responsáveis pelas reuniões comerciais.",
+    "step": 6,
+    "section": "Consultoria e agências",
+    "source": "3.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "agency"
+  },
+  {
+    "id": "q3.10.05",
+    "label": "Duração e formato das reuniões.",
+    "step": 6,
+    "section": "Consultoria e agências",
+    "source": "3.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "agency"
+  },
+  {
+    "id": "q3.10.06",
+    "label": "Processo de elaboração e aprovação de propostas.",
+    "step": 6,
+    "section": "Consultoria e agências",
+    "source": "3.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "agency"
+  },
+  {
+    "id": "q3.10.07",
+    "label": "Critérios para aceitar ou encaminhar oportunidades.",
+    "step": 6,
+    "section": "Consultoria e agências",
+    "source": "3.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "agency"
+  },
+  {
+    "id": "q3.10.08",
+    "label": "Regras e responsáveis pelo acompanhamento comercial.",
+    "step": 6,
+    "section": "Consultoria e agências",
+    "source": "3.10",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "agency"
+  },
+  {
+    "id": "sector.other",
+    "label": "Descreve o teu setor e o que precisamos de conhecer.",
+    "step": 6,
+    "section": "Outro setor",
+    "source": "3",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "sector": "other"
+  },
+  {
+    "id": "actions",
+    "label": "Que ações deverá executar o bot?",
+    "step": 5,
+    "section": "Ações do bot",
+    "source": "4",
+    "type": "repeatable",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "fields": [
+      {
+        "id": "name",
+        "label": "Nome da ação"
+      },
+      {
+        "id": "trigger",
+        "label": "Mensagem, intenção ou evento que inicia a ação"
+      },
+      {
+        "id": "inputs",
+        "label": "Dados necessários"
+      },
+      {
+        "id": "checks",
+        "label": "Regras a verificar e fonte oficial"
+      },
+      {
+        "id": "execution",
+        "label": "Operação, confirmação e aprovação"
+      },
+      {
+        "id": "record",
+        "label": "Sistema de registo e confirmação do resultado"
+      },
+      {
+        "id": "failure",
+        "label": "Alternativa, encaminhamento e mensagem em caso de falha"
+      }
+    ]
+  },
+  {
+    "id": "examples",
+    "label": "Conversas de exemplo anonimizadas",
+    "step": 7,
+    "section": "Exemplos",
+    "source": "5",
+    "type": "repeatable",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "fields": [
+      {
+        "id": "conversation",
+        "label": "Mensagem ou conversa sem dados pessoais"
+      },
+      {
+        "id": "expected",
+        "label": "Resultado esperado"
+      },
+      {
+        "id": "human",
+        "label": "Quando precisa de intervenção humana?"
+      }
+    ]
+  },
+  {
+    "id": "summary.01",
+    "label": "Objetivo da primeira versão",
+    "step": 5,
+    "section": "Resumo para implementação",
+    "source": "6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "summary.02",
+    "label": "Fluxos incluídos",
+    "step": 5,
+    "section": "Resumo para implementação",
+    "source": "6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "summary.03",
+    "label": "Fluxos que ficam para depois",
+    "step": 5,
+    "section": "Resumo para implementação",
+    "source": "6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "summary.04",
+    "label": "Ferramentas a utilizar",
+    "step": 5,
+    "section": "Resumo para implementação",
+    "source": "6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "summary.05",
+    "label": "Fonte oficial para preços, disponibilidade e pedidos",
+    "step": 5,
+    "section": "Resumo para implementação",
+    "source": "6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "summary.06",
+    "label": "Regras ainda por definir",
+    "step": 5,
+    "section": "Resumo para implementação",
+    "source": "6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "summary.07",
+    "label": "Acessos ou integrações por verificar",
+    "step": 5,
+    "section": "Resumo para implementação",
+    "source": "6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "summary.08",
+    "label": "Responsável por atualizar as informações",
+    "step": 5,
+    "section": "Resumo para implementação",
+    "source": "6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "summary.09",
+    "label": "Responsável pelo atendimento humano",
+    "step": 5,
+    "section": "Resumo para implementação",
+    "source": "6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "summary.10",
+    "label": "Responsável por testar e aprovar o funcionamento",
+    "step": 5,
+    "section": "Resumo para implementação",
+    "source": "6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "summary.11",
+    "label": "Critérios para considerar a primeira versão pronta",
+    "step": 5,
+    "section": "Resumo para implementação",
+    "source": "6",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true
+  },
+  {
+    "id": "documents.notes",
+    "label": "Que documentos vais preparar para a equipa?",
+    "step": 7,
+    "section": "Documentos",
+    "source": "7-local",
+    "type": "textarea",
+    "required": false,
+    "allowUnknown": true,
+    "allowNotApplicable": true,
+    "help": "Nesta primeira versão local, regista apenas a lista. O envio de ficheiros privados será implementado na próxima fase. Não coloques palavras-passe nem dados pessoais de clientes."
+  }
+]
