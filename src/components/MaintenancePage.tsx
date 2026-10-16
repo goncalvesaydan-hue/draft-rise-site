@@ -37,7 +37,7 @@ export default function MaintenancePage() {
           </h1>
           <p className="maintenance-text">
             O nosso website está a ser preparado e muito em breve estará online.
-            Enquanto isso, pode falar diretamente connosco por WhatsApp, telefone ou email.
+            Enquanto isso, pode falar diretamente connosco por WhatsApp ou email.
           </p>
           <div className="maintenance-actions">
             <a
@@ -52,10 +52,10 @@ export default function MaintenancePage() {
               </span>
             </a>
             <a
-              href={`tel:${CONTACT_PHONE_TEL}`}
+              href={MAILTO_HREF}
               className="button button-secondary maintenance-cta"
             >
-              {PHONE}
+              {EMAIL}
               <span>
                 <ArrowUpRight size={20} />
               </span>
