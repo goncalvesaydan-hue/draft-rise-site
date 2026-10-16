@@ -365,38 +365,29 @@ h2 { font-size: clamp(37px, 4vw, 65px); line-height: 1.06; letter-spacing: -.055
   .manifesto-copy { grid-column: 1; }
 }
 
-/* Coming Soon / Em atualização state */
-.coming-soon-page { min-height: 100dvh; display: flex; flex-direction: column; }
-.coming-soon-main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-block: 12px 24px; }
-.coming-soon-badge { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 500; padding: 8px 16px; border-radius: 99px; background: var(--blue); }
+/* Single-page maintenance screen */
+.maintenance-screen { min-height: 100dvh; padding: 18px; display: flex; background: var(--paper); color: var(--ink); }
+.maintenance-card { flex: 1; max-width: 1764px; margin: 0 auto; background: var(--blue); border-radius: 16px; padding: clamp(28px, 4vw, 56px) clamp(24px, 5vw, 72px); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.maintenance-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.maintenance-pill { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 500; padding: 9px 16px; border-radius: 99px; background: var(--paper); border: 1px solid rgb(32 45 50 / 10%); }
 .status-dot-pulse { background: var(--orange); box-shadow: 0 0 0 0 rgb(255 106 54 / 55%); animation: status-pulse 2s infinite; }
 @keyframes status-pulse {
   0% { box-shadow: 0 0 0 0 rgb(255 106 54 / 55%); }
   70% { box-shadow: 0 0 0 8px rgb(255 106 54 / 0%); }
   100% { box-shadow: 0 0 0 0 rgb(255 106 54 / 0%); }
 }
-.coming-soon-hero { width: calc(100% - 36px); margin-inline: auto; }
-.coming-soon-copy { display: flex; flex-direction: column; justify-content: center; padding-right: clamp(20px, 3vw, 48px); }
-.coming-soon-hero h1 { font-size: clamp(52px, 6.6vw, 112px); }
-.coming-soon-description { max-width: 540px; color: var(--ink); }
-.coming-soon-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 24px; margin-top: 8px; }
-.coming-soon-email { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: 7px 10px 7px 18px; min-height: 54px; border-radius: 99px; border: 1px solid rgb(32 45 50 / 20%); background: rgb(252 252 250 / 60%); transition: background .2s, border-color .2s; }
-.coming-soon-email:hover { background: var(--paper); border-color: var(--ink); }
-.coming-soon-email button { border: 0; background: transparent; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; transition: background .2s; }
-.coming-soon-email button:hover { background: var(--blue); }
-.coming-soon-footer { padding-block: 16px 28px; width: 100%; }
-.coming-soon-footer .footer-bottom { border-top: 0; padding-top: 8px; }
+.maintenance-center { margin-block: auto; padding-block: 48px; max-width: 960px; }
+.maintenance-kicker { display: inline-block; font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 18px; letter-spacing: -.01em; }
+.maintenance-center h1 { font-size: clamp(54px, 8.5vw, 132px); line-height: .95; letter-spacing: -.075em; font-weight: 600; }
+.maintenance-text { margin-top: 28px; font-size: clamp(16px, 1.4vw, 22px); line-height: 1.6; letter-spacing: -.02em; color: var(--ink); max-width: 560px; }
+.maintenance-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 24px; border-top: 1px solid rgb(32 45 50 / 12%); font-size: 12px; color: var(--muted); flex-wrap: wrap; }
 
-@media (max-width: 1100px) {
-  .coming-soon-hero h1 { font-size: clamp(46px, 6.5vw, 84px); }
-}
 @media (max-width: 760px) {
-  .coming-soon-hero { width: calc(100% - 20px); }
-  .coming-soon-hero h1 { font-size: clamp(42px, 11vw, 72px); white-space: normal; }
-  .coming-soon-badge { margin-left: auto; font-size: 11px; padding: 6px 12px; }
-  .coming-soon-actions { flex-direction: column; align-items: stretch; gap: 12px; }
-  .coming-soon-actions .button { justify-content: space-between; }
-  .coming-soon-email { justify-content: space-between; font-size: 12px; }
+  .maintenance-screen { padding: 10px; }
+  .maintenance-card { border-radius: 12px; padding: 24px 22px; }
+  .maintenance-pill { font-size: 11px; padding: 7px 13px; }
+  .maintenance-center { padding-block: 36px; }
+  .maintenance-bottom { font-size: 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
