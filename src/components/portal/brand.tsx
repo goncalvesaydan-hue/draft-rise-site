@@ -32,7 +32,8 @@ export function Footer() {
   return (
     <footer className="p-site-footer">
       <span>Um bom projeto começa por uma boa conversa.</span>
-      <Link href="/privacidade">Privacidade do questionário</Link>
+      <Link href="/privacidade">Política de Privacidade</Link>
+      <Link href="/termos">Condições de Utilização</Link>
       <Link href="/#contacto">Fale connosco</Link>
     </footer>
   );

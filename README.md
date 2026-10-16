@@ -33,7 +33,7 @@ O projeto usa Next.js 16, React 19, Tailwind CSS 4 e Motion. Antes de alterar AP
 - `src/components/`: navegação, abertura, método, soluções, contacto e rodapé.
 - `public/images/`: fotografia conceptual; direção visual e origem em [DESIGN.md](DESIGN.md).
 
-O contacto usa `mailto:Suporte.draftandrise@gmail.com` e abre a aplicação de email do visitante. A escolha de interesse preenche o assunto. Não existe envio de mensagens pelo servidor nem armazenamento de dados de contacto.
+O contacto usa `mailto:geral@draftandrise.com` e abre a aplicação de email do visitante. A escolha de interesse preenche o assunto e a mensagem. Não existe envio de mensagens pelo servidor nem armazenamento de dados de contacto.
 
 ## Validação realizada em 30 de setembro de 2026
 

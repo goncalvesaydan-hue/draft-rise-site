@@ -18,14 +18,18 @@ export default function Navbar() {
       </Link>
       <nav aria-label="Navegação principal" className="desktop-nav">
         <Link href="/#metodologia">O nosso método</Link>
-        <Link href="/#solucoes">O que fazemos</Link>
-        <Link href="/questionario">Iniciar questionário</Link>
+        <Link href="/#solucoes">Serviços</Link>
+        <Link href="/#setores">Setores</Link>
+        <Link href="/#perguntas-frequentes">Dúvidas</Link>
+        <Link href="/questionario">Questionário</Link>
       </nav>
       <Link href="/#contacto" className="nav-contact">Vamos conversar <ArrowUpRight size={17} /></Link>
       <button ref={toggle} className="menu-toggle" aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? 'Fechar menu' : 'Abrir menu'} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       <nav id="mobile-navigation" aria-label="Navegação móvel" className="mobile-nav" hidden={!open}>
         <Link href="/#metodologia" onClick={() => setOpen(false)}>O nosso método <ArrowUpRight /></Link>
-        <Link href="/#solucoes" onClick={() => setOpen(false)}>O que fazemos <ArrowUpRight /></Link>
+        <Link href="/#solucoes" onClick={() => setOpen(false)}>Serviços <ArrowUpRight /></Link>
+        <Link href="/#setores" onClick={() => setOpen(false)}>Setores <ArrowUpRight /></Link>
+        <Link href="/#perguntas-frequentes" onClick={() => setOpen(false)}>Dúvidas <ArrowUpRight /></Link>
         <Link href="/questionario" onClick={() => setOpen(false)}>Iniciar questionário <ArrowUpRight /></Link>
         <Link href="/#contacto" onClick={() => setOpen(false)}>Vamos conversar <ArrowUpRight /></Link>
       </nav>

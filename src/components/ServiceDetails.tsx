@@ -10,11 +10,17 @@ export default function ServiceDetails({ details, tags, children }: { details: s
   return (
     <div className="service-details">
       <button type="button" aria-expanded={open} aria-controls={contentId} onClick={() => setOpen(current => !current)}>
-        Explorar solução <ArrowUpRight size={19} />
+        {open ? 'Ocultar detalhes' : 'Explorar solução'} <ArrowUpRight size={19} />
       </button>
       <div id={contentId} className="disclosure-panel" data-open={open} aria-hidden={!open} inert={!open}>
         <div className="disclosure-inner">
-          <div className="service-details-content">{children ?? <p>{details}</p>}<span>{tags}</span></div>
+          <div className="service-details-content">
+            {children ?? <p>{details}</p>}
+            <span>{tags}</span>
+            <a href="#contacto" className="service-details-cta">
+              Pedir proposta para esta frente <ArrowUpRight size={14} />
+            </a>
+          </div>
         </div>
       </div>
     </div>

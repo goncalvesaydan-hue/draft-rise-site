@@ -2,7 +2,19 @@
 
 import { useId, useRef, useState, type ReactNode } from 'react';
 
-export default function ServicesCarousel({ children, labels }: { children: ReactNode; labels: string[] }) {
+export default function ServicesCarousel({
+  children,
+  labels,
+  gridClassName = 'services-grid',
+  groupLabel = 'Escolher serviço',
+  itemLabelPrefix = 'Ver serviço',
+}: {
+  children: ReactNode;
+  labels: string[];
+  gridClassName?: string;
+  groupLabel?: string;
+  itemLabelPrefix?: string;
+}) {
   const trackRef = useRef<HTMLDivElement>(null);
   const trackId = useId();
   const [active, setActive] = useState(0);
@@ -24,10 +36,10 @@ export default function ServicesCarousel({ children, labels }: { children: React
 
   return (
     <div className="services-carousel">
-      <div ref={trackRef} id={trackId} className="services-grid" onScroll={updatePosition}>{children}</div>
-      <div className="services-pagination" role="group" aria-label="Escolher serviço">
+      <div ref={trackRef} id={trackId} className={gridClassName} onScroll={updatePosition}>{children}</div>
+      <div className="services-pagination" role="group" aria-label={groupLabel}>
         {labels.map((label, index) => (
-          <button key={label} type="button" aria-label={`Ver serviço ${index + 1}: ${label}`} aria-controls={trackId} aria-current={active === index ? 'true' : undefined} onClick={() => showCard(index)}><span /></button>
+          <button key={label} type="button" aria-label={`${itemLabelPrefix} ${index + 1}: ${label}`} aria-controls={trackId} aria-current={active === index ? 'true' : undefined} onClick={() => showCard(index)}><span /></button>
         ))}
       </div>
     </div>

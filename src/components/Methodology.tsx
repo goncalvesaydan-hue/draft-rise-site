@@ -6,9 +6,9 @@ import { ArrowUpRight, Check, MapPin, Search, Star, Heart, Clock3, Coffee, Phone
 import { useState } from 'react';
 
 const phases = [
-  { title: 'Ser encontrado.', text: 'Revemos como o seu negócio se apresenta no Google: informação essencial, serviços, imagens e caminhos até ao contacto. Ligamos essa presença a um website que mostra quem é e o que oferece.', tags: ['Perfil da Empresa no Google', 'Website & SEO local'], label: 'Da pesquisa à descoberta', icon: Search },
-  { title: 'Ser escolhido.', text: 'Transformar curiosidade em vontade de entrar. Uma identidade consistente, informação clara e um caminho simples até à primeira visita.', tags: ['Design & identidade', 'Marcações & menus'], label: 'Da descoberta à primeira visita', icon: MapPin },
-  { title: 'Ser lembrado.', text: 'A experiência não termina à saída. Facilitamos as avaliações e criamos pontos de contacto que dão vontade de voltar.', tags: ['Avaliações & reputação', 'Experiência no espaço'], label: 'Da primeira visita à próxima', icon: Heart },
+  { title: 'Subir no ranking e ser encontrado.', text: 'Posicionamos a sua empresa no topo do Google com SEO local técnico e copywriting estratégico. Quando um cliente pesquisa pelo que faz na sua zona, é o seu negócio que aparece em destaque.', tags: ['Google Business & Ranking', 'SEO Local & Copywriting'], label: 'Da pesquisa no Google ao primeiro clique', icon: Search },
+  { title: 'Impressionar e converter na hora.', text: 'Recebemos o cliente com um website empresarial rápido e persuasivo ou com um menu online pensado ao detalhe para abrir o apetite e facilitar a escolha no telemóvel.', tags: ['Websites para Empresas', 'Menus Online para Restaurantes'], label: 'Do clique à decisão de compra', icon: MapPin },
+  { title: 'Atender 24/7 e fidelizar clientes.', text: 'Garantimos resposta imediata no WhatsApp através de automação inteligente e acompanhamos as avaliações do espaço para que cada cliente satisfeito traga o próximo.', tags: ['Automação de WhatsApp Bot', 'Avaliações & Reputação'], label: 'Do atendimento automático à fidelização', icon: Heart },
 ];
 
 export default function Methodology() {
