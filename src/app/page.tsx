@@ -1,4 +1,11 @@
 import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
+
+const EMAIL = 'geral@draftandrise.com';
+const EMAIL_SUBJECT = 'Vamos conversar — Draft & Rise';
+const EMAIL_BODY =
+  'Olá, Draft & Rise!\n\nO meu negócio chama-se...\n\nGostava de conversar convosco sobre...\n';
+const MAILTO_HREF = `mailto:${EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
 
 export default function Home() {
   return (
@@ -24,12 +31,22 @@ export default function Home() {
           </h1>
           <p className="maintenance-text">
             O nosso website está a ser trabalhado e muito em breve estará online.
+            Enquanto isso, pode falar diretamente connosco por email.
           </p>
+          <a href={MAILTO_HREF} className="button button-dark maintenance-cta">
+            {EMAIL}
+            <span>
+              <ArrowUpRight size={20} />
+            </span>
+          </a>
         </div>
 
         <div className="maintenance-bottom">
           <span>© {new Date().getFullYear()} Draft & Rise</span>
           <span>Grandes ideias. Negócios locais.</span>
+          <a href={MAILTO_HREF} className="maintenance-mail-link">
+            {EMAIL} <ArrowUpRight size={14} />
+          </a>
         </div>
       </div>
     </main>
