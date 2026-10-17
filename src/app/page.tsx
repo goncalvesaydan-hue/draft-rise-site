@@ -6,10 +6,7 @@ import Footer from '@/components/Footer';
 import MaintenancePage from '@/components/MaintenancePage';
 
 export default function Home() {
-  if (
-    process.env.NODE_ENV === 'production' &&
-    process.env.NEXT_PUBLIC_SITE_LIVE !== '1'
-  ) {
+  if (process.env.NEXT_PUBLIC_MAINTENANCE === '1') {
     return <MaintenancePage />;
   }
 

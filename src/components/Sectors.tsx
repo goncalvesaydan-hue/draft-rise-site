@@ -39,7 +39,7 @@ const sectors = [
 
 export default function Sectors() {
   return (
-    <section className="sectors section-shell" aria-labelledby="sectors-title">
+    <section id="setores" className="sectors section-shell" aria-labelledby="sectors-title">
       <div className="section-heading">
         <p className="section-label"><span /> Para quem desenhamos</p>
         <h2 id="sectors-title">Pensado para a realidade<br className="desktop-break" /> do seu setor.</h2>
