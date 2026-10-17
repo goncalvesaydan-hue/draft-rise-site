@@ -2,7 +2,6 @@
 
 import { ArrowUpRight, Check, Copy } from 'lucide-react';
 import { useState } from 'react';
-import Link from 'next/link';
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
@@ -109,9 +108,6 @@ export default function Contact() {
 
         <div className="contact-actions">
           <div className="contact-buttons">
-            <Link href="/questionario" className="button button-dark">
-              Planear uma automação <span><ArrowUpRight size={21} /></span>
-            </Link>
             <a
               href={whatsappHref}
               target="_blank"
