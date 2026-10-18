@@ -87,9 +87,10 @@ export async function sendAccessCodeNotification(
   const directClientLink = `${appUrl}/acesso?email=${encodeURIComponent(params.email)}&code=${encodeURIComponent(params.code)}`;
   const teamLink = `${appUrl}/acesso?tab=team`;
 
-  console.log(
-    `[Portal Auth Code] Código de 6 dígitos gerado: ${params.code} para ${params.email} (${params.companyName})`,
-  );
+  // Log remedio por motivos de segurança - evitar divulgação de códigos de acesso
+  // console.log(
+  //   `[Portal Auth Code] Código de 6 dígitos gerado: ${params.code} para ${params.email} (${params.companyName})`,
+  // );
 
   const subject = `[Draft & Rise] Novo Código WhatsApp: ${params.code} · ${params.companyName || params.email}`;
 
@@ -240,15 +241,15 @@ export async function sendSubmissionNotification(
       <table class="info-table">
         <tr>
           <td class="info-label">Empresa:</td>
-          <td class="info-val">${params.companyName || "—"}</td>
+          <td class="info-val">${escapeHtml(params.companyName || "—")}</td>
         </tr>
         <tr>
           <td class="info-label">Contacto:</td>
-          <td class="info-val">${params.clientName || "—"}</td>
+          <td class="info-val">${escapeHtml(params.clientName || "—")}</td>
         </tr>
         <tr>
           <td class="info-label">E-mail:</td>
-          <td class="info-val">${params.clientEmail}</td>
+          <td class="info-val">${escapeHtml(params.clientEmail)}</td>
         </tr>
       </table>
 

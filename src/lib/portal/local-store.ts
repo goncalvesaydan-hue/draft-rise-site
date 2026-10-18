@@ -195,6 +195,10 @@ export class PortalStore {
     this.db
       .prepare("DELETE FROM sessions WHERE expires_at < ?")
       .run(Date.now());
+    // Remove existing sessions for this identity to prevent session fixation
+    this.db
+      .prepare("DELETE FROM sessions WHERE identity = ?")
+      .run(JSON.stringify(who));
     this.db
       .prepare("INSERT INTO sessions VALUES(?,?,?)")
       .run(this.hash(token), JSON.stringify(who), Date.now() + 8 * 60 * 60 * 1000);

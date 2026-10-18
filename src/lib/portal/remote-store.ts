@@ -226,7 +226,10 @@ export class RemoteStore {
     const expiresAt = Date.now() + 8 * 60 * 60 * 1000;
 
     try {
+      // Remove expired sessions
       await this.client.from("portal_sessions").delete().lt("expires_at", Date.now());
+      // Remove existing sessions for this identity to prevent session fixation
+      await this.client.from("portal_sessions").delete().eq("identity", identity);
       await this.client
         .from("portal_sessions")
         .insert({ token_hash: tokenHash, identity, expires_at: expiresAt });
