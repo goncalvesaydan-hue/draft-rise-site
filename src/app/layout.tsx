@@ -47,19 +47,19 @@ export const metadata: Metadata = {
     siteName: "Draft & Rise",
     images: [
       {
-        url: "/brand/draft-rise-mark.png",
-        width: 512,
-        height: 512,
-        alt: "Draft & Rise",
+        url: "/brand/og-cover.png",
+        width: 2400,
+        height: 1350,
+        alt: "Draft & Rise — Mais presença. Mais clientes. Menos esforço.",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Draft & Rise — Crescimento digital para empresas e negócios locais",
     description:
       "Websites empresariais, Google Business & SEO, WhatsApp Bot 24/7 e Menus Online para restaurantes.",
-    images: ["/brand/draft-rise-mark.png"],
+    images: ["/brand/og-cover.png"],
   },
 };
 
