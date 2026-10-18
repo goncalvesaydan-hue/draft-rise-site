@@ -36,8 +36,13 @@ import {
   type Answers,
   type RepeatRow,
 } from "@/lib/portal/questionnaire";
-import type { Intake, Submission, Identity } from "@/lib/portal/store";
-function WorkspaceHeader() {
+import type {
+  Intake,
+  Submission,
+  Identity,
+  ClientAccessRequest,
+} from "@/lib/portal/store";
+function WorkspaceHeader({ team = false }: { team?: boolean }) {
   const router = useRouter();
   const [error, setError] = useState("");
   async function leave() {
@@ -53,7 +58,9 @@ function WorkspaceHeader() {
       <header className="p-site-header p-workspace-header">
         <Brand />
         <nav>
-          <Link href="/cliente">O meu espaço</Link>
+          <Link href={team ? "/equipa" : "/cliente"}>
+            {team ? "Painel da equipa" : "O meu espaço"}
+          </Link>
           <Link href="/ajuda">Ajuda</Link>
           <button className="p-icon-link" onClick={leave}>
             <LogOut size={16} /> Sair
@@ -68,19 +75,22 @@ function WorkspaceHeader() {
     </>
   );
 }
-function Problem({ message }: { message: string }) {
+function Problem({ message, team = false }: { message: string; team?: boolean }) {
   return (
     <div className="p-empty-state">
       <AlertCircle />
       <h2>Precisamos de retomar o acesso.</h2>
       <p role="alert">{message}</p>
-      <Link href="/acesso" className="p-button p-primary">
-        Entrar no meu espaço
+      <Link
+        href={team ? "/acesso?tab=team" : "/acesso"}
+        className="p-button p-primary"
+      >
+        {team ? "Entrar na área da equipa" : "Entrar no meu espaço"}
       </Link>
     </div>
   );
 }
-function useRemote<T>(url: string) {
+function useRemote<T>(url: string, refreshKey = 0) {
   const [data, setData] = useState<T | null>(null),
     [error, setError] = useState("");
   useEffect(() => {
@@ -95,50 +105,241 @@ function useRemote<T>(url: string) {
     return () => {
       live = false;
     };
-  }, [url]);
+  }, [url, refreshKey]);
   return { data, error };
 }
-export function IntakeList({ team = false }: { team?: boolean }) {
-  const { data, error } = useRemote<{ identity: Identity; intakes: Intake[] }>(
-    "/api/intakes",
+
+function TeamAccessCodesPanel({
+  codes,
+  isAdmin,
+  onCreated,
+}: {
+  codes: ClientAccessRequest[];
+  isAdmin: boolean;
+  onCreated: () => void;
+}) {
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  async function generateCode(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setError("");
+    try {
+      await api("/api/auth/request", {
+        method: "POST",
+        body: JSON.stringify({ name, company, email }),
+      });
+      setName("");
+      setCompany("");
+      setEmail("");
+      onCreated();
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function revokeCode(targetEmail: string) {
+    setBusy(true);
+    setError("");
+    try {
+      await api("/api/auth/request", {
+        method: "DELETE",
+        body: JSON.stringify({ email: targetEmail }),
+      });
+      onCreated();
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function copyText(id: string, value: string) {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch {
+      // ignore clipboard errors
+    }
+  }
+
+  return (
+    <section className="p-access-codes-panel">
+      <div className="p-access-codes-header">
+        <div>
+          <span className="p-eyeline">geral@draftandrise.com</span>
+          <h2>Códigos de Acesso de Clientes (6 dígitos)</h2>
+          <p className="p-field-help">
+            Quando um cliente pede acesso em <code>/acesso</code> (ou quando geras
+            um código abaixo), o código de 6 dígitos fica registado aqui e é
+            encaminhado para <strong>geral@draftandrise.com</strong>.
+          </p>
+        </div>
+      </div>
+
+      <form className="p-access-codes-form" onSubmit={generateCode}>
+        <input
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Nome do cliente (ex.: João Silva)"
+        />
+        <input
+          required
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+          placeholder="Empresa (ex.: Clínica Sorriso)"
+        />
+        <input
+          required
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="E-mail do cliente"
+        />
+        <button className="p-button p-primary" type="submit" disabled={busy}>
+          <Plus size={16} /> {busy ? "A gerar…" : "Gerar código"}
+        </button>
+      </form>
+      {error && (
+        <p role="alert" className="p-error">
+          {error}
+        </p>
+      )}
+
+      {codes.length === 0 ? (
+        <p className="p-quiet">
+          Ainda não existem códigos de clientes gerados. Podes gerar um acima ou
+          enviar o link <code>/questionario</code> ao cliente.
+        </p>
+      ) : (
+        <div className="p-access-codes-list">
+          {codes.map((c) => {
+            const origin =
+              typeof window !== "undefined"
+                ? window.location.origin
+                : "https://draftandrise.com";
+            const directLink = `${origin}/acesso?email=${encodeURIComponent(c.email)}&mode=code`;
+            const whatsappMsg = `Olá ${c.clientName}! Aqui está o teu código de acesso ao Questionário WhatsApp Business da Draft & Rise (${c.companyName}): *${c.code}*\n\nEntra diretamente aqui: ${directLink}`;
+            return (
+              <div key={c.email} className="p-access-code-row">
+                <div className="p-access-code-meta">
+                  <strong>{c.companyName}</strong>
+                  <span>
+                    {c.clientName} · {c.email}
+                  </span>
+                  <small>
+                    Gerado em {new Date(c.createdAt).toLocaleString("pt-PT")}
+                  </small>
+                </div>
+                <div className="p-access-code-actions">
+                  <code className="p-access-code-badge">{c.code}</code>
+                  <span className="p-pill p-green">Ativo</span>
+                  <button
+                    type="button"
+                    className="p-button p-secondary p-small-btn"
+                    onClick={() => copyText(`code-${c.email}`, c.code)}
+                  >
+                    {copiedId === `code-${c.email}`
+                      ? "Copiado!"
+                      : "Copiar código"}
+                  </button>
+                  <button
+                    type="button"
+                    className="p-button p-secondary p-small-btn"
+                    onClick={() => copyText(`msg-${c.email}`, whatsappMsg)}
+                  >
+                    {copiedId === `msg-${c.email}`
+                      ? "Mensagem copiada!"
+                      : "Copiar p/ WhatsApp"}
+                  </button>
+                  {isAdmin && (
+                    <button
+                      type="button"
+                      className="p-button p-secondary p-small-btn p-danger-btn"
+                      disabled={busy}
+                      onClick={() => revokeCode(c.email)}
+                    >
+                      <Trash2 size={14} /> Apagar
+                    </button>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </section>
   );
+}
+
+export function IntakeList({ team = false }: { team?: boolean }) {
+  const [refreshKey, setRefreshKey] = useState(0);
+  const { data, error } = useRemote<{
+    identity: Identity;
+    intakes: Intake[];
+    accessCodes?: ClientAccessRequest[];
+  }>("/api/intakes", refreshKey);
   const [search, setSearch] = useState("");
   const authorized = data && (!team || data.identity.role === "team");
+  const isAdmin = Boolean(data?.identity.isAdmin);
   return (
     <>
-      <WorkspaceHeader />
+      <WorkspaceHeader team={team} />
       <main id="conteudo" className="p-workspace-page">
         {error ? (
-          <Problem message={error} />
+          <Problem message={error} team={team} />
         ) : !data ? (
           <p role="status">A abrir o seu espaço…</p>
         ) : !authorized ? (
-          <Problem message="Esta área é reservada à equipa." />
+          <Problem message="Esta área é reservada à equipa." team={true} />
         ) : (
           <>
             <div className="p-page-top">
               <div>
                 <span className="p-eyeline">
-                  {team ? "Área da equipa" : "O seu espaço"}
+                  {team
+                    ? isAdmin
+                      ? `Administrador Total · ${data.identity.name}`
+                      : `Equipa (Acesso Básico) · ${data.identity.name}`
+                    : "O seu espaço"}
                 </span>
                 <h1>
                   {team
-                    ? "Cada negócio, uma nova possibilidade."
+                    ? "Controlo de Questionários & Agentes WhatsApp."
                     : "Vamos dar o próximo passo."}
                 </h1>
                 <p className="p-lead p-small">
                   {team
-                    ? "Acompanha as fichas e consulta a informação recebida."
+                    ? isAdmin
+                      ? "Tens acesso total (user1): podes gerir e apagar códigos, editar todas as respostas de qualquer questionário, reabrir fichas submetidas e exportar o ficheiro .md."
+                      : "Conta de equipa com acesso básico: podes gerar e copiar códigos de clientes, acompanhar as respostas e atualizar dados básicos de contacto."
                     : "As suas respostas ficam organizadas aqui, mesmo quando faz uma pausa."}
                 </p>
               </div>
-              <span className="p-pill p-pale">Área privada</span>
+              <span
+                className={portalClass(`pill ${isAdmin ? "green" : "pale"}`)}
+              >
+                {team
+                  ? isAdmin
+                    ? "user1 · Acesso Total"
+                    : `${data.identity.id} · Acesso Básico`
+                  : "Área privada"}
+              </span>
             </div>
             {team && (
               <div className="p-team-overview">
                 <div>
                   <strong>{data.intakes.length}</strong>
-                  <span>Fichas</span>
+                  <span>Fichas de Clientes</span>
                 </div>
                 <div>
                   <strong>
@@ -147,7 +348,7 @@ export function IntakeList({ team = false }: { team?: boolean }) {
                         .length
                     }
                   </strong>
-                  <span>Submetidas</span>
+                  <span>Submetidas (Prontas p/ IA)</span>
                 </div>
                 <div>
                   <strong>
@@ -155,10 +356,21 @@ export function IntakeList({ team = false }: { team?: boolean }) {
                   </strong>
                   <span>Em preenchimento</span>
                 </div>
+                <div>
+                  <strong>{data.accessCodes?.length ?? 0}</strong>
+                  <span>Códigos gerados</span>
+                </div>
                 <Link href="/equipa/notificacoes" className="p-text-link">
                   Notificações <Mail size={18} />
                 </Link>
               </div>
+            )}
+            {team && (
+              <TeamAccessCodesPanel
+                codes={data.accessCodes ?? []}
+                isAdmin={isAdmin}
+                onCreated={() => setRefreshKey((k) => k + 1)}
+              />
             )}
             {team && (
               <label className="p-search-field">
@@ -243,7 +455,9 @@ export function IntakeList({ team = false }: { team?: boolean }) {
               <FileText size={20} />
               <span>
                 {team
-                  ? "O painel apresenta as fichas guardadas. Complementos, atribuição e notas serão acrescentados nas próximas fases."
+                  ? isAdmin
+                    ? "Como user1 (Admin Total), podes entrar em qualquer ficha para editar todas as respostas das 8 etapas, reabrir fichas submetidas ou eliminar registos."
+                    : "Como membro da equipa (Acesso Básico), podes entrar em qualquer ficha para consultar as respostas do cliente, exportar o Markdown e atualizar os dados básicos de contacto."
                   : "Não precisa de responder tudo de uma vez. Quando o indicador disser “Guardado”, pode sair e voltar com o mesmo perfil."}
               </span>
             </div>
@@ -259,6 +473,159 @@ type IntakeResponse = {
   intake: Intake;
   submission: Submission | null;
 };
+
+function BasicFieldsCard({
+  intake,
+  canEdit,
+  onSaved,
+}: {
+  intake: Intake;
+  canEdit: boolean;
+  onSaved: () => void;
+}) {
+  const [companyName, setCompanyName] = useState(
+    textValue(intake.answers, "company.name"),
+  );
+  const [contactName, setContactName] = useState(
+    textValue(intake.answers, "contact.name"),
+  );
+  const [contactRole, setContactRole] = useState(
+    textValue(intake.answers, "contact.role"),
+  );
+  const [contactEmail, setContactEmail] = useState(
+    textValue(intake.answers, "contact.email"),
+  );
+  const [contactPhone, setContactPhone] = useState(
+    textValue(intake.answers, "contact.phone"),
+  );
+  const [location, setLocation] = useState(
+    textValue(intake.answers, "company.location"),
+  );
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [err, setErr] = useState("");
+
+  async function saveBasic(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setMsg("");
+    setErr("");
+    try {
+      await api(`/api/intakes/${encodeURIComponent(intake.id)}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          action: "basic",
+          fields: {
+            "company.name": companyName,
+            "contact.name": contactName,
+            "contact.role": contactRole,
+            "contact.email": contactEmail,
+            "contact.phone": contactPhone,
+            "company.location": location,
+          },
+        }),
+      });
+      setMsg("Dados básicos guardados com sucesso.");
+      onSaved();
+    } catch (error) {
+      setErr((error as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <section className="p-access-codes-panel">
+      <div className="p-access-codes-header">
+        <div>
+          <span className="p-eyeline">Edição Rápida da Equipa</span>
+          <h2>Dados Básicos da Empresa & Contacto</h2>
+          <p className="p-field-help">
+            Qualquer membro da equipa (<code>user1</code> a <code>user6</code>)
+            pode corrigir ou atualizar estes dados básicos de identificação do
+            cliente.
+          </p>
+        </div>
+      </div>
+      <form className="p-basic-fields-grid" onSubmit={saveBasic}>
+        <label>
+          <span>Nome da empresa</span>
+          <input
+            disabled={!canEdit || busy}
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
+            placeholder="Nome da empresa"
+          />
+        </label>
+        <label>
+          <span>Nome do responsável</span>
+          <input
+            disabled={!canEdit || busy}
+            value={contactName}
+            onChange={(e) => setContactName(e.target.value)}
+            placeholder="Nome do contacto"
+          />
+        </label>
+        <label>
+          <span>Cargo / função</span>
+          <input
+            disabled={!canEdit || busy}
+            value={contactRole}
+            onChange={(e) => setContactRole(e.target.value)}
+            placeholder="Ex.: Gerente, Diretor"
+          />
+        </label>
+        <label>
+          <span>E-mail</span>
+          <input
+            disabled={!canEdit || busy}
+            type="email"
+            value={contactEmail}
+            onChange={(e) => setContactEmail(e.target.value)}
+            placeholder="email@empresa.pt"
+          />
+        </label>
+        <label>
+          <span>Telefone / WhatsApp</span>
+          <input
+            disabled={!canEdit || busy}
+            value={contactPhone}
+            onChange={(e) => setContactPhone(e.target.value)}
+            placeholder="+351 9xx xxx xxx"
+          />
+        </label>
+        <label>
+          <span>Localização (Cidade / País)</span>
+          <input
+            disabled={!canEdit || busy}
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            placeholder="Ex.: Lisboa, Portugal"
+          />
+        </label>
+        {canEdit && (
+          <div className="p-basic-fields-actions">
+            <button
+              className="p-button p-primary"
+              type="submit"
+              disabled={busy}
+            >
+              <Save size={16} />{" "}
+              {busy ? "A guardar…" : "Guardar dados básicos"}
+            </button>
+            {msg && <span className="p-saved-inline">{msg}</span>}
+          </div>
+        )}
+      </form>
+      {err && (
+        <p role="alert" className="p-error">
+          {err}
+        </p>
+      )}
+    </section>
+  );
+}
+
 export function IntakeWorkspace({
   id,
   initialStep = 1,
@@ -268,12 +635,16 @@ export function IntakeWorkspace({
   initialStep?: number;
   team?: boolean;
 }) {
+  const [refreshKey, setRefreshKey] = useState(0);
+  const [adminFullEdit, setAdminFullEdit] = useState(false);
   const { data, error } = useRemote<IntakeResponse>(
     `/api/intakes/${encodeURIComponent(id)}`,
+    refreshKey,
   );
+  const isAdmin = Boolean(data?.identity.isAdmin);
   return (
     <>
-      <WorkspaceHeader />
+      <WorkspaceHeader team={team} />
       <main id="conteudo">
         {error ? (
           <Problem message={error} />
@@ -283,12 +654,33 @@ export function IntakeWorkspace({
           </div>
         ) : team && data.identity.role !== "team" ? (
           <Problem message="Área reservada à equipa." />
+        ) : team && isAdmin && adminFullEdit && data.intake.status === "draft" ? (
+          <Editor
+            initial={data.intake}
+            initialStep={initialStep}
+            adminMode={true}
+            onExitAdmin={() => {
+              setAdminFullEdit(false);
+              setRefreshKey((k) => k + 1);
+            }}
+          />
         ) : data.submission ? (
-          <Submitted submission={data.submission} team={team} />
+          <Submitted
+            submission={data.submission}
+            intake={data.intake}
+            team={team}
+            isAdmin={isAdmin}
+            onRefresh={() => setRefreshKey((k) => k + 1)}
+          />
         ) : team ? (
-          <DraftPreview intake={data.intake} />
+          <DraftPreview
+            intake={data.intake}
+            isAdmin={isAdmin}
+            onEditFull={() => setAdminFullEdit(true)}
+            onRefresh={() => setRefreshKey((k) => k + 1)}
+          />
         ) : data.identity.role === "team" ? (
-          <Problem message="Usa o perfil do cliente para preencher esta ficha." />
+          <Problem message="Usa o painel da equipa (/equipa) para gerir esta ficha." />
         ) : (
           <Editor initial={data.intake} initialStep={initialStep} />
         )}
@@ -297,28 +689,151 @@ export function IntakeWorkspace({
     </>
   );
 }
-function DraftPreview({ intake }: { intake: Intake }) {
+function DraftPreview({
+  intake,
+  isAdmin,
+  onEditFull,
+  onRefresh,
+}: {
+  intake: Intake;
+  isAdmin: boolean;
+  onEditFull: () => void;
+  onRefresh: () => void;
+}) {
+  const router = useRouter();
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+
+  async function removeIntake() {
+    setBusy(true);
+    setErr("");
+    try {
+      await api(`/api/intakes/${encodeURIComponent(intake.id)}`, {
+        method: "DELETE",
+      });
+      router.push("/equipa");
+    } catch (e) {
+      setErr((e as Error).message);
+      setBusy(false);
+    }
+  }
+
   return (
     <div className="p-workspace-page">
-      <Link className="p-text-link" href="/equipa">
-        <ArrowLeft size={16} /> Voltar às fichas
-      </Link>
-      <h1>{textValue(intake.answers, "company.name")}</h1>
-      <div className="p-notice">
-        Esta ficha ainda está em preenchimento. A equipa pode consultar o
-        progresso, mas não alterar as respostas do cliente.
+      <div className="p-admin-top-bar">
+        <Link className="p-text-link" href="/equipa">
+          <ArrowLeft size={16} /> Voltar às fichas
+        </Link>
+        <span className={portalClass(`pill ${isAdmin ? "green" : "pale"}`)}>
+          {isAdmin
+            ? "user1 · Acesso Total (Admin)"
+            : "Equipa · Acesso Básico (Consulta & Dados Básicos)"}
+        </span>
       </div>
+      <h1>{textValue(intake.answers, "company.name") || "Nova empresa"}</h1>
+
+      {isAdmin ? (
+        <div className="p-admin-actions-bar">
+          <div>
+            <strong>Controlo Total (user1)</strong>
+            <p className="p-field-help">
+              Como administrador principal, podes editar todas as 8 etapas do
+              questionário deste cliente, exportar o rascunho em Markdown ou
+              apagar a ficha.
+            </p>
+          </div>
+          <div className="p-button-row">
+            <button
+              type="button"
+              className="p-button p-primary"
+              onClick={onEditFull}
+            >
+              Editar questionário completo (8 etapas)
+            </button>
+            <a
+              href={`/api/intakes/${intake.id}/export`}
+              className="p-button p-secondary"
+            >
+              <Download size={16} /> Exportar Markdown (.md)
+            </a>
+            <button
+              type="button"
+              className="p-button p-secondary p-danger-btn"
+              disabled={busy}
+              onClick={removeIntake}
+            >
+              <Trash2 size={16} /> Apagar ficha
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="p-notice">
+          <strong>Modo de Consulta & Edição Básica:</strong> Podes atualizar os
+          dados básicos da empresa/contacto abaixo e consultar todas as
+          respostas do cliente. A edição profunda das 8 etapas e a eliminação de
+          fichas estão reservadas ao <code>user1</code>.
+        </div>
+      )}
+      {err && (
+        <p role="alert" className="p-error">
+          {err}
+        </p>
+      )}
+
+      <BasicFieldsCard intake={intake} canEdit={true} onSaved={onRefresh} />
+
+      <h2>Respostas completas do questionário</h2>
       <AnswerReview answers={intake.answers} />
     </div>
   );
 }
 function Submitted({
   submission: s,
+  intake,
   team,
+  isAdmin = false,
+  onRefresh,
 }: {
   submission: Submission;
+  intake?: Intake;
   team: boolean;
+  isAdmin?: boolean;
+  onRefresh?: () => void;
 }) {
+  const router = useRouter();
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+
+  async function reopenForEdit() {
+    setBusy(true);
+    setErr("");
+    try {
+      await api(`/api/intakes/${encodeURIComponent(s.intakeId)}`, {
+        method: "PATCH",
+        body: JSON.stringify({ action: "reopen" }),
+      });
+      onRefresh?.();
+    } catch (e) {
+      setErr((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function removeIntake() {
+    setBusy(true);
+    setErr("");
+    try {
+      await api(`/api/intakes/${encodeURIComponent(s.intakeId)}`, {
+        method: "DELETE",
+      });
+      router.push("/equipa");
+    } catch (e) {
+      setErr((e as Error).message);
+      setBusy(false);
+    }
+  }
+
   return (
     <div className="p-workspace-page p-submitted-page">
       <div className="p-confirmation">
@@ -350,13 +865,45 @@ function Submitted({
           >
             Voltar ao meu espaço
           </Link>
+          {team && isAdmin && (
+            <>
+              <button
+                type="button"
+                className="p-button p-secondary"
+                disabled={busy}
+                onClick={reopenForEdit}
+              >
+                Reabrir ficha p/ editar tudo (user1)
+              </button>
+              <button
+                type="button"
+                className="p-button p-secondary p-danger-btn"
+                disabled={busy}
+                onClick={removeIntake}
+              >
+                <Trash2 size={16} /> Apagar ficha
+              </button>
+            </>
+          )}
         </div>
+        {err && (
+          <p role="alert" className="p-error">
+            {err}
+          </p>
+        )}
         <div className="p-notice p-soft">
-          A ficha já está disponível para consulta. As notificações por email
-          ainda não estão ativas. O prazo de acompanhamento será definido pela
-          equipa.
+          {team && isAdmin
+            ? "Como user1 (Admin Total), podes descarregar o ficheiro Markdown ou reabrir esta ficha caso queiras alterar respostas em qualquer etapa."
+            : "A ficha já está disponível para consulta e exportação em Markdown (.md)."}
         </div>
       </div>
+      {team && intake && isAdmin && (
+        <BasicFieldsCard
+          intake={intake}
+          canEdit={true}
+          onSaved={() => onRefresh?.()}
+        />
+      )}
       <h2>As respostas que enviou</h2>
       <AnswerReview
         answers={s.snapshot.answers}
@@ -638,9 +1185,13 @@ function Repeatable({
 function Editor({
   initial,
   initialStep,
+  adminMode = false,
+  onExitAdmin,
 }: {
   initial: Intake;
   initialStep: number;
+  adminMode?: boolean;
+  onExitAdmin?: () => void;
 }) {
   const router = useRouter(),
     [answers, setAnswers] = useState(initial.answers),
@@ -751,13 +1302,15 @@ function Editor({
     setBusy(true);
     if (await saveNow()) {
       setStep(next);
-      window.history.replaceState(
-        null,
-        "",
-        next === 8
-          ? `/cliente/${initial.id}/rever`
-          : `/cliente/${initial.id}/preencher/${next}`,
-      );
+      if (!adminMode) {
+        window.history.replaceState(
+          null,
+          "",
+          next === 8
+            ? `/cliente/${initial.id}/rever`
+            : `/cliente/${initial.id}/preencher/${next}`,
+        );
+      }
       setTimeout(() => heading.current?.focus(), 0);
       window.scrollTo({ top: 0, behavior: "instant" });
     }
@@ -765,8 +1318,13 @@ function Editor({
   }
   async function exit() {
     setBusy(true);
-    if (await saveNow()) router.push("/cliente");
-    else setBusy(false);
+    if (await saveNow()) {
+      if (adminMode && onExitAdmin) {
+        onExitAdmin();
+      } else {
+        router.push("/cliente");
+      }
+    } else setBusy(false);
   }
   async function submit() {
     const validation = validateAnswers(live.current.answers, true);
@@ -791,8 +1349,12 @@ function Editor({
           idempotencyKey: key.current,
         }),
       });
-      router.push(`/cliente/${initial.id}/confirmacao`);
-      router.refresh();
+      if (adminMode && onExitAdmin) {
+        onExitAdmin();
+      } else {
+        router.push(`/cliente/${initial.id}/confirmacao`);
+        router.refresh();
+      }
     } catch (e) {
       setError((e as Error).message);
       if (e instanceof ApiError) setFields(e.fields);
@@ -819,14 +1381,15 @@ function Editor({
     <div className="p-editor-layout">
       <aside className="p-step-sidebar">
         <Link
-          href="/cliente"
+          href={adminMode ? "/equipa" : "/cliente"}
           className="p-back-link"
           onClick={(e) => {
             e.preventDefault();
             void exit();
           }}
         >
-          <ArrowLeft size={16} /> O meu espaço
+          <ArrowLeft size={16} />{" "}
+          {adminMode ? "Concluir edição Admin (user1)" : "O meu espaço"}
         </Link>
         <div className="p-sidebar-company">
           <span className="p-company-icon p-small">
@@ -1071,10 +1634,10 @@ function Editor({
               }}
             />
             <p className="p-field-help p-review-note">
-              Ao enviar, as respostas aplicáveis ficam preservadas numa ficha.
-              Consulta a{" "}
-              <Link href="/privacidade">informação de privacidade</Link>. Nesta
-              versão, usa apenas dados fictícios.
+              Ao enviar, as respostas ficam guardadas na ficha técnica da sua
+              empresa para a equipa Draft &amp; Rise configurar e treinar o seu
+              Agente de WhatsApp Business. Consulta a{" "}
+              <Link href="/privacidade">Política de Privacidade</Link>.
             </p>
           </>
         )}
@@ -1139,17 +1702,18 @@ export function Notifications() {
   }>("/api/notifications");
   return (
     <>
-      <WorkspaceHeader />
+      <WorkspaceHeader team={true} />
       <main id="conteudo" className="p-workspace-page">
         <Link href="/equipa" className="p-text-link">
           <ArrowLeft size={16} /> Voltar à equipa
         </Link>
         <h1>Notificações.</h1>
         <div className="p-notice">
-          Registos de notificações. O envio por email ainda não está ativo.
+          Registo de fichas submetidas pelos clientes e notificações associadas
+          a <strong>geral@draftandrise.com</strong>.
         </div>
         {error ? (
-          <Problem message={error} />
+          <Problem message={error} team={true} />
         ) : !data ? (
           <p role="status">A carregar…</p>
         ) : data.notifications.length === 0 ? (

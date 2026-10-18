@@ -1894,3 +1894,214 @@
   .dr-portal .p-prepare-section .p-text-link { grid-column: 2; margin-left: 0; }
   .dr-portal .p-section-heading br { display: block; }
 }
+
+.dr-portal .p-access-tabs {
+  display: inline-flex;
+  gap: 8px;
+  padding: 5px;
+  background: #edf0f5;
+  border-radius: 10px;
+  margin-top: 24px;
+}
+
+.dr-portal .p-access-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  background: transparent;
+  padding: 10px 18px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.dr-portal .p-access-tab.p-active,
+.dr-portal .p-access-tab.is-active {
+  background: #fff;
+  color: var(--dark);
+  box-shadow: 0 2px 6px rgba(18, 25, 34, 0.08);
+}
+
+.dr-portal .p-access-codes-panel {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 28px;
+}
+
+.dr-portal .p-access-codes-header h2 {
+  font-size: 22px;
+  margin: 4px 0 6px;
+}
+
+.dr-portal .p-access-codes-form {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  gap: 12px;
+  margin: 18px 0 20px;
+}
+
+.dr-portal .p-access-codes-form input {
+  background: #fafbfe;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.dr-portal .p-access-codes-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.dr-portal .p-access-code-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid #edf0f4;
+  border-radius: 9px;
+  background: #fafbfe;
+  flex-wrap: wrap;
+}
+
+.dr-portal .p-access-code-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.dr-portal .p-access-code-meta strong {
+  font-size: 14px;
+}
+
+.dr-portal .p-access-code-meta span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.dr-portal .p-access-code-meta small {
+  font-size: 11px;
+  color: #8490a3;
+}
+
+.dr-portal .p-access-code-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dr-portal .p-access-code-badge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  background: #1c2430;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 7px;
+}
+
+.dr-portal .p-small-btn {
+  min-height: 36px;
+  padding: 7px 13px;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .dr-portal .p-access-codes-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.dr-portal .p-admin-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.dr-portal .p-admin-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px 24px;
+  border-radius: 12px;
+  background: #fff7f2;
+  border: 1px solid #ffd5be;
+  margin-bottom: 24px;
+}
+
+.dr-portal .p-admin-actions-bar strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.dr-portal .p-basic-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.dr-portal .p-basic-fields-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.dr-portal .p-basic-fields-grid input {
+  background: #fafbfe;
+  min-height: 42px;
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.dr-portal .p-basic-fields-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.dr-portal .p-saved-inline {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+}
+
+.dr-portal .p-danger-btn {
+  color: #a32a2a;
+  border-color: #f1c5c5;
+}
+
+.dr-portal .p-danger-btn:hover:not(:disabled) {
+  background: #fff1f1;
+}
+
+@media (max-width: 900px) {
+  .dr-portal .p-basic-fields-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+

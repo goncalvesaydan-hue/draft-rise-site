@@ -1,13 +1,54 @@
-import Link from 'next/link';
-import { Header, Footer } from '@/components/portal/brand';
+import Link from "next/link";
+import { Header, Footer } from "@/components/portal/brand";
 export default function Help() {
-  const questions=[
-    ['Posso parar e voltar mais tarde?','Sim. Quando aparecer “Guardado”, as respostas estão registadas. Pode voltar a entrar para continuar. Na demonstração local, use o mesmo perfil fictício.'],
-    ['E se ainda não souber uma resposta?','Escolha “Ainda não sei” quando a opção estiver disponível. Nome da empresa, responsável, email, setor e objetivos são necessários para submeter.'],
-    ['Posso enviar documentos?','O envio de ficheiros ainda não está disponível. Pode listar os documentos que vai preparar e escrever exemplos sem dados pessoais dos seus clientes.'],
-    ['O que acontece depois de submeter?','A ficha fica disponível para consulta e exportação, e a equipa pode analisá-la no painel. As notificações por email ainda não estão ativas.'],
-    ['Posso corrigir uma ficha enviada?','A submissão original fica preservada. Se precisar de corrigir alguma informação, contacte a Draft & Rise.'],
-    ['Como posso pedir ajuda?','Use os contactos disponíveis no site da Draft & Rise. Não inclua palavras-passe, chaves de acesso ou dados sensíveis nas respostas.'],
+  const questions = [
+    [
+      "Posso parar e voltar mais tarde?",
+      "Sim. Sempre que aparecer “Guardado”, as suas respostas estão seguras. Para retomar noutro momento ou noutro dispositivo, basta entrar em /acesso com o seu e-mail e o código de 6 dígitos fornecido pela equipa Draft & Rise.",
+    ],
+    [
+      "E se ainda não souber uma resposta?",
+      "Escolha “Ainda não sei” quando a opção estiver disponível. O nome da empresa, responsável, e-mail, setor e objetivos principais são necessários para submeter a ficha final.",
+    ],
+    [
+      "Posso enviar menus, tabelas de preços ou documentos?",
+      "Na Etapa 7 pode colocar links diretos (Google Drive, site, Instagram, PDFs online) ou listar os documentos que vai partilhar com a nossa equipa pelo WhatsApp.",
+    ],
+    [
+      "O que acontece depois de submeter?",
+      "A ficha fica imediatamente disponível no painel da equipa Draft & Rise para estruturarmos e treinarmos o seu Agente Oficial de WhatsApp Business (API da Meta).",
+    ],
+    [
+      "Posso corrigir uma ficha depois de enviada?",
+      "Sim. Caso precise de atualizar algum horário, preço ou regra depois de submeter, basta avisar a equipa Draft & Rise para reabrirmos a sua ficha ou ajustarmos diretamente.",
+    ],
+    [
+      "Como posso pedir ajuda?",
+      "Fale diretamente connosco pelo WhatsApp ou através de geral@draftandrise.com. Por segurança, nunca escreva palavras-passe pessoais nas respostas do questionário.",
+    ],
   ];
-  return <><Header /><main id="conteudo" className="p-narrow-page"><h1>Uma pergunta de cada vez.</h1><p className="p-lead">Não precisa de ter tudo decidido para começar.</p><div className="p-faq">{questions.map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div><Link href="/acesso" className="p-button p-primary">Abrir o meu espaço</Link></main><Footer /></>;
+  return (
+    <>
+      <Header />
+      <main id="conteudo" className="p-narrow-page">
+        <h1>Uma pergunta de cada vez.</h1>
+        <p className="p-lead">
+          Não precisa de ter tudo decidido para começar.
+        </p>
+        <div className="p-faq">
+          {questions.map(([q, a]) => (
+            <details key={q}>
+              <summary>{q}</summary>
+              <p>{a}</p>
+            </details>
+          ))}
+        </div>
+        <Link href="/acesso" className="p-button p-primary">
+          Abrir o meu espaço
+        </Link>
+      </main>
+      <Footer />
+    </>
+  );
 }
+

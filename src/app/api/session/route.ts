@@ -1,28 +1,29 @@
 import { localMode } from "@/lib/portal/config";
 import { type NextRequest } from "next/server";
 import { z } from "zod";
-import { getStore, PortalError } from "@/lib/portal/local-store";
+import { getStore as getLocalStore, PortalError } from "@/lib/portal/local-store";
+import { getStore } from "@/lib/portal/store";
 import {
-  authenticate,
-  sameOrigin,
   localOnly,
   readBody,
   fail,
   json,
   SESSION_COOKIE,
 } from "@/lib/portal/http";
+
 export const runtime = "nodejs";
+
 export async function GET(req: NextRequest) {
   try {
-    if (!localMode()) return json({ identity: await authenticate(req) });
-    localOnly(req);
-    return json({
-      identity: getStore().identity(req.cookies.get(SESSION_COOKIE)?.value),
-    });
+    const store = await getStore();
+    const token = req.cookies.get(SESSION_COOKIE)?.value;
+    const identity = await store.identity(token);
+    return json({ identity: identity || null });
   } catch (e) {
     return fail(e);
   }
 }
+
 export async function POST(req: NextRequest) {
   try {
     localOnly(req);
@@ -31,8 +32,8 @@ export async function POST(req: NextRequest) {
       .strict()
       .safeParse(await readBody(req));
     if (!p.success) throw new PortalError(400, "Identidade de teste inválida.");
-    const store = getStore(),
-      old = req.cookies.get(SESSION_COOKIE)?.value;
+    const store = getLocalStore();
+    const old = req.cookies.get(SESSION_COOKIE)?.value;
     if (old) store.logout(old);
     const token = store.session(p.data.identity);
     const res = json({ ok: true });
@@ -48,21 +49,12 @@ export async function POST(req: NextRequest) {
     return fail(e);
   }
 }
+
 export async function DELETE(req: NextRequest) {
   try {
-    if (!localMode()) {
-      sameOrigin(req);
-      const { userClient } = await import("@/lib/portal/supabase");
-      const { error } = await (
-        await userClient()
-      ).auth.signOut({ scope: "local" });
-      if (error)
-        throw new PortalError(503, "Não foi possível terminar a sessão.");
-      return json({ ok: true });
-    }
-    localOnly(req);
+    const store = await getStore();
     const token = req.cookies.get(SESSION_COOKIE)?.value;
-    if (token) getStore().logout(token);
+    if (token) await store.logout(token);
     const res = json({ ok: true });
     res.cookies.delete(SESSION_COOKIE);
     return res;

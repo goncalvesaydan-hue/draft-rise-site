@@ -1,7 +1,7 @@
 import { DatabaseSync } from "node:sqlite";
 import { mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import { randomBytes, randomUUID, createHash } from "node:crypto";
+import { randomBytes, randomInt, randomUUID, createHash, timingSafeEqual } from "node:crypto";
 import {
   type Answers,
   QUESTIONNAIRE_VERSION,
@@ -11,14 +11,20 @@ import {
 } from "./questionnaire";
 import {
   PortalError,
+  TEAM_USERS,
+  BASIC_TEAM_FIELDS,
   identities,
+  type ClientAccessRequest,
   type Identity,
   type Intake,
   type Submission,
 } from "./types";
 export {
   PortalError,
+  TEAM_USERS,
+  BASIC_TEAM_FIELDS,
   identities,
+  type ClientAccessRequest,
   type Identity,
   type Intake,
   type Submission,
@@ -39,6 +45,21 @@ type SubmissionRow = {
   snapshot: string;
   created_at: string;
 };
+type AccessCodeRow = {
+  email: string;
+  client_name: string;
+  company_name: string;
+  code: string;
+  intake_id: string;
+  created_at: string;
+  expires_at: number;
+};
+function safeCompare(a: string, b: string) {
+  const bufA = Buffer.from(a);
+  const bufB = Buffer.from(b);
+  if (bufA.length !== bufB.length) return false;
+  return timingSafeEqual(bufA, bufB);
+}
 export class PortalStore {
   readonly db: DatabaseSync;
   constructor(path: string) {
@@ -54,7 +75,38 @@ export class PortalStore {
   CREATE TRIGGER IF NOT EXISTS immutable_submission BEFORE UPDATE ON submissions BEGIN SELECT RAISE(ABORT,'immutable submission'); END;
   CREATE TABLE IF NOT EXISTS outbox (id TEXT PRIMARY KEY,submission_id TEXT NOT NULL REFERENCES submissions(id),recipient TEXT NOT NULL,subject TEXT NOT NULL,body TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'captured_locally',created_at TEXT NOT NULL,UNIQUE(submission_id,recipient));
   CREATE TABLE IF NOT EXISTS audit_events (id TEXT PRIMARY KEY,intake_id TEXT NOT NULL REFERENCES intakes(id),actor TEXT NOT NULL,action TEXT NOT NULL,created_at TEXT NOT NULL);
+  CREATE TABLE IF NOT EXISTS client_access_codes (email TEXT PRIMARY KEY,client_name TEXT NOT NULL,company_name TEXT NOT NULL,code TEXT NOT NULL,intake_id TEXT NOT NULL,created_at TEXT NOT NULL,expires_at INTEGER NOT NULL);
+  CREATE TABLE IF NOT EXISTS auth_attempts (target TEXT PRIMARY KEY,failures INTEGER NOT NULL DEFAULT 0,locked_until INTEGER NOT NULL DEFAULT 0);
   `);
+  }
+  private checkRateLimit(target: string) {
+    const row = this.db
+      .prepare("SELECT failures, locked_until FROM auth_attempts WHERE target=?")
+      .get(target) as { failures: number; locked_until: number } | undefined;
+    if (row && row.locked_until > Date.now()) {
+      throw new PortalError(
+        429,
+        "Demasiadas tentativas falhadas. Por segurança, aguarde 15 minutos antes de tentar novamente.",
+      );
+    }
+  }
+  private recordFailure(target: string): number {
+    const now = Date.now();
+    const row = this.db
+      .prepare("SELECT failures, locked_until FROM auth_attempts WHERE target=?")
+      .get(target) as { failures: number; locked_until: number } | undefined;
+    const failures = row && row.locked_until <= now ? row.failures + 1 : 1;
+    const lockedUntil = failures >= 5 ? now + 15 * 60 * 1000 : 0;
+    this.db
+      .prepare(
+        `INSERT INTO auth_attempts(target,failures,locked_until) VALUES(?,?,?)
+         ON CONFLICT(target) DO UPDATE SET failures=excluded.failures, locked_until=excluded.locked_until`,
+      )
+      .run(target, failures, lockedUntil);
+    return failures;
+  }
+  private clearFailures(target: string) {
+    this.db.prepare("DELETE FROM auth_attempts WHERE target=?").run(target);
   }
   seed() {
     for (const [id, owner, name, email, sector] of [
@@ -88,6 +140,16 @@ export class PortalStore {
   close() {
     this.db.close();
   }
+  private createSessionForIdentity(who: Identity) {
+    const token = randomBytes(32).toString("hex");
+    this.db
+      .prepare("DELETE FROM sessions WHERE expires_at < ?")
+      .run(Date.now());
+    this.db
+      .prepare("INSERT INTO sessions VALUES(?,?,?)")
+      .run(this.hash(token), JSON.stringify(who), Date.now() + 8 * 60 * 60 * 1000);
+    return token;
+  }
   session(identity: string) {
     if (!identities.some((x) => x.id === identity))
       throw new PortalError(400, "Escolhe uma identidade de teste válida.");
@@ -100,6 +162,181 @@ export class PortalStore {
       .run(this.hash(token), identity, Date.now() + 8 * 60 * 60 * 1000);
     return token;
   }
+  loginTeam(username: string, password: string): { token: string; identity: Identity } {
+    const cleanUser = username.trim().toLowerCase();
+    const rateKey = `team:${cleanUser}`;
+    this.checkRateLimit(rateKey);
+    const account = TEAM_USERS.find((u) => u.username === cleanUser);
+    if (!account || !safeCompare(password, account.password)) {
+      this.recordFailure(rateKey);
+      throw new PortalError(401, "Utilizador ou palavra-passe incorretos.");
+    }
+    this.clearFailures(rateKey);
+    const identity: Identity = {
+      id: account.username,
+      name: account.name,
+      role: "team",
+      isAdmin: account.isAdmin,
+    };
+    const token = this.createSessionForIdentity(identity);
+    return { token, identity };
+  }
+  requestClientAccess(
+    clientName: string,
+    companyName: string,
+    email: string,
+  ): ClientAccessRequest {
+    const normalizedEmail = email.trim().toLowerCase();
+    const cleanName = clientName.trim();
+    const cleanCompany = companyName.trim();
+    const owner = `client:${normalizedEmail}`;
+    const nowIso = new Date().toISOString();
+
+    let existingIntake = this.db
+      .prepare("SELECT * FROM intakes WHERE owner=? ORDER BY updated_at DESC LIMIT 1")
+      .get(owner) as IntakeRow | undefined;
+
+    if (!existingIntake) {
+      const intakeId = randomUUID();
+      const initialAnswers: Answers = {
+        "company.name": { state: "answered", value: cleanCompany },
+        "contact.name": { state: "answered", value: cleanName },
+        "contact.email": { state: "answered", value: normalizedEmail },
+      };
+      this.db
+        .prepare(
+          "INSERT INTO intakes(id,owner,version,status,answers,updated_at) VALUES(?,?,?,'draft',?,?)",
+        )
+        .run(
+          intakeId,
+          owner,
+          QUESTIONNAIRE_VERSION,
+          JSON.stringify(initialAnswers),
+          nowIso,
+        );
+      existingIntake = this.db
+        .prepare("SELECT * FROM intakes WHERE id=?")
+        .get(intakeId) as IntakeRow;
+    } else if (existingIntake.status === "draft") {
+      const parsedAnswers = JSON.parse(existingIntake.answers) as Answers;
+      let changed = false;
+      if (!parsedAnswers["company.name"] && cleanCompany) {
+        parsedAnswers["company.name"] = { state: "answered", value: cleanCompany };
+        changed = true;
+      }
+      if (!parsedAnswers["contact.name"] && cleanName) {
+        parsedAnswers["contact.name"] = { state: "answered", value: cleanName };
+        changed = true;
+      }
+      if (!parsedAnswers["contact.email"]) {
+        parsedAnswers["contact.email"] = { state: "answered", value: normalizedEmail };
+        changed = true;
+      }
+      if (changed) {
+        this.db
+          .prepare("UPDATE intakes SET answers=?,updated_at=? WHERE id=?")
+          .run(JSON.stringify(parsedAnswers), nowIso, existingIntake.id);
+      }
+    }
+
+    const code = String(randomInt(100000, 1000000));
+    const expiresAt = Date.now() + 24 * 60 * 60 * 1000;
+
+    this.db
+      .prepare(
+        `INSERT INTO client_access_codes(email,client_name,company_name,code,intake_id,created_at,expires_at)
+         VALUES(?,?,?,?,?,?,?)
+         ON CONFLICT(email) DO UPDATE SET
+           client_name=excluded.client_name,
+           company_name=excluded.company_name,
+           code=excluded.code,
+           intake_id=excluded.intake_id,
+           created_at=excluded.created_at,
+           expires_at=excluded.expires_at`,
+      )
+      .run(
+        normalizedEmail,
+        cleanName || "Cliente",
+        cleanCompany || "Empresa",
+        code,
+        existingIntake.id,
+        nowIso,
+        expiresAt,
+      );
+    this.clearFailures(`client:${normalizedEmail}`);
+
+    return {
+      email: normalizedEmail,
+      clientName: cleanName || "Cliente",
+      companyName: cleanCompany || "Empresa",
+      code,
+      intakeId: existingIntake.id,
+      createdAt: nowIso,
+      expiresAt,
+    };
+  }
+  verifyClientAccess(
+    email: string,
+    code: string,
+  ): { token: string; identity: Identity; intakeId: string; status: "draft" | "submitted" } {
+    const normalizedEmail = email.trim().toLowerCase();
+    const cleanCode = code.trim();
+    const rateKey = `client:${normalizedEmail}`;
+    this.checkRateLimit(rateKey);
+
+    const row = this.db
+      .prepare("SELECT * FROM client_access_codes WHERE email=?")
+      .get(normalizedEmail) as AccessCodeRow | undefined;
+
+    if (!row || row.expires_at < Date.now() || !safeCompare(cleanCode, row.code)) {
+      const fails = this.recordFailure(rateKey);
+      if (fails >= 5) {
+        this.db
+          .prepare("DELETE FROM client_access_codes WHERE email=?")
+          .run(normalizedEmail);
+      }
+      throw new PortalError(
+        400,
+        "Código inválido ou expirado. Peça o código atualizado à equipa Draft & Rise.",
+      );
+    }
+
+    this.clearFailures(rateKey);
+    const identity: Identity = {
+      id: `client:${normalizedEmail}`,
+      name: `${row.client_name} · ${row.company_name}`,
+      role: "client",
+    };
+    const token = this.createSessionForIdentity(identity);
+    const intake = this.get(row.intake_id, identity);
+    return { token, identity, intakeId: row.intake_id, status: intake.status };
+  }
+  listAccessCodes(who: Identity): ClientAccessRequest[] {
+    if (who.role !== "team")
+      throw new PortalError(403, "Acesso reservado à equipa.");
+    const rows = this.db
+      .prepare("SELECT * FROM client_access_codes ORDER BY created_at DESC")
+      .all() as AccessCodeRow[];
+    return rows.map((r) => ({
+      email: r.email,
+      clientName: r.client_name,
+      companyName: r.company_name,
+      code: r.code,
+      intakeId: r.intake_id,
+      createdAt: r.created_at,
+      expiresAt: r.expires_at,
+    }));
+  }
+  deleteAccessCode(email: string, who: Identity) {
+    if (who.role !== "team" || !who.isAdmin)
+      throw new PortalError(
+        403,
+        "Apenas o administrador principal (user1) pode apagar códigos de acesso.",
+      );
+    this.db
+      .prepare("DELETE FROM client_access_codes WHERE email=?")
+      .run(email.trim().toLowerCase());
+  }
   identity(token: string | undefined): Identity | null {
     if (!token) return null;
     const row = this.db
@@ -107,7 +344,15 @@ export class PortalStore {
         "SELECT identity FROM sessions WHERE token_hash=? AND expires_at>?",
       )
       .get(this.hash(token), Date.now()) as { identity: string } | undefined;
-    return identities.find((x) => x.id === row?.identity) ?? null;
+    if (!row) return null;
+    if (row.identity.startsWith("{")) {
+      try {
+        return JSON.parse(row.identity) as Identity;
+      } catch {
+        return null;
+      }
+    }
+    return identities.find((x) => x.id === row.identity) ?? null;
   }
   logout(token: string) {
     this.db
@@ -150,10 +395,12 @@ export class PortalStore {
     return rows.map((r) => this.decode(r));
   }
   private editable(intake: Intake, who: Identity) {
-    if (who.role !== "client" || intake.owner !== who.id)
+    const isOwnerClient = who.role === "client" && intake.owner === who.id;
+    const isSuperAdmin = who.role === "team" && who.isAdmin === true;
+    if (!isOwnerClient && !isSuperAdmin)
       throw new PortalError(
         403,
-        "Só o cliente atribuído pode preencher esta ficha.",
+        "Apenas o cliente atribuído ou o administrador principal (user1) pode editar todo o questionário.",
       );
     if (intake.status !== "draft")
       throw new PortalError(
@@ -181,6 +428,105 @@ export class PortalStore {
       );
     return this.get(id, who);
   }
+  saveBasic(
+    id: string,
+    who: Identity,
+    basicFields: Record<string, string>,
+  ): Intake {
+    if (who.role !== "team")
+      throw new PortalError(403, "Acesso reservado à equipa.");
+    const intake = this.get(id, who);
+    if (intake.status !== "draft" && !who.isAdmin)
+      throw new PortalError(
+        409,
+        "Esta ficha já foi submetida. Apenas o administrador principal (user1) a pode alterar.",
+      );
+    const nextAnswers: Answers = { ...intake.answers };
+    const allowedSet = new Set<string>(BASIC_TEAM_FIELDS);
+    for (const [key, val] of Object.entries(basicFields)) {
+      if (!allowedSet.has(key)) {
+        throw new PortalError(
+          403,
+          "Esta conta de equipa só pode alterar dados básicos de identificação.",
+        );
+      }
+      const trimmed = val.trim();
+      if (trimmed) {
+        nextAnswers[key] = { state: "answered", value: trimmed };
+      } else {
+        delete nextAnswers[key];
+      }
+    }
+    const v = validateAnswers(nextAnswers);
+    if (Object.keys(v.errors).length)
+      throw new PortalError(422, "Revê os dados básicos indicados.", v.errors);
+    const nowIso = new Date().toISOString();
+    this.db
+      .prepare(
+        "UPDATE intakes SET answers=?,revision=revision+1,updated_at=? WHERE id=?",
+      )
+      .run(JSON.stringify(v.answers), nowIso, id);
+    return this.get(id, who);
+  }
+  reopenIntake(id: string, who: Identity): Intake {
+    if (who.role !== "team" || !who.isAdmin)
+      throw new PortalError(
+        403,
+        "Apenas o administrador principal (user1) pode reabrir uma ficha submetida.",
+      );
+    this.get(id, who);
+    this.db.exec("BEGIN IMMEDIATE");
+    try {
+      const sub = this.db
+        .prepare("SELECT id FROM submissions WHERE intake_id=?")
+        .get(id) as { id: string } | undefined;
+      if (sub) {
+        this.db
+          .prepare("DELETE FROM outbox WHERE submission_id=?")
+          .run(sub.id);
+        this.db.prepare("DELETE FROM submissions WHERE id=?").run(sub.id);
+      }
+      this.db
+        .prepare(
+          "UPDATE intakes SET status='draft',revision=revision+1,updated_at=? WHERE id=?",
+        )
+        .run(new Date().toISOString(), id);
+      this.db.exec("COMMIT");
+      return this.get(id, who);
+    } catch (e) {
+      this.db.exec("ROLLBACK");
+      throw e;
+    }
+  }
+  deleteIntake(id: string, who: Identity) {
+    if (who.role !== "team" || !who.isAdmin)
+      throw new PortalError(
+        403,
+        "Apenas o administrador principal (user1) pode apagar fichas.",
+      );
+    this.get(id, who);
+    this.db.exec("BEGIN IMMEDIATE");
+    try {
+      const sub = this.db
+        .prepare("SELECT id FROM submissions WHERE intake_id=?")
+        .get(id) as { id: string } | undefined;
+      if (sub) {
+        this.db
+          .prepare("DELETE FROM outbox WHERE submission_id=?")
+          .run(sub.id);
+        this.db.prepare("DELETE FROM submissions WHERE id=?").run(sub.id);
+      }
+      this.db.prepare("DELETE FROM audit_events WHERE intake_id=?").run(id);
+      this.db
+        .prepare("DELETE FROM client_access_codes WHERE intake_id=?")
+        .run(id);
+      this.db.prepare("DELETE FROM intakes WHERE id=?").run(id);
+      this.db.exec("COMMIT");
+    } catch (e) {
+      this.db.exec("ROLLBACK");
+      throw e;
+    }
+  }
   submission(id: string, who: Identity): Submission | null {
     this.get(id, who);
     const row = this.db
@@ -198,8 +544,13 @@ export class PortalStore {
   }
   submit(id: string, who: Identity, revision: number, key: string): Submission {
     this.get(id, who);
-    if (who.role !== "client")
-      throw new PortalError(403, "Só o cliente pode submeter.");
+    const canSubmit =
+      who.role === "client" || (who.role === "team" && who.isAdmin === true);
+    if (!canSubmit)
+      throw new PortalError(
+        403,
+        "Só o cliente ou o administrador principal (user1) pode submeter.",
+      );
     this.db.exec("BEGIN IMMEDIATE");
     try {
       const existing = this.db
@@ -246,8 +597,12 @@ export class PortalStore {
       this.db
         .prepare("INSERT INTO audit_events VALUES(?,?,?,?,?)")
         .run(randomUUID(), id, who.id, "submitted", createdAt);
-      // Captura local: endereços fictícios; não existe transporte de email.
-      for (const recipient of ["equipa@example.test", "cliente@example.test"])
+      const clientEmail =
+        textValue(v.answers, "contact.email") || "cliente@draftandrise.com";
+      const recipients = Array.from(
+        new Set(["geral@draftandrise.com", clientEmail]),
+      );
+      for (const recipient of recipients)
         this.db
           .prepare(
             "INSERT INTO outbox(id,submission_id,recipient,subject,body,created_at) VALUES(?,?,?,?,?,?)",
@@ -288,7 +643,15 @@ export function getStore() {
     singleton = new PortalStore(
       process.env.PORTAL_DB_PATH || resolve(".data/portal.sqlite"),
     );
-    singleton.seed();
+    if (process.env.PORTAL_SEED_DEMO === "1") {
+      singleton.seed();
+    } else {
+      // Remove legacy demo fixtures ("mare" / "forma") if they have no submissions
+      singleton.db.exec(
+        "DELETE FROM intakes WHERE id IN ('mare','forma') AND id NOT IN (SELECT intake_id FROM submissions)",
+      );
+    }
   }
   return singleton;
 }
+

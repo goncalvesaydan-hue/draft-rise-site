@@ -4,9 +4,15 @@ import type { NextRequest } from 'next/server';
 const PORTAL_PREFIXES = ['/questionario', '/acesso', '/ajuda', '/cliente', '/equipa'];
 
 export function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, hostname } = request.nextUrl;
   const isMaintenanceActive = process.env.NEXT_PUBLIC_MAINTENANCE === '1';
-  const isPortalEnabled = process.env.NEXT_PUBLIC_PORTAL_ENABLED === '1';
+  const isLocalHost =
+    !process.env.VERCEL && (hostname === 'localhost' || hostname === '127.0.0.1');
+  const isPortalEnabled =
+    process.env.NEXT_PUBLIC_PORTAL_ENABLED === '1' ||
+    process.env.PORTAL_LOCAL_MODE === '1' ||
+    process.env.PORTAL_REMOTE_ENABLED === '1' ||
+    isLocalHost;
 
   if (pathname === '/api' || pathname.startsWith('/api/')) {
     if (isMaintenanceActive || !isPortalEnabled) {

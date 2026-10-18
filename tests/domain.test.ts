@@ -222,3 +222,110 @@ test("local adapter fails closed when explicitly disabled", async () => {
     else process.env.PORTAL_LOCAL_MODE = previous;
   }
 });
+
+test("6 team accounts (user1..user6) and client 6-digit access code onboarding work end-to-end", () => {
+  const s = new PortalStore(":memory:");
+  try {
+    for (const [u, p] of [
+      ["user1", "DR-User1-8492"],
+      ["user2", "DR-User2-3917"],
+      ["user3", "DR-User3-6520"],
+      ["user4", "DR-User4-9148"],
+      ["user5", "DR-User5-2763"],
+      ["user6", "DR-User6-5084"],
+    ] as const) {
+      const { token, identity } = s.loginTeam(u, p);
+      assert.equal(identity.role, "team");
+      assert.equal(s.identity(token)?.id, u);
+    }
+    expectError(() => s.loginTeam("user1", "wrong-pass"), 401);
+
+    const req = s.requestClientAccess(
+      "Carlos Mendes",
+      "Clínica Dental Sorriso",
+      "carlos@clinicasorriso.pt",
+    );
+    assert.match(req.code, /^\d{6}$/);
+
+    const teamIdentity = s.loginTeam("user1", "DR-User1-8492").identity;
+    const codes = s.listAccessCodes(teamIdentity);
+    assert.equal(codes.length, 1);
+    assert.equal(codes[0].code, req.code);
+    assert.equal(codes[0].companyName, "Clínica Dental Sorriso");
+
+    const verified = s.verifyClientAccess("carlos@clinicasorriso.pt", req.code);
+    assert.equal(verified.identity.role, "client");
+    const intake = s.get(verified.intakeId, verified.identity);
+    assert.equal(intake.answers["company.name"]?.value, "Clínica Dental Sorriso");
+    assert.equal(intake.answers["contact.name"]?.value, "Carlos Mendes");
+    assert.equal(intake.answers["contact.email"]?.value, "carlos@clinicasorriso.pt");
+
+    const user1 = s.loginTeam("user1", "DR-User1-8492").identity;
+    const user2 = s.loginTeam("user2", "DR-User2-3917").identity;
+    assert.equal(user1.isAdmin, true);
+    assert.equal(user2.isAdmin, false);
+
+    // user2 can update basic fields, but cannot edit full questionnaire or delete
+    const afterBasic = s.saveBasic(verified.intakeId, user2, {
+      "contact.phone": "+351 912 345 678",
+    });
+    assert.equal(afterBasic.answers["contact.phone"]?.value, "+351 912 345 678");
+    expectError(
+      () =>
+        s.saveBasic(verified.intakeId, user2, {
+          "q2.1.02": "Tentativa de alterar resposta profunda",
+        }),
+      403,
+    );
+    expectError(
+      () => s.save(verified.intakeId, user2, afterBasic.revision, afterBasic.answers),
+      403,
+    );
+    expectError(() => s.deleteIntake(verified.intakeId, user2), 403);
+    expectError(
+      () => s.deleteAccessCode("carlos@clinicasorriso.pt", user2),
+      403,
+    );
+
+    // user1 (Super Admin) can edit full questionnaire, submit, reopen, and delete
+    const afterAdminFull = s.save(verified.intakeId, user1, afterBasic.revision, {
+      ...afterBasic.answers,
+      "company.sector": { state: "answered", value: "clinic" },
+      "project.objectives": { state: "answered", value: ["marcacoes"] },
+    });
+    assert.equal(afterAdminFull.answers["company.sector"]?.value, "clinic");
+    const sub = s.submit(
+      verified.intakeId,
+      user1,
+      afterAdminFull.revision,
+      randomUUID(),
+    );
+    assert.ok(sub.reference.startsWith("REC-"));
+    expectError(() => s.reopenIntake(verified.intakeId, user2), 403);
+    const reopened = s.reopenIntake(verified.intakeId, user1);
+    assert.equal(reopened.status, "draft");
+    s.deleteAccessCode("carlos@clinicasorriso.pt", user1);
+    assert.equal(s.listAccessCodes(user1).length, 0);
+
+    // Brute-force protection: 5 failed attempts lock out team login and invalidate client code
+    for (let i = 0; i < 5; i++) {
+      expectError(() => s.loginTeam("user3", "wrong"), 401);
+    }
+    expectError(() => s.loginTeam("user3", "DR-User3-6520"), 429);
+
+    const req2 = s.requestClientAccess(
+      "Ana",
+      "Loja Ana",
+      "ana@loja.pt",
+    );
+    for (let i = 0; i < 5; i++) {
+      expectError(() => s.verifyClientAccess("ana@loja.pt", "000000"), 400);
+    }
+    expectError(() => s.verifyClientAccess("ana@loja.pt", req2.code), 429);
+  } finally {
+    s.close();
+  }
+});
+
+
+

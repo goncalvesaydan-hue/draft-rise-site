@@ -33,43 +33,15 @@ export function sameOrigin(request: NextRequest) {
 }
 export async function authenticate(request: NextRequest): Promise<Identity> {
   sameOrigin(request);
-  if (localMode()) {
-    const { getStore } = await import("./local-store");
-    const who = getStore().identity(request.cookies.get(SESSION_COOKIE)?.value);
-    if (!who)
-      throw new PortalError(
-        401,
-        "A sessão terminou. Volta a entrar para continuar.",
-      );
-    return who;
-  }
-  const { userClient, serviceClient } = await import("./supabase");
-  const client = await userClient();
-  const { data, error } = await client.auth.getUser();
-  if (error || !data.user)
-    throw new PortalError(401, "Entre com o seu email para continuar.");
-  const team = await client
-    .from("portal_team")
-    .select("user_id")
-    .eq("user_id", data.user.id)
-    .maybeSingle();
-  if (team.error)
-    throw new PortalError(503, "Não foi possível confirmar o acesso.");
-  const role = team.data ? "team" : "client";
-  const who: Identity = {
-    id: data.user.id,
-    name: data.user.email || "Cliente",
-    role,
-  };
-  if (role === "client") {
-    const { QUESTIONNAIRE_VERSION } = await import("./questionnaire");
-    const opened = await serviceClient().rpc("portal_open", {
-      p_actor: who.id,
-      p_email: data.user.email,
-      p_version: QUESTIONNAIRE_VERSION,
-    });
-    if (opened.error)
-      throw new PortalError(503, "Não foi possível abrir a sua ficha.");
+  const token = request.cookies.get(SESSION_COOKIE)?.value;
+  const { getStore } = await import("./store");
+  const store = await getStore();
+  const who = await store.identity(token);
+  if (!who) {
+    throw new PortalError(
+      401,
+      "A sessão terminou. Volta a entrar para continuar.",
+    );
   }
   return who;
 }
