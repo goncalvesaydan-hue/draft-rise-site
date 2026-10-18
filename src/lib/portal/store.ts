@@ -37,9 +37,11 @@ export interface PortalStore {
 }
 
 export async function getStore(): Promise<PortalStore> {
-  if (localMode()) {
-    return (await import("./local-store")).getStore();
+  const { remoteReady } = await import("./config");
+  if (remoteReady()) {
+    const { RemoteStore } = await import("./remote-store");
+    return new RemoteStore();
   }
-  const { RemoteStore } = await import("./remote-store");
-  return new RemoteStore();
+  process.env.PORTAL_LOCAL_MODE = "1";
+  return (await import("./local-store")).getStore();
 }
