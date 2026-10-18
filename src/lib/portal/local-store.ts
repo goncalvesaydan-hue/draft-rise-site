@@ -1,7 +1,14 @@
 import { DatabaseSync } from "node:sqlite";
 import { mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import { randomBytes, randomInt, randomUUID, createHash, timingSafeEqual } from "node:crypto";
+import {
+  randomBytes,
+  randomInt,
+  randomUUID,
+  createHash,
+  createHmac,
+  timingSafeEqual,
+} from "node:crypto";
 import {
   type Answers,
   QUESTIONNAIRE_VERSION,
@@ -59,6 +66,49 @@ function safeCompare(a: string, b: string) {
   const bufB = Buffer.from(b);
   if (bufA.length !== bufB.length) return false;
   return timingSafeEqual(bufA, bufB);
+}
+function getLocalSecret() {
+  return (
+    process.env.PORTAL_SESSION_SECRET ||
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    TEAM_USERS.map((u) => u.password).join(":")
+  );
+}
+function signLocalSessionToken(identity: Identity) {
+  const payload = Buffer.from(
+    JSON.stringify({
+      identity,
+      exp: Date.now() + 8 * 60 * 60 * 1000,
+      nonce: randomUUID(),
+    }),
+    "utf8",
+  ).toString("base64url");
+  const sig = createHmac("sha256", getLocalSecret())
+    .update(payload)
+    .digest("base64url");
+  return `${payload}.${sig}`;
+}
+function verifyLocalSessionToken(token: string | undefined): Identity | null {
+  if (!token || !token.includes(".")) return null;
+  const parts = token.split(".");
+  if (parts.length !== 2) return null;
+  const [payload, sig] = parts;
+  if (!payload || !sig) return null;
+  const expectedSig = createHmac("sha256", getLocalSecret())
+    .update(payload)
+    .digest("base64url");
+  if (!safeCompare(sig, expectedSig)) return null;
+  try {
+    const parsed = JSON.parse(
+      Buffer.from(payload, "base64url").toString("utf8"),
+    ) as { identity: Identity; exp: number };
+    if (!parsed || typeof parsed.exp !== "number" || parsed.exp <= Date.now()) {
+      return null;
+    }
+    return parsed.identity;
+  } catch {
+    return null;
+  }
 }
 export class PortalStore {
   readonly db: DatabaseSync;
@@ -141,7 +191,7 @@ export class PortalStore {
     this.db.close();
   }
   private createSessionForIdentity(who: Identity) {
-    const token = randomBytes(32).toString("hex");
+    const token = signLocalSessionToken(who);
     this.db
       .prepare("DELETE FROM sessions WHERE expires_at < ?")
       .run(Date.now());
@@ -344,7 +394,12 @@ export class PortalStore {
         "SELECT identity FROM sessions WHERE token_hash=? AND expires_at>?",
       )
       .get(this.hash(token), Date.now()) as { identity: string } | undefined;
-    if (!row) return null;
+    if (!row) {
+      if (process.env.VERCEL) {
+        return verifyLocalSessionToken(token);
+      }
+      return null;
+    }
     if (row.identity.startsWith("{")) {
       try {
         return JSON.parse(row.identity) as Identity;
@@ -634,14 +689,17 @@ export class PortalStore {
 }
 let singleton: PortalStore | undefined;
 export function getStore() {
-  if (process.env.PORTAL_LOCAL_MODE !== "1" || !!process.env.VERCEL)
+  if (process.env.PORTAL_LOCAL_MODE !== "1")
     throw new PortalError(
       503,
       "O adaptador local está desativado. A ligação ao serviço de produção ainda não foi configurada.",
     );
   if (!singleton) {
+    const defaultDbPath = process.env.VERCEL
+      ? "/tmp/portal.sqlite"
+      : resolve(".data/portal.sqlite");
     singleton = new PortalStore(
-      process.env.PORTAL_DB_PATH || resolve(".data/portal.sqlite"),
+      process.env.PORTAL_DB_PATH || defaultDbPath,
     );
     if (process.env.PORTAL_SEED_DEMO === "1") {
       singleton.seed();
