@@ -180,9 +180,9 @@ export function EmailAccess() {
               <div className="p-notice" role="status">
                 <KeyRound size={18} />
                 <span>
-                  Pedido enviado para <strong>geral@draftandrise.com</strong>.
-                  Introduza abaixo o código de 6 dígitos fornecido pela equipa
-                  Draft &amp; Rise para aceder ou retomar a sua ficha.
+                  Pedido registado com sucesso. Introduza abaixo o código de 6
+                  dígitos fornecido pela equipa Draft &amp; Rise para aceder ou
+                  retomar a sua ficha.
                 </span>
               </div>
 

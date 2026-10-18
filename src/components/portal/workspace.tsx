@@ -175,12 +175,12 @@ function TeamAccessCodesPanel({
     <section className="p-access-codes-panel">
       <div className="p-access-codes-header">
         <div>
-          <span className="p-eyeline">geral@draftandrise.com</span>
+          <span className="p-eyeline">Gestão de Clientes</span>
           <h2>Códigos de Acesso de Clientes (6 dígitos)</h2>
           <p className="p-field-help">
             Quando um cliente pede acesso em <code>/acesso</code> (ou quando geras
-            um código abaixo), o código de 6 dígitos fica registado aqui e é
-            encaminhado para <strong>geral@draftandrise.com</strong>.
+            um código abaixo), o código de 6 dígitos fica imediatamente ativo aqui
+            para copiares e enviares ao cliente via WhatsApp.
           </p>
         </div>
       </div>
