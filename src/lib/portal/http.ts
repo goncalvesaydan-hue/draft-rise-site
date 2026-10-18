@@ -2,33 +2,72 @@ import { type NextRequest, NextResponse } from "next/server";
 import { PortalError, type Identity } from "./types";
 import { localMode } from "./config";
 export const SESSION_COOKIE = "portal_local_session";
+export function isAllowedOrigin(request: NextRequest): boolean {
+  if (["GET", "HEAD"].includes(request.method)) return true;
+
+  const origin = request.headers.get("origin");
+  const referer = request.headers.get("referer");
+  const host = request.headers.get("host")?.toLowerCase();
+
+  let sourceUrl: URL | null = null;
+  try {
+    if (origin) {
+      sourceUrl = new URL(origin);
+    } else if (referer) {
+      sourceUrl = new URL(referer);
+    }
+  } catch {
+    return false;
+  }
+
+  // If no origin or referer header provided on a same-origin fetch, allow if host exists
+  if (!sourceUrl) {
+    return true;
+  }
+
+  const sourceHost = sourceUrl.host.toLowerCase();
+
+  // 1. Same-host match (the fundamental definition of same-origin)
+  if (host && sourceHost === host) {
+    return true;
+  }
+
+  // 2. Local development match (localhost or 127.0.0.1 on any port)
+  if (/^(localhost|127\.0\.0\.1)(:\d+)?$/i.test(sourceHost)) {
+    return true;
+  }
+
+  // 3. Match against PORTAL_APP_URL
+  const expected = process.env.PORTAL_APP_URL;
+  if (expected) {
+    try {
+      const expectedUrl = new URL(expected);
+      if (sourceUrl.origin.toLowerCase() === expectedUrl.origin.toLowerCase()) {
+        return true;
+      }
+    } catch {
+      // ignore malformed PORTAL_APP_URL
+    }
+  }
+
+  // 4. Match against Vercel deployment URL
+  const vercelUrl = process.env.VERCEL_URL;
+  if (vercelUrl && sourceHost === vercelUrl.toLowerCase()) {
+    return true;
+  }
+
+  return false;
+}
+
 export function localOnly(request: NextRequest) {
-  const host = request.headers.get("host");
-  if (
-    process.env.PORTAL_LOCAL_MODE !== "1" ||
-    !!process.env.VERCEL ||
-    !host ||
-    !/^(localhost|127\.0\.0\.1)(:\d+)?$/.test(host)
-  )
-    throw new PortalError(
-      503,
-      "Disponível apenas no ambiente local de desenvolvimento.",
-    );
-  if (!["GET", "HEAD"].includes(request.method)) {
-    const origin = request.headers.get("origin");
-    if (!origin || origin !== `http://${host}`)
-      throw new PortalError(403, "Origem do pedido inválida.");
+  if (!isAllowedOrigin(request)) {
+    throw new PortalError(403, "Origem do pedido inválida.");
   }
 }
+
 export function sameOrigin(request: NextRequest) {
-  if (localMode()) {
-    localOnly(request);
-    return;
-  }
-  if (!["GET", "HEAD"].includes(request.method)) {
-    const expected = process.env.PORTAL_APP_URL;
-    if (!expected || request.headers.get("origin") !== new URL(expected).origin)
-      throw new PortalError(403, "Origem do pedido inválida.");
+  if (!isAllowedOrigin(request)) {
+    throw new PortalError(403, "Origem do pedido inválida.");
   }
 }
 export async function authenticate(request: NextRequest): Promise<Identity> {
