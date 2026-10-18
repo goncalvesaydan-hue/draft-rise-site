@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: 'Condições de Utilização — Draft & Rise',
   description:
     'Termos e condições de utilização do website e dos serviços digitais da Draft & Rise.',
+  alternates: {
+    canonical: '/termos',
+  },
 };
 
 export default function TermosPage() {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Bricolage_Grotesque, Playfair_Display } from "next/font/google";
-import { CONTACT_EMAIL, SITE_URL } from "@/lib/constants";
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,6 +23,20 @@ export const metadata: Metadata = {
   title: "Draft & Rise — Websites, Google Business SEO, WhatsApp Bot & Menus Online",
   description:
     "Produção de websites para empresas, subida no ranking do Google Business com copywriting e SEO local, automação de WhatsApp Bot 24/7 e menus online para restaurantes em Portugal.",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "Draft & Rise — Websites, Google Business SEO, WhatsApp Bot & Menus Online",
     description:
@@ -54,16 +68,82 @@ const jsonLd = {
   "@type": "ProfessionalService",
   name: "Draft & Rise",
   url: SITE_URL,
+  logo: `${SITE_URL}/brand/draft-rise-mark.png`,
+  image: `${SITE_URL}/brand/draft-rise-mark.png`,
   email: CONTACT_EMAIL,
+  telephone: CONTACT_PHONE_DISPLAY,
   description:
     "Produção de websites para empresas, Google Business (subida no ranking, copywriting e SEO local), automação de WhatsApp Bot e menus online para restaurantes em Portugal.",
-  areaServed: "PT",
+  areaServed: {
+    "@type": "Country",
+    name: "Portugal",
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: CONTACT_PHONE_DISPLAY,
+      email: CONTACT_EMAIL,
+      contactType: "sales",
+      areaServed: "PT",
+      availableLanguage: ["Portuguese", "English"],
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: CONTACT_PHONE_DISPLAY,
+      email: CONTACT_EMAIL,
+      contactType: "customer support",
+      areaServed: "PT",
+      availableLanguage: ["Portuguese", "English"],
+    },
+  ],
   knowsAbout: [
     "Produção de Websites para Empresas",
     "Google Business Profile SEO & Copywriting",
     "Automação de WhatsApp Bot",
     "Menus Online Digitais para Restaurantes",
   ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Serviços Digitais Draft & Rise",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Produção de Websites para Empresas",
+          description:
+            "Desenvolvimento de websites rápidos, mobile-first, com copywriting estratégico e SEO técnico de raiz.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Google Business — Subida no Ranking, Copywriting & SEO Local",
+          description:
+            "Otimização estratégica do Perfil da Empresa no Google e Google Maps para posicionar empresas nas primeiras pesquisas locais.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Automação de WhatsApp Bot 24/7",
+          description:
+            "Bots inteligentes no WhatsApp para resposta imediata, qualificação de clientes, orçamentos e marcações 24/7.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Menus Online para Restaurantes",
+          description:
+            "Menus digitais rápidos com QR Code na mesa, multi-idioma, fotografia e ligação direta ao Google e redes sociais.",
+        },
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

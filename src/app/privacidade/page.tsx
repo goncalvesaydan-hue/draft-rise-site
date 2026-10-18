@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: 'Política de Privacidade e Cookies — Draft & Rise',
   description:
     'Saiba como a Draft & Rise recolhe, utiliza e protege os seus dados pessoais ao abrigo do Regulamento Geral sobre a Proteção de Dados (RGPD).',
+  alternates: {
+    canonical: '/privacidade',
+  },
 };
 
 export default function PrivacidadePage() {
