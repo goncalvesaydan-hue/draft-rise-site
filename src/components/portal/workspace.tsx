@@ -1739,7 +1739,11 @@ export function Notifications() {
                 <span className="p-pill">
                   {n.status === "captured_locally"
                     ? "Capturada localmente"
-                    : "Aguarda configuração"}
+                    : n.status === "active_code"
+                      ? "Código ativo no painel"
+                      : n.status === "sent"
+                        ? "Registada no sistema"
+                        : "Aguarda configuração"}
                 </span>
               </article>
             ))}

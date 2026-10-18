@@ -17,6 +17,15 @@ export type SubmissionNotificationParams = {
   answers: Record<string, any>;
 };
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 const TEAM_NOTIFICATION_EMAIL =
   process.env.PORTAL_NOTIFICATION_EMAIL ||
   process.env.PORTAL_TEAM_EMAIL ||
@@ -133,15 +142,15 @@ export async function sendAccessCodeNotification(
       <table class="info-table">
         <tr>
           <td class="info-label">Empresa:</td>
-          <td class="info-val">${params.companyName || "Não especificada"}</td>
+          <td class="info-val">${escapeHtml(params.companyName || "Não especificada")}</td>
         </tr>
         <tr>
           <td class="info-label">Pessoa de Contacto:</td>
-          <td class="info-val">${params.clientName || "Não especificada"}</td>
+          <td class="info-val">${escapeHtml(params.clientName || "Não especificada")}</td>
         </tr>
         <tr>
           <td class="info-label">E-mail:</td>
-          <td class="info-val">${params.email}</td>
+          <td class="info-val">${escapeHtml(params.email)}</td>
         </tr>
         <tr>
           <td class="info-label">Validade:</td>
@@ -165,7 +174,7 @@ export async function sendAccessCodeNotification(
 
   if (process.env.RESEND_API_KEY) {
     return sendWithResend({
-      to: TEAM_NOTIFICATION_EMAIL,
+      to: [params.email, TEAM_NOTIFICATION_EMAIL].filter(Boolean),
       subject,
       html,
     });

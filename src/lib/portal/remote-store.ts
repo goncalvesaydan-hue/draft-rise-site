@@ -999,20 +999,45 @@ export class RemoteStore {
     return formatSubmission(subData);
   }
 
-  // 12. Notifications (Outbox listing)
+  // 12. Notifications (Outbox listing & Access codes)
   async notifications(who: Identity): Promise<any[]> {
     if (who.role !== "team") {
       throw new PortalError(403, "Acesso reservado à equipa.");
     }
+    const outboxList: any[] = [];
     try {
       const { data } = await this.client
         .from("portal_outbox")
         .select("id, submission_id, recipient, subject, status, created_at")
         .order("created_at", { ascending: false });
 
-      return data || [];
+      if (data) {
+        outboxList.push(...data);
+      }
     } catch {
-      return [];
+      // Ignore outbox schema differences
     }
+
+    try {
+      const accessCodes = await this.listAccessCodes(who);
+      for (const code of accessCodes) {
+        outboxList.push({
+          id: `code-${code.code}-${code.email}`,
+          submission_id: code.intakeId,
+          recipient: code.email,
+          subject: `Código de Acesso WhatsApp: ${code.code} · ${code.companyName || code.email}`,
+          status: "active_code",
+          created_at: code.createdAt,
+        });
+      }
+    } catch {
+      // Ignore
+    }
+
+    outboxList.sort(
+      (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+    );
+
+    return outboxList;
   }
 }
