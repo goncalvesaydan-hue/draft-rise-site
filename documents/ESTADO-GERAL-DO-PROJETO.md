@@ -146,3 +146,4 @@ Todos os documentos de suporte, ficheiros de configuração e guias oficiais enc
 ---
 
 *Relatório arquivado com sucesso no repositório da Draft & Rise em `documents/ESTADO-GERAL-DO-PROJETO.md`.*
+
