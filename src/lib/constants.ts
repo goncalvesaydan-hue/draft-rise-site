@@ -1,4 +1,5 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://draftandrise.com';
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-284Q3RS41K';
 
 export const CONTACT_EMAIL = 'geral@draftandrise.com';
 
