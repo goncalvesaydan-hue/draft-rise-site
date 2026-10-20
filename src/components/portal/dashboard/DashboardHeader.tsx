@@ -45,6 +45,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onOpenNewModal
     prospeccao: 'Funil Prospecção',
     clientes: 'Empresas & Clientes',
     semana: 'Rotina Semanal',
+    ideias: 'Bloco de Ideias',
     financeiro: 'Controlo Avenças',
     lixeira: 'Arquivo',
     configuracoes: 'Configurações'

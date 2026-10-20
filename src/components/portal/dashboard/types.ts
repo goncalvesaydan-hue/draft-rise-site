@@ -125,6 +125,23 @@ export interface WeekTask {
   category?: 'seo' | 'content' | 'reputation' | 'finance' | 'general';
 }
 
+export type IdeaCategory = 'oferta' | 'marketing' | 'processo' | 'conteudo' | 'geral';
+export type IdeaStatus = 'ideia' | 'estudo' | 'aprovada' | 'arquivada';
+
+export interface Idea {
+  id: string;
+  title: string;
+  content: string;
+  category: IdeaCategory;
+  status: IdeaStatus;
+  images: string[]; // Base64 comprimidas (Data URLs) ou URLs
+  author: string;
+  companyId?: string;
+  tags?: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface AppDatabase {
   companies: Company[];
   tags: Tag[];
@@ -133,6 +150,7 @@ export interface AppDatabase {
   analysis: string[];
   trashNotes: Array<Note & { companyId: string; companyName: string; deletedAt: string }>;
   weeks: Record<string, Record<number, WeekTask[]>>;
+  ideas: Idea[];
   staleDays: number;
   theme: 'light' | 'dark';
   sync: {
@@ -149,6 +167,7 @@ export type NavigationTab =
   | 'prospeccao'
   | 'clientes'
   | 'semana'
+  | 'ideias'
   | 'financeiro'
   | 'lixeira'
   | 'configuracoes';

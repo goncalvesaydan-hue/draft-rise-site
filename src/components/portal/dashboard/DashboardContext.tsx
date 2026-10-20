@@ -13,7 +13,10 @@ import {
   PostEntry,
   KeywordRank,
   QAEntry,
-  BeforeAfter
+  BeforeAfter,
+  Idea,
+  IdeaCategory,
+  IdeaStatus
 } from './types';
 import { loadDatabase, saveDatabase, createInitialDatabase, createBlankCompany } from './storage';
 import { pushDatabaseToCloud, pullDatabaseFromCloud } from './supabase';
@@ -69,6 +72,10 @@ interface DashboardContextType {
   deleteWeekTask: (dayId: number, taskId: string, weekKey?: string) => void;
   loadDefaultWeekRoutine: (weekKey?: string) => void;
   clearCompletedWeekTasks: (weekKey?: string, dayId?: number) => void;
+  // Bloco de Ideias
+  createIdea: (data: Partial<Idea>) => Idea;
+  updateIdea: (id: string, updates: Partial<Idea>) => void;
+  deleteIdea: (id: string) => void;
   // Configurações, Exportação & Sincronização
   updateSettings: (updates: Partial<AppDatabase>) => void;
   syncCloud: () => Promise<{ ok: boolean; error?: string }>;
@@ -642,6 +649,60 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     showToast('Tarefas concluídas limpas com sucesso.', 'info');
   }, [db, currentWeekKey, persist, showToast]);
 
+  // Ações de Ideias
+  const createIdea = useCallback((ideaData: Partial<Idea>): Idea => {
+    const now = new Date().toISOString();
+    const newIdea: Idea = {
+      id: generateId(),
+      title: ideaData.title?.trim() || 'Nova Ideia',
+      content: ideaData.content?.trim() || '',
+      category: ideaData.category || 'geral',
+      status: ideaData.status || 'ideia',
+      images: Array.isArray(ideaData.images) ? ideaData.images : [],
+      author: ideaData.author || 'Equipa',
+      companyId: ideaData.companyId || undefined,
+      tags: Array.isArray(ideaData.tags) ? ideaData.tags : [],
+      createdAt: now,
+      updatedAt: now
+    };
+
+    persist({
+      ...db,
+      ideas: [newIdea, ...(db.ideas || [])]
+    });
+
+    showToast('Ideia guardada no bloco de ideias!', 'success');
+    return newIdea;
+  }, [db, persist, showToast]);
+
+  const updateIdea = useCallback((id: string, updates: Partial<Idea>) => {
+    const now = new Date().toISOString();
+    const currentIdeas = db.ideas || [];
+    const updated = currentIdeas.map(item => {
+      if (item.id !== id) return item;
+      return {
+        ...item,
+        ...updates,
+        updatedAt: now
+      };
+    });
+
+    persist({
+      ...db,
+      ideas: updated
+    });
+    showToast('Ideia atualizada com sucesso!', 'info');
+  }, [db, persist, showToast]);
+
+  const deleteIdea = useCallback((id: string) => {
+    const currentIdeas = db.ideas || [];
+    persist({
+      ...db,
+      ideas: currentIdeas.filter(i => i.id !== id)
+    });
+    showToast('Ideia removida.', 'info');
+  }, [db, persist, showToast]);
+
   const updateSettings = useCallback((updates: Partial<AppDatabase>) => {
     persist({ ...db, ...updates });
     showToast('Definições guardadas!', 'success');
@@ -808,6 +869,23 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         analysis: Array.isArray(parsed.analysis) ? parsed.analysis : db.analysis,
         trashNotes: Array.isArray(parsed.trashNotes) ? parsed.trashNotes : db.trashNotes,
         weeks: parsed.weeks && typeof parsed.weeks === 'object' && !Array.isArray(parsed.weeks) ? parsed.weeks : (db.weeks || {}),
+        ideas: Array.isArray(parsed.ideas)
+          ? parsed.ideas
+              .filter((i: any) => i && typeof i === 'object' && typeof i.id === 'string')
+              .map((i: any) => ({
+                id: String(i.id).slice(0, 80),
+                title: String(i.title || '').slice(0, 300),
+                content: String(i.content || '').slice(0, 20000),
+                category: (['oferta', 'marketing', 'processo', 'conteudo', 'geral'].includes(i.category) ? i.category : 'geral') as IdeaCategory,
+                status: (['ideia', 'estudo', 'aprovada', 'arquivada'].includes(i.status) ? i.status : 'ideia') as IdeaStatus,
+                images: Array.isArray(i.images) ? i.images : [],
+                author: String(i.author || 'Equipa').slice(0, 100),
+                companyId: i.companyId ? String(i.companyId).slice(0, 80) : undefined,
+                tags: Array.isArray(i.tags) ? i.tags : [],
+                createdAt: i.createdAt || new Date().toISOString(),
+                updatedAt: i.updatedAt || new Date().toISOString()
+              }))
+          : (db.ideas || []),
         staleDays: typeof parsed.staleDays === 'number' ? parsed.staleDays : db.staleDays,
         theme: parsed.theme === 'dark' ? 'dark' : 'light',
         sync: parsed.sync && typeof parsed.sync === 'object' ? { ...db.sync, ...parsed.sync } : db.sync
@@ -877,6 +955,9 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         deleteWeekTask,
         loadDefaultWeekRoutine,
         clearCompletedWeekTasks,
+        createIdea,
+        updateIdea,
+        deleteIdea,
         updateSettings,
         syncCloud,
         exportBackup,

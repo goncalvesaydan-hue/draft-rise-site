@@ -22,6 +22,7 @@ export function createInitialDatabase(): AppDatabase {
     analysis: DEFAULT_ANALYSIS_POINTS,
     trashNotes: [],
     weeks: {},
+    ideas: [],
     staleDays: 7,
     theme: 'light',
     sync: {
@@ -153,7 +154,8 @@ export async function loadDatabase(): Promise<AppDatabase> {
       companies: (dbData.companies || []).map(c => ({
         ...createBlankCompany(c.area),
         ...c
-      }))
+      })),
+      ideas: Array.isArray(dbData.ideas) ? dbData.ideas : []
     };
   }
 

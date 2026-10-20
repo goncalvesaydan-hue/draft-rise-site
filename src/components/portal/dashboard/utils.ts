@@ -59,3 +59,72 @@ export function getIsoWeekKey(d: Date = new Date()): string {
   return `${dt.getUTCFullYear()}-W${String(w).padStart(2, '0')}`;
 }
 
+/**
+ * Comprime uma imagem (File ou Blob) redimensionando e convertendo para WebP/JPEG
+ * Retorna uma Data URL (Base64) compacta para armazenamento em IndexedDB
+ */
+export async function compressImage(
+  file: File | Blob, 
+  maxWidth = 1200, 
+  maxHeight = 1200, 
+  quality = 0.8
+): Promise<string> {
+  return new Promise((resolve, reject) => {
+    if (typeof window === 'undefined') {
+      return reject(new Error('Canvas disponível apenas no navegador'));
+    }
+
+    if (file.type === 'image/svg+xml') {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxWidth || height > maxHeight) {
+          const ratio = Math.min(maxWidth / width, maxHeight / height);
+          width = Math.round(width * ratio);
+          height = Math.round(height * ratio);
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          resolve(e.target?.result as string);
+          return;
+        }
+
+        // Fundo neutro
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, height);
+        ctx.drawImage(img, 0, 0, width, height);
+
+        try {
+          const dataUrl = canvas.toDataURL('image/webp', quality);
+          if (dataUrl.startsWith('data:image/webp')) {
+            resolve(dataUrl);
+            return;
+          }
+        } catch {
+          // fallback
+        }
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.onerror = () => reject(new Error('Erro ao processar imagem'));
+      img.src = e.target?.result as string;
+    };
+    reader.onerror = () => reject(new Error('Erro ao ler ficheiro'));
+    reader.readAsDataURL(file);
+  });
+}
+

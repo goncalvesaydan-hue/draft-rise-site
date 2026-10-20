@@ -15,7 +15,8 @@ import {
   CloudOff, 
   Bot, 
   ExternalLink,
-  X
+  X,
+  Lightbulb
 } from 'lucide-react';
 import { useDashboard } from './DashboardContext';
 import { NavigationTab } from './types';
@@ -28,6 +29,7 @@ export const DashboardSidebar: React.FC = () => {
     { id: 'prospeccao', label: 'Funil Prospecção', icon: Kanban },
     { id: 'clientes', label: 'Empresas & Clientes', icon: Users },
     { id: 'semana', label: 'Rotina Semanal', icon: CheckSquare },
+    { id: 'ideias', label: 'Bloco de Ideias', icon: Lightbulb },
     { id: 'financeiro', label: 'Controlo Avenças', icon: BadgeEuro },
     { id: 'lixeira', label: 'Arquivo', icon: Trash2 },
     { id: 'configuracoes', label: 'Configurações', icon: Settings },
@@ -35,6 +37,7 @@ export const DashboardSidebar: React.FC = () => {
 
   const activeClientsCount = db.companies.filter(c => !c.deletedAt && c.status === 'cliente').length;
   const prospectsCount = db.companies.filter(c => !c.deletedAt && c.area === 'prospect').length;
+  const ideasCount = (db.ideas || []).filter(i => i.status !== 'arquivada').length;
 
   const handleSelectTab = (id: NavigationTab) => {
     setActiveTab(id);
@@ -141,6 +144,11 @@ export const DashboardSidebar: React.FC = () => {
                 {item.id === 'prospeccao' && prospectsCount > 0 && (
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#1a2428] text-[#ffcaa8]">
                     {prospectsCount}
+                  </span>
+                )}
+                {item.id === 'ideias' && ideasCount > 0 && (
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#1a2428] text-[#facc15]">
+                    {ideasCount}
                   </span>
                 )}
               </button>
