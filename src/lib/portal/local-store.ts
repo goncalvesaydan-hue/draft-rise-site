@@ -385,7 +385,7 @@ export class PortalStore {
     if (who.role !== "team" || !who.isAdmin)
       throw new PortalError(
         403,
-        "Apenas o administrador principal (user1) pode apagar códigos de acesso.",
+        "Apenas administradores podem apagar códigos de acesso.",
       );
     this.db
       .prepare("DELETE FROM client_access_codes WHERE email=?")
@@ -459,7 +459,7 @@ export class PortalStore {
     if (!isOwnerClient && !isSuperAdmin)
       throw new PortalError(
         403,
-        "Apenas o cliente atribuído ou o administrador principal (user1) pode editar todo o questionário.",
+        "Apenas o cliente atribuído ou um administrador pode editar todo o questionário.",
       );
     if (intake.status !== "draft")
       throw new PortalError(
@@ -498,7 +498,7 @@ export class PortalStore {
     if (intake.status !== "draft" && !who.isAdmin)
       throw new PortalError(
         409,
-        "Esta ficha já foi submetida. Apenas o administrador principal (user1) a pode alterar.",
+        "Esta ficha já foi submetida. Apenas um administrador a pode alterar.",
       );
     const nextAnswers: Answers = { ...intake.answers };
     const allowedSet = new Set<string>(BASIC_TEAM_FIELDS);
@@ -531,7 +531,7 @@ export class PortalStore {
     if (who.role !== "team" || !who.isAdmin)
       throw new PortalError(
         403,
-        "Apenas o administrador principal (user1) pode reabrir uma ficha submetida.",
+        "Apenas administradores podem reabrir uma ficha submetida.",
       );
     this.get(id, who);
     this.db.exec("BEGIN IMMEDIATE");
@@ -561,7 +561,7 @@ export class PortalStore {
     if (who.role !== "team" || !who.isAdmin)
       throw new PortalError(
         403,
-        "Apenas o administrador principal (user1) pode apagar fichas.",
+        "Apenas administradores podem apagar fichas.",
       );
     this.get(id, who);
     this.db.exec("BEGIN IMMEDIATE");
@@ -608,7 +608,7 @@ export class PortalStore {
     if (!canSubmit)
       throw new PortalError(
         403,
-        "Só o cliente ou o administrador principal (user1) pode submeter.",
+        "Só o cliente ou um administrador pode submeter.",
       );
     this.db.exec("BEGIN IMMEDIATE");
     try {

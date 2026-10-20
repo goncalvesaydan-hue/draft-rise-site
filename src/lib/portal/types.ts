@@ -37,21 +37,21 @@ export const TEAM_USERS: TeamAccount[] = [
   },
   {
     username: "user2",
-    name: "Equipa · user2 (Básico)",
+    name: "Admin Total · user2",
     password:
       process.env.PORTAL_TEAM_USER2_PASS ||
       process.env.PORTAL_USER2_PASSWORD ||
       "DR-User2-3917",
-    isAdmin: false,
+    isAdmin: true,
   },
   {
     username: "user3",
-    name: "Equipa · user3 (Básico)",
+    name: "Admin Total · user3",
     password:
       process.env.PORTAL_TEAM_USER3_PASS ||
       process.env.PORTAL_USER3_PASSWORD ||
       "DR-User3-6520",
-    isAdmin: false,
+    isAdmin: true,
   },
   {
     username: "user4",

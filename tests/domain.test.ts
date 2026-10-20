@@ -262,33 +262,37 @@ test("6 team accounts (user1..user6) and client 6-digit access code onboarding w
 
     const user1 = s.loginTeam("user1", "DR-User1-8492").identity;
     const user2 = s.loginTeam("user2", "DR-User2-3917").identity;
+    const user3 = s.loginTeam("user3", "DR-User3-6520").identity;
+    const user4 = s.loginTeam("user4", "DR-User4-9148").identity;
     assert.equal(user1.isAdmin, true);
-    assert.equal(user2.isAdmin, false);
+    assert.equal(user2.isAdmin, true);
+    assert.equal(user3.isAdmin, true);
+    assert.equal(user4.isAdmin, false);
 
-    // user2 can update basic fields, but cannot edit full questionnaire or delete
-    const afterBasic = s.saveBasic(verified.intakeId, user2, {
+    // user4 can update basic fields, but cannot edit full questionnaire or delete
+    const afterBasic = s.saveBasic(verified.intakeId, user4, {
       "contact.phone": "+351 912 345 678",
     });
     assert.equal(afterBasic.answers["contact.phone"]?.value, "+351 912 345 678");
     expectError(
       () =>
-        s.saveBasic(verified.intakeId, user2, {
+        s.saveBasic(verified.intakeId, user4, {
           "q2.1.02": "Tentativa de alterar resposta profunda",
         }),
       403,
     );
     expectError(
-      () => s.save(verified.intakeId, user2, afterBasic.revision, afterBasic.answers),
+      () => s.save(verified.intakeId, user4, afterBasic.revision, afterBasic.answers),
       403,
     );
-    expectError(() => s.deleteIntake(verified.intakeId, user2), 403);
+    expectError(() => s.deleteIntake(verified.intakeId, user4), 403);
     expectError(
-      () => s.deleteAccessCode("carlos@clinicasorriso.pt", user2),
+      () => s.deleteAccessCode("carlos@clinicasorriso.pt", user4),
       403,
     );
 
-    // user1 (Super Admin) can edit full questionnaire, submit, reopen, and delete
-    const afterAdminFull = s.save(verified.intakeId, user1, afterBasic.revision, {
+    // user2 (Admin Total) can edit full questionnaire, and submit just like user1
+    const afterAdminFull = s.save(verified.intakeId, user2, afterBasic.revision, {
       ...afterBasic.answers,
       "company.sector": { state: "answered", value: "clinic" },
       "project.objectives": { state: "answered", value: ["marcacoes"] },
@@ -296,22 +300,23 @@ test("6 team accounts (user1..user6) and client 6-digit access code onboarding w
     assert.equal(afterAdminFull.answers["company.sector"]?.value, "clinic");
     const sub = s.submit(
       verified.intakeId,
-      user1,
+      user2,
       afterAdminFull.revision,
       randomUUID(),
     );
     assert.ok(sub.reference.startsWith("REC-"));
-    expectError(() => s.reopenIntake(verified.intakeId, user2), 403);
-    const reopened = s.reopenIntake(verified.intakeId, user1);
+    expectError(() => s.reopenIntake(verified.intakeId, user4), 403);
+    // user3 (Admin Total) can reopen intake just like user1
+    const reopened = s.reopenIntake(verified.intakeId, user3);
     assert.equal(reopened.status, "draft");
     s.deleteAccessCode("carlos@clinicasorriso.pt", user1);
     assert.equal(s.listAccessCodes(user1).length, 0);
 
     // Brute-force protection: 5 failed attempts lock out team login and invalidate client code
     for (let i = 0; i < 5; i++) {
-      expectError(() => s.loginTeam("user3", "wrong"), 401);
+      expectError(() => s.loginTeam("user5", "wrong"), 401);
     }
-    expectError(() => s.loginTeam("user3", "DR-User3-6520"), 429);
+    expectError(() => s.loginTeam("user5", "DR-User5-2763"), 429);
 
     const req2 = s.requestClientAccess(
       "Ana",

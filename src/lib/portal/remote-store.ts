@@ -669,7 +669,7 @@ export class RemoteStore {
     if (who.role !== "team" || !who.isAdmin) {
       throw new PortalError(
         403,
-        "Apenas o administrador principal (user1) pode apagar códigos de acesso.",
+        "Apenas administradores podem apagar códigos de acesso.",
       );
     }
     await this.removeAccessCodeInternal(email.trim().toLowerCase());
@@ -712,7 +712,7 @@ export class RemoteStore {
     if (!isOwnerClient && !isSuperAdmin) {
       throw new PortalError(
         403,
-        "Apenas o cliente atribuído ou o administrador principal (user1) pode editar todo o questionário.",
+        "Apenas o cliente atribuído ou um administrador pode editar todo o questionário.",
       );
     }
     if (intake.status !== "draft") {
@@ -775,7 +775,7 @@ export class RemoteStore {
     if (intake.status !== "draft" && !who.isAdmin) {
       throw new PortalError(
         409,
-        "Esta ficha já foi submetida. Apenas o administrador principal (user1) a pode alterar.",
+        "Esta ficha já foi submetida. Apenas um administrador a pode alterar.",
       );
     }
 
@@ -820,7 +820,7 @@ export class RemoteStore {
     if (who.role !== "team" || !who.isAdmin) {
       throw new PortalError(
         403,
-        "Apenas o administrador principal (user1) pode reabrir uma ficha submetida.",
+        "Apenas administradores podem reabrir uma ficha submetida.",
       );
     }
     await this.get(id, who);
@@ -859,7 +859,7 @@ export class RemoteStore {
     if (who.role !== "team" || !who.isAdmin) {
       throw new PortalError(
         403,
-        "Apenas o administrador principal (user1) pode apagar fichas.",
+        "Apenas administradores podem apagar fichas.",
       );
     }
     const intake = await this.get(id, who);
@@ -903,7 +903,7 @@ export class RemoteStore {
     if (!canSubmit) {
       throw new PortalError(
         403,
-        "Só o cliente ou o administrador principal (user1) pode submeter.",
+        "Só o cliente ou um administrador pode submeter.",
       );
     }
 

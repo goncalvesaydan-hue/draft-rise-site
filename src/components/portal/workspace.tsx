@@ -325,7 +325,7 @@ export function IntakeList({ team = false }: { team?: boolean }) {
                 <p className="p-lead p-small">
                   {team
                     ? isAdmin
-                      ? "Tens acesso total (user1): podes gerir e apagar códigos, editar todas as respostas de qualquer questionário, reabrir fichas submetidas e exportar o ficheiro .md."
+                      ? "Tens acesso total de Administrador: podes gerir e apagar códigos, editar todas as respostas de qualquer questionário, reabrir fichas submetidas e exportar o ficheiro .md."
                       : "Conta de equipa com acesso básico: podes gerar e copiar códigos de clientes, acompanhar as respostas e atualizar dados básicos de contacto."
                     : "As suas respostas ficam organizadas aqui, mesmo quando faz uma pausa."}
                 </p>
@@ -335,7 +335,7 @@ export function IntakeList({ team = false }: { team?: boolean }) {
               >
                 {team
                   ? isAdmin
-                    ? "user1 · Acesso Total"
+                    ? `${data.identity.id} · Acesso Total (Admin)`
                     : `${data.identity.id} · Acesso Básico`
                   : "Área privada"}
               </span>
@@ -464,7 +464,7 @@ export function IntakeList({ team = false }: { team?: boolean }) {
               <span>
                 {team
                   ? isAdmin
-                    ? "Como user1 (Admin Total), podes entrar em qualquer ficha para editar todas as respostas das 8 etapas, reabrir fichas submetidas ou eliminar registos."
+                    ? "Como Administrador (Acesso Total), podes entrar em qualquer ficha para editar todas as respostas das 8 etapas, reabrir fichas submetidas ou eliminar registos."
                     : "Como membro da equipa (Acesso Básico), podes entrar em qualquer ficha para consultar as respostas do cliente, exportar o Markdown e atualizar os dados básicos de contacto."
                   : "Não precisa de responder tudo de uma vez. Quando o indicador disser “Guardado”, pode sair e voltar com o mesmo perfil."}
               </span>
@@ -734,7 +734,7 @@ function DraftPreview({
         </Link>
         <span className={portalClass(`pill ${isAdmin ? "green" : "pale"}`)}>
           {isAdmin
-            ? "user1 · Acesso Total (Admin)"
+            ? "Acesso Total (Admin)"
             : "Equipa · Acesso Básico (Consulta & Dados Básicos)"}
         </span>
       </div>
@@ -743,9 +743,9 @@ function DraftPreview({
       {isAdmin ? (
         <div className="p-admin-actions-bar">
           <div>
-            <strong>Controlo Total (user1)</strong>
+            <strong>Controlo Total (Administrador)</strong>
             <p className="p-field-help">
-              Como administrador principal, podes editar todas as 8 etapas do
+              Como administrador, podes editar todas as 8 etapas do
               questionário deste cliente, exportar o rascunho em Markdown ou
               apagar a ficha.
             </p>
@@ -779,7 +779,7 @@ function DraftPreview({
           <strong>Modo de Consulta & Edição Básica:</strong> Podes atualizar os
           dados básicos da empresa/contacto abaixo e consultar todas as
           respostas do cliente. A edição profunda das 8 etapas e a eliminação de
-          fichas estão reservadas ao <code>user1</code>.
+          fichas estão reservadas aos administradores.
         </div>
       )}
       {err && (
@@ -881,7 +881,7 @@ function Submitted({
                 disabled={busy}
                 onClick={reopenForEdit}
               >
-                Reabrir ficha p/ editar tudo (user1)
+                Reabrir ficha p/ editar tudo (Admin)
               </button>
               <button
                 type="button"
@@ -901,7 +901,7 @@ function Submitted({
         )}
         <div className="p-notice p-soft">
           {team && isAdmin
-            ? "Como user1 (Admin Total), podes descarregar o ficheiro Markdown ou reabrir esta ficha caso queiras alterar respostas em qualquer etapa."
+            ? "Como Administrador (Acesso Total), podes descarregar o ficheiro Markdown ou reabrir esta ficha caso queiras alterar respostas em qualquer etapa."
             : "A ficha já está disponível para consulta e exportação em Markdown (.md)."}
         </div>
       </div>
@@ -1397,7 +1397,7 @@ function Editor({
           }}
         >
           <ArrowLeft size={16} />{" "}
-          {adminMode ? "Concluir edição Admin (user1)" : "O meu espaço"}
+          {adminMode ? "Concluir edição Admin" : "O meu espaço"}
         </Link>
         <div className="p-sidebar-company">
           <span className="p-company-icon p-small">
