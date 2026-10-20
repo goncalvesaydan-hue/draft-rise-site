@@ -26,7 +26,7 @@ export function createInitialDatabase(): AppDatabase {
     ideas: [],
     events: [],
     staleDays: 7,
-    theme: 'light',
+    theme: 'system',
     sync: {
       enabled: false,
       url: '',
@@ -160,6 +160,7 @@ export async function loadDatabase(): Promise<AppDatabase> {
       })),
       ideas: Array.isArray(dbData.ideas) ? dbData.ideas : [],
       events: Array.isArray(dbData.events) ? dbData.events : [],
+      theme: (['light', 'dark', 'system'].includes(dbData.theme) ? dbData.theme : 'system'),
       agency: {
         ...DEFAULT_AGENCY_SETTINGS,
         ...(dbData.agency || {})

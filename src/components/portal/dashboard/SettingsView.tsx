@@ -23,7 +23,10 @@ import {
   ListChecks,
   Clock,
   HelpCircle,
-  FolderSync
+  FolderSync,
+  Sun,
+  Moon,
+  Monitor
 } from 'lucide-react';
 import { useDashboard } from './DashboardContext';
 import { testSupabaseConnection } from './supabase';
@@ -53,6 +56,9 @@ const TAG_COLOR_OPTIONS = [
 export const SettingsView: React.FC = () => {
   const { 
     db, 
+    theme,
+    effectiveTheme,
+    setTheme,
     updateSettings, 
     exportBackup, 
     exportCSV,
@@ -711,6 +717,111 @@ export const SettingsView: React.FC = () => {
                     Mostra avisos na agenda e no painel {alertDaysBeforeDue} dias antes do vencimento da mensalidade.
                   </p>
                 </div>
+              </div>
+            </div>
+
+            {/* Bloco C: Aparência & Tema (Claro, Noturno e Sistema) */}
+            <div className="lg:col-span-2 p-5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] space-y-4">
+              <div className="border-b border-[#d8dddc] pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                    Interface &amp; Ergonomia
+                  </span>
+                  <h2 className="text-base font-semibold text-[#202d32] mt-0.5">Aparência &amp; Tema do Dashboard</h2>
+                  <p className="text-xs text-[#566266]">
+                    Alterna entre o visual claro editorial, modo noturno ergonómico ou sincronização automática com o sistema.
+                  </p>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border bg-white border-[#d8dddc] text-[#202d32] shrink-0 self-start sm:self-auto">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a36]" />
+                  <span>
+                    {theme === 'system' 
+                      ? `Automático (${effectiveTheme === 'dark' ? 'Noite' : 'Dia'})` 
+                      : theme === 'dark' 
+                        ? 'Modo Noturno (Ativo)' 
+                        : 'Modo Claro (Ativo)'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-1">
+                {/* Opção 1: Claro */}
+                <button
+                  type="button"
+                  onClick={() => setTheme('light')}
+                  className={`p-4 rounded-xl border text-left transition-all cursor-pointer relative flex flex-col justify-between ${
+                    theme === 'light'
+                      ? 'bg-white border-[#ff6a36] shadow-sm ring-1 ring-[#ff6a36]'
+                      : 'bg-white/80 border-[#d8dddc] hover:border-[#202d32]'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="w-8 h-8 rounded-lg bg-[#f6f7f4] border border-[#d8dddc] grid place-items-center text-[#ff6a36]">
+                      <Sun size={16} />
+                    </div>
+                    {theme === 'light' && (
+                      <span className="w-2 h-2 rounded-full bg-[#ff6a36]" />
+                    )}
+                  </div>
+                  <div className="mt-3">
+                    <div className="text-xs font-bold text-[#202d32]">Modo Claro</div>
+                    <div className="text-[11px] text-[#566266] mt-0.5">
+                      Fundo papel editorial e contraste diurno padrão
+                    </div>
+                  </div>
+                </button>
+
+                {/* Opção 2: Noturno (Night) */}
+                <button
+                  type="button"
+                  onClick={() => setTheme('dark')}
+                  className={`p-4 rounded-xl border text-left transition-all cursor-pointer relative flex flex-col justify-between ${
+                    theme === 'dark'
+                      ? 'bg-[#141c20] border-[#ff6a36] shadow-sm ring-1 ring-[#ff6a36] text-white'
+                      : 'bg-[#1c272c] border-[#2a3a41] hover:border-[#ff6a36]'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="w-8 h-8 rounded-lg bg-[#223136] border border-[#2a3a41] grid place-items-center text-[#ff6a36]">
+                      <Moon size={16} />
+                    </div>
+                    {theme === 'dark' && (
+                      <span className="w-2 h-2 rounded-full bg-[#ff6a36]" />
+                    )}
+                  </div>
+                  <div className="mt-3">
+                    <div className="text-xs font-bold text-white">Modo Noturno (Night)</div>
+                    <div className="text-[11px] text-[#9cb0b7] mt-0.5">
+                      Tons ardósia escuros com foco ergonómico noturno
+                    </div>
+                  </div>
+                </button>
+
+                {/* Opção 3: Sistema */}
+                <button
+                  type="button"
+                  onClick={() => setTheme('system')}
+                  className={`p-4 rounded-xl border text-left transition-all cursor-pointer relative flex flex-col justify-between ${
+                    theme === 'system'
+                      ? 'bg-white border-[#236a50] shadow-sm ring-1 ring-[#236a50]'
+                      : 'bg-white/80 border-[#d8dddc] hover:border-[#202d32]'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="w-8 h-8 rounded-lg bg-[#f6f7f4] border border-[#d8dddc] grid place-items-center text-[#236a50]">
+                      <Monitor size={16} />
+                    </div>
+                    {theme === 'system' && (
+                      <span className="w-2 h-2 rounded-full bg-[#236a50]" />
+                    )}
+                  </div>
+                  <div className="mt-3">
+                    <div className="text-xs font-bold text-[#202d32]">Automático (Sistema)</div>
+                    <div className="text-[11px] text-[#566266] mt-0.5">
+                      Adapta-se ao tema do teu computador ou telemóvel
+                    </div>
+                  </div>
+                </button>
               </div>
             </div>
           </div>

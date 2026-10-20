@@ -178,6 +178,8 @@ export interface AgencySettings {
   alertDaysBeforeDue: number;
 }
 
+export type ThemeMode = 'light' | 'dark' | 'system';
+
 export interface AppDatabase {
   companies: Company[];
   tags: Tag[];
@@ -189,7 +191,7 @@ export interface AppDatabase {
   ideas: Idea[];
   events: CalendarEvent[];
   staleDays: number;
-  theme: 'light' | 'dark';
+  theme: ThemeMode;
   sync: {
     enabled: boolean;
     url: string;

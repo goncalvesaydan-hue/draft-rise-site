@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --color-background: var(--paper);
   --color-foreground: var(--ink);
@@ -7,6 +9,109 @@
   --color-secondary: var(--ink);
   --font-sans: var(--font-geist-sans);
   --font-heading: var(--font-display);
+}
+
+/* ==========================================================================
+   DASHBOARD NIGHT MODE SYSTEM PALETTE (Draft & Rise)
+   Suporte a Modo Claro, Modo Escuro e Automático (Sistema)
+   ========================================================================== */
+.dark {
+  --dash-bg: #141c20;
+  --dash-surface: #1c272c;
+  --dash-surface-muted: #192327;
+  --dash-surface-elevated: #223136;
+  --dash-border: #2a3a41;
+  --dash-border-subtle: rgb(255 255 255 / 8%);
+  --dash-text: #f5f7f7;
+  --dash-text-muted: #9cb0b7;
+  --dash-text-dim: #70848c;
+  --dash-header-bg: rgb(20 28 32 / 95%);
+}
+
+.dark .bg-\[\#fcfcfa\] {
+  background-color: #141c20 !important;
+}
+
+.dark .bg-\[\#f6f7f4\] {
+  background-color: #192327 !important;
+}
+
+.dark .bg-white {
+  background-color: #1c272c !important;
+}
+
+.dark .border-\[\#d8dddc\] {
+  border-color: #2a3a41 !important;
+}
+
+.dark .border-\[\#202d32\]\/10 {
+  border-color: #2a3a41 !important;
+}
+
+.dark .text-\[\#202d32\] {
+  color: #f5f7f7 !important;
+}
+
+.dark .text-\[\#566266\] {
+  color: #9cb0b7 !important;
+}
+
+.dark .text-\[\#8c999e\] {
+  color: #70848c !important;
+}
+
+.dark .hover\:bg-\[\#f6f7f4\]:hover {
+  background-color: #192327 !important;
+}
+
+.dark .hover\:bg-white:hover {
+  background-color: #223136 !important;
+}
+
+.dark .divide-\[\#d8dddc\] > :not([hidden]) ~ :not([hidden]),
+.dark .divide-\[\#d8dddc\]\/60 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #2a3a41 !important;
+}
+
+.dark .shadow-2xs,
+.dark .shadow-xs,
+.dark .shadow-sm {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 35%) !important;
+}
+
+.dark select option {
+  background-color: #1c272c;
+  color: #f5f7f7;
+}
+
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="number"],
+.dark input[type="password"],
+.dark input[type="date"],
+.dark input[type="time"],
+.dark textarea,
+.dark select {
+  background-color: #192327;
+  color: #f5f7f7;
+  border-color: #2a3a41;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #70848c;
+}
+
+.dark .bg-\[\#f0f2f1\] {
+  background-color: #162024 !important;
+}
+
+.dark .bg-\[\#fdfaf9\] {
+  background-color: #1f1a18 !important;
+}
+
+.dark .bg-\[\#fff8f5\] {
+  background-color: #231d1a !important;
 }
 
 :root {

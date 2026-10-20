@@ -19,7 +19,8 @@ import {
   IdeaStatus,
   CalendarEvent,
   CalendarEventType,
-  CalendarEventPriority
+  CalendarEventPriority,
+  ThemeMode
 } from './types';
 import { loadDatabase, saveDatabase, createInitialDatabase, createBlankCompany } from './storage';
 import { pushDatabaseToCloud, pullDatabaseFromCloud } from './supabase';
@@ -85,6 +86,9 @@ interface DashboardContextType {
   deleteCalendarEvent: (id: string) => void;
   toggleCalendarEventCompleted: (id: string) => void;
   // Configurações, Exportação & Sincronização
+  theme: ThemeMode;
+  effectiveTheme: 'light' | 'dark';
+  setTheme: (theme: ThemeMode) => void;
   updateSettings: (updates: Partial<AppDatabase>) => void;
   syncCloud: () => Promise<{ ok: boolean; error?: string }>;
   exportBackup: () => void;
@@ -116,9 +120,44 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }, 2800);
   }, []);
 
-  // Carregar dados no arranque (iniciação 100% limpa / zerada)
+  // Detetor de preferência de tema do sistema operacional
+  const [systemPrefersDark, setSystemPrefersDark] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handler = (e: MediaQueryListEvent) => setSystemPrefersDark(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
+  const theme: ThemeMode = db.theme || 'system';
+  const effectiveTheme: 'light' | 'dark' = theme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : theme;
+
+  // Atualizar classe no documentElement para estilização dark consistente e zero-flash
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    if (effectiveTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.style.colorScheme = 'light';
+    }
+  }, [effectiveTheme]);
+
+  // Carregar dados no arranque (iniciação 100% limpa / zerada com cache de tema)
   useEffect(() => {
     loadDatabase().then((loaded) => {
+      try {
+        const cached = localStorage.getItem('draftandrise_theme') as ThemeMode | null;
+        if (cached && ['light', 'dark', 'system'].includes(cached)) {
+          loaded.theme = cached;
+        }
+      } catch {}
       setDb(loaded);
       setLoading(false);
     });
@@ -794,6 +833,15 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     showToast(newStatus ? 'Evento concluído!' : 'Evento reaberto.', 'info');
   }, [db, persist, showToast]);
 
+  const setTheme = useCallback((newTheme: ThemeMode) => {
+    try {
+      localStorage.setItem('draftandrise_theme', newTheme);
+    } catch {}
+    persist({ ...db, theme: newTheme });
+    const label = newTheme === 'dark' ? 'Modo Escuro (Night)' : newTheme === 'light' ? 'Modo Claro' : 'Automático (Sistema)';
+    showToast(`Tema alterado para ${label}`, 'info');
+  }, [db, persist, showToast]);
+
   const updateSettings = useCallback((updates: Partial<AppDatabase>) => {
     persist({ ...db, ...updates });
     showToast('Definições guardadas!', 'success');
@@ -1102,7 +1150,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
               }))
           : (db.events || []),
         staleDays: typeof parsed.staleDays === 'number' ? parsed.staleDays : db.staleDays,
-        theme: parsed.theme === 'dark' ? 'dark' : 'light',
+        theme: (['light', 'dark', 'system'].includes(parsed.theme) ? parsed.theme : 'system') as ThemeMode,
         sync: parsed.sync && typeof parsed.sync === 'object' ? { ...db.sync, ...parsed.sync } : db.sync,
         agency: parsed.agency && typeof parsed.agency === 'object' ? { ...db.agency, ...parsed.agency } : db.agency
       };
@@ -1178,6 +1226,9 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         updateCalendarEvent,
         deleteCalendarEvent,
         toggleCalendarEventCompleted,
+        theme,
+        effectiveTheme,
+        setTheme,
         updateSettings,
         syncCloud,
         exportBackup,

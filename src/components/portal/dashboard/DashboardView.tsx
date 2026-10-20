@@ -20,7 +20,7 @@ import { LossReasonModal } from './LossReasonModal';
 import { CompanyStatus } from './types';
 
 export const DashboardView: React.FC = () => {
-  const { activeTab, loading } = useDashboard();
+  const { activeTab, loading, effectiveTheme } = useDashboard();
 
   const [isNewModalOpen, setIsNewModalOpen] = useState(false);
   const [newModalArea, setNewModalArea] = useState<'prospect' | 'client'>('prospect');
@@ -59,7 +59,9 @@ export const DashboardView: React.FC = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#fcfcfa] text-[#202d32] font-sans antialiased">
+    <div className={`flex min-h-screen transition-colors duration-200 ${
+      effectiveTheme === 'dark' ? 'dark bg-[#141c20] text-[#f5f7f7]' : 'bg-[#fcfcfa] text-[#202d32]'
+    } font-sans antialiased`}>
       {/* Sidebar fixo */}
       <DashboardSidebar />
 

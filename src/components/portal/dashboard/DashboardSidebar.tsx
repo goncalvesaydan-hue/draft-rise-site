@@ -166,8 +166,14 @@ export const DashboardSidebar: React.FC = () => {
         </nav>
 
         {/* Footer */}
-        <div className="p-4 border-t border-[#26343b] text-xs text-[#8c999e]">
-          <div className="flex items-center justify-between text-[11px] mb-1">
+        <div className="p-4 border-t border-[#26343b] text-xs text-[#8c999e] space-y-1">
+          <div className="flex items-center justify-between text-[11px]">
+            <span>Tema:</span>
+            <span className="text-[#c2cbcf] font-medium">
+              {db.theme === 'system' ? 'Sistema' : db.theme === 'dark' ? 'Night' : 'Claro'}
+            </span>
+          </div>
+          <div className="flex items-center justify-between text-[11px]">
             <span>Sincronização:</span>
             {db.sync.enabled ? (
               <span className="inline-flex items-center gap-1 text-emerald-400 font-medium">
@@ -179,7 +185,7 @@ export const DashboardSidebar: React.FC = () => {
               </span>
             )}
           </div>
-          <div className="text-[10px] text-[#718288]">
+          <div className="text-[10px] text-[#718288] pt-0.5">
             {db.companies.filter(c => !c.deletedAt).length} empresas registadas
           </div>
         </div>
