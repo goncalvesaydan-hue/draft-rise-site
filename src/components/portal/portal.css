@@ -61,6 +61,15 @@
 .dr-portal button {
   color: inherit;
 }
+.dr-portal button.text-white,
+.dr-portal button.\!text-white,
+.dr-portal button[class*="text-white"],
+.dr-portal button[class*="bg-[#202d32]"],
+.dr-portal button[class*="bg-[#ff6a36]"],
+.dr-portal button[class*="bg-[#236a50]"],
+.dr-portal button[class*="bg-[#1a2428]"] {
+  color: #ffffff !important;
+}
 .dr-portal a:hover {
   text-decoration: none;
 }

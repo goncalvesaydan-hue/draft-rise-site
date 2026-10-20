@@ -253,19 +253,19 @@ export const CompanyDetailModal: React.FC = () => {
       ? company.rankings.map(r => `• ${r.kw}: #${r.pos} no Maps`).join('\n')
       : '• Palavras-chave em fase de consolidação e monitorização';
 
-    return `📊 *RELATÓRIO DE DESEMPENHO — DRAFT & RISE*
-🏢 *Empresa:* ${company.name}
-📍 *Localização:* ${company.city || 'Portugal'}
-📅 *Data:* ${todayStr}
+    return `*RELATÓRIO DE DESEMPENHO — DRAFT & RISE*
+*Empresa:* ${company.name}
+*Localização:* ${company.city || 'Portugal'}
+*Data:* ${todayStr}
 
-⭐ *ESTADO DO PERFIL GOOGLE:*
+*ESTADO DO PERFIL GOOGLE:*
 • Otimização Concluída: ${checklistPct}% (${doneChecklist} de ${totalChecklist} requisitos cumpridos)
 • Cadência de Publicações: a cada ${company.cadence || 7} dias (${company.posts.length} posts registados)
 
-📈 *POSICIONAMENTOS NO GOOGLE MAPS:*
+*POSICIONAMENTOS NO GOOGLE MAPS:*
 ${rankingsList}
 
-🚀 *PRÓXIMAS AÇÕES PLANEADAS:*
+*PRÓXIMAS AÇÕES PLANEADAS:*
 ${pendingItems || '• Manutenção ativa de cadência semanal e monitorização de avaliações'}
 
 _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO Local_`;

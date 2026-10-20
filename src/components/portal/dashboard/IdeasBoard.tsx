@@ -9,35 +9,53 @@ import {
   Trash2, 
   Edit3, 
   Building2, 
-  Check, 
-  Archive, 
-  ArrowRight, 
-  X, 
   Maximize2, 
   Upload, 
-  Sparkles,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  X,
+  Clock,
+  CheckCircle2,
+  Archive,
+  Layers,
+  Sparkles,
+  ArrowRight
 } from 'lucide-react';
 import { useDashboard } from './DashboardContext';
 import { Idea, IdeaCategory, IdeaStatus } from './types';
-import { formatDate, compressImage } from './utils';
+import { compressImage } from './utils';
 
-// Configurações visuais por Categoria
-export const IDEA_CATEGORY_CONFIG: Record<IdeaCategory, { label: string; bg: string; text: string; border: string }> = {
-  oferta: { label: 'Nova Oferta', bg: 'bg-[#ff6a36]/10', text: 'text-[#ff6a36]', border: 'border-[#ff6a36]/30' },
-  marketing: { label: 'Marketing & Vendas', bg: 'bg-[#236a50]/10', text: 'text-[#236a50]', border: 'border-[#236a50]/30' },
-  conteudo: { label: 'Ideias de Conteúdo', bg: 'bg-[#3b82f6]/10', text: 'text-[#2563eb]', border: 'border-[#3b82f6]/30' },
-  processo: { label: 'Processos & SOPs', bg: 'bg-[#8b5cf6]/10', text: 'text-[#7c3aed]', border: 'border-[#8b5cf6]/30' },
-  geral: { label: 'Geral', bg: 'bg-[#202d32]/10', text: 'text-[#202d32]', border: 'border-[#202d32]/20' }
+// Configurações visuais por Categoria — Paleta Institucional Draft & Rise (Sem emojis)
+export const IDEA_CATEGORY_CONFIG: Record<IdeaCategory, { label: string; badge: string; color: string }> = {
+  oferta: { label: 'Nova Oferta', badge: 'bg-[#ff6a36]/10 text-[#ff6a36] border-[#ff6a36]/25', color: '#ff6a36' },
+  marketing: { label: 'Marketing & Vendas', badge: 'bg-[#236a50]/10 text-[#236a50] border-[#236a50]/25', color: '#236a50' },
+  conteudo: { label: 'Conteúdo & Posts', badge: 'bg-[#0284c7]/10 text-[#0284c7] border-[#0284c7]/25', color: '#0284c7' },
+  processo: { label: 'Processos & SOPs', badge: 'bg-[#7c3aed]/10 text-[#7c3aed] border-[#7c3aed]/25', color: '#7c3aed' },
+  geral: { label: 'Geral', badge: 'bg-[#202d32]/10 text-[#202d32] border-[#202d32]/20', color: '#202d32' }
 };
 
-// Configurações visuais por Estado
-export const IDEA_STATUS_CONFIG: Record<IdeaStatus, { label: string; icon: string; bg: string; text: string; border: string }> = {
-  ideia: { label: 'Ideia Nova', icon: '💡', bg: 'bg-[#fef9c3]', text: 'text-[#854d0e]', border: 'border-[#fef08a]' },
-  estudo: { label: 'Em Estudo', icon: '🔍', bg: 'bg-[#dbeafe]', text: 'text-[#1e40af]', border: 'border-[#bfdbfe]' },
-  aprovada: { label: 'Aprovada / Ativa', icon: '🚀', bg: 'bg-[#dcfce7]', text: 'text-[#166534]', border: 'border-[#bbf7d0]' },
-  arquivada: { label: 'Arquivada', icon: '📦', bg: 'bg-[#f1f5f9]', text: 'text-[#475569]', border: 'border-[#e2e8f0]' }
+// Configurações visuais por Estado — Totalmente sem emojis, com ícones SVG discretos e cores funcionais
+export const IDEA_STATUS_CONFIG: Record<IdeaStatus, { label: string; icon: React.ComponentType<{ size?: number; className?: string }>; badge: string }> = {
+  ideia: { 
+    label: 'Ideia Nova', 
+    icon: Lightbulb, 
+    badge: 'bg-[#fef9c3] text-[#854d0e] border-[#fef08a]' 
+  },
+  estudo: { 
+    label: 'Em Estudo', 
+    icon: Clock, 
+    badge: 'bg-[#dbeafe] text-[#1e40af] border-[#bfdbfe]' 
+  },
+  aprovada: { 
+    label: 'Aprovada', 
+    icon: CheckCircle2, 
+    badge: 'bg-[#dcfce7] text-[#166534] border-[#bbf7d0]' 
+  },
+  arquivada: { 
+    label: 'Arquivada', 
+    icon: Archive, 
+    badge: 'bg-[#f1f5f9] text-[#475569] border-[#e2e8f0]' 
+  }
 };
 
 export const IdeasBoard: React.FC = () => {
@@ -114,7 +132,7 @@ export const IdeasBoard: React.FC = () => {
     setIsFormOpen(true);
   };
 
-  // Processar Imagens (Upload ou Colar da Área de Transferência)
+  // Processar Imagens
   const processImageFiles = async (files: FileList | File[]) => {
     const validFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
     if (validFiles.length === 0) return;
@@ -212,66 +230,122 @@ export const IdeasBoard: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* ========================================================
-          1. HEADER & RESUMO DO BLOCO DE IDEIAS
+          1. HEADER INSTITUCIONAL DRAFT & RISE
       ======================================================== */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#ff6a36]" />
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
-              Brainstorming & Inovação
+              Inovação & Estratégia
             </span>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#202d32] mt-0.5">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#202d32] mt-1">
             Bloco de Ideias
           </h1>
           <p className="text-xs text-[#566266] mt-1">
-            Espaço criativo para registar novas ideias de ofertas, campanhas, prints de inspiração e melhorias da agência.
+            Registo operacional de oportunidades, novas ofertas, campanhas e referências visuais da agência.
           </p>
         </div>
 
         <button
+          type="button"
           onClick={handleOpenNew}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] text-white text-xs font-semibold transition-all shadow-xs shadow-[#ff6a36]/20 cursor-pointer self-start sm:self-auto shrink-0"
+          style={{ color: '#ffffff' }}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] !text-white text-xs font-semibold transition-all shadow-xs shadow-[#ff6a36]/25 cursor-pointer self-start sm:self-auto shrink-0"
         >
-          <Plus size={15} />
+          <Plus size={15} className="shrink-0" />
           <span>Nova Ideia</span>
         </button>
       </div>
 
-      {/* Grid de 4 Indicadores Rápidos */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="p-4 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#566266]">Total Registadas</span>
-          <div className="text-2xl font-bold text-[#202d32] mt-1">{totalIdeas}</div>
-          <span className="text-[11px] text-[#566266] mt-1">Todas as categorias</span>
+      {/* ========================================================
+          2. INDICADORES (SECTOR CARDS ESTILO DRAFT & RISE)
+      ======================================================== */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+              Total de Ideias
+            </span>
+            <div className="w-8 h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
+              <Lightbulb size={16} />
+            </div>
+          </div>
+          <div className="my-2">
+            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+              {totalIdeas}
+            </div>
+          </div>
+          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
+            Todas as categorias
+          </div>
         </div>
 
-        <div className="p-4 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#1e40af]">Em Estudo</span>
-          <div className="text-2xl font-bold text-[#1e40af] mt-1">{inStudyCount}</div>
-          <span className="text-[11px] text-[#566266] mt-1">Prontas para avaliar</span>
+        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#1e40af]">
+              Em Estudo
+            </span>
+            <div className="w-8 h-8 rounded-lg bg-[#dbeafe] text-[#1e40af] grid place-items-center">
+              <Clock size={16} />
+            </div>
+          </div>
+          <div className="my-2">
+            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1e40af]">
+              {inStudyCount}
+            </div>
+          </div>
+          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
+            Em fase de análise
+          </div>
         </div>
 
-        <div className="p-4 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#166534]">Aprovadas</span>
-          <div className="text-2xl font-bold text-[#166534] mt-1">{approvedCount}</div>
-          <span className="text-[11px] text-[#566266] mt-1">Em execução / validadas</span>
+        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#236a50]">
+              Aprovadas
+            </span>
+            <div className="w-8 h-8 rounded-lg bg-[#dcfce7] text-[#236a50] grid place-items-center">
+              <CheckCircle2 size={16} />
+            </div>
+          </div>
+          <div className="my-2">
+            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#236a50]">
+              {approvedCount}
+            </div>
+          </div>
+          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
+            Validadas para execução
+          </div>
         </div>
 
-        <div className="p-4 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#ff6a36]">Com Imagens</span>
-          <div className="text-2xl font-bold text-[#202d32] mt-1">{withImagesCount}</div>
-          <span className="text-[11px] text-[#566266] mt-1">Prints e referências visuais</span>
+        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+              Com Imagens
+            </span>
+            <div className="w-8 h-8 rounded-lg bg-[#ffcaa8]/40 text-[#c74418] grid place-items-center">
+              <ImageIcon size={16} />
+            </div>
+          </div>
+          <div className="my-2">
+            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+              {withImagesCount}
+            </div>
+          </div>
+          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
+            Com referências visuais
+          </div>
         </div>
       </div>
 
       {/* ========================================================
-          2. FILTROS & BARRA DE PESQUISA
+          3. BARRA DE FILTROS & PESQUISA (SEGMENTED PILLS CLAROS)
       ======================================================== */}
       <div className="p-4 rounded-xl border border-[#d8dddc] bg-white space-y-3 shadow-2xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
-          {/* Campo de Pesquisa Local */}
+          {/* Pesquisa Local */}
           <div className="relative flex-1">
             <Search size={14} className="text-[#8c999e] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
@@ -279,26 +353,30 @@ export const IdeasBoard: React.FC = () => {
               placeholder="Pesquisar por título, notas ou cliente associado..."
               value={localSearch}
               onChange={(e) => setLocalSearch(e.target.value)}
-              className="w-full !pl-9 pr-8 py-2 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs text-[#202d32] placeholder:text-[#8c999e] focus:outline-none focus:border-[#ff6a36]"
+              className="w-full !pl-9 pr-8 py-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-xs text-[#202d32] placeholder:text-[#8c999e] focus:outline-none focus:border-[#ff6a36]"
             />
             {localSearch && (
               <button
+                type="button"
                 onClick={() => setLocalSearch('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-[#8c999e] hover:text-[#ff6a36] cursor-pointer"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#8c999e] hover:text-[#ff6a36] cursor-pointer"
+                title="Limpar pesquisa"
               >
                 ✕
               </button>
             )}
           </div>
 
-          {/* Filtro de Estado em Pílulas */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+          {/* Segmented Control de Estados (Pills elegantes sem texto preto em fundo preto) */}
+          <div className="inline-flex p-1 rounded-full bg-[#f6f7f4] border border-[#d8dddc] overflow-x-auto scrollbar-none shrink-0">
             <button
+              type="button"
               onClick={() => setStatusFilter('all')}
-              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer ${
+              style={statusFilter === 'all' ? { color: '#ffffff' } : {}}
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                 statusFilter === 'all'
-                  ? 'bg-[#202d32] text-white shadow-xs'
-                  : 'bg-[#f6f7f4] text-[#566266] hover:bg-[#ebece8]'
+                  ? 'bg-[#202d32] !text-white shadow-xs'
+                  : 'text-[#566266] hover:text-[#202d32]'
               }`}
             >
               Todas ({ideasList.length})
@@ -310,31 +388,38 @@ export const IdeasBoard: React.FC = () => {
               return (
                 <button
                   key={stKey}
+                  type="button"
                   onClick={() => setStatusFilter(stKey)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer flex items-center gap-1.5 ${
+                  style={isSelected ? { color: '#ffffff' } : {}}
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
                     isSelected
-                      ? 'bg-[#202d32] text-white shadow-xs'
-                      : 'bg-[#f6f7f4] text-[#566266] hover:bg-[#ebece8]'
+                      ? 'bg-[#202d32] !text-white shadow-xs'
+                      : 'text-[#566266] hover:text-[#202d32]'
                   }`}
                 >
-                  <span>{conf.icon}</span>
                   <span>{conf.label}</span>
-                  <span className="text-[10px] font-mono opacity-80">({count})</span>
+                  <span className={`text-[10px] font-mono ${isSelected ? 'text-[#e3e7ee]' : 'text-[#8c999e]'}`}>
+                    ({count})
+                  </span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Filtro de Categorias */}
-        <div className="pt-2 border-t border-[#d8dddc] flex items-center gap-1.5 overflow-x-auto scrollbar-none text-xs">
-          <span className="text-[#8c999e] font-medium mr-1 text-[11px] shrink-0">Categorias:</span>
+        {/* Linha de Categorias (Botões Pílula com Contraste Perfeito) */}
+        <div className="pt-2 border-t border-[#d8dddc] flex items-center gap-2 overflow-x-auto scrollbar-none text-xs">
+          <span className="text-[#8c999e] font-bold uppercase text-[10px] tracking-wider shrink-0 mr-1">
+            Categorias:
+          </span>
           <button
+            type="button"
             onClick={() => setCategoryFilter('all')}
-            className={`px-2.5 py-1 rounded-md text-[11px] font-medium transition-colors cursor-pointer ${
+            style={categoryFilter === 'all' ? { color: '#ffffff' } : {}}
+            className={`px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap ${
               categoryFilter === 'all'
-                ? 'bg-[#202d32] text-white'
-                : 'bg-[#f6f7f4] text-[#566266] hover:bg-[#ebece8]'
+                ? 'bg-[#202d32] !text-white shadow-xs'
+                : 'bg-white border border-[#d8dddc] text-[#566266] hover:border-[#202d32] hover:text-[#202d32]'
             }`}
           >
             Todas
@@ -345,11 +430,13 @@ export const IdeasBoard: React.FC = () => {
             return (
               <button
                 key={catKey}
+                type="button"
                 onClick={() => setCategoryFilter(catKey)}
-                className={`px-2.5 py-1 rounded-md text-[11px] font-medium transition-colors cursor-pointer ${
+                style={isCatActive ? { color: '#ffffff' } : {}}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap ${
                   isCatActive
-                    ? 'bg-[#ff6a36] text-white'
-                    : 'bg-[#f6f7f4] text-[#566266] hover:bg-[#ebece8]'
+                    ? 'bg-[#ff6a36] !text-white shadow-xs border border-[#ff6a36]'
+                    : 'bg-white border border-[#d8dddc] text-[#566266] hover:border-[#ff6a36] hover:text-[#ff6a36]'
                 }`}
               >
                 {catConf.label}
@@ -360,13 +447,14 @@ export const IdeasBoard: React.FC = () => {
       </div>
 
       {/* ========================================================
-          3. GRELHA DE CARDS DE IDEIAS (ESTILO PINTEREST / CARDS)
+          4. GRELHA DE CARDS DE IDEIAS
       ======================================================== */}
       {filteredIdeas.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
           {filteredIdeas.map((idea) => {
             const catConf = IDEA_CATEGORY_CONFIG[idea.category] || IDEA_CATEGORY_CONFIG.geral;
             const statConf = IDEA_STATUS_CONFIG[idea.status] || IDEA_STATUS_CONFIG.ideia;
+            const StatusIcon = statConf.icon;
             const associatedCompany = idea.companyId ? db.companies.find(c => c.id === idea.companyId) : null;
             const hasImages = idea.images && idea.images.length > 0;
             const coverImage = hasImages ? idea.images[0] : null;
@@ -374,66 +462,72 @@ export const IdeasBoard: React.FC = () => {
             return (
               <div
                 key={idea.id}
-                className="rounded-xl border border-[#d8dddc] bg-white hover:border-[#ff6a36] hover:shadow-sm transition-all overflow-hidden flex flex-col justify-between group"
+                className="rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#ff6a36] hover:shadow-xs transition-all overflow-hidden flex flex-col justify-between group"
               >
                 {/* Imagem de Capa (se existir) */}
                 {coverImage && (
                   <div 
-                    className="relative w-full h-44 bg-[#f6f7f4] overflow-hidden cursor-pointer group/img"
+                    className="relative w-full h-44 bg-[#e8eae6] overflow-hidden cursor-pointer group/img"
                     onClick={() => handleOpenLightbox(idea.images, 0)}
                   >
                     <img 
                       src={coverImage} 
                       alt={idea.title} 
-                      className="w-full h-full object-cover group-hover/img:scale-103 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover/img:scale-102 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/20 transition-colors flex items-center justify-center">
-                      <div className="opacity-0 group-hover/img:opacity-100 transition-opacity bg-black/75 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                        <Maximize2 size={12} />
+                    <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/25 transition-colors flex items-center justify-center">
+                      <div 
+                        style={{ color: '#ffffff' }}
+                        className="opacity-0 group-hover/img:opacity-100 transition-opacity bg-[#202d32]/90 !text-white text-xs px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-md"
+                      >
+                        <Maximize2 size={13} />
                         <span>Ver imagem ({idea.images.length})</span>
                       </div>
                     </div>
                     {idea.images.length > 1 && (
-                      <span className="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] font-semibold px-2 py-0.5 rounded-md backdrop-blur-xs flex items-center gap-1">
-                        <ImageIcon size={10} />
-                        +{idea.images.length - 1} fotos
+                      <span 
+                        style={{ color: '#ffffff' }}
+                        className="absolute bottom-2.5 right-2.5 bg-[#202d32]/85 !text-white text-[10px] font-semibold px-2.5 py-1 rounded-md backdrop-blur-xs flex items-center gap-1"
+                      >
+                        <ImageIcon size={11} />
+                        <span>+{idea.images.length - 1} fotos</span>
                       </span>
                     )}
                   </div>
                 )}
 
-                {/* Conteúdo do Card */}
+                {/* Corpo do Cartão */}
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                   <div>
-                    {/* Badges de Categoria e Estado */}
-                    <div className="flex items-center justify-between gap-2 flex-wrap mb-2">
-                      <span className={`text-[10px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md border ${catConf.bg} ${catConf.text} ${catConf.border}`}>
+                    {/* Badges de Categoria e Estado (Sem emojis) */}
+                    <div className="flex items-center justify-between gap-2 flex-wrap mb-2.5">
+                      <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md border ${catConf.badge}`}>
                         {catConf.label}
                       </span>
-                      <span className={`text-[11px] font-medium px-2 py-0.5 rounded-full border ${statConf.bg} ${statConf.text} ${statConf.border} flex items-center gap-1`}>
-                        <span>{statConf.icon}</span>
+                      <span className={`text-[11px] font-medium px-2.5 py-0.5 rounded-full border ${statConf.badge} flex items-center gap-1.5`}>
+                        <StatusIcon size={12} className="shrink-0" />
                         <span>{statConf.label}</span>
                       </span>
                     </div>
 
-                    {/* Título da Ideia */}
+                    {/* Título */}
                     <h2 
                       onClick={() => handleOpenEdit(idea)}
-                      className="font-bold text-base text-[#202d32] hover:text-[#ff6a36] transition-colors cursor-pointer leading-snug"
+                      className="font-bold text-base text-[#202d32] group-hover:text-[#ff6a36] transition-colors cursor-pointer leading-snug"
                     >
                       {idea.title}
                     </h2>
 
-                    {/* Descrição / Texto da Ideia */}
+                    {/* Conteúdo / Notas */}
                     {idea.content && (
                       <p className="text-xs text-[#566266] mt-2 line-clamp-4 leading-relaxed whitespace-pre-line">
                         {idea.content}
                       </p>
                     )}
 
-                    {/* Galeria de Thumbnails caso haja mais de 1 imagem */}
+                    {/* Miniaturas adicionais */}
                     {hasImages && idea.images.length > 1 && (
-                      <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-[#f0f2f0]">
+                      <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-[#d8dddc]">
                         {idea.images.map((img, imgIdx) => (
                           <div
                             key={imgIdx}
@@ -447,14 +541,14 @@ export const IdeasBoard: React.FC = () => {
                     )}
                   </div>
 
-                  {/* Rodapé do Card */}
+                  {/* Rodapé do Cartão */}
                   <div className="pt-3 border-t border-[#d8dddc] flex items-center justify-between gap-2 text-xs text-[#566266]">
-                    {/* Empresa Associada */}
                     {associatedCompany ? (
                       <button
+                        type="button"
                         onClick={() => setSelectedCompanyId(associatedCompany.id)}
                         className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#202d32] hover:text-[#ff6a36] transition-colors truncate max-w-[140px]"
-                        title="Ver ficha da empresa associada"
+                        title="Ver ficha da empresa"
                       >
                         <Building2 size={12} className="text-[#ff6a36] shrink-0" />
                         <span className="truncate">{associatedCompany.name}</span>
@@ -466,19 +560,21 @@ export const IdeasBoard: React.FC = () => {
                     {/* Ações */}
                     <div className="flex items-center gap-1 shrink-0">
                       <button
+                        type="button"
                         onClick={() => handleOpenEdit(idea)}
-                        className="p-1.5 text-[#566266] hover:text-[#ff6a36] hover:bg-[#f6f7f4] rounded-lg transition-colors cursor-pointer"
+                        className="p-1.5 text-[#566266] hover:text-[#ff6a36] hover:bg-white rounded-lg transition-colors cursor-pointer"
                         title="Editar ideia"
                       >
                         <Edit3 size={13} />
                       </button>
                       <button
+                        type="button"
                         onClick={() => {
                           if (confirm(`Remover a ideia "${idea.title}"?`)) {
                             deleteIdea(idea.id);
                           }
                         }}
-                        className="p-1.5 text-[#8c999e] hover:text-[#c43f17] hover:bg-[#f6f7f4] rounded-lg transition-colors cursor-pointer"
+                        className="p-1.5 text-[#8c999e] hover:text-[#c43f17] hover:bg-white rounded-lg transition-colors cursor-pointer"
                         title="Eliminar ideia"
                       >
                         <Trash2 size={13} />
@@ -492,30 +588,32 @@ export const IdeasBoard: React.FC = () => {
         </div>
       ) : (
         /* Estado Vazio */
-        <div className="p-12 text-center bg-white rounded-2xl border border-[#d8dddc] space-y-3">
+        <div className="p-12 text-center bg-[#f6f7f4] rounded-xl border border-[#d8dddc] space-y-3">
           <div className="w-12 h-12 rounded-2xl bg-[#ff6a36]/10 text-[#ff6a36] mx-auto flex items-center justify-center">
-            <Lightbulb size={24} />
+            <Lightbulb size={22} />
           </div>
-          <h2 className="font-bold text-base text-[#202d32]">
-            {ideasList.length === 0 ? 'O teu Bloco de Ideias está limpo' : 'Nenhuma ideia encontrada com estes filtros'}
+          <h2 className="font-semibold text-base text-[#202d32]">
+            {ideasList.length === 0 ? 'Nenhuma ideia registada' : 'Nenhuma ideia encontrada com os filtros selecionados'}
           </h2>
           <p className="text-xs text-[#566266] max-w-md mx-auto leading-relaxed">
             {ideasList.length === 0
-              ? 'Regista aqui tudo o que a equipa brainstormar: ideias de reels, campanhas para clientes, novas ofertas ou prints de inspiração.'
-              : 'Tenta alterar a categoria ou o termo de pesquisa selecionado.'}
+              ? 'Usa este espaço para anotar ideias de campanhas, novas ofertas de serviços ou referências visuais para os clientes da agência.'
+              : 'Tenta redefinir a categoria ou o termo de pesquisa.'}
           </p>
           <button
+            type="button"
             onClick={handleOpenNew}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] text-white text-xs font-semibold transition-all shadow-xs shadow-[#ff6a36]/20 cursor-pointer mt-2"
+            style={{ color: '#ffffff' }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] !text-white text-xs font-semibold transition-all shadow-xs shadow-[#ff6a36]/20 cursor-pointer mt-2"
           >
             <Plus size={15} />
-            <span>Criar Primeira Ideia</span>
+            <span>Criar Nova Ideia</span>
           </button>
         </div>
       )}
 
       {/* ========================================================
-          4. MODAL DE CRIAÇÃO & EDIÇÃO DE IDEIA (COM UPLOAD & PASTE)
+          5. MODAL DE CRIAÇÃO / EDIÇÃO DE IDEIA
       ======================================================== */}
       {isFormOpen && (
         <div 
@@ -534,7 +632,7 @@ export const IdeasBoard: React.FC = () => {
                     {editingIdeaId ? 'Editar Ideia' : 'Registar Nova Ideia'}
                   </h2>
                   <p className="text-xs text-[#566266]">
-                    Podes escrever texto e colar imagens diretamente com Cmd+V / Ctrl+V.
+                    Podes escrever notas e colar imagens diretamente com Cmd+V / Ctrl+V.
                   </p>
                 </div>
               </div>
@@ -543,6 +641,7 @@ export const IdeasBoard: React.FC = () => {
                 type="button"
                 onClick={() => setIsFormOpen(false)}
                 className="w-8 h-8 rounded-lg text-[#566266] hover:bg-[#f6f7f4] hover:text-[#202d32] grid place-items-center transition-colors cursor-pointer"
+                title="Fechar"
               >
                 <X size={16} />
               </button>
@@ -561,7 +660,7 @@ export const IdeasBoard: React.FC = () => {
                   placeholder="Ex: Oferta de Auditoria Google 48h para Clínicas Dentárias"
                   value={formTitle}
                   onChange={(e) => setFormTitle(e.target.value)}
-                  className="w-full p-3 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                  className="w-full p-3 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-xs sm:text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
                 />
               </div>
 
@@ -578,9 +677,9 @@ export const IdeasBoard: React.FC = () => {
                   >
                     <option value="geral">Geral</option>
                     <option value="oferta">Nova Oferta</option>
-                    <option value="marketing">Marketing & Aquisição</option>
-                    <option value="conteudo">Ideia de Conteúdo / Post</option>
-                    <option value="processo">Processo / SOP Agência</option>
+                    <option value="marketing">Marketing & Vendas</option>
+                    <option value="conteudo">Conteúdo & Posts</option>
+                    <option value="processo">Processos & SOPs</option>
                   </select>
                 </div>
 
@@ -593,10 +692,10 @@ export const IdeasBoard: React.FC = () => {
                     onChange={(e) => setFormStatus(e.target.value as IdeaStatus)}
                     className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36] cursor-pointer"
                   >
-                    <option value="ideia">💡 Ideia Nova (Rascunho)</option>
-                    <option value="estudo">🔍 Em Estudo / Análise</option>
-                    <option value="aprovada">🚀 Aprovada / Em Execução</option>
-                    <option value="arquivada">📦 Arquivada</option>
+                    <option value="ideia">Ideia Nova (Rascunho)</option>
+                    <option value="estudo">Em Estudo / Análise</option>
+                    <option value="aprovada">Aprovada / Ativa</option>
+                    <option value="arquivada">Arquivada</option>
                   </select>
                 </div>
               </div>
@@ -620,7 +719,7 @@ export const IdeasBoard: React.FC = () => {
                 </select>
               </div>
 
-              {/* Notas e Descrição com suporte a colar imagem */}
+              {/* Descrição */}
               <div>
                 <div className="flex items-center justify-between mb-1">
                   <label className="block text-xs font-semibold text-[#202d32]">
@@ -630,7 +729,7 @@ export const IdeasBoard: React.FC = () => {
                 </div>
                 <textarea
                   rows={5}
-                  placeholder="Descreve a oportunidade, como implementar, que resultados pode trazer ou o raciocínio da ideia..."
+                  placeholder="Descreve a oportunidade, passos de execução ou notas da ideia..."
                   value={formContent}
                   onChange={(e) => setFormContent(e.target.value)}
                   onPaste={handlePasteEvent}
@@ -706,14 +805,15 @@ export const IdeasBoard: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsFormOpen(false)}
-                  className="px-4 py-2.5 rounded-full text-xs font-semibold text-[#566266] hover:bg-[#f6f7f4] transition-colors cursor-pointer"
+                  className="px-4 py-2.5 rounded-full text-xs font-semibold text-[#566266] hover:bg-[#f6f7f4] border border-[#d8dddc] transition-colors cursor-pointer"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={isCompressing || !formTitle.trim()}
-                  className="px-6 py-2.5 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] text-white text-xs font-semibold transition-all shadow-xs cursor-pointer disabled:opacity-50"
+                  style={{ color: '#ffffff' }}
+                  className="px-6 py-2.5 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] !text-white text-xs font-semibold transition-all shadow-xs cursor-pointer disabled:opacity-50"
                 >
                   {editingIdeaId ? 'Salvar Alterações' : 'Criar Ideia'}
                 </button>
@@ -724,7 +824,7 @@ export const IdeasBoard: React.FC = () => {
       )}
 
       {/* ========================================================
-          5. MODAL LIGHTBOX PARA VISUALIZAR IMAGEM EM ALTA DEFINIÇÃO
+          6. MODAL LIGHTBOX
       ======================================================== */}
       {lightboxData && (
         <div 
@@ -735,14 +835,12 @@ export const IdeasBoard: React.FC = () => {
             className="relative max-w-5xl max-h-[92vh] flex flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Imagem em Grande Formato */}
             <img
               src={lightboxData.images[lightboxData.currentIndex]}
               alt={`Imagem ${lightboxData.currentIndex + 1}`}
               className="max-w-full max-h-[82vh] object-contain rounded-xl shadow-2xl"
             />
 
-            {/* Controlos e Navegação */}
             <button
               onClick={() => setLightboxData(null)}
               className="absolute -top-12 right-0 text-white/80 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
