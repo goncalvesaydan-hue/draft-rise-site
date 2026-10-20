@@ -23,6 +23,13 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
   const [dueDay, setDueDay] = useState<number>(5);
   const [area, setArea] = useState<'prospect' | 'client'>(defaultArea);
 
+  const handleAreaChange = (newArea: 'prospect' | 'client') => {
+    setArea(newArea);
+    if (newArea === 'client' && (!monthlyFee || monthlyFee === 0)) {
+      setMonthlyFee(150);
+    }
+  };
+
   useEffect(() => {
     if (isOpen) {
       setArea(defaultArea);
@@ -102,60 +109,82 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#202d32]/70 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-[#fcfcfa] dark:bg-[#1c272c] w-full max-w-lg rounded-2xl shadow-xl overflow-hidden border border-[#d8dddc] dark:border-[#2a3a41] flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 bg-[#202d32]/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+      <div className="new-company-modal bg-[#fcfcfa] dark:bg-[#1c272c] w-full max-w-lg rounded-2xl shadow-xl overflow-hidden border border-[#d8dddc] dark:border-[#2a3a41] flex flex-col max-h-[92vh]">
         {/* Header */}
-        <div className="p-5 bg-[#202d32] dark:bg-[#141c20] text-white flex items-center justify-between border-b border-[#35454b] dark:border-[#2a3a41]">
+        <div className="px-5 py-4 bg-[#202d32] dark:bg-[#141c20] text-white flex items-center justify-between border-b border-[#35454b] dark:border-[#2a3a41]">
           <div className="flex items-center gap-2.5">
             <Building2 size={18} className="text-[#ff6a36]" />
-            <h2 className="font-semibold text-sm">
+            <h2 className="font-semibold text-sm sm:text-base">
               {area === 'client' ? 'Adicionar Novo Cliente' : 'Registar Nova Lead'}
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="w-7 h-7 rounded-full hover:bg-white/10 text-[#a6b4b9] hover:text-white grid place-items-center transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full hover:bg-white/10 text-[#a6b4b9] hover:text-white grid place-items-center transition-colors cursor-pointer"
+            title="Fechar"
+            aria-label="Fechar"
           >
             <X size={16} />
           </button>
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4 overflow-y-auto">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 overflow-y-auto">
           {/* Switcher & Bot Import */}
-          <div className="flex items-center gap-2">
-            <div className="inline-flex flex-1 p-1 rounded-full bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41]">
+          <div className="space-y-3">
+            <div className="relative w-full p-1.5 rounded-full bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] flex select-none">
+              {/* Barra Laranja Deslizante (Animated Pill Indicator) */}
+              <div
+                className={`absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-6px)] rounded-full bg-[#ff6a36] shadow-sm shadow-[#ff6a36]/25 transition-transform duration-250 ease-out pointer-events-none ${
+                  area === 'prospect' ? 'translate-x-0' : 'translate-x-full'
+                }`}
+              />
+
+              {/* Botão Prospecção */}
               <button
                 type="button"
-                onClick={() => setArea('prospect')}
-                className={`flex-1 py-1.5 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
-                  area === 'prospect' ? 'bg-[#ff6a36] !text-white shadow-xs' : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
+                onClick={() => handleAreaChange('prospect')}
+                className={`relative z-10 flex-1 py-3 text-xs sm:text-sm font-semibold rounded-full transition-colors duration-200 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap ${
+                  area === 'prospect'
+                    ? '!text-white'
+                    : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
                 }`}
               >
-                Prospecção (Lead)
+                <span>Prospecção (Lead)</span>
               </button>
+
+              {/* Botão Cliente Ativo */}
               <button
                 type="button"
-                onClick={() => setArea('client')}
-                className={`flex-1 py-1.5 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
-                  area === 'client' ? 'bg-[#ff6a36] !text-white shadow-xs' : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
+                onClick={() => handleAreaChange('client')}
+                className={`relative z-10 flex-1 py-3 text-xs sm:text-sm font-semibold rounded-full transition-colors duration-200 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap ${
+                  area === 'client'
+                    ? '!text-white'
+                    : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
                 }`}
               >
-                Cliente Ativo
+                <span>Cliente Ativo</span>
               </button>
             </div>
 
+            {/* Acesso rápido ao Questionário do Site (Bot) */}
             <button
               type="button"
               onClick={() => {
                 if (!showIntakePicker) loadIntakes();
                 setShowIntakePicker(!showIntakePicker);
               }}
-              className="px-3 py-1.5 rounded-full border border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] hover:text-[#ff6a36] bg-[#f6f7f4] dark:bg-[#141c20] hover:bg-white dark:hover:bg-[#25353d] transition-colors inline-flex items-center gap-1.5 cursor-pointer shrink-0"
+              className="w-full py-2 px-3 rounded-xl border border-dashed border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] dark:hover:border-[#ff6a36] bg-[#f6f7f4]/60 dark:bg-[#141c20]/60 hover:bg-[#ff6a36]/5 dark:hover:bg-[#ff6a36]/10 flex items-center justify-between transition-all cursor-pointer group"
               title="Importar dados de questionário submetido no site"
             >
-              <Bot size={13} className="text-[#ff6a36]" />
-              <span className="hidden sm:inline">Do Bot</span>
+              <span className="inline-flex items-center gap-2 text-xs font-medium text-[#566266] dark:text-[#9cb0b7] group-hover:text-[#202d32] dark:group-hover:text-[#f5f7f7] transition-colors">
+                <Bot size={14} className="!text-[#ff6a36] shrink-0" />
+                <span>Importar do Questionário Bot</span>
+              </span>
+              <span className="text-[11px] font-semibold !text-[#ff6a36] group-hover:underline">
+                {showIntakePicker ? 'Fechar' : 'Ver fichas'}
+              </span>
             </button>
           </div>
 
