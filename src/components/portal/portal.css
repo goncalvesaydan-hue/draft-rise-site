@@ -123,6 +123,12 @@
   border-radius: 4px;
   cursor: pointer;
 }
+.dr-portal input.dashboard-search-input {
+  padding-left: 44px !important;
+  padding-right: 40px !important;
+  border-radius: 9999px !important;
+  min-height: 42px !important;
+}
 .dr-portal textarea {
   resize: vertical;
   display: block;

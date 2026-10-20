@@ -71,24 +71,30 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onOpenNewModal
 
         {/* Search Bar com estetica do site (rounded-full, subtle border) */}
         <div className="relative flex-1">
-          <Search size={14} className="text-[#8c999e] absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search 
+            size={15} 
+            className="text-[#8c999e] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none z-10" 
+          />
           <input
             ref={searchInputRef}
             type="text"
             placeholder="Pesquisar por nome, nicho ou cidade... (/)"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-8 py-2 bg-[#f6f7f4] border border-[#d8dddc] rounded-full text-xs sm:text-sm text-[#202d32] placeholder:text-[#8c999e] focus:outline-none focus:border-[#ff6a36] transition-colors"
+            style={{ paddingLeft: '44px', paddingRight: '40px' }}
+            className="dashboard-search-input w-full !pl-11 !pr-10 py-2.5 bg-[#f6f7f4] border border-[#d8dddc] !rounded-full text-xs sm:text-sm text-[#202d32] placeholder:text-[#8c999e] focus:outline-none focus:border-[#ff6a36] transition-colors"
           />
           {searchQuery ? (
             <button
+              type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#8c999e] hover:text-[#ff6a36] cursor-pointer"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-[#8c999e] hover:text-[#ff6a36] cursor-pointer p-1 z-10"
+              title="Limpar pesquisa"
             >
               ✕
             </button>
           ) : (
-            <kbd className="hidden sm:inline-block absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[#8c999e] bg-white px-1.5 py-0.5 rounded border border-[#d8dddc]">
+            <kbd className="hidden sm:inline-block absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[#8c999e] bg-white px-1.5 py-0.5 rounded border border-[#d8dddc] pointer-events-none">
               /
             </kbd>
           )}
