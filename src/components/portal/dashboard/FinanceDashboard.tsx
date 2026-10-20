@@ -66,52 +66,52 @@ export const FinanceDashboard: React.FC = () => {
       </div>
 
       {/* 4 Cards de Métricas */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4]">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
             MRR Total
           </span>
-          <div className="text-3xl font-semibold text-[#202d32] mt-2 tracking-tight">
+          <div className="text-2xl sm:text-3xl font-semibold text-[#202d32] mt-1.5 sm:mt-2 tracking-tight">
             {formatCurrency(totalMrr)}
           </div>
-          <p className="text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc]">
+          <p className="text-[10px] sm:text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc] truncate">
             {activeClients.length} contratos ativos
           </p>
         </div>
 
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4]">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#236a50]">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#236a50]">
             Recebido no Mês
           </span>
-          <div className="text-3xl font-semibold text-[#236a50] mt-2 tracking-tight">
+          <div className="text-2xl sm:text-3xl font-semibold text-[#236a50] mt-1.5 sm:mt-2 tracking-tight">
             {formatCurrency(paidTotal)}
           </div>
-          <p className="text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc]">
-            {paidClients.length} de {activeClients.length} liquidados ({collectionRate}%)
+          <p className="text-[10px] sm:text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc] truncate">
+            {paidClients.length}/{activeClients.length} ({collectionRate}%)
           </p>
         </div>
 
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4]">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#c43f17]">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#c43f17]">
             Por Liquidar
           </span>
-          <div className="text-3xl font-semibold text-[#c43f17] mt-2 tracking-tight">
+          <div className="text-2xl sm:text-3xl font-semibold text-[#c43f17] mt-1.5 sm:mt-2 tracking-tight">
             {formatCurrency(lateTotal + pendingTotal)}
           </div>
-          <p className="text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc]">
-            {lateClients.length} atrasados · {pendingClients.length} pendentes
+          <p className="text-[10px] sm:text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc] truncate">
+            {lateClients.length} atrasados
           </p>
         </div>
 
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4]">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#566266]">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#566266]">
             Projeção Anual
           </span>
-          <div className="text-3xl font-semibold text-[#202d32] mt-2 tracking-tight">
+          <div className="text-2xl sm:text-3xl font-semibold text-[#202d32] mt-1.5 sm:mt-2 tracking-tight">
             {formatCurrency(annualProjection)}
           </div>
-          <p className="text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc]">
-            Valor anualizado (MRR × 12)
+          <p className="text-[10px] sm:text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc] truncate">
+            ARR (MRR × 12)
           </p>
         </div>
       </div>
@@ -138,10 +138,10 @@ export const FinanceDashboard: React.FC = () => {
           </div>
 
           {/* Filter Pills com Alta Visibilidade */}
-          <div className="flex items-center gap-1.5 overflow-x-auto">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 max-w-full">
             <button
               onClick={() => setFilter('all')}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border ${
+              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border shrink-0 ${
                 filter === 'all' ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs' : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#ff6a36] hover:text-[#202d32]'
               }`}
             >
@@ -149,7 +149,7 @@ export const FinanceDashboard: React.FC = () => {
             </button>
             <button
               onClick={() => setFilter('pago')}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border ${
+              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border shrink-0 ${
                 filter === 'pago' ? 'bg-[#236a50] text-white border-[#236a50] shadow-xs' : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#236a50] hover:text-[#236a50]'
               }`}
             >
@@ -157,7 +157,7 @@ export const FinanceDashboard: React.FC = () => {
             </button>
             <button
               onClick={() => setFilter('pendente')}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border ${
+              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border shrink-0 ${
                 filter === 'pendente' ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs' : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#ff6a36] hover:text-[#202d32]'
               }`}
             >
@@ -165,7 +165,7 @@ export const FinanceDashboard: React.FC = () => {
             </button>
             <button
               onClick={() => setFilter('atrasado')}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border ${
+              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border shrink-0 ${
                 filter === 'atrasado' ? 'bg-[#c43f17] text-white border-[#c43f17] shadow-xs' : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#c43f17] hover:text-[#c43f17]'
               }`}
             >

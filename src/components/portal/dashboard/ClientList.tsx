@@ -27,7 +27,10 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
   const { db, setSelectedCompanyId, deleteCompany, updateFinance, exportCSV, searchQuery, showToast } = useDashboard();
   const [filter, setFilter] = useState<'all' | 'client' | 'prospect' | 'late'>('client');
   const [sortBy, setSortBy] = useState<'name' | 'fee' | 'due'>('name');
-  const [viewMode, setViewMode] = useState<'table' | 'grid'>('table');
+  const [viewMode, setViewMode] = useState<'table' | 'grid'>(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) return 'grid';
+    return 'table';
+  });
 
   const companies = db.companies.filter(c => !c.deletedAt);
 
@@ -100,10 +103,10 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
       {/* Filter Tabs & View Mode & Sorting Toolbar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#d8dddc]">
         {/* Pills no estilo Draft & Rise com Alta Visibilidade */}
-        <div className="flex items-center gap-2 overflow-x-auto">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 max-w-full">
           <button
             onClick={() => setFilter('client')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border shrink-0 ${
               filter === 'client'
                 ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs'
                 : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#ff6a36] hover:text-[#202d32]'
@@ -114,7 +117,7 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
 
           <button
             onClick={() => setFilter('prospect')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border shrink-0 ${
               filter === 'prospect'
                 ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs'
                 : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#ff6a36] hover:text-[#202d32]'
@@ -125,7 +128,7 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
 
           <button
             onClick={() => setFilter('late')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border shrink-0 ${
               filter === 'late'
                 ? 'bg-[#c43f17] text-white border-[#c43f17] shadow-xs'
                 : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#c43f17] hover:text-[#c43f17]'
@@ -136,7 +139,7 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
 
           <button
             onClick={() => setFilter('all')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border shrink-0 ${
               filter === 'all'
                 ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs'
                 : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#ff6a36] hover:text-[#202d32]'
@@ -147,7 +150,7 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
         </div>
 
         {/* View Switcher & Sorting */}
-        <div className="flex items-center gap-3 shrink-0 self-end sm:self-auto">
+        <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto shrink-0">
           {/* Switcher Tabela / Grelha */}
           <div className="inline-flex p-1 rounded-full bg-white border border-[#d8dddc]">
             <button

@@ -262,79 +262,83 @@ export const IdeasBoard: React.FC = () => {
       {/* ========================================================
           2. INDICADORES (SECTOR CARDS ESTILO DRAFT & RISE)
       ======================================================== */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
               Total de Ideias
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
-              <Lightbulb size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
+              <Lightbulb size={14} className="sm:hidden" />
+              <Lightbulb size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-2">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+          <div className="my-1.5 sm:my-2">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
               {totalIdeas}
             </div>
           </div>
-          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
             Todas as categorias
           </div>
         </div>
 
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#1e40af]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#1e40af]">
               Em Estudo
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#dbeafe] text-[#1e40af] grid place-items-center">
-              <Clock size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dbeafe] text-[#1e40af] grid place-items-center">
+              <Clock size={14} className="sm:hidden" />
+              <Clock size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-2">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1e40af]">
+          <div className="my-1.5 sm:my-2">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#1e40af]">
               {inStudyCount}
             </div>
           </div>
-          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
             Em fase de análise
           </div>
         </div>
 
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#236a50]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#236a50]">
               Aprovadas
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#dcfce7] text-[#236a50] grid place-items-center">
-              <CheckCircle2 size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dcfce7] text-[#236a50] grid place-items-center">
+              <CheckCircle2 size={14} className="sm:hidden" />
+              <CheckCircle2 size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-2">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#236a50]">
+          <div className="my-1.5 sm:my-2">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#236a50]">
               {approvedCount}
             </div>
           </div>
-          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
             Validadas para execução
           </div>
         </div>
 
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
               Com Imagens
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#ffcaa8]/40 text-[#c74418] grid place-items-center">
-              <ImageIcon size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#ffcaa8]/40 text-[#c74418] grid place-items-center">
+              <ImageIcon size={14} className="sm:hidden" />
+              <ImageIcon size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-2">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+          <div className="my-1.5 sm:my-2">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
               {withImagesCount}
             </div>
           </div>
-          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
             Com referências visuais
           </div>
         </div>
@@ -343,7 +347,7 @@ export const IdeasBoard: React.FC = () => {
       {/* ========================================================
           3. BARRA DE FILTROS & PESQUISA (SEGMENTED PILLS CLAROS)
       ======================================================== */}
-      <div className="p-4 rounded-xl border border-[#d8dddc] bg-white space-y-3 shadow-2xs">
+      <div className="p-3 sm:p-4 rounded-xl border border-[#d8dddc] bg-white space-y-3 shadow-2xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           {/* Pesquisa Local */}
           <div className="relative flex-1">
@@ -367,13 +371,13 @@ export const IdeasBoard: React.FC = () => {
             )}
           </div>
 
-          {/* Segmented Control de Estados (Pills elegantes sem texto preto em fundo preto) */}
-          <div className="inline-flex p-1 rounded-full bg-[#f6f7f4] border border-[#d8dddc] overflow-x-auto scrollbar-none shrink-0">
+          {/* Segmented Control de Estados (Pills com scroll horizontal suave no mobile) */}
+          <div className="inline-flex p-1 rounded-full bg-[#f6f7f4] border border-[#d8dddc] overflow-x-auto no-scrollbar shrink-0 max-w-full">
             <button
               type="button"
               onClick={() => setStatusFilter('all')}
               style={statusFilter === 'all' ? { color: '#ffffff' } : {}}
-              className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                 statusFilter === 'all'
                   ? 'bg-[#202d32] !text-white shadow-xs'
                   : 'text-[#566266] hover:text-[#202d32]'
@@ -391,7 +395,7 @@ export const IdeasBoard: React.FC = () => {
                   type="button"
                   onClick={() => setStatusFilter(stKey)}
                   style={isSelected ? { color: '#ffffff' } : {}}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-1.5 ${
                     isSelected
                       ? 'bg-[#202d32] !text-white shadow-xs'
                       : 'text-[#566266] hover:text-[#202d32]'
@@ -408,7 +412,7 @@ export const IdeasBoard: React.FC = () => {
         </div>
 
         {/* Linha de Categorias (Botões Pílula com Contraste Perfeito) */}
-        <div className="pt-2 border-t border-[#d8dddc] flex items-center gap-2 overflow-x-auto scrollbar-none text-xs">
+        <div className="pt-2 border-t border-[#d8dddc] flex items-center gap-2 overflow-x-auto no-scrollbar text-xs pb-1">
           <span className="text-[#8c999e] font-bold uppercase text-[10px] tracking-wider shrink-0 mr-1">
             Categorias:
           </span>
@@ -416,7 +420,7 @@ export const IdeasBoard: React.FC = () => {
             type="button"
             onClick={() => setCategoryFilter('all')}
             style={categoryFilter === 'all' ? { color: '#ffffff' } : {}}
-            className={`px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap ${
+            className={`px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
               categoryFilter === 'all'
                 ? 'bg-[#202d32] !text-white shadow-xs'
                 : 'bg-white border border-[#d8dddc] text-[#566266] hover:border-[#202d32] hover:text-[#202d32]'
@@ -433,7 +437,7 @@ export const IdeasBoard: React.FC = () => {
                 type="button"
                 onClick={() => setCategoryFilter(catKey)}
                 style={isCatActive ? { color: '#ffffff' } : {}}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap ${
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                   isCatActive
                     ? 'bg-[#ff6a36] !text-white shadow-xs border border-[#ff6a36]'
                     : 'bg-white border border-[#d8dddc] text-[#566266] hover:border-[#ff6a36] hover:text-[#ff6a36]'
@@ -622,7 +626,7 @@ export const IdeasBoard: React.FC = () => {
         >
           <div className="bg-white rounded-2xl border border-[#d8dddc] shadow-2xl max-w-xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
             {/* Modal Header */}
-            <div className="p-5 border-b border-[#d8dddc] flex items-center justify-between bg-[#fcfcfa]">
+            <div className="p-4 sm:p-5 border-b border-[#d8dddc] flex items-center justify-between bg-[#fcfcfa]">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-[#ff6a36]/10 text-[#ff6a36] grid place-items-center">
                   <Lightbulb size={16} />
@@ -648,7 +652,7 @@ export const IdeasBoard: React.FC = () => {
             </div>
 
             {/* Modal Form Body */}
-            <form onSubmit={handleSaveIdea} className="p-6 space-y-4 overflow-y-auto flex-1">
+            <form onSubmit={handleSaveIdea} className="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
               {/* Título */}
               <div>
                 <label className="block text-xs font-semibold text-[#202d32] mb-1">

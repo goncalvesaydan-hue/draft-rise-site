@@ -67,7 +67,7 @@ export const DashboardView: React.FC = () => {
       <div className="flex-1 flex flex-col min-w-0">
         <DashboardHeader onOpenNewModal={handleOpenNewModal} />
 
-        <main className="flex-1 p-6 lg:p-8 max-w-7xl w-full mx-auto">
+        <main className="flex-1 p-3.5 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
           {activeTab === 'dashboard' && <OverviewDashboard />}
           {activeTab === 'prospeccao' && (
             <KanbanBoard 

@@ -243,16 +243,16 @@ export const WeeklyChecklist: React.FC = () => {
       {/* ========================================================
           2. 3 CARTÕES DE MÉTRICAS OPERACIONAIS
       ======================================================== */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
         {/* Card 1: Taxa de Conclusão */}
-        <div className="p-5 rounded-xl border border-[#d8dddc] bg-[#fcfcfa] space-y-2">
+        <div className="p-3.5 sm:p-5 rounded-xl border border-[#d8dddc] bg-[#fcfcfa] space-y-2">
           <div className="flex items-center justify-between text-xs text-[#566266]">
-            <span className="font-semibold uppercase tracking-wider text-[10px] text-[#b5431c]">
+            <span className="font-semibold uppercase tracking-wider text-[9px] sm:text-[10px] text-[#b5431c]">
               Taxa de Conclusão
             </span>
             <span className="font-mono text-xs font-bold text-[#202d32]">{weekPercentage}%</span>
           </div>
-          <div className="text-2xl font-bold text-[#202d32] tracking-tight">
+          <div className="text-xl sm:text-2xl font-bold text-[#202d32] tracking-tight">
             {completedTasks} de {totalTasks} concluídas
           </div>
           <div className="h-2 w-full bg-[#f6f7f4] border border-[#d8dddc] rounded-full overflow-hidden">
@@ -264,11 +264,11 @@ export const WeeklyChecklist: React.FC = () => {
         </div>
 
         {/* Card 2: Pendências Operacionais */}
-        <div className="p-5 rounded-xl border border-[#d8dddc] bg-[#fcfcfa] space-y-2">
-          <span className="font-semibold uppercase tracking-wider text-[10px] text-[#566266]">
+        <div className="p-3.5 sm:p-5 rounded-xl border border-[#d8dddc] bg-[#fcfcfa] space-y-2">
+          <span className="font-semibold uppercase tracking-wider text-[9px] sm:text-[10px] text-[#566266]">
             Volume de Entregas
           </span>
-          <div className="text-2xl font-bold text-[#202d32] tracking-tight">
+          <div className="text-xl sm:text-2xl font-bold text-[#202d32] tracking-tight">
             {pendingTasks} pendentes
           </div>
           <p className="text-xs text-[#566266]">
@@ -277,9 +277,9 @@ export const WeeklyChecklist: React.FC = () => {
         </div>
 
         {/* Card 3: Clientes com Entregas & Ação Rápida */}
-        <div className="p-5 rounded-xl border border-[#d8dddc] bg-[#fcfcfa] space-y-2">
+        <div className="p-3.5 sm:p-5 rounded-xl border border-[#d8dddc] bg-[#fcfcfa] space-y-2">
           <div className="flex items-center justify-between">
-            <span className="font-semibold uppercase tracking-wider text-[10px] text-[#236a50]">
+            <span className="font-semibold uppercase tracking-wider text-[9px] sm:text-[10px] text-[#236a50]">
               Empresas Atendidas
             </span>
             <button
@@ -291,7 +291,7 @@ export const WeeklyChecklist: React.FC = () => {
               <span>Carregar Rotina Padrão</span>
             </button>
           </div>
-          <div className="text-2xl font-bold text-[#202d32] tracking-tight">
+          <div className="text-xl sm:text-2xl font-bold text-[#202d32] tracking-tight">
             {targetedCompaniesCount} clientes com tarefas
           </div>
           <p className="text-xs text-[#566266]">
@@ -317,7 +317,7 @@ export const WeeklyChecklist: React.FC = () => {
                 <button
                   key={d.id}
                   onClick={() => setSelectedDay(d.id)}
-                  className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer relative ${
+                  className={`p-3 sm:p-3.5 rounded-xl border text-left transition-all cursor-pointer relative ${
                     isSelected
                       ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-sm shadow-[#ff6a36]/25'
                       : isToday
@@ -333,14 +333,17 @@ export const WeeklyChecklist: React.FC = () => {
                     </span>
                   )}
 
-                  <div className="flex items-center justify-between text-xs font-semibold">
-                    <span>{d.label}</span>
-                    <span className={`text-[11px] font-mono ${isSelected ? 'text-white' : 'text-[#8c999e]'}`}>
+                  <div className="flex items-center justify-between text-xs font-semibold gap-1">
+                    <span className="truncate">
+                      <span className="sm:hidden">{d.label.replace('-feira', '')}</span>
+                      <span className="hidden sm:inline">{d.label}</span>
+                    </span>
+                    <span className={`text-[11px] font-mono shrink-0 ${isSelected ? 'text-white' : 'text-[#8c999e]'}`}>
                       {done}/{tasks.length}
                     </span>
                   </div>
 
-                  <div className="text-xs mt-2 opacity-90 truncate">
+                  <div className="text-xs mt-1.5 sm:mt-2 opacity-90 truncate">
                     {tasks.length === 0 ? 'Sem tarefas' : done === tasks.length ? '✓ Concluído' : `${tasks.length - done} pendentes`}
                   </div>
                 </button>

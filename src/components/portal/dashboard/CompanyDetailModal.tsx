@@ -303,7 +303,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
         {/* ========================================================
             HEADER EXECUTIVO — IDENTIDADE DRAFT & RISE
         ======================================================== */}
-        <div className="p-5 sm:p-6 bg-[#202d32] text-white border-b border-[#35454b] shrink-0">
+        <div className="p-4 sm:p-6 bg-[#202d32] text-white border-b border-[#35454b] shrink-0">
           <div className="flex items-start justify-between gap-4">
             
             {/* Esquerda: Identificação da Empresa */}
@@ -410,7 +410,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
         {/* ========================================================
             BARRA DE NAVEGAÇÃO DE SEPARADORES (PILLS DE ALTA VISIBILIDADE)
         ======================================================== */}
-        <div className="px-4 sm:px-6 py-2.5 border-b border-[#d8dddc] bg-[#f6f7f4] flex items-center gap-2 overflow-x-auto select-none shrink-0">
+        <div className="px-3 sm:px-6 py-2 border-b border-[#d8dddc] bg-[#f6f7f4] flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar select-none shrink-0">
           {navTabs.map((tab) => {
             const isActive = activeTab === tab.id;
             const Icon = tab.icon;

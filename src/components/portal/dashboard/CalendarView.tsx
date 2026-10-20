@@ -437,14 +437,14 @@ export const CalendarView: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 w-full sm:w-auto">
           {/* Seletor de Modo de Visualização */}
-          <div className="flex items-center bg-[#f6f7f4] border border-[#d8dddc] rounded-full p-1 shadow-2xs">
+          <div className="flex items-center justify-between sm:justify-start bg-[#f6f7f4] border border-[#d8dddc] rounded-full p-1 shadow-2xs w-full sm:w-auto">
             <button
               type="button"
               onClick={() => setViewMode('grid')}
               style={viewMode === 'grid' ? { color: '#ffffff' } : undefined}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === 'grid'
                   ? 'bg-[#202d32] !text-white shadow-xs'
                   : 'text-[#566266] hover:text-[#202d32]'
@@ -458,7 +458,7 @@ export const CalendarView: React.FC = () => {
               type="button"
               onClick={() => setViewMode('list')}
               style={viewMode === 'list' ? { color: '#ffffff' } : undefined}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === 'list'
                   ? 'bg-[#202d32] !text-white shadow-xs'
                   : 'text-[#566266] hover:text-[#202d32]'
@@ -474,7 +474,7 @@ export const CalendarView: React.FC = () => {
             type="button"
             onClick={() => handleOpenNew()}
             style={{ color: '#ffffff' }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] !text-white text-xs font-semibold transition-all shadow-xs shadow-[#ff6a36]/25 cursor-pointer self-start sm:self-auto shrink-0"
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] !text-white text-xs font-semibold transition-all shadow-xs shadow-[#ff6a36]/25 cursor-pointer w-full sm:w-auto shrink-0"
           >
             <Plus size={15} className="shrink-0" />
             <span>Marcar Evento</span>
@@ -485,80 +485,84 @@ export const CalendarView: React.FC = () => {
       {/* ========================================================
           2. INDICADORES (SECTOR CARDS ESTILO DRAFT & RISE)
       ======================================================== */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
               Total Agendado
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#ffcaa8]/40 text-[#c74418] grid place-items-center">
-              <CalendarCheck size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#ffcaa8]/40 text-[#c74418] grid place-items-center">
+              <CalendarCheck size={14} className="sm:hidden" />
+              <CalendarCheck size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-2">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+          <div className="my-1.5 sm:my-2">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
               {totalUpcoming}
             </div>
           </div>
-          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
-            Eventos e tarefas futuras
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
+            Eventos futuros
           </div>
         </div>
 
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#0284c7]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#0284c7]">
               Mês Selecionado
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#e0f2fe] text-[#0284c7] grid place-items-center">
-              <CalendarIcon size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#e0f2fe] text-[#0284c7] grid place-items-center">
+              <CalendarIcon size={14} className="sm:hidden" />
+              <CalendarIcon size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-2">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#0284c7]">
+          <div className="my-1.5 sm:my-2">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#0284c7]">
               {thisMonthCount}
             </div>
           </div>
-          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
-            Em {MONTH_NAMES[currentMonth]} {currentYear}
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
+            {MONTH_NAMES[currentMonth]} {currentYear}
           </div>
         </div>
 
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#236a50]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#236a50]">
               Reuniões &amp; Produção
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#dcfce7] text-[#236a50] grid place-items-center">
-              <Video size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dcfce7] text-[#236a50] grid place-items-center">
+              <Video size={14} className="sm:hidden" />
+              <Video size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-2">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#236a50]">
+          <div className="my-1.5 sm:my-2">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#236a50]">
               {meetingsAndShootsCount}
             </div>
           </div>
-          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
-            Calls e captação de conteúdo
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
+            Calls e gravações
           </div>
         </div>
 
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#7c3aed]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#7c3aed]">
               Campanhas &amp; Prazos
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#ede9fe] text-[#7c3aed] grid place-items-center">
-              <Flag size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#ede9fe] text-[#7c3aed] grid place-items-center">
+              <Flag size={14} className="sm:hidden" />
+              <Flag size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-2">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#7c3aed]">
+          <div className="my-1.5 sm:my-2">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#7c3aed]">
               {campaignsAndDeliveries}
             </div>
           </div>
-          <div className="pt-2 border-t border-[#d8dddc] text-xs text-[#566266]">
-            Lançamentos e auditorias
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
+            Lançamentos e metas
           </div>
         </div>
       </div>
@@ -566,24 +570,24 @@ export const CalendarView: React.FC = () => {
       {/* ========================================================
           3. BARRA DE NAVEGAÇÃO TEMPORAL (MÊS / ANO / HOJE)
       ======================================================== */}
-      <div className="p-4 rounded-xl border border-[#d8dddc] bg-white flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-2xs">
+      <div className="p-3 sm:p-4 rounded-xl border border-[#d8dddc] bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
         {/* Controlo de Mês com Setas e Dropdowns Rápidos */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <button
-            type="button"
-            onClick={handlePrevMonth}
-            aria-label="Mês anterior"
-            className="p-2 rounded-lg border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#e8ecea] text-[#202d32] transition-colors cursor-pointer"
-          >
-            <ChevronLeft size={16} />
-          </button>
+        <div className="flex items-center justify-between sm:justify-start gap-1 sm:gap-2 w-full sm:w-auto">
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <button
+              type="button"
+              onClick={handlePrevMonth}
+              aria-label="Mês anterior"
+              className="p-1.5 sm:p-2 rounded-lg border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#e8ecea] text-[#202d32] transition-colors cursor-pointer shrink-0"
+            >
+              <ChevronLeft size={15} />
+            </button>
 
-          {/* Seletores de Mês e Ano para saltar meses à frente */}
-          <div className="flex items-center gap-1.5">
+            {/* Seletores de Mês e Ano */}
             <select
               value={currentMonth}
               onChange={(e) => setCurrentMonth(parseInt(e.target.value, 10))}
-              className="py-1.5 px-3 min-w-[130px] rounded-lg border border-[#d8dddc] bg-[#f6f7f4] text-xs font-semibold text-[#202d32] focus:outline-none focus:border-[#ff6a36] cursor-pointer"
+              className="py-1.5 px-2 sm:px-3 w-[114px] sm:w-auto rounded-lg border border-[#d8dddc] bg-[#f6f7f4] text-xs font-semibold text-[#202d32] focus:outline-none focus:border-[#ff6a36] cursor-pointer"
             >
               {MONTH_NAMES.map((m, idx) => (
                 <option key={m} value={idx}>
@@ -595,7 +599,7 @@ export const CalendarView: React.FC = () => {
             <select
               value={currentYear}
               onChange={(e) => setCurrentYear(parseInt(e.target.value, 10))}
-              className="py-1.5 px-3 rounded-lg border border-[#d8dddc] bg-[#f6f7f4] text-xs font-semibold text-[#202d32] focus:outline-none focus:border-[#ff6a36] cursor-pointer font-mono"
+              className="py-1.5 px-1.5 sm:px-2.5 w-[66px] sm:w-auto rounded-lg border border-[#d8dddc] bg-[#f6f7f4] text-xs font-semibold text-[#202d32] focus:outline-none focus:border-[#ff6a36] cursor-pointer font-mono"
             >
               {[2025, 2026, 2027, 2028, 2029, 2030].map(y => (
                 <option key={y} value={y}>
@@ -603,29 +607,29 @@ export const CalendarView: React.FC = () => {
                 </option>
               ))}
             </select>
-          </div>
 
-          <button
-            type="button"
-            onClick={handleNextMonth}
-            aria-label="Próximo mês"
-            className="p-2 rounded-lg border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#e8ecea] text-[#202d32] transition-colors cursor-pointer"
-          >
-            <ChevronRight size={16} />
-          </button>
+            <button
+              type="button"
+              onClick={handleNextMonth}
+              aria-label="Próximo mês"
+              className="p-1.5 sm:p-2 rounded-lg border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#e8ecea] text-[#202d32] transition-colors cursor-pointer shrink-0"
+            >
+              <ChevronRight size={15} />
+            </button>
+          </div>
 
           {/* Botão Hoje */}
           <button
             type="button"
             onClick={handleJumpToToday}
-            className="px-3 py-1.5 rounded-lg border border-[#d8dddc] bg-white hover:bg-[#f6f7f4] text-xs font-medium text-[#566266] transition-colors cursor-pointer"
+            className="px-2.5 sm:px-3 py-1.5 rounded-lg border border-[#d8dddc] bg-white hover:bg-[#f6f7f4] text-xs font-medium text-[#566266] transition-colors cursor-pointer shrink-0"
           >
             Hoje
           </button>
         </div>
 
         {/* Alternador de Lembretes de Clientes */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center pt-2 sm:pt-0 border-t sm:border-t-0 border-[#f0f2ef]">
           <label className="flex items-center gap-2 text-xs font-medium text-[#566266] cursor-pointer select-none">
             <input
               type="checkbox"
@@ -641,8 +645,8 @@ export const CalendarView: React.FC = () => {
       {/* ========================================================
           4. BARRA DE FILTROS & PESQUISA
       ======================================================== */}
-      <div className="p-4 rounded-xl border border-[#d8dddc] bg-white space-y-3 shadow-2xs">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <div className="p-3 sm:p-4 rounded-xl border border-[#d8dddc] bg-white space-y-3 shadow-2xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
           {/* Campo de Pesquisa */}
           <div className="relative flex-1">
             <Search size={14} className="text-[#8c999e] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -665,12 +669,12 @@ export const CalendarView: React.FC = () => {
           </div>
 
           {/* Filtro por Empresa */}
-          <div className="flex items-center gap-2">
-            <Building2 size={14} className="text-[#8c999e]" />
+          <div className="relative w-full sm:w-auto sm:min-w-[200px]">
+            <Building2 size={14} className="text-[#8c999e] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <select
               value={filterCompanyId}
               onChange={(e) => setFilterCompanyId(e.target.value)}
-              className="py-2 px-3 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36] cursor-pointer max-w-xs truncate"
+              className="w-full !pl-8 pr-8 py-2 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36] cursor-pointer truncate"
             >
               <option value="todos">Todas as Empresas</option>
               {db.companies
@@ -684,9 +688,9 @@ export const CalendarView: React.FC = () => {
           </div>
         </div>
 
-        {/* Pílulas de Tipo de Evento (Segmented Control com Alto Contraste) */}
-        <div className="flex items-center gap-1.5 flex-wrap pt-2 border-t border-[#f0f2ef]">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#8c999e] mr-1">
+        {/* Pílulas de Tipo de Evento (Segmented Control com scroll horizontal suave no mobile) */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar pt-2 border-t border-[#f0f2ef]">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-[#8c999e] mr-1 shrink-0">
             Tipo:
           </span>
 
@@ -694,7 +698,7 @@ export const CalendarView: React.FC = () => {
             type="button"
             onClick={() => setFilterType('todos')}
             style={filterType === 'todos' ? { color: '#ffffff' } : undefined}
-            className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
+            className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer shrink-0 ${
               filterType === 'todos'
                 ? 'bg-[#202d32] !text-white'
                 : 'bg-[#f6f7f4] text-[#566266] hover:bg-[#e8ecea]'
@@ -715,7 +719,7 @@ export const CalendarView: React.FC = () => {
                 type="button"
                 onClick={() => setFilterType(typeKey)}
                 style={isSelected ? { color: '#ffffff' } : undefined}
-                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer shrink-0 ${
                   isSelected
                     ? 'bg-[#202d32] !text-white'
                     : 'bg-[#f6f7f4] text-[#566266] hover:bg-[#e8ecea]'
@@ -742,7 +746,7 @@ export const CalendarView: React.FC = () => {
             {WEEK_DAYS.map((dayName, idx) => (
               <div 
                 key={dayName}
-                className={`py-3 text-center text-xs font-bold uppercase tracking-wider ${
+                className={`py-2 sm:py-3 text-center text-[10px] sm:text-xs font-bold uppercase tracking-wider ${
                   idx >= 5 ? 'text-[#8c999e]' : 'text-[#202d32]'
                 }`}
               >
@@ -762,14 +766,14 @@ export const CalendarView: React.FC = () => {
                 <div
                   key={day.dateStr}
                   onClick={() => setSelectedDayDate(day.dateStr)}
-                  className={`min-h-[110px] sm:min-h-[130px] p-2 bg-white flex flex-col justify-between transition-colors group cursor-pointer hover:bg-[#fafbfa] ${
+                  className={`min-h-[58px] sm:min-h-[130px] p-1 sm:p-2 bg-white flex flex-col justify-between transition-colors group cursor-pointer hover:bg-[#fafbfa] ${
                     !day.isCurrentMonth ? 'opacity-40 bg-[#fbfcfb]' : ''
                   }`}
                 >
                   {/* Topo da Célula: Número do Dia + Botão Rápido Add */}
-                  <div className="flex items-center justify-between mb-1">
+                  <div className="flex items-center justify-between mb-0.5 sm:mb-1">
                     <span
-                      className={`text-xs font-semibold inline-flex items-center justify-center w-6 h-6 rounded-full font-mono transition-transform group-hover:scale-105 ${
+                      className={`text-[11px] sm:text-xs font-semibold inline-flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full font-mono transition-transform group-hover:scale-105 ${
                         day.isToday
                           ? 'bg-[#ff6a36] text-white font-bold shadow-xs'
                           : day.isCurrentMonth
@@ -787,14 +791,30 @@ export const CalendarView: React.FC = () => {
                         handleOpenNew(day.dateStr);
                       }}
                       title="Adicionar evento neste dia"
-                      className="opacity-0 group-hover:opacity-100 p-1 text-[#8c999e] hover:text-[#ff6a36] hover:bg-[#ff6a36]/10 rounded-md transition-all"
+                      className="hidden sm:block opacity-0 group-hover:opacity-100 p-1 text-[#8c999e] hover:text-[#ff6a36] hover:bg-[#ff6a36]/10 rounded-md transition-all"
                     >
                       <Plus size={12} />
                     </button>
                   </div>
 
-                  {/* Lista de Pílulas de Eventos no Dia */}
-                  <div className="flex-1 space-y-1 overflow-hidden">
+                  {/* Indicadores Visuais em Ecrãs Pequenos (Mobile: Pontos de Cor) */}
+                  <div className="flex sm:hidden items-center justify-center gap-1 mt-1 flex-wrap">
+                    {dayEvents.slice(0, 3).map(ev => {
+                      const cfg = EVENT_TYPE_CONFIG[ev.type] || EVENT_TYPE_CONFIG.geral;
+                      return (
+                        <span
+                          key={ev.id}
+                          className={`w-1.5 h-1.5 rounded-full ${ev.completed ? 'bg-slate-300' : cfg.dot}`}
+                        />
+                      );
+                    })}
+                    {dayEvents.length > 3 && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#202d32]" />
+                    )}
+                  </div>
+
+                  {/* Lista de Pílulas de Eventos no Dia (Desktop / Ecrãs Médios) */}
+                  <div className="hidden sm:block flex-1 space-y-1 overflow-hidden">
                     {dayEvents.slice(0, maxDisplay).map(ev => {
                       const cfg = EVENT_TYPE_CONFIG[ev.type] || EVENT_TYPE_CONFIG.geral;
                       return (
@@ -1006,7 +1026,7 @@ export const CalendarView: React.FC = () => {
           onClick={() => setSelectedDayDate(null)}
         >
           <div 
-            className="bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-xl border border-[#d8dddc] animate-in fade-in zoom-in-95 duration-150"
+            className="bg-white rounded-2xl max-w-lg w-full p-4 sm:p-6 space-y-4 shadow-xl border border-[#d8dddc] max-h-[92vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-150"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Cabeçalho do Dia */}
@@ -1121,7 +1141,7 @@ export const CalendarView: React.FC = () => {
           onClick={() => setIsFormOpen(false)}
         >
           <div 
-            className="bg-white rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-xl border border-[#d8dddc] animate-in fade-in zoom-in-95 duration-150"
+            className="bg-white rounded-2xl max-w-xl w-full p-4 sm:p-6 space-y-4 shadow-xl border border-[#d8dddc] max-h-[92vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-150"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between pb-3 border-b border-[#d8dddc]">

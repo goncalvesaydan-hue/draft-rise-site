@@ -161,27 +161,28 @@ export const OverviewDashboard: React.FC = () => {
         </div>
       </section>
 
-      {/* Grid de 4 Indicadores Operacionais — Estilo Sector-Card */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Grid de 4 Indicadores Operacionais — Estilo Sector-Card Responsivo */}
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {/* Clientes Ativos */}
         <div 
           onClick={() => setActiveTab('clientes')}
-          className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#ff6a36] transition-all cursor-pointer flex flex-col justify-between"
+          className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#ff6a36] transition-all cursor-pointer flex flex-col justify-between"
         >
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
               Carteira Ativa
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
-              <Users size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
+              <Users size={14} className="sm:hidden" />
+              <Users size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-3">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+          <div className="my-1.5 sm:my-3">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
               {activeClients.length}
             </div>
           </div>
-          <div className="pt-3 border-t border-[#d8dddc] flex items-center justify-between text-xs text-[#566266]">
+          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] flex items-center justify-between text-[10px] sm:text-xs text-[#566266]">
             <span>{paidClients.length} em dia</span>
             <span className="font-semibold text-[#202d32]">{paidPercentage}% regular</span>
           </div>
@@ -190,67 +191,70 @@ export const OverviewDashboard: React.FC = () => {
         {/* Faturação Recorrente (MRR) */}
         <div 
           onClick={() => setActiveTab('financeiro')}
-          className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#236a50] transition-all cursor-pointer flex flex-col justify-between"
+          className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#236a50] transition-all cursor-pointer flex flex-col justify-between"
         >
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
               Avenças Mensais
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
-              <BadgeEuro size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
+              <BadgeEuro size={14} className="sm:hidden" />
+              <BadgeEuro size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-3">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+          <div className="my-1.5 sm:my-3">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
               {formatCurrency(totalMrr)}
             </div>
           </div>
-          <div className="pt-3 border-t border-[#d8dddc] flex items-center justify-between text-xs text-[#566266]">
-            <span>Anualizado (ARR):</span>
-            <span className="font-semibold text-[#202d32]">{formatCurrency(annualProjection)}</span>
+          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] flex items-center justify-between text-[10px] sm:text-xs text-[#566266]">
+            <span>ARR:</span>
+            <span className="font-semibold text-[#202d32] truncate">{formatCurrency(annualProjection)}</span>
           </div>
         </div>
 
         {/* Funil de Prospecção */}
         <div 
           onClick={() => setActiveTab('prospeccao')}
-          className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#ff6a36] transition-all cursor-pointer flex flex-col justify-between"
+          className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#ff6a36] transition-all cursor-pointer flex flex-col justify-between"
         >
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
               Em Negociação
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
-              <Target size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
+              <Target size={14} className="sm:hidden" />
+              <Target size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-3">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+          <div className="my-1.5 sm:my-3">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
               {prospects.length}
             </div>
           </div>
-          <div className="pt-3 border-t border-[#d8dddc] flex items-center justify-between text-xs text-[#566266]">
+          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] flex items-center justify-between text-[10px] sm:text-xs text-[#566266]">
             <span>Conversão:</span>
             <span className="font-semibold text-[#202d32]">{conversionRate}%</span>
           </div>
         </div>
 
         {/* Alertas */}
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
               Atenção Requerida
             </span>
-            <div className="w-8 h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
-              <AlertTriangle size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
+              <AlertTriangle size={14} className="sm:hidden" />
+              <AlertTriangle size={16} className="hidden sm:block" />
             </div>
           </div>
-          <div className="my-3">
-            <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+          <div className="my-1.5 sm:my-3">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
               {latePosts.length + overdueReminders.length}
             </div>
           </div>
-          <div className="pt-3 border-t border-[#d8dddc] flex items-center justify-between text-xs text-[#566266]">
+          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] flex items-center justify-between text-[10px] sm:text-xs text-[#566266]">
             <span>{latePosts.length} posts atrasados</span>
             <span>{overdueReminders.length} lembretes</span>
           </div>
