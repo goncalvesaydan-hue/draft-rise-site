@@ -455,18 +455,18 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* Cartão 1: Dados Cadastrais & Contactos */}
-              <div className="p-5 rounded-xl border border-[#d8dddc] bg-white shadow-xs space-y-4">
-                <div className="border-b border-[#d8dddc] pb-3 flex items-center justify-between">
+              <div className="p-5 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs space-y-4">
+                <div className="border-b border-[#d8dddc] dark:border-[#2a3a41] pb-3 flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                       Canais Diretos
                     </span>
-                    <h3 className="text-sm font-semibold text-[#202d32]">Ficha &amp; Contactos</h3>
+                    <h3 className="text-sm font-semibold text-[#202d32] dark:text-[#f5f7f7]">Ficha &amp; Contactos</h3>
                   </div>
 
                   <button
                     onClick={() => setIsEditingInfo(!isEditingInfo)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#d8dddc] bg-[#f6f7f4] hover:bg-white hover:border-[#ff6a36] hover:text-[#ff6a36] text-xs font-semibold text-[#202d32] transition-colors cursor-pointer shadow-xs"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#141c20] hover:bg-white dark:hover:bg-[#25353d] hover:border-[#ff6a36] hover:text-[#ff6a36] text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] transition-colors cursor-pointer shadow-xs"
                   >
                     <Edit3 size={12} />
                     <span>{isEditingInfo ? 'Fechar Edição' : 'Editar Ficha'}</span>
@@ -476,110 +476,111 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                 {isEditingInfo ? (
                   <form onSubmit={handleSaveInfo} className="space-y-3 pt-1">
                     <div>
-                      <label className="block text-[11px] font-semibold text-[#566266] uppercase mb-1">Nome da Empresa</label>
+                      <label className="block text-[11px] font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase mb-1">Nome da Empresa</label>
                       <input
                         type="text"
                         value={editName}
                         onChange={(e) => setEditName(e.target.value)}
-                        className="w-full p-2 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs font-semibold text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                        className="w-full p-2 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                         required
                       />
                     </div>
 
                     <div className="grid grid-cols-2 gap-2">
                       <div>
-                        <label className="block text-[11px] font-semibold text-[#566266] uppercase mb-1">Categoria / Nicho</label>
+                        <label className="block text-[11px] font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase mb-1">Categoria / Nicho</label>
                         <input
                           type="text"
                           value={editCategory}
                           onChange={(e) => setEditCategory(e.target.value)}
-                          className="w-full p-2 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                          className="w-full p-2 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                         />
                       </div>
                       <div>
-                        <label className="block text-[11px] font-semibold text-[#566266] uppercase mb-1">Cidade</label>
+                        <label className="block text-[11px] font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase mb-1">Cidade</label>
                         <input
                           type="text"
                           value={editCity}
                           onChange={(e) => setEditCity(e.target.value)}
-                          className="w-full p-2 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                          className="w-full p-2 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-2">
                       <div>
-                        <label className="block text-[11px] font-semibold text-[#566266] uppercase mb-1">Telefone</label>
+                        <label className="block text-[11px] font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase mb-1">Telefone</label>
                         <input
                           type="text"
                           value={editPhone}
                           onChange={(e) => setEditPhone(e.target.value)}
-                          className="w-full p-2 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                          className="w-full p-2 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                         />
                       </div>
                       <div>
-                        <label className="block text-[11px] font-semibold text-[#566266] uppercase mb-1">WhatsApp</label>
+                        <label className="block text-[11px] font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase mb-1">WhatsApp</label>
                         <input
                           type="text"
                           value={editWhatsapp}
                           onChange={(e) => setEditWhatsapp(e.target.value)}
-                          className="w-full p-2 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                          className="w-full p-2 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-2">
                       <div>
-                        <label className="block text-[11px] font-semibold text-[#566266] uppercase mb-1">Website</label>
+                        <label className="block text-[11px] font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase mb-1">Website</label>
                         <input
                           type="text"
                           value={editWebsite}
                           onChange={(e) => setEditWebsite(e.target.value)}
-                          className="w-full p-2 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                          className="w-full p-2 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                         />
                       </div>
                       <div>
-                        <label className="block text-[11px] font-semibold text-[#566266] uppercase mb-1">Cadência Posts (dias)</label>
+                        <label className="block text-[11px] font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase mb-1">Cadência Posts (dias)</label>
                         <input
                           type="number"
                           min={1}
                           max={30}
                           value={editCadence}
                           onChange={(e) => setEditCadence(Number(e.target.value))}
-                          className="w-full p-2 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                          className="w-full p-2 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                         />
                       </div>
                     </div>
 
-                    <div className="flex justify-end gap-2 pt-2 border-t border-[#d8dddc]">
+                    <div className="flex justify-end gap-2 pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41]">
                       <button
                         type="button"
                         onClick={() => setIsEditingInfo(false)}
-                        className="px-3.5 py-1.5 rounded-full border border-[#d8dddc] text-xs text-[#566266] hover:bg-[#f6f7f4] cursor-pointer"
+                        className="px-3.5 py-1.5 rounded-full border border-[#d8dddc] dark:border-[#2a3a41] text-xs text-[#566266] dark:text-[#9cb0b7] hover:bg-[#f6f7f4] dark:hover:bg-[#141c20] cursor-pointer"
                       >
                         Cancelar
                       </button>
                       <button
                         type="submit"
-                        className="px-4 py-1.5 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] text-white text-xs font-semibold cursor-pointer shadow-xs"
+                        style={{ color: '#ffffff' }}
+                        className="px-4 py-1.5 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] !text-white text-xs font-semibold cursor-pointer shadow-xs"
                       >
                         Guardar Alterações
                       </button>
                     </div>
                   </form>
                 ) : (
-                  <div className="space-y-3.5 text-xs text-[#202d32]">
-                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#f6f7f4] border border-[#d8dddc]">
-                      <span className="text-[#566266] flex items-center gap-1.5">
+                  <div className="space-y-3.5 text-xs text-[#202d32] dark:text-[#f5f7f7]">
+                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41]">
+                      <span className="text-[#566266] dark:text-[#9cb0b7] flex items-center gap-1.5">
                         <Phone size={13} className="text-[#ff6a36]" />
                         Telefone:
                       </span>
                       <span className="font-mono font-medium">{company.phone || '—'}</span>
                     </div>
 
-                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#f6f7f4] border border-[#d8dddc]">
-                      <span className="text-[#566266] flex items-center gap-1.5">
-                        <MessageSquare size={13} className="text-[#236a50]" />
+                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41]">
+                      <span className="text-[#566266] dark:text-[#9cb0b7] flex items-center gap-1.5">
+                        <MessageSquare size={13} className="text-[#236a50] dark:text-[#34b785]" />
                         WhatsApp:
                       </span>
                       {company.whatsapp ? (
@@ -587,18 +588,18 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                           href={getWhatsAppLink(`Olá ${company.name}, da equipa Draft & Rise!`)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#236a50] hover:text-[#1b523e] font-mono font-bold underline inline-flex items-center gap-1"
+                          className="text-[#236a50] dark:text-[#34b785] hover:text-[#1b523e] dark:hover:text-[#4ade80] font-mono font-bold underline inline-flex items-center gap-1"
                         >
                           <span>{company.whatsapp}</span>
                           <ArrowUpRight size={12} />
                         </a>
                       ) : (
-                        <span className="text-[#8c999e]">—</span>
+                        <span className="text-[#8c999e] dark:text-[#70848c]">—</span>
                       )}
                     </div>
 
-                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#f6f7f4] border border-[#d8dddc]">
-                      <span className="text-[#566266] flex items-center gap-1.5">
+                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41]">
+                      <span className="text-[#566266] dark:text-[#9cb0b7] flex items-center gap-1.5">
                         <Globe size={13} className="text-[#ff6a36]" />
                         Website:
                       </span>
@@ -610,7 +611,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                               href={safe}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-[#202d32] hover:text-[#ff6a36] underline truncate max-w-[220px] font-medium inline-flex items-center gap-1"
+                              className="text-[#202d32] dark:text-[#f5f7f7] hover:text-[#ff6a36] underline truncate max-w-[220px] font-medium inline-flex items-center gap-1"
                             >
                               <span className="truncate">{company.website}</span>
                               <ExternalLink size={12} className="shrink-0" />
@@ -618,26 +619,26 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                           );
                         }
                         if (company.website) {
-                          return <span className="text-[#202d32] truncate max-w-[220px] font-medium">{company.website}</span>;
+                          return <span className="text-[#202d32] dark:text-[#f5f7f7] truncate max-w-[220px] font-medium">{company.website}</span>;
                         }
-                        return <span className="text-[#8c999e]">—</span>;
+                        return <span className="text-[#8c999e] dark:text-[#70848c]">—</span>;
                       })()}
                     </div>
 
-                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#f6f7f4] border border-[#d8dddc]">
-                      <span className="text-[#566266] flex items-center gap-1.5">
+                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41]">
+                      <span className="text-[#566266] dark:text-[#9cb0b7] flex items-center gap-1.5">
                         <Clock size={13} className="text-[#ff6a36]" />
                         Cadência Google:
                       </span>
-                      <span className="font-semibold text-[#202d32]">A cada {company.cadence || 7} dias</span>
+                      <span className="font-semibold text-[#202d32] dark:text-[#f5f7f7]">A cada {company.cadence || 7} dias</span>
                     </div>
                   </div>
                 )}
 
                 {/* Etiquetas / Tags com Gestor Visual */}
-                <div className="pt-3 border-t border-[#d8dddc]">
+                <div className="pt-3 border-t border-[#d8dddc] dark:border-[#2a3a41]">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#8c999e]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#8c999e] dark:text-[#70848c]">
                       Etiquetas / Segmentos
                     </span>
                     <button
@@ -652,20 +653,20 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                     {tags.map(t => t && (
                       <span 
                         key={t.id} 
-                        className="px-2.5 py-1 rounded-full text-[11px] font-semibold border border-[#d8dddc] bg-[#f6f7f4] text-[#202d32] inline-flex items-center gap-1.5"
+                        className="px-2.5 py-1 rounded-full text-[11px] font-semibold border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#141c20] text-[#202d32] dark:text-[#f5f7f7] inline-flex items-center gap-1.5"
                       >
                         <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: t.color || '#ff6a36' }} />
                         <span>{t.name}</span>
                       </span>
                     ))}
                     {tags.length === 0 && !isTagManagerOpen && (
-                      <span className="text-[11px] text-[#8c999e]">Nenhuma etiqueta atribuída.</span>
+                      <span className="text-[11px] text-[#8c999e] dark:text-[#70848c]">Nenhuma etiqueta atribuída.</span>
                     )}
                   </div>
 
                   {isTagManagerOpen && (
-                    <div className="mt-3 p-3 bg-[#f6f7f4] rounded-lg border border-[#d8dddc] space-y-2">
-                      <div className="text-[10px] font-bold uppercase text-[#566266]">Clica para associar/remover:</div>
+                    <div className="mt-3 p-3 bg-[#f6f7f4] dark:bg-[#141c20] rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] space-y-2">
+                      <div className="text-[10px] font-bold uppercase text-[#566266] dark:text-[#9cb0b7]">Clica para associar/remover:</div>
                       <div className="flex flex-wrap gap-1.5">
                         {db.tags.map(t => {
                           const isAssigned = (company.tagIds || []).includes(t.id);
@@ -676,8 +677,8 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                               onClick={() => toggleCompanyTag(company.id, t.id)}
                               className={`px-3 py-1 rounded-full text-xs font-semibold cursor-pointer border transition-colors ${
                                 isAssigned 
-                                  ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs' 
-                                  : 'bg-white border-[#d8dddc] text-[#566266] hover:border-[#ff6a36]'
+                                  ? 'bg-[#ff6a36] !text-white border-[#ff6a36] shadow-xs' 
+                                  : 'bg-white dark:bg-[#1c272c] border-[#d8dddc] dark:border-[#2a3a41] text-[#566266] dark:text-[#9cb0b7] hover:border-[#ff6a36]'
                               }`}
                             >
                               {isAssigned ? '✓ ' : '+ '}{t.name}
@@ -692,15 +693,15 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
 
               {/* Cartão 2: Comunicações Estratégicas WhatsApp */}
               <div className="space-y-4">
-                <div className="p-5 rounded-xl border border-[#d8dddc] bg-white shadow-xs space-y-3">
-                  <div className="border-b border-[#d8dddc] pb-2 flex items-center justify-between">
+                <div className="p-5 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs space-y-3">
+                  <div className="border-b border-[#d8dddc] dark:border-[#2a3a41] pb-2 flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                         Agilidade Operacional
                       </span>
-                      <h3 className="text-sm font-semibold text-[#202d32]">Mensagens Rápidas WhatsApp</h3>
+                      <h3 className="text-sm font-semibold text-[#202d32] dark:text-[#f5f7f7]">Mensagens Rápidas WhatsApp</h3>
                     </div>
-                    <span className="text-[11px] text-[#236a50] font-semibold bg-[#236a50]/10 px-2 py-0.5 rounded-full">
+                    <span className="text-[11px] text-[#236a50] dark:text-[#34b785] font-semibold bg-[#236a50]/10 dark:bg-[#236a50]/20 px-2 py-0.5 rounded-full">
                       1-Clique
                     </span>
                   </div>
@@ -710,13 +711,13 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                       href={getWhatsAppLink(`Olá ${company.name}, da equipa Draft & Rise! Estamos a preparar as próximas publicações no vosso Perfil do Google. Têm fotografias de trabalhos recentes ou novidades que queiram destacar esta semana?`)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-lg border border-[#d8dddc] bg-[#f6f7f4] hover:bg-white hover:border-[#ff6a36] transition-colors block text-xs group shadow-2xs"
+                      className="p-3 rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#141c20] hover:bg-white dark:hover:bg-[#202d32] hover:border-[#ff6a36] transition-colors block text-xs group shadow-2xs"
                     >
-                      <div className="font-semibold text-[#202d32] group-hover:text-[#ff6a36] flex items-center justify-between">
+                      <div className="font-semibold text-[#202d32] dark:text-[#f5f7f7] group-hover:text-[#ff6a36] flex items-center justify-between">
                         <span>Solicitar fotos e novidades da semana</span>
                         <ArrowUpRight size={13} className="text-[#8c999e] group-hover:text-[#ff6a36]" />
                       </div>
-                      <p className="text-[11px] text-[#566266] mt-1 line-clamp-1">
+                      <p className="text-[11px] text-[#566266] dark:text-[#9cb0b7] mt-1 line-clamp-1">
                         Pedido amigável de fotos de trabalhos para publicação no Google...
                       </p>
                     </a>
@@ -725,13 +726,13 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                       href={getWhatsAppLink(`Olá ${company.name}! Informamos que foi registada uma nova avaliação no vosso Perfil do Google Maps. A resposta recomendada já se encontra preparada de acordo com as diretrizes da Draft & Rise.`)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-lg border border-[#d8dddc] bg-[#f6f7f4] hover:bg-white hover:border-[#ff6a36] transition-colors block text-xs group shadow-2xs"
+                      className="p-3 rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#141c20] hover:bg-white dark:hover:bg-[#202d32] hover:border-[#ff6a36] transition-colors block text-xs group shadow-2xs"
                     >
-                      <div className="font-semibold text-[#202d32] group-hover:text-[#ff6a36] flex items-center justify-between">
+                      <div className="font-semibold text-[#202d32] dark:text-[#f5f7f7] group-hover:text-[#ff6a36] flex items-center justify-between">
                         <span>Notificar nova avaliação no Google Maps</span>
                         <ArrowUpRight size={13} className="text-[#8c999e] group-hover:text-[#ff6a36]" />
                       </div>
-                      <p className="text-[11px] text-[#566266] mt-1 line-clamp-1">
+                      <p className="text-[11px] text-[#566266] dark:text-[#9cb0b7] mt-1 line-clamp-1">
                         Aviso prévio e recomendação de alinhamento com a avaliação...
                       </p>
                     </a>
@@ -740,13 +741,13 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                       href={getWhatsAppLink(`Olá ${company.name}, da equipa Draft & Rise! Notámos uma subida relevante das vossas posições no ranking de pesquisas locais no Google Maps. Partilharemos o resumo completo no próximo relatório.`)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-lg border border-[#d8dddc] bg-[#f6f7f4] hover:bg-white hover:border-[#ff6a36] transition-colors block text-xs group shadow-2xs"
+                      className="p-3 rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#141c20] hover:bg-white dark:hover:bg-[#202d32] hover:border-[#ff6a36] transition-colors block text-xs group shadow-2xs"
                     >
-                      <div className="font-semibold text-[#202d32] group-hover:text-[#ff6a36] flex items-center justify-between">
+                      <div className="font-semibold text-[#202d32] dark:text-[#f5f7f7] group-hover:text-[#ff6a36] flex items-center justify-between">
                         <span>Notificar subida de posições no Maps</span>
                         <ArrowUpRight size={13} className="text-[#8c999e] group-hover:text-[#ff6a36]" />
                       </div>
-                      <p className="text-[11px] text-[#566266] mt-1 line-clamp-1">
+                      <p className="text-[11px] text-[#566266] dark:text-[#9cb0b7] mt-1 line-clamp-1">
                         Partilha de boas notícias sobre ganhos de visibilidade local...
                       </p>
                     </a>
@@ -756,13 +757,13 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                         href={getWhatsAppLink(`Olá ${company.name}! Da equipa Draft & Rise, enviamos este lembrete relativo ao vencimento da avença mensal de ${formatCurrency(company.monthlyFee)} (vencimento dia ${company.dueDay || 5}). Caso já tenham efetuado, por favor desconsiderem. Muito obrigado!`)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-3 rounded-lg border border-[#236a50]/40 bg-[#236a50]/5 hover:bg-[#236a50]/10 transition-colors block text-xs group shadow-2xs"
+                        className="p-3 rounded-lg border border-[#236a50]/40 dark:border-[#236a50]/50 bg-[#236a50]/5 dark:bg-[#236a50]/10 hover:bg-[#236a50]/15 transition-colors block text-xs group shadow-2xs"
                       >
-                        <div className="font-semibold text-[#236a50] flex items-center justify-between">
+                        <div className="font-semibold text-[#236a50] dark:text-[#34b785] flex items-center justify-between">
                           <span>Lembrete amigável de avença mensal</span>
-                          <ArrowUpRight size={13} className="text-[#236a50]" />
+                          <ArrowUpRight size={13} className="text-[#236a50] dark:text-[#34b785]" />
                         </div>
-                        <p className="text-[11px] text-[#566266] mt-1 line-clamp-1">
+                        <p className="text-[11px] text-[#566266] dark:text-[#9cb0b7] mt-1 line-clamp-1">
                           Aviso prévio cordeal do valor de {formatCurrency(company.monthlyFee)}...
                         </p>
                       </a>
@@ -771,33 +772,33 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                 </div>
 
                 {/* Estimativa de Impacto */}
-                <div className="p-4 rounded-xl border border-[#d8dddc] bg-white shadow-xs">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] block mb-2">
+                <div className="p-4 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66] block mb-2">
                     Potencial de Impacto Local
                   </span>
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="p-3 rounded-lg bg-[#f6f7f4] border border-[#d8dddc]">
-                      <div className="text-[10px] text-[#566266] uppercase font-semibold">Pesquisas no Nicho</div>
-                      <div className="font-bold text-base text-[#202d32] mt-0.5">~1.800/mês</div>
+                    <div className="p-3 rounded-lg bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41]">
+                      <div className="text-[10px] text-[#566266] dark:text-[#9cb0b7] uppercase font-semibold">Pesquisas no Nicho</div>
+                      <div className="font-bold text-base text-[#202d32] dark:text-[#f5f7f7] mt-0.5">~1.800/mês</div>
                     </div>
-                    <div className="p-3 rounded-lg bg-[#f6f7f4] border border-[#d8dddc]">
-                      <div className="text-[10px] text-[#566266] uppercase font-semibold">Chamadas &amp; Rotas</div>
-                      <div className="font-bold text-base text-[#236a50] mt-0.5">~140 a 220</div>
+                    <div className="p-3 rounded-lg bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41]">
+                      <div className="text-[10px] text-[#566266] dark:text-[#9cb0b7] uppercase font-semibold">Chamadas &amp; Rotas</div>
+                      <div className="font-bold text-base text-[#236a50] dark:text-[#34b785] mt-0.5">~140 a 220</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Lembretes e Pendências da Empresa */}
-              <div className="md:col-span-2 p-5 rounded-xl border border-[#d8dddc] bg-white shadow-xs space-y-3">
-                <div className="border-b border-[#d8dddc] pb-2 flex items-center justify-between">
+              <div className="md:col-span-2 p-5 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs space-y-3">
+                <div className="border-b border-[#d8dddc] dark:border-[#2a3a41] pb-2 flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                       Acompanhamento
                     </span>
-                    <h3 className="text-sm font-semibold text-[#202d32]">Lembretes &amp; Tarefas Desta Empresa</h3>
+                    <h3 className="text-sm font-semibold text-[#202d32] dark:text-[#f5f7f7]">Lembretes &amp; Tarefas Desta Empresa</h3>
                   </div>
-                  <span className="text-xs font-semibold text-[#566266] bg-[#f6f7f4] px-2.5 py-0.5 rounded-full border border-[#d8dddc]">
+                  <span className="text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] bg-[#f6f7f4] dark:bg-[#141c20] px-2.5 py-0.5 rounded-full border border-[#d8dddc] dark:border-[#2a3a41]">
                     {company.reminders.filter(r => !r.done).length} pendentes
                   </span>
                 </div>
@@ -807,14 +808,16 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                     <div 
                       key={r.id} 
                       className={`p-3 rounded-lg border flex items-center justify-between gap-3 text-xs transition-colors ${
-                        r.done ? 'bg-[#fcfcfa] border-[#d8dddc] opacity-60' : 'bg-[#f6f7f4] border-[#d8dddc]'
+                        r.done 
+                          ? 'bg-[#fcfcfa] dark:bg-[#141c20]/60 border-[#d8dddc] dark:border-[#2a3a41] opacity-60' 
+                          : 'bg-[#f6f7f4] dark:bg-[#141c20] border-[#d8dddc] dark:border-[#2a3a41]'
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
-                        <span className="font-mono text-[11px] font-semibold text-[#b5431c] bg-white px-2 py-0.5 rounded border border-[#d8dddc]">
+                        <span className="font-mono text-[11px] font-semibold text-[#b5431c] dark:text-[#ff8f66] bg-white dark:bg-[#1c272c] px-2 py-0.5 rounded border border-[#d8dddc] dark:border-[#2a3a41]">
                           {formatDateOnly(r.due)}
                         </span>
-                        <span className={r.done ? 'line-through text-[#8c999e]' : 'text-[#202d32] font-medium'}>
+                        <span className={r.done ? 'line-through text-[#8c999e] dark:text-[#70848c]' : 'text-[#202d32] dark:text-[#f5f7f7] font-medium'}>
                           {r.note}
                         </span>
                       </div>
@@ -824,34 +827,35 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                           const updated = company.reminders.map(x => x.id === r.id ? { ...x, done: !x.done } : x);
                           updateCompany(company.id, { reminders: updated });
                         }}
-                        className="px-3 py-1 rounded-full text-xs font-semibold border border-[#d8dddc] bg-white hover:border-[#ff6a36] hover:text-[#ff6a36] transition-colors cursor-pointer shadow-xs"
+                        className="px-3 py-1 rounded-full text-xs font-semibold border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] hover:border-[#ff6a36] hover:text-[#ff6a36] text-[#202d32] dark:text-[#f5f7f7] transition-colors cursor-pointer shadow-xs"
                       >
                         {r.done ? 'Reabrir' : 'Concluir'}
                       </button>
                     </div>
                   ))}
                   {company.reminders.length === 0 && (
-                    <p className="text-xs text-[#8c999e] py-4 text-center">Nenhum lembrete registado para esta empresa.</p>
+                    <p className="text-xs text-[#8c999e] dark:text-[#70848c] py-4 text-center">Nenhum lembrete registado para esta empresa.</p>
                   )}
                 </div>
 
-                <form onSubmit={handleAddReminder} className="grid grid-cols-[140px_1fr_auto] gap-2 pt-3 border-t border-[#d8dddc]">
+                <form onSubmit={handleAddReminder} className="grid grid-cols-[140px_1fr_auto] gap-2 pt-3 border-t border-[#d8dddc] dark:border-[#2a3a41]">
                   <input
                     type="date"
                     value={newReminderDue}
                     onChange={(e) => setNewReminderDue(e.target.value)}
-                    className="w-full p-2 text-xs bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                    className="w-full p-2 text-xs bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                   />
                   <input
                     type="text"
                     placeholder="Adicionar novo lembrete com prazo..."
                     value={newReminderNote}
                     onChange={(e) => setNewReminderNote(e.target.value)}
-                    className="w-full p-2 text-xs bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                    className="w-full p-2 text-xs bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                   />
                   <button 
                     type="submit" 
-                    className="px-4 py-2 bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] text-white rounded-lg text-xs font-semibold shadow-xs shadow-[#ff6a36]/20 transition-all cursor-pointer whitespace-nowrap"
+                    style={{ color: '#ffffff' }}
+                    className="px-4 py-2 bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] !text-white rounded-lg text-xs font-semibold shadow-xs shadow-[#ff6a36]/20 transition-all cursor-pointer whitespace-nowrap"
                   >
                     Adicionar
                   </button>
@@ -866,13 +870,13 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
           {activeTab === 'relatorio' && (
             <div className="space-y-6 max-w-3xl mx-auto">
               {/* Barra de Ações Rápidas */}
-              <div className="p-5 rounded-xl border border-[#d8dddc] bg-white shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="p-5 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                     Comunicação com o Cliente
                   </span>
-                  <h3 className="text-base font-semibold text-[#202d32]">Relatório de Desempenho Local</h3>
-                  <p className="text-xs text-[#566266] mt-0.5">
+                  <h3 className="text-base font-semibold text-[#202d32] dark:text-[#f5f7f7]">Relatório de Desempenho Local</h3>
+                  <p className="text-xs text-[#566266] dark:text-[#9cb0b7] mt-0.5">
                     Resumo executivo oficial pronto para partilha no WhatsApp ou impressão.
                   </p>
                 </div>
@@ -880,7 +884,8 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                 <div className="flex items-center gap-2 flex-wrap">
                   <button
                     onClick={handleCopyReport}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] text-white text-xs font-semibold shadow-xs shadow-[#ff6a36]/20 cursor-pointer transition-all"
+                    style={{ color: '#ffffff' }}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] !text-white text-xs font-semibold shadow-xs shadow-[#ff6a36]/20 cursor-pointer transition-all"
                   >
                     {copiedReport ? <Check size={14} /> : <Copy size={14} />}
                     <span>{copiedReport ? 'Copiado!' : 'Copiar Texto'}</span>
@@ -891,7 +896,8 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                       href={getWhatsAppLink(generateReportText())}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#236a50] hover:bg-[#1b523e] text-white text-xs font-semibold shadow-xs cursor-pointer transition-all"
+                      style={{ color: '#ffffff' }}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#236a50] hover:bg-[#1b523e] !text-white text-xs font-semibold shadow-xs cursor-pointer transition-all"
                     >
                       <MessageSquare size={14} />
                       <span>Abrir no WhatsApp</span>
@@ -900,7 +906,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
 
                   <button
                     onClick={() => window.print()}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white hover:bg-[#f6f7f4] border border-[#d8dddc] hover:border-[#ff6a36] text-[#202d32] text-xs font-semibold shadow-xs cursor-pointer transition-all"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white dark:bg-[#141c20] hover:bg-[#f6f7f4] dark:hover:bg-[#202d32] border border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] text-[#202d32] dark:text-[#f5f7f7] text-xs font-semibold shadow-xs cursor-pointer transition-all"
                   >
                     <Printer size={14} />
                     <span>Imprimir</span>
@@ -909,9 +915,9 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
               </div>
 
               {/* Carta Executiva de Desempenho Visual */}
-              <div className="bg-white rounded-2xl border border-[#d8dddc] shadow-sm overflow-hidden">
+              <div className="bg-white dark:bg-[#1c272c] rounded-2xl border border-[#d8dddc] dark:border-[#2a3a41] shadow-sm overflow-hidden">
                 {/* Cabeçalho da Carta */}
-                <div className="p-6 bg-[#202d32] text-white border-b border-[#35454b]">
+                <div className="p-6 bg-[#202d32] dark:bg-[#0f1517] text-white border-b border-[#35454b] dark:border-[#2a3a41]">
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-[10px] font-bold uppercase tracking-widest text-[#ff6a36]">
@@ -932,30 +938,30 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                 </div>
 
                 {/* 3 Blocos de Destaque Visual */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[#d8dddc] border-b border-[#d8dddc] bg-[#f6f7f4]">
+                <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[#d8dddc] dark:divide-[#2a3a41] border-b border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#162024]">
                   <div className="p-4 sm:p-5">
-                    <span className="text-[10px] font-bold uppercase text-[#566266] tracking-wider block">
+                    <span className="text-[10px] font-bold uppercase text-[#566266] dark:text-[#9cb0b7] tracking-wider block">
                       Otimização Google
                     </span>
-                    <div className="text-2xl font-bold text-[#202d32] mt-1">
+                    <div className="text-2xl font-bold text-[#202d32] dark:text-[#f5f7f7] mt-1">
                       {checklistPct}%
                     </div>
-                    <div className="h-1.5 w-full bg-[#d8dddc] rounded-full overflow-hidden mt-2">
-                      <div style={{ width: `${checklistPct}%` }} className="h-full bg-[#236a50] rounded-full" />
+                    <div className="h-1.5 w-full bg-[#d8dddc] dark:bg-[#2a3a41] rounded-full overflow-hidden mt-2">
+                      <div style={{ width: `${checklistPct}%` }} className="h-full bg-[#236a50] dark:bg-[#34b785] rounded-full" />
                     </div>
-                    <span className="text-[11px] text-[#566266] mt-1 block">
+                    <span className="text-[11px] text-[#566266] dark:text-[#9cb0b7] mt-1 block">
                       {doneChecklist} de {totalChecklist} requisitos cumpridos
                     </span>
                   </div>
 
                   <div className="p-4 sm:p-5">
-                    <span className="text-[10px] font-bold uppercase text-[#566266] tracking-wider block">
+                    <span className="text-[10px] font-bold uppercase text-[#566266] dark:text-[#9cb0b7] tracking-wider block">
                       Palavras no Maps
                     </span>
-                    <div className="text-2xl font-bold text-[#202d32] mt-1">
+                    <div className="text-2xl font-bold text-[#202d32] dark:text-[#f5f7f7] mt-1">
                       {company.rankings.length}
                     </div>
-                    <span className="text-[11px] text-[#236a50] font-semibold mt-2 block">
+                    <span className="text-[11px] text-[#236a50] dark:text-[#34b785] font-semibold mt-2 block">
                       {company.rankings.filter(r => r.pos <= 3).length > 0
                         ? `${company.rankings.filter(r => r.pos <= 3).length} no Top 3 Maps`
                         : 'Em monitorização contínua'}
@@ -963,13 +969,13 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                   </div>
 
                   <div className="p-4 sm:p-5">
-                    <span className="text-[10px] font-bold uppercase text-[#566266] tracking-wider block">
+                    <span className="text-[10px] font-bold uppercase text-[#566266] dark:text-[#9cb0b7] tracking-wider block">
                       Cadência de Posts
                     </span>
-                    <div className="text-2xl font-bold text-[#202d32] mt-1">
+                    <div className="text-2xl font-bold text-[#202d32] dark:text-[#f5f7f7] mt-1">
                       {company.cadence || 7} dias
                     </div>
-                    <span className="text-[11px] text-[#566266] mt-2 block">
+                    <span className="text-[11px] text-[#566266] dark:text-[#9cb0b7] mt-2 block">
                       {company.posts.length} publicações registadas
                     </span>
                   </div>
@@ -979,16 +985,16 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                 <div className="p-6 space-y-5">
                   {/* Rankings Maps */}
                   <div>
-                    <h5 className="text-xs font-bold uppercase tracking-wider text-[#b5431c] mb-2">
+                    <h5 className="text-xs font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66] mb-2">
                       Posicionamentos no Google Maps
                     </h5>
                     {company.rankings.length > 0 ? (
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {company.rankings.map(r => (
-                          <div key={r.id} className="p-3 rounded-lg border border-[#d8dddc] bg-[#fcfcfa] flex items-center justify-between">
-                            <span className="text-xs font-semibold text-[#202d32]">{r.kw}</span>
+                          <div key={r.id} className="p-3 rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] bg-[#fcfcfa] dark:bg-[#141c20] flex items-center justify-between">
+                            <span className="text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7]">{r.kw}</span>
                             <span className={`px-2 py-0.5 rounded text-xs font-bold ${
-                              r.pos <= 3 ? 'bg-[#236a50] text-white' : 'bg-[#f6f7f4] border border-[#d8dddc] text-[#202d32]'
+                              r.pos <= 3 ? 'bg-[#236a50] text-white' : 'bg-[#f6f7f4] dark:bg-[#1c272c] border border-[#d8dddc] dark:border-[#2a3a41] text-[#202d32] dark:text-[#f5f7f7]'
                             }`}>
                               #{r.pos}
                             </span>
@@ -996,7 +1002,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                         ))}
                       </div>
                     ) : (
-                      <div className="p-3 rounded-lg bg-[#f6f7f4] border border-[#d8dddc] text-xs text-[#566266]">
+                      <div className="p-3 rounded-lg bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] text-xs text-[#566266] dark:text-[#9cb0b7]">
                         Palavras-chave em fase de consolidação e monitorização de posicionamento.
                       </div>
                     )}
@@ -1004,10 +1010,10 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
 
                   {/* Próximas Ações */}
                   <div>
-                    <h5 className="text-xs font-bold uppercase tracking-wider text-[#b5431c] mb-2">
+                    <h5 className="text-xs font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66] mb-2">
                       Próximas Ações Planeadas
                     </h5>
-                    <div className="p-4 rounded-xl border border-[#d8dddc] bg-[#fcfcfa] space-y-1.5 text-xs text-[#202d32]">
+                    <div className="p-4 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#fcfcfa] dark:bg-[#141c20] space-y-1.5 text-xs text-[#202d32] dark:text-[#f5f7f7]">
                       {company.checklist.filter(i => !i.done).slice(0, 4).map(i => (
                         <div key={i.key} className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a36]" />
@@ -1015,7 +1021,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                         </div>
                       ))}
                       {company.checklist.filter(i => !i.done).length === 0 && (
-                        <div className="flex items-center gap-2 text-[#236a50] font-medium">
+                        <div className="flex items-center gap-2 text-[#236a50] dark:text-[#34b785] font-medium">
                           <CheckCircle size={14} />
                           <span>Todas as boas práticas fundamentais de otimização GBP estão cumpridas!</span>
                         </div>
@@ -1025,15 +1031,15 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                 </div>
 
                 {/* Rodapé do Relatório */}
-                <div className="p-4 bg-[#f6f7f4] border-t border-[#d8dddc] text-center text-[11px] text-[#8c999e]">
+                <div className="p-4 bg-[#f6f7f4] dark:bg-[#162024] border-t border-[#d8dddc] dark:border-[#2a3a41] text-center text-[11px] text-[#8c999e] dark:text-[#70848c]">
                   Relatório oficial emitido pela equipa Draft &amp; Rise · Marketing Digital &amp; SEO Local
                 </div>
               </div>
 
               {/* Caixa Expansível com Texto Puro para WhatsApp */}
-              <div className="p-5 bg-white rounded-xl border border-[#d8dddc] shadow-xs space-y-2">
+              <div className="p-5 bg-white dark:bg-[#1c272c] rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] shadow-xs space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#566266]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#566266] dark:text-[#9cb0b7]">
                     Texto Bruto Formatado para Mensagem
                   </span>
                   <button
@@ -1044,7 +1050,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                     <span>Copiar</span>
                   </button>
                 </div>
-                <div className="p-4 bg-[#f6f7f4] rounded-lg border border-[#d8dddc] font-mono text-xs text-[#202d32] whitespace-pre-wrap leading-relaxed select-all">
+                <div className="p-4 bg-[#f6f7f4] dark:bg-[#141c20] rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] font-mono text-xs text-[#202d32] dark:text-[#f5f7f7] whitespace-pre-wrap leading-relaxed select-all">
                   {generateReportText()}
                 </div>
               </div>
@@ -1056,12 +1062,12 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
           ---------------------------------------------------- */}
           {activeTab === 'notas' && (
             <div className="space-y-5 max-w-3xl mx-auto">
-              <form onSubmit={handleAddNote} className="p-5 rounded-xl border border-[#d8dddc] bg-white shadow-xs space-y-3">
-                <div className="border-b border-[#d8dddc] pb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+              <form onSubmit={handleAddNote} className="p-5 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs space-y-3">
+                <div className="border-b border-[#d8dddc] dark:border-[#2a3a41] pb-2">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                     Histórico da Equipa
                   </span>
-                  <h3 className="text-sm font-semibold text-[#202d32]">Registar Nova Anotação Interna</h3>
+                  <h3 className="text-sm font-semibold text-[#202d32] dark:text-[#f5f7f7]">Registar Nova Anotação Interna</h3>
                 </div>
 
                 <textarea
@@ -1069,17 +1075,17 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                   placeholder="Anotação ou decisão importante relativa a esta empresa..."
                   value={newNoteText}
                   onChange={(e) => setNewNoteText(e.target.value)}
-                  className="w-full p-3 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs sm:text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                  className="w-full p-3 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs sm:text-sm text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                 />
 
                 <div className="flex items-center justify-between pt-1">
-                  <div className="flex items-center gap-1.5 text-xs text-[#566266]">
+                  <div className="flex items-center gap-1.5 text-xs text-[#566266] dark:text-[#9cb0b7]">
                     <span className="text-[11px] font-semibold mr-1">Prioridade:</span>
                     <button
                       type="button"
                       onClick={() => setNewNotePri(1)}
                       className={`px-3 py-1 rounded-full text-xs font-semibold cursor-pointer border transition-colors ${
-                        newNotePri === 1 ? 'bg-[#c43f17] text-white border-[#c43f17]' : 'border-[#d8dddc] bg-white text-[#566266]'
+                        newNotePri === 1 ? 'bg-[#c43f17] !text-white border-[#c43f17]' : 'border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#141c20] text-[#566266] dark:text-[#9cb0b7]'
                       }`}
                     >
                       Alta
@@ -1088,7 +1094,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                       type="button"
                       onClick={() => setNewNotePri(2)}
                       className={`px-3 py-1 rounded-full text-xs font-semibold cursor-pointer border transition-colors ${
-                        newNotePri === 2 ? 'bg-[#ff6a36] text-white border-[#ff6a36]' : 'border-[#d8dddc] bg-white text-[#566266]'
+                        newNotePri === 2 ? 'bg-[#ff6a36] !text-white border-[#ff6a36]' : 'border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#141c20] text-[#566266] dark:text-[#9cb0b7]'
                       }`}
                     >
                       Normal
@@ -1097,7 +1103,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                       type="button"
                       onClick={() => setNewNotePri(3)}
                       className={`px-3 py-1 rounded-full text-xs font-semibold cursor-pointer border transition-colors ${
-                        newNotePri === 3 ? 'bg-[#236a50] text-white border-[#236a50]' : 'border-[#d8dddc] bg-white text-[#566266]'
+                        newNotePri === 3 ? 'bg-[#236a50] !text-white border-[#236a50]' : 'border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#141c20] text-[#566266] dark:text-[#9cb0b7]'
                       }`}
                     >
                       Baixa
@@ -1106,7 +1112,8 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
 
                   <button 
                     type="submit" 
-                    className="px-4 py-2 bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] text-white rounded-lg text-xs font-semibold shadow-xs shadow-[#ff6a36]/20 transition-all cursor-pointer"
+                    style={{ color: '#ffffff' }}
+                    className="px-4 py-2 bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] !text-white rounded-lg text-xs font-semibold shadow-xs shadow-[#ff6a36]/20 transition-all cursor-pointer"
                   >
                     Guardar Nota
                   </button>
@@ -1117,15 +1124,15 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                 {company.notes.map(note => (
                   <div
                     key={note.id}
-                    className="p-4 rounded-xl border border-[#d8dddc] bg-white shadow-xs"
+                    className="p-4 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs"
                   >
-                    <div className="flex items-center justify-between text-xs text-[#8c999e] mb-2 border-b border-[#d8dddc] pb-2">
+                    <div className="flex items-center justify-between text-xs text-[#8c999e] dark:text-[#70848c] mb-2 border-b border-[#d8dddc] dark:border-[#2a3a41] pb-2">
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-[#202d32]">{note.author}</span>
+                        <span className="font-semibold text-[#202d32] dark:text-[#f5f7f7]">{note.author}</span>
                         <span>•</span>
                         <span>{formatDate(note.at)}</span>
                         {note.pri === 1 && (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#c43f17]/10 text-[#c43f17]">
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#c43f17]/10 dark:bg-[#c43f17]/20 text-[#c43f17] dark:text-[#ff8f66]">
                             Prioridade Alta
                           </span>
                         )}
@@ -1133,21 +1140,21 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
 
                       <button
                         onClick={() => deleteNote(company.id, note.id)}
-                        className="text-[#8c999e] hover:text-[#c43f17] cursor-pointer p-1 transition-colors"
+                        className="text-[#8c999e] dark:text-[#70848c] hover:text-[#c43f17] cursor-pointer p-1 transition-colors"
                         title="Apagar Nota"
                       >
                         <Trash2 size={13} />
                       </button>
                     </div>
 
-                    <p className="text-xs sm:text-sm text-[#202d32] whitespace-pre-wrap leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#202d32] dark:text-[#f5f7f7] whitespace-pre-wrap leading-relaxed">
                       {note.text}
                     </p>
                   </div>
                 ))}
 
                 {company.notes.length === 0 && (
-                  <div className="p-8 text-center text-xs text-[#8c999e] border border-dashed border-[#d8dddc] rounded-xl bg-white">
+                  <div className="p-8 text-center text-xs text-[#8c999e] dark:text-[#70848c] border border-dashed border-[#d8dddc] dark:border-[#2a3a41] rounded-xl bg-white dark:bg-[#1c272c]">
                     Nenhuma anotação interna registada para esta empresa.
                   </div>
                 )}
@@ -1160,12 +1167,12 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
           ---------------------------------------------------- */}
           {activeTab === 'seo' && (
             <div className="space-y-5 max-w-3xl mx-auto">
-              <form onSubmit={handleAddRanking} className="p-5 rounded-xl border border-[#d8dddc] bg-white shadow-xs space-y-3">
-                <div className="border-b border-[#d8dddc] pb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+              <form onSubmit={handleAddRanking} className="p-5 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs space-y-3">
+                <div className="border-b border-[#d8dddc] dark:border-[#2a3a41] pb-2">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                     SEO Local &amp; Maps
                   </span>
-                  <h3 className="text-sm font-semibold text-[#202d32]">Adicionar Palavra-chave Monitorizada</h3>
+                  <h3 className="text-sm font-semibold text-[#202d32] dark:text-[#f5f7f7]">Adicionar Palavra-chave Monitorizada</h3>
                 </div>
 
                 <div className="grid grid-cols-[1fr_90px_auto] gap-2">
@@ -1174,7 +1181,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                     placeholder="Palavra-chave (ex.: dentista lisboa centro)"
                     value={newKw}
                     onChange={(e) => setNewKw(e.target.value)}
-                    className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs sm:text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                    className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs sm:text-sm text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                   />
                   <input
                     type="number"
@@ -1182,11 +1189,12 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                     placeholder="Posição"
                     value={newPos}
                     onChange={(e) => setNewPos(Number(e.target.value))}
-                    className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs sm:text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                    className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs sm:text-sm text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                   />
                   <button 
                     type="submit" 
-                    className="px-5 py-2.5 bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] text-white rounded-lg text-xs font-semibold shadow-xs shadow-[#ff6a36]/20 transition-all cursor-pointer whitespace-nowrap"
+                    style={{ color: '#ffffff' }}
+                    className="px-5 py-2.5 bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] !text-white rounded-lg text-xs font-semibold shadow-xs shadow-[#ff6a36]/20 transition-all cursor-pointer whitespace-nowrap"
                   >
                     Adicionar
                   </button>
@@ -1195,10 +1203,10 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {company.rankings.map(r => (
-                  <div key={r.id} className="p-4 rounded-xl border border-[#d8dddc] bg-white shadow-xs flex items-center justify-between">
+                  <div key={r.id} className="p-4 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs flex items-center justify-between">
                     <div>
-                      <div className="font-semibold text-sm text-[#202d32]">{r.kw}</div>
-                      <div className="text-[11px] text-[#8c999e] mt-1 flex items-center gap-1">
+                      <div className="font-semibold text-sm text-[#202d32] dark:text-[#f5f7f7]">{r.kw}</div>
+                      <div className="text-[11px] text-[#8c999e] dark:text-[#70848c] mt-1 flex items-center gap-1">
                         <Clock size={11} />
                         <span>{formatDate(r.at)}</span>
                       </div>
@@ -1207,17 +1215,17 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                     <div className="flex items-center gap-3">
                       <span className={`font-mono text-sm font-bold px-3 py-1 rounded-md border ${
                         r.pos <= 3
-                          ? 'bg-[#236a50]/15 text-[#236a50] border-[#236a50]/30'
+                          ? 'bg-[#236a50]/15 dark:bg-[#236a50]/30 text-[#236a50] dark:text-[#34b785] border-[#236a50]/30 dark:border-[#236a50]/50'
                           : r.pos <= 10
-                          ? 'bg-[#ff6a36]/15 text-[#ff6a36] border-[#ff6a36]/30'
-                          : 'bg-[#f6f7f4] text-[#566266] border-[#d8dddc]'
+                          ? 'bg-[#ff6a36]/15 dark:bg-[#ff6a36]/30 text-[#ff6a36] dark:text-[#ff8f66] border-[#ff6a36]/30 dark:border-[#ff6a36]/50'
+                          : 'bg-[#f6f7f4] dark:bg-[#141c20] text-[#566266] dark:text-[#9cb0b7] border-[#d8dddc] dark:border-[#2a3a41]'
                       }`}>
                         #{r.pos}
                       </span>
 
                       <button
                         onClick={() => deleteRanking(company.id, r.id)}
-                        className="text-[#8c999e] hover:text-[#c43f17] cursor-pointer p-1 transition-colors"
+                        className="text-[#8c999e] dark:text-[#70848c] hover:text-[#c43f17] cursor-pointer p-1 transition-colors"
                         title="Remover Keyword"
                       >
                         <Trash2 size={13} />
@@ -1227,7 +1235,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                 ))}
 
                 {company.rankings.length === 0 && (
-                  <div className="p-8 text-center text-xs text-[#8c999e] border border-dashed border-[#d8dddc] rounded-xl bg-white col-span-2">
+                  <div className="p-8 text-center text-xs text-[#8c999e] dark:text-[#70848c] border border-dashed border-[#d8dddc] dark:border-[#2a3a41] rounded-xl bg-white dark:bg-[#1c272c] col-span-2">
                     Nenhuma palavra-chave monitorizada para esta empresa.
                   </div>
                 )}
@@ -1243,22 +1251,22 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 {/* Sub-divisão 1: Checklist SOP de Otimização GBP (11 Pontos) */}
-                <div className="p-5 rounded-xl border border-[#d8dddc] bg-white shadow-xs space-y-3">
-                  <div className="flex items-center justify-between border-b border-[#d8dddc] pb-2">
+                <div className="p-5 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs space-y-3">
+                  <div className="flex items-center justify-between border-b border-[#d8dddc] dark:border-[#2a3a41] pb-2">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                         SOP de Otimização
                       </span>
-                      <h3 className="font-semibold text-sm text-[#202d32]">Checklist do Perfil Google</h3>
+                      <h3 className="font-semibold text-sm text-[#202d32] dark:text-[#f5f7f7]">Checklist do Perfil Google</h3>
                     </div>
-                    <span className="text-xs text-[#202d32] font-semibold bg-[#f6f7f4] border border-[#d8dddc] px-2.5 py-1 rounded-full">
+                    <span className="text-xs text-[#202d32] dark:text-[#f5f7f7] font-semibold bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] px-2.5 py-1 rounded-full">
                       {doneChecklist}/{totalChecklist} ({checklistPct}%)
                     </span>
                   </div>
 
                   {/* Barra de Progresso Visual */}
-                  <div className="h-1.5 w-full bg-[#f6f7f4] border border-[#d8dddc] rounded-full overflow-hidden">
-                    <div style={{ width: `${checklistPct}%` }} className="h-full bg-[#236a50] rounded-full transition-all duration-300" />
+                  <div className="h-1.5 w-full bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-full overflow-hidden">
+                    <div style={{ width: `${checklistPct}%` }} className="h-full bg-[#236a50] dark:bg-[#34b785] rounded-full transition-all duration-300" />
                   </div>
 
                   <div className="space-y-1.5 max-h-72 overflow-y-auto pt-1">
@@ -1268,50 +1276,51 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                         onClick={() => toggleChecklistItem(company.id, item.key)}
                         className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs cursor-pointer transition-colors select-none ${
                           item.done 
-                            ? 'bg-[#f6f7f4] border-[#d8dddc] opacity-75' 
-                            : 'bg-white border-[#d8dddc] hover:border-[#ff6a36]'
+                            ? 'bg-[#f6f7f4] dark:bg-[#141c20] border-[#d8dddc] dark:border-[#2a3a41] opacity-75' 
+                            : 'bg-white dark:bg-[#162024] border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36]'
                         }`}
                       >
                         <div className={`w-4 h-4 rounded border flex items-center justify-center shrink-0 transition-colors ${
                           item.done 
                             ? 'bg-[#236a50] border-[#236a50] text-white shadow-xs' 
-                            : 'bg-white border-[#d8dddc]'
+                            : 'bg-white dark:bg-[#141c20] border-[#d8dddc] dark:border-[#2a3a41]'
                         }`}>
                           {item.done && <Check size={11} className="stroke-[3]" />}
                         </div>
-                        <span className={item.done ? 'line-through text-[#8c999e] flex-1' : 'text-[#202d32] font-medium flex-1'}>
+                        <span className={item.done ? 'line-through text-[#8c999e] dark:text-[#70848c] flex-1' : 'text-[#202d32] dark:text-[#f5f7f7] font-medium flex-1'}>
                           {item.label}
                         </span>
                       </div>
                     ))}
                   </div>
 
-                  <form onSubmit={handleAddChecklist} className="grid grid-cols-[1fr_auto] gap-2 pt-2 border-t border-[#d8dddc]">
+                  <form onSubmit={handleAddChecklist} className="grid grid-cols-[1fr_auto] gap-2 pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41]">
                     <input
                       type="text"
                       placeholder="Novo ponto de verificação personalizado..."
                       value={newChkLabel}
                       onChange={(e) => setNewChkLabel(e.target.value)}
-                      className="w-full p-2 text-xs bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                      className="w-full p-2 text-xs bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                     />
-                    <button type="submit" className="px-3.5 py-1.5 bg-[#ff6a36] hover:bg-[#e85a28] text-white rounded-lg text-xs font-semibold shadow-xs cursor-pointer">
+                    <button type="submit" style={{ color: '#ffffff' }} className="px-3.5 py-1.5 bg-[#ff6a36] hover:bg-[#e85a28] !text-white rounded-lg text-xs font-semibold shadow-xs cursor-pointer">
                       +
                     </button>
                   </form>
                 </div>
 
                 {/* Sub-divisão 2: Registo de Postagens & Cadência */}
-                <div className="p-5 rounded-xl border border-[#d8dddc] bg-white shadow-xs space-y-3">
-                  <div className="flex items-center justify-between border-b border-[#d8dddc] pb-2">
+                <div className="p-5 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs space-y-3">
+                  <div className="flex items-center justify-between border-b border-[#d8dddc] dark:border-[#2a3a41] pb-2">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                         Cadência
                       </span>
-                      <h3 className="font-semibold text-sm text-[#202d32]">Histórico de Publicações</h3>
+                      <h3 className="font-semibold text-sm text-[#202d32] dark:text-[#f5f7f7]">Histórico de Publicações</h3>
                     </div>
                     <button
                       onClick={handleAddPostToday}
-                      className="px-3 py-1 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer"
+                      style={{ color: '#ffffff' }}
+                      className="px-3 py-1 rounded-full bg-[#ff6a36] hover:bg-[#e85a28] !text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer"
                     >
                       + Post feito hoje
                     </button>
@@ -1323,16 +1332,16 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                         type="date"
                         value={postDate}
                         onChange={(e) => setPostDate(e.target.value)}
-                        className="w-full p-1.5 text-xs bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                        className="w-full p-1.5 text-xs bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                       />
                       <input
                         type="text"
                         placeholder="Notas ou tema da publicação..."
                         value={postNotes}
                         onChange={(e) => setPostNotes(e.target.value)}
-                        className="w-full p-1.5 text-xs bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                        className="w-full p-1.5 text-xs bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                       />
-                      <button type="submit" className="px-4 py-1.5 bg-[#236a50] hover:bg-[#1b523e] text-white rounded-lg text-xs font-semibold shadow-xs cursor-pointer whitespace-nowrap">
+                      <button type="submit" style={{ color: '#ffffff' }} className="px-4 py-1.5 bg-[#236a50] hover:bg-[#1b523e] !text-white rounded-lg text-xs font-semibold shadow-xs cursor-pointer whitespace-nowrap">
                         Registar
                       </button>
                     </div>
@@ -1340,36 +1349,36 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
 
                   <div className="space-y-2 max-h-72 overflow-y-auto pt-1">
                     {company.posts.map(p => (
-                      <div key={p.id} className="p-3 rounded-lg bg-[#f6f7f4] border border-[#d8dddc] text-xs">
-                        <div className="font-semibold text-[#202d32] flex items-center justify-between">
+                      <div key={p.id} className="p-3 rounded-lg bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] text-xs">
+                        <div className="font-semibold text-[#202d32] dark:text-[#f5f7f7] flex items-center justify-between">
                           <span>{formatDateOnly(p.at)}</span>
-                          <span className="text-[10px] text-[#236a50] font-semibold bg-white px-2 py-0.5 rounded border border-[#d8dddc]">
+                          <span className="text-[10px] text-[#236a50] dark:text-[#34b785] font-semibold bg-white dark:bg-[#1c272c] px-2 py-0.5 rounded border border-[#d8dddc] dark:border-[#2a3a41]">
                             Publicado
                           </span>
                         </div>
-                        <div className="text-[#566266] mt-1">{p.notes || 'Sem observações'}</div>
+                        <div className="text-[#566266] dark:text-[#9cb0b7] mt-1">{p.notes || 'Sem observações'}</div>
                       </div>
                     ))}
                     {company.posts.length === 0 && (
-                      <p className="text-xs text-[#8c999e] text-center py-8">Nenhum post registado no histórico.</p>
+                      <p className="text-xs text-[#8c999e] dark:text-[#70848c] text-center py-8">Nenhum post registado no histórico.</p>
                     )}
                   </div>
                 </div>
               </div>
 
               {/* Seção 2: Perguntas & Respostas (Q&A) e Antes/Depois */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 border-t border-[#d8dddc]">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41]">
                 
                 {/* Sub-divisão 3: Q&A Estratégico no Google Maps */}
-                <div className="p-5 rounded-xl border border-[#d8dddc] bg-white shadow-xs space-y-3">
-                  <div className="flex items-center justify-between border-b border-[#d8dddc] pb-2">
+                <div className="p-5 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs space-y-3">
+                  <div className="flex items-center justify-between border-b border-[#d8dddc] dark:border-[#2a3a41] pb-2">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                         Google Maps Q&amp;A
                       </span>
-                      <h3 className="font-semibold text-sm text-[#202d32]">Perguntas &amp; Respostas Frequentes</h3>
+                      <h3 className="font-semibold text-sm text-[#202d32] dark:text-[#f5f7f7]">Perguntas &amp; Respostas Frequentes</h3>
                     </div>
-                    <span className="text-xs text-[#566266] font-mono">{(company.qa || []).length} cadastradas</span>
+                    <span className="text-xs text-[#566266] dark:text-[#9cb0b7] font-mono">{(company.qa || []).length} cadastradas</span>
                   </div>
 
                   <form onSubmit={handleAddQA} className="space-y-2">
@@ -1378,7 +1387,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                       placeholder="Pergunta (ex: Têm estacionamento gratuito no local?)..."
                       value={newQ}
                       onChange={(e) => setNewQ(e.target.value)}
-                      className="w-full p-2 text-xs bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                      className="w-full p-2 text-xs bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                     />
                     <div className="grid grid-cols-[1fr_auto] gap-2">
                       <input
@@ -1386,9 +1395,9 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                         placeholder="Resposta recomendada com palavras-chave..."
                         value={newA}
                         onChange={(e) => setNewA(e.target.value)}
-                        className="w-full p-2 text-xs bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                        className="w-full p-2 text-xs bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                       />
-                      <button type="submit" className="px-3.5 py-1.5 bg-[#ff6a36] hover:bg-[#e85a28] text-white rounded-lg text-xs font-semibold shadow-xs cursor-pointer whitespace-nowrap">
+                      <button type="submit" style={{ color: '#ffffff' }} className="px-3.5 py-1.5 bg-[#ff6a36] hover:bg-[#e85a28] !text-white rounded-lg text-xs font-semibold shadow-xs cursor-pointer whitespace-nowrap">
                         Adicionar
                       </button>
                     </div>
@@ -1396,48 +1405,48 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
 
                   <div className="space-y-2 max-h-56 overflow-y-auto pt-1">
                     {(company.qa || []).map(item => (
-                      <div key={item.id} className="p-3 bg-[#f6f7f4] rounded-lg border border-[#d8dddc] text-xs space-y-1">
+                      <div key={item.id} className="p-3 bg-[#f6f7f4] dark:bg-[#141c20] rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] text-xs space-y-1">
                         <div className="flex items-start justify-between gap-2">
-                          <strong className="text-[#202d32]">Q: {item.q}</strong>
+                          <strong className="text-[#202d32] dark:text-[#f5f7f7]">Q: {item.q}</strong>
                           <div className="flex items-center gap-1 shrink-0">
                             <button
                               onClick={() => {
                                 navigator.clipboard.writeText(`P: ${item.q}\nR: ${item.a}`);
                                 showToast('Q&A copiada para colar no Google Maps!', 'success');
                               }}
-                              className="p-1 text-[#566266] hover:text-[#ff6a36] cursor-pointer"
+                              className="p-1 text-[#566266] dark:text-[#9cb0b7] hover:text-[#ff6a36] cursor-pointer"
                               title="Copiar para colar no Maps"
                             >
                               <Copy size={12} />
                             </button>
                             <button
                               onClick={() => deleteQA(company.id, item.id)}
-                              className="p-1 text-[#8c999e] hover:text-[#c43f17] cursor-pointer"
+                              className="p-1 text-[#8c999e] dark:text-[#70848c] hover:text-[#c43f17] cursor-pointer"
                               title="Remover"
                             >
                               <Trash2 size={12} />
                             </button>
                           </div>
                         </div>
-                        <p className="text-[#566266] leading-relaxed">R: {item.a}</p>
+                        <p className="text-[#566266] dark:text-[#9cb0b7] leading-relaxed">R: {item.a}</p>
                       </div>
                     ))}
                     {(!company.qa || company.qa.length === 0) && (
-                      <p className="text-xs text-[#8c999e] text-center py-6">Nenhuma pergunta/resposta configurada.</p>
+                      <p className="text-xs text-[#8c999e] dark:text-[#70848c] text-center py-6">Nenhuma pergunta/resposta configurada.</p>
                     )}
                   </div>
                 </div>
 
                 {/* Sub-divisão 4: Antes & Depois */}
-                <div className="p-5 rounded-xl border border-[#d8dddc] bg-white shadow-xs space-y-3">
-                  <div className="flex items-center justify-between border-b border-[#d8dddc] pb-2">
+                <div className="p-5 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs space-y-3">
+                  <div className="flex items-center justify-between border-b border-[#d8dddc] dark:border-[#2a3a41] pb-2">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                         Evolução Visual
                       </span>
-                      <h3 className="font-semibold text-sm text-[#202d32]">Antes &amp; Depois do Perfil</h3>
+                      <h3 className="font-semibold text-sm text-[#202d32] dark:text-[#f5f7f7]">Antes &amp; Depois do Perfil</h3>
                     </div>
-                    <span className="text-xs text-[#566266] font-mono">{(company.beforeAfter || []).length} registos</span>
+                    <span className="text-xs text-[#566266] dark:text-[#9cb0b7] font-mono">{(company.beforeAfter || []).length} registos</span>
                   </div>
 
                   <form onSubmit={handleAddBeforeAfter} className="space-y-2">
@@ -1446,7 +1455,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                       placeholder="Área (ex: Fotos do Estabelecimento, Descrição SEO)..."
                       value={newBaField}
                       onChange={(e) => setNewBaField(e.target.value)}
-                      className="w-full p-2 text-xs bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                      className="w-full p-2 text-xs bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                     />
                     <div className="grid grid-cols-2 gap-2">
                       <input
@@ -1454,14 +1463,14 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                         placeholder="Antes (ex: Sem fotos de pratos)..."
                         value={newBaBefore}
                         onChange={(e) => setNewBaBefore(e.target.value)}
-                        className="w-full p-2 text-xs bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                        className="w-full p-2 text-xs bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                       />
                       <input
                         type="text"
                         placeholder="Depois (ex: 35 fotos em 4K)..."
                         value={newBaAfter}
                         onChange={(e) => setNewBaAfter(e.target.value)}
-                        className="w-full p-2 text-xs bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                        className="w-full p-2 text-xs bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                       />
                     </div>
                     <div className="grid grid-cols-[1fr_auto] gap-2">
@@ -1470,9 +1479,9 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                         placeholder="Notas opcionais..."
                         value={newBaNotes}
                         onChange={(e) => setNewBaNotes(e.target.value)}
-                        className="w-full p-2 text-xs bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                        className="w-full p-2 text-xs bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                       />
-                      <button type="submit" className="px-3.5 py-1.5 bg-[#236a50] hover:bg-[#1b523e] text-white rounded-lg text-xs font-semibold shadow-xs cursor-pointer whitespace-nowrap">
+                      <button type="submit" style={{ color: '#ffffff' }} className="px-3.5 py-1.5 bg-[#236a50] hover:bg-[#1b523e] !text-white rounded-lg text-xs font-semibold shadow-xs cursor-pointer whitespace-nowrap">
                         Adicionar
                       </button>
                     </div>
@@ -1480,23 +1489,23 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
 
                   <div className="space-y-2 max-h-56 overflow-y-auto pt-1">
                     {(company.beforeAfter || []).map(ba => (
-                      <div key={ba.id} className="p-3 bg-[#f6f7f4] rounded-lg border border-[#d8dddc] text-xs space-y-1">
+                      <div key={ba.id} className="p-3 bg-[#f6f7f4] dark:bg-[#141c20] rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] text-xs space-y-1">
                         <div className="flex items-center justify-between">
-                          <span className="font-semibold text-[#202d32]">{ba.field}</span>
+                          <span className="font-semibold text-[#202d32] dark:text-[#f5f7f7]">{ba.field}</span>
                           <button
                             onClick={() => deleteBeforeAfter(company.id, ba.id)}
-                            className="p-1 text-[#8c999e] hover:text-[#c43f17] cursor-pointer"
+                            className="p-1 text-[#8c999e] dark:text-[#70848c] hover:text-[#c43f17] cursor-pointer"
                             title="Remover"
                           >
                             <Trash2 size={12} />
                           </button>
                         </div>
                         <div className="grid grid-cols-2 gap-2 text-[11px] pt-1">
-                          <div className="p-2 bg-[#fff4f2] rounded border border-[#fbd0c8] text-[#c43f17]">
+                          <div className="p-2 bg-[#fff4f2] dark:bg-[#2b1917] rounded border border-[#fbd0c8] dark:border-[#522b25] text-[#c43f17] dark:text-[#ff8f66]">
                             <strong className="block text-[10px] uppercase font-bold">Antes</strong>
                             <span>{ba.before}</span>
                           </div>
-                          <div className="p-2 bg-[#f0f9f4] rounded border border-[#c7ebd5] text-[#236a50]">
+                          <div className="p-2 bg-[#f0f9f4] dark:bg-[#13281d] rounded border border-[#c7ebd5] dark:border-[#1d4833] text-[#236a50] dark:text-[#34b785]">
                             <strong className="block text-[10px] uppercase font-bold">Depois</strong>
                             <span>{ba.after}</span>
                           </div>
@@ -1504,7 +1513,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                       </div>
                     ))}
                     {(!company.beforeAfter || company.beforeAfter.length === 0) && (
-                      <p className="text-xs text-[#8c999e] text-center py-6">Nenhum registo Antes/Depois registado.</p>
+                      <p className="text-xs text-[#8c999e] dark:text-[#70848c] text-center py-6">Nenhum registo Antes/Depois registado.</p>
                     )}
                   </div>
                 </div>
@@ -1516,17 +1525,18 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
               SEPARADOR 6: AVENÇA & FATURAÇÃO
           ---------------------------------------------------- */}
           {activeTab === 'financeiro' && (
-            <div className="p-6 rounded-2xl border border-[#d8dddc] bg-white shadow-xs max-w-xl mx-auto space-y-5">
-              <div className="flex items-center justify-between border-b border-[#d8dddc] pb-3">
+            <div className="p-6 rounded-2xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs max-w-xl mx-auto space-y-5">
+              <div className="flex items-center justify-between border-b border-[#d8dddc] dark:border-[#2a3a41] pb-3">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                     Contrato Recorrente
                   </span>
-                  <h3 className="font-semibold text-base text-[#202d32]">Avença Mensal &amp; Faturação</h3>
+                  <h3 className="font-semibold text-base text-[#202d32] dark:text-[#f5f7f7]">Avença Mensal &amp; Faturação</h3>
                 </div>
                 <button
                   onClick={handleMarkPaymentToday}
-                  className="px-4 py-2 bg-[#236a50] hover:bg-[#1b523e] text-white rounded-full text-xs font-semibold cursor-pointer transition-colors shadow-xs"
+                  style={{ color: '#ffffff' }}
+                  className="px-4 py-2 bg-[#236a50] hover:bg-[#1b523e] !text-white rounded-full text-xs font-semibold cursor-pointer transition-colors shadow-xs"
                 >
                   Marcar pago este mês
                 </button>
@@ -1534,48 +1544,48 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-[#566266] mb-1">Valor da Mensalidade (€)</label>
+                  <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] mb-1">Valor da Mensalidade (€)</label>
                   <input
                     type="number"
                     value={company.monthlyFee || 0}
                     onChange={(e) => updateFinance(company.id, Number(e.target.value), company.dueDay || 5, company.paymentStatus)}
-                    className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-sm font-semibold text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                    className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-sm font-semibold text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#566266] mb-1">Dia do Vencimento</label>
+                  <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] mb-1">Dia do Vencimento</label>
                   <input
                     type="number"
                     min={1}
                     max={31}
                     value={company.dueDay || 5}
                     onChange={(e) => updateFinance(company.id, company.monthlyFee || 0, Number(e.target.value), company.paymentStatus)}
-                    className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-sm font-semibold text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                    className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-sm font-semibold text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                   />
                 </div>
               </div>
 
               {/* Projeção Anual de Contrato (LTV) */}
-              <div className="p-4 bg-[#f6f7f4] rounded-xl border border-[#d8dddc] flex items-center justify-between text-xs">
+              <div className="p-4 bg-[#f6f7f4] dark:bg-[#141c20] rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] flex items-center justify-between text-xs">
                 <div>
-                  <span className="text-[#566266] block">Valor Anual Projetado (LTV/Ano):</span>
-                  <span className="text-[11px] text-[#8c999e]">Baseado na avença de {formatCurrency(company.monthlyFee)}/mês</span>
+                  <span className="text-[#566266] dark:text-[#9cb0b7] block">Valor Anual Projetado (LTV/Ano):</span>
+                  <span className="text-[11px] text-[#8c999e] dark:text-[#70848c]">Baseado na avença de {formatCurrency(company.monthlyFee)}/mês</span>
                 </div>
-                <span className="font-bold text-[#202d32] text-lg">{formatCurrency((company.monthlyFee || 0) * 12)}</span>
+                <span className="font-bold text-[#202d32] dark:text-[#f5f7f7] text-lg">{formatCurrency((company.monthlyFee || 0) * 12)}</span>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#566266] mb-2">Estado Atual do Pagamento</label>
+                <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] mb-2">Estado Atual do Pagamento</label>
                 <div className="grid grid-cols-3 gap-2">
                   {(['pago', 'pendente', 'atrasado'] as PaymentStatus[]).map((st) => {
                     const isSelected = company.paymentStatus === st;
                     const activeBg =
                       st === 'pago'
-                        ? 'bg-[#236a50] text-white border-[#236a50] shadow-xs'
+                        ? 'bg-[#236a50] !text-white border-[#236a50] shadow-xs'
                         : st === 'atrasado'
-                        ? 'bg-[#c43f17] text-white border-[#c43f17] shadow-xs'
-                        : 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs';
+                        ? 'bg-[#c43f17] !text-white border-[#c43f17] shadow-xs'
+                        : 'bg-[#ff6a36] !text-white border-[#ff6a36] shadow-xs';
                     return (
                       <button
                         key={st}
@@ -1584,7 +1594,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                         className={`py-2 px-3 rounded-lg font-bold text-xs uppercase cursor-pointer border transition-colors ${
                           isSelected
                             ? activeBg
-                            : 'bg-white border-[#d8dddc] text-[#566266] hover:border-[#ff6a36]'
+                            : 'bg-white dark:bg-[#141c20] border-[#d8dddc] dark:border-[#2a3a41] text-[#566266] dark:text-[#9cb0b7] hover:border-[#ff6a36]'
                         }`}
                       >
                         {st}
@@ -1600,7 +1610,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                     href={getWhatsAppLink(`Olá ${company.name}! Da equipa Draft & Rise, enviamos este lembrete relativo ao vencimento da avença mensal de ${formatCurrency(company.monthlyFee)} (vencimento dia ${company.dueDay || 5}). Caso já tenham efetuado, por favor desconsiderem. Muito obrigado!`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 px-4 rounded-full bg-[#f6f7f4] hover:bg-white border border-[#ff6a36] text-[#ff6a36] text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    className="w-full py-2.5 px-4 rounded-full bg-[#f6f7f4] dark:bg-[#141c20] hover:bg-white dark:hover:bg-[#192327] border border-[#ff6a36] text-[#ff6a36] text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
                   >
                     <MessageSquare size={14} />
                     <span>Enviar Lembrete de Cobrança no WhatsApp</span>
@@ -1609,7 +1619,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
               )}
 
               {company.lastPaymentDate && (
-                <p className="text-xs text-[#566266] pt-1 text-center">
+                <p className="text-xs text-[#566266] dark:text-[#9cb0b7] pt-1 text-center">
                   Último pagamento registado em {formatDate(company.lastPaymentDate)}
                 </p>
               )}
@@ -1620,25 +1630,25 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
               SEPARADOR 7: LINHA DO TEMPO (AUDITORIA & HISTÓRICO)
           ---------------------------------------------------- */}
           {activeTab === 'timeline' && (
-            <div className="p-6 rounded-2xl border border-[#d8dddc] bg-white shadow-xs max-w-2xl mx-auto">
-              <div className="border-b border-[#d8dddc] pb-3 mb-4">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <div className="p-6 rounded-2xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] shadow-xs max-w-2xl mx-auto">
+              <div className="border-b border-[#d8dddc] dark:border-[#2a3a41] pb-3 mb-4">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                   Registo de Atividades
                 </span>
-                <h3 className="text-base font-semibold text-[#202d32]">Histórico &amp; Auditoria</h3>
+                <h3 className="text-base font-semibold text-[#202d32] dark:text-[#f5f7f7]">Histórico &amp; Auditoria</h3>
               </div>
 
               <div className="space-y-4">
                 {company.timeline.map((ev, idx) => (
-                  <div key={ev.id || idx} className="flex items-start gap-3 text-xs border-b border-[#d8dddc] pb-3.5 last:border-b-0">
+                  <div key={ev.id || idx} className="flex items-start gap-3 text-xs border-b border-[#d8dddc] dark:border-[#2a3a41] pb-3.5 last:border-b-0">
                     <div className="w-2 h-2 rounded-full bg-[#ff6a36] mt-1.5 shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between text-[#8c999e]">
-                        <span className="font-semibold text-[#202d32] text-sm">{ev.title}</span>
+                      <div className="flex items-center justify-between text-[#8c999e] dark:text-[#70848c]">
+                        <span className="font-semibold text-[#202d32] dark:text-[#f5f7f7] text-sm">{ev.title}</span>
                         <span>{formatDate(ev.at)}</span>
                       </div>
-                      {ev.detail && <p className="text-[#566266] mt-0.5">{ev.detail}</p>}
-                      <div className="text-[10px] text-[#8c999e] mt-1">Autor: {ev.author}</div>
+                      {ev.detail && <p className="text-[#566266] dark:text-[#9cb0b7] mt-0.5">{ev.detail}</p>}
+                      <div className="text-[10px] text-[#8c999e] dark:text-[#70848c] mt-1">Autor: {ev.author}</div>
                     </div>
                   </div>
                 ))}

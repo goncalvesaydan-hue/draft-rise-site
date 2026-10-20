@@ -443,10 +443,9 @@ export const CalendarView: React.FC = () => {
             <button
               type="button"
               onClick={() => setViewMode('grid')}
-              style={viewMode === 'grid' ? { color: '#ffffff' } : undefined}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === 'grid'
-                  ? 'bg-[#202d32] dark:bg-[#ff6a36] !text-white shadow-xs'
+                  ? 'bg-[#ff6a36] !text-white shadow-xs shadow-[#ff6a36]/25'
                   : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
               }`}
             >
@@ -457,10 +456,9 @@ export const CalendarView: React.FC = () => {
             <button
               type="button"
               onClick={() => setViewMode('list')}
-              style={viewMode === 'list' ? { color: '#ffffff' } : undefined}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === 'list'
-                  ? 'bg-[#202d32] dark:bg-[#ff6a36] !text-white shadow-xs'
+                  ? 'bg-[#ff6a36] !text-white shadow-xs shadow-[#ff6a36]/25'
                   : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
               }`}
             >

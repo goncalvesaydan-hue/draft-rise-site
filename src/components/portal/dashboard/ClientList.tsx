@@ -103,12 +103,12 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
       {/* Filter Tabs & View Mode & Sorting Toolbar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#d8dddc] dark:border-[#2a3a41] transition-colors">
         {/* Pills no estilo Draft & Rise com Alta Visibilidade */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 max-w-full">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 pr-4 max-w-full">
           <button
             onClick={() => setFilter('client')}
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border shrink-0 ${
               filter === 'client'
-                ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs'
+                ? 'bg-[#ff6a36] !text-white border-[#ff6a36] shadow-xs'
                 : 'bg-white dark:bg-[#1c272c] text-[#566266] dark:text-[#9cb0b7] border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
             }`}
           >
@@ -119,7 +119,7 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
             onClick={() => setFilter('prospect')}
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border shrink-0 ${
               filter === 'prospect'
-                ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs'
+                ? 'bg-[#ff6a36] !text-white border-[#ff6a36] shadow-xs'
                 : 'bg-white dark:bg-[#1c272c] text-[#566266] dark:text-[#9cb0b7] border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
             }`}
           >
@@ -130,7 +130,7 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
             onClick={() => setFilter('late')}
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border shrink-0 ${
               filter === 'late'
-                ? 'bg-[#c43f17] text-white border-[#c43f17] shadow-xs'
+                ? 'bg-[#c43f17] !text-white border-[#c43f17] shadow-xs'
                 : 'bg-white dark:bg-[#1c272c] text-[#566266] dark:text-[#9cb0b7] border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#c43f17] hover:text-[#c43f17]'
             }`}
           >
@@ -141,7 +141,7 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
             onClick={() => setFilter('all')}
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border shrink-0 ${
               filter === 'all'
-                ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs'
+                ? 'bg-[#ff6a36] !text-white border-[#ff6a36] shadow-xs'
                 : 'bg-white dark:bg-[#1c272c] text-[#566266] dark:text-[#9cb0b7] border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
             }`}
           >
@@ -156,7 +156,7 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
             <button
               onClick={() => setViewMode('table')}
               className={`p-1.5 rounded-full text-xs transition-colors cursor-pointer ${
-                viewMode === 'table' ? 'bg-[#ff6a36] text-white shadow-xs' : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
+                viewMode === 'table' ? 'bg-[#ff6a36] !text-white shadow-xs' : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
               }`}
               title="Vista em tabela"
             >
@@ -165,7 +165,7 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
             <button
               onClick={() => setViewMode('grid')}
               className={`p-1.5 rounded-full text-xs transition-colors cursor-pointer ${
-                viewMode === 'grid' ? 'bg-[#ff6a36] text-white shadow-xs' : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
+                viewMode === 'grid' ? 'bg-[#ff6a36] !text-white shadow-xs' : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
               }`}
               title="Vista em cartões"
             >

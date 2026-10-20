@@ -215,9 +215,9 @@ export const WeeklyChecklist: React.FC = () => {
           <div className="inline-flex p-1 rounded-full bg-[#f6f7f4] dark:bg-[#192327] border border-[#d8dddc] dark:border-[#2a3a41] shadow-xs">
             <button
               onClick={() => setViewMode('daily')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === 'daily' 
-                  ? 'bg-[#ff6a36] !text-white shadow-xs' 
+                  ? 'bg-[#ff6a36] !text-white shadow-xs shadow-[#ff6a36]/25' 
                   : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
               }`}
             >
@@ -227,9 +227,9 @@ export const WeeklyChecklist: React.FC = () => {
 
             <button
               onClick={() => setViewMode('board')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 viewMode === 'board' 
-                  ? 'bg-[#ff6a36] !text-white shadow-xs' 
+                  ? 'bg-[#ff6a36] !text-white shadow-xs shadow-[#ff6a36]/25' 
                   : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
               }`}
             >

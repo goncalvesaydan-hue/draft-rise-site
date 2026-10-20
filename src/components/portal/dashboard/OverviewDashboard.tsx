@@ -134,7 +134,8 @@ export const OverviewDashboard: React.FC = () => {
           <div className="flex items-center gap-3 flex-wrap">
             <button
               onClick={() => setActiveTab('prospeccao')}
-              className="inline-flex items-center gap-4 pl-5 pr-2 py-1.5 min-h-[48px] rounded-full bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] text-white text-xs font-semibold shadow-md shadow-[#ff6a36]/25 transition-all group cursor-pointer"
+              style={{ color: '#ffffff' }}
+              className="inline-flex items-center gap-4 pl-5 pr-2 py-1.5 min-h-[48px] rounded-full bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] !text-white text-xs font-semibold shadow-md shadow-[#ff6a36]/25 transition-all group cursor-pointer"
             >
               <span>Abrir Funil Prospecção</span>
               <span className="w-8 h-8 rounded-full bg-white text-[#ff6a36] grid place-items-center group-hover:rotate-45 transition-transform duration-300">

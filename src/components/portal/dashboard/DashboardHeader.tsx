@@ -163,7 +163,8 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onOpenNewModal
           onClick={() => onOpenNewModal('prospect')}
           title="Nova Empresa"
           aria-label="Nova Empresa"
-          className="inline-flex items-center justify-center gap-1.5 h-9 w-9 sm:w-auto p-0 sm:px-4 sm:py-2 text-xs font-semibold text-white bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] rounded-full shadow-xs shadow-[#ff6a36]/25 transition-all cursor-pointer shrink-0"
+          style={{ color: '#ffffff' }}
+          className="inline-flex items-center justify-center gap-1.5 h-9 w-9 sm:w-auto p-0 sm:px-4 sm:py-2 text-xs font-semibold !text-white bg-[#ff6a36] hover:bg-[#e85a28] active:bg-[#d64e1e] rounded-full shadow-xs shadow-[#ff6a36]/25 transition-all cursor-pointer shrink-0"
         >
           <Plus size={16} className="stroke-[2.5]" />
           <span className="hidden sm:inline">Nova Empresa</span>
