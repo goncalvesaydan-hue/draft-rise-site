@@ -16,7 +16,10 @@ import {
   BeforeAfter,
   Idea,
   IdeaCategory,
-  IdeaStatus
+  IdeaStatus,
+  CalendarEvent,
+  CalendarEventType,
+  CalendarEventPriority
 } from './types';
 import { loadDatabase, saveDatabase, createInitialDatabase, createBlankCompany } from './storage';
 import { pushDatabaseToCloud, pullDatabaseFromCloud } from './supabase';
@@ -76,6 +79,11 @@ interface DashboardContextType {
   createIdea: (data: Partial<Idea>) => Idea;
   updateIdea: (id: string, updates: Partial<Idea>) => void;
   deleteIdea: (id: string) => void;
+  // Agenda & Calendário Geral
+  createCalendarEvent: (eventData: Partial<CalendarEvent>) => CalendarEvent;
+  updateCalendarEvent: (id: string, updates: Partial<CalendarEvent>) => void;
+  deleteCalendarEvent: (id: string) => void;
+  toggleCalendarEventCompleted: (id: string) => void;
   // Configurações, Exportação & Sincronização
   updateSettings: (updates: Partial<AppDatabase>) => void;
   syncCloud: () => Promise<{ ok: boolean; error?: string }>;
@@ -703,6 +711,86 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     showToast('Ideia removida.', 'info');
   }, [db, persist, showToast]);
 
+  const createCalendarEvent = useCallback((eventData: Partial<CalendarEvent>): CalendarEvent => {
+    const now = new Date().toISOString();
+    const newEvent: CalendarEvent = {
+      id: generateId(),
+      title: eventData.title?.trim() || 'Novo Evento',
+      description: eventData.description?.trim() || '',
+      date: eventData.date || new Date().toISOString().slice(0, 10),
+      time: eventData.time || undefined,
+      endDate: eventData.endDate || undefined,
+      companyId: eventData.companyId || undefined,
+      type: (['reuniao', 'campanha', 'entrega', 'producao', 'followup', 'geral'].includes(eventData.type || '')
+        ? eventData.type
+        : 'geral') as CalendarEventType,
+      priority: (['alta', 'media', 'baixa'].includes(eventData.priority || '')
+        ? eventData.priority
+        : 'media') as CalendarEventPriority,
+      completed: Boolean(eventData.completed),
+      author: eventData.author || 'Equipa',
+      createdAt: now,
+      updatedAt: now
+    };
+
+    persist({
+      ...db,
+      events: [newEvent, ...(db.events || [])]
+    });
+
+    showToast('Evento agendado com sucesso!', 'success');
+    return newEvent;
+  }, [db, persist, showToast]);
+
+  const updateCalendarEvent = useCallback((id: string, updates: Partial<CalendarEvent>) => {
+    const now = new Date().toISOString();
+    const currentEvents = db.events || [];
+    const updated = currentEvents.map(item => {
+      if (item.id !== id) return item;
+      return {
+        ...item,
+        ...updates,
+        updatedAt: now
+      };
+    });
+
+    persist({
+      ...db,
+      events: updated
+    });
+    showToast('Evento atualizado!', 'info');
+  }, [db, persist, showToast]);
+
+  const deleteCalendarEvent = useCallback((id: string) => {
+    const currentEvents = db.events || [];
+    persist({
+      ...db,
+      events: currentEvents.filter(e => e.id !== id)
+    });
+    showToast('Evento removido do calendário.', 'info');
+  }, [db, persist, showToast]);
+
+  const toggleCalendarEventCompleted = useCallback((id: string) => {
+    const now = new Date().toISOString();
+    const currentEvents = db.events || [];
+    let newStatus = false;
+    const updated = currentEvents.map(item => {
+      if (item.id !== id) return item;
+      newStatus = !item.completed;
+      return {
+        ...item,
+        completed: newStatus,
+        updatedAt: now
+      };
+    });
+
+    persist({
+      ...db,
+      events: updated
+    });
+    showToast(newStatus ? 'Evento concluído!' : 'Evento reaberto.', 'info');
+  }, [db, persist, showToast]);
+
   const updateSettings = useCallback((updates: Partial<AppDatabase>) => {
     persist({ ...db, ...updates });
     showToast('Definições guardadas!', 'success');
@@ -886,6 +974,25 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
                 updatedAt: i.updatedAt || new Date().toISOString()
               }))
           : (db.ideas || []),
+        events: Array.isArray(parsed.events)
+          ? parsed.events
+              .filter((e: any) => e && typeof e === 'object' && typeof e.id === 'string')
+              .map((e: any) => ({
+                id: String(e.id).slice(0, 80),
+                title: String(e.title || '').slice(0, 300),
+                description: String(e.description || '').slice(0, 5000),
+                date: String(e.date || '').slice(0, 10),
+                time: e.time ? String(e.time).slice(0, 8) : undefined,
+                endDate: e.endDate ? String(e.endDate).slice(0, 10) : undefined,
+                companyId: e.companyId ? String(e.companyId).slice(0, 80) : undefined,
+                type: (['reuniao', 'campanha', 'entrega', 'producao', 'followup', 'geral'].includes(e.type) ? e.type : 'geral') as CalendarEventType,
+                priority: (['alta', 'media', 'baixa'].includes(e.priority) ? e.priority : 'media') as CalendarEventPriority,
+                completed: Boolean(e.completed),
+                author: String(e.author || 'Equipa').slice(0, 100),
+                createdAt: e.createdAt || new Date().toISOString(),
+                updatedAt: e.updatedAt || new Date().toISOString()
+              }))
+          : (db.events || []),
         staleDays: typeof parsed.staleDays === 'number' ? parsed.staleDays : db.staleDays,
         theme: parsed.theme === 'dark' ? 'dark' : 'light',
         sync: parsed.sync && typeof parsed.sync === 'object' ? { ...db.sync, ...parsed.sync } : db.sync
@@ -958,6 +1065,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         createIdea,
         updateIdea,
         deleteIdea,
+        createCalendarEvent,
+        updateCalendarEvent,
+        deleteCalendarEvent,
+        toggleCalendarEventCompleted,
         updateSettings,
         syncCloud,
         exportBackup,

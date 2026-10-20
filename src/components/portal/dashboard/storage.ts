@@ -23,6 +23,7 @@ export function createInitialDatabase(): AppDatabase {
     trashNotes: [],
     weeks: {},
     ideas: [],
+    events: [],
     staleDays: 7,
     theme: 'light',
     sync: {
@@ -155,7 +156,8 @@ export async function loadDatabase(): Promise<AppDatabase> {
         ...createBlankCompany(c.area),
         ...c
       })),
-      ideas: Array.isArray(dbData.ideas) ? dbData.ideas : []
+      ideas: Array.isArray(dbData.ideas) ? dbData.ideas : [],
+      events: Array.isArray(dbData.events) ? dbData.events : []
     };
   }
 

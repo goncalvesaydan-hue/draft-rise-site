@@ -16,7 +16,8 @@ import {
   Bot, 
   ExternalLink,
   X,
-  Lightbulb
+  Lightbulb,
+  Calendar
 } from 'lucide-react';
 import { useDashboard } from './DashboardContext';
 import { NavigationTab } from './types';
@@ -29,6 +30,7 @@ export const DashboardSidebar: React.FC = () => {
     { id: 'prospeccao', label: 'Funil Prospecção', icon: Kanban },
     { id: 'clientes', label: 'Empresas & Clientes', icon: Users },
     { id: 'semana', label: 'Rotina Semanal', icon: CheckSquare },
+    { id: 'calendario', label: 'Agenda & Calendário', icon: Calendar },
     { id: 'ideias', label: 'Bloco de Ideias', icon: Lightbulb },
     { id: 'financeiro', label: 'Controlo Avenças', icon: BadgeEuro },
     { id: 'lixeira', label: 'Arquivo', icon: Trash2 },
@@ -38,6 +40,8 @@ export const DashboardSidebar: React.FC = () => {
   const activeClientsCount = db.companies.filter(c => !c.deletedAt && c.status === 'cliente').length;
   const prospectsCount = db.companies.filter(c => !c.deletedAt && c.area === 'prospect').length;
   const ideasCount = (db.ideas || []).filter(i => i.status !== 'arquivada').length;
+  const todayIso = new Date().toISOString().slice(0, 10);
+  const upcomingEventsCount = (db.events || []).filter(e => !e.completed && e.date >= todayIso).length;
 
   const handleSelectTab = (id: NavigationTab) => {
     setActiveTab(id);
@@ -149,6 +153,11 @@ export const DashboardSidebar: React.FC = () => {
                 {item.id === 'ideias' && ideasCount > 0 && (
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#1a2428] text-[#facc15]">
                     {ideasCount}
+                  </span>
+                )}
+                {item.id === 'calendario' && upcomingEventsCount > 0 && (
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#1a2428] text-[#38bdf8]">
+                    {upcomingEventsCount}
                   </span>
                 )}
               </button>

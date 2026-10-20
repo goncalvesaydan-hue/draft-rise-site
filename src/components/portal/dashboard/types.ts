@@ -142,6 +142,32 @@ export interface Idea {
   updatedAt: string;
 }
 
+export type CalendarEventType = 
+  | 'reuniao'     // Reuniões / Calls
+  | 'campanha'    // Campanhas Sazonais / Lançamentos
+  | 'entrega'     // Deadlines de Entrega / Relatórios
+  | 'producao'    // Sessões de fotos / Gravação de vídeos
+  | 'followup'    // Follow-ups a médio/longo prazo
+  | 'geral';      // Marcos gerais da agência
+
+export type CalendarEventPriority = 'alta' | 'media' | 'baixa';
+
+export interface CalendarEvent {
+  id: string;
+  title: string;
+  description?: string;
+  date: string; // YYYY-MM-DD
+  time?: string; // HH:mm
+  endDate?: string; // YYYY-MM-DD
+  companyId?: string; // Link para empresa/cliente
+  type: CalendarEventType;
+  priority: CalendarEventPriority;
+  completed: boolean;
+  author: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface AppDatabase {
   companies: Company[];
   tags: Tag[];
@@ -151,6 +177,7 @@ export interface AppDatabase {
   trashNotes: Array<Note & { companyId: string; companyName: string; deletedAt: string }>;
   weeks: Record<string, Record<number, WeekTask[]>>;
   ideas: Idea[];
+  events: CalendarEvent[];
   staleDays: number;
   theme: 'light' | 'dark';
   sync: {
@@ -167,6 +194,7 @@ export type NavigationTab =
   | 'prospeccao'
   | 'clientes'
   | 'semana'
+  | 'calendario'
   | 'ideias'
   | 'financeiro'
   | 'lixeira'

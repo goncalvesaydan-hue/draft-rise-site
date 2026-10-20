@@ -9,6 +9,7 @@ import { OverviewDashboard } from './OverviewDashboard';
 import { KanbanBoard } from './KanbanBoard';
 import { ClientList } from './ClientList';
 import { WeeklyChecklist } from './WeeklyChecklist';
+import { CalendarView } from './CalendarView';
 import { IdeasBoard } from './IdeasBoard';
 import { FinanceDashboard } from './FinanceDashboard';
 import { TrashView } from './TrashView';
@@ -76,6 +77,7 @@ export const DashboardView: React.FC = () => {
           )}
           {activeTab === 'clientes' && <ClientList onOpenNewModal={handleOpenNewModal} />}
           {activeTab === 'semana' && <WeeklyChecklist />}
+          {activeTab === 'calendario' && <CalendarView />}
           {activeTab === 'ideias' && <IdeasBoard />}
           {activeTab === 'financeiro' && <FinanceDashboard />}
           {activeTab === 'lixeira' && <TrashView />}
