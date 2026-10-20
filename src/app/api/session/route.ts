@@ -1,4 +1,3 @@
-import { localMode } from "@/lib/portal/config";
 import { type NextRequest } from "next/server";
 import { z } from "zod";
 import { getStore as getLocalStore, PortalError } from "@/lib/portal/local-store";
@@ -40,7 +39,7 @@ export async function POST(req: NextRequest) {
     res.cookies.set(SESSION_COOKIE, token, {
       httpOnly: true,
       sameSite: "strict",
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
       path: "/",
       maxAge: 8 * 60 * 60,
     });

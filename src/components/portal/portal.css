@@ -103,7 +103,7 @@
 .dr-portal h1[tabindex]:focus {
   outline: none;
 }
-.dr-portal input,
+.dr-portal input:not([type="checkbox"]):not([type="radio"]),
 .dr-portal textarea,
 .dr-portal select {
   border: 1px solid #b9c1cd;
@@ -113,6 +113,15 @@
   padding: 12px 14px;
   width: 100%;
   min-height: 46px;
+}
+.dr-portal input[type="checkbox"],
+.dr-portal input[type="radio"] {
+  width: 18px !important;
+  height: 18px !important;
+  min-height: unset !important;
+  padding: 0 !important;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .dr-portal textarea {
   resize: vertical;

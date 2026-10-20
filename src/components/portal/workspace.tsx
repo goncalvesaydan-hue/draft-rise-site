@@ -58,9 +58,14 @@ function WorkspaceHeader({ team = false }: { team?: boolean }) {
       <header className="p-site-header p-workspace-header">
         <Brand />
         <nav>
-          <Link href={team ? "/equipa" : "/cliente"}>
-            {team ? "Painel da equipa" : "O meu espaço"}
-          </Link>
+          {team ? (
+            <>
+              <Link href="/equipa">Questionários Bot</Link>
+              <Link href="/equipa/dashboard">draftandrise dashboard</Link>
+            </>
+          ) : (
+            <Link href="/cliente">O meu espaço</Link>
+          )}
           <Link href="/ajuda">Ajuda</Link>
           <button className="p-icon-link" onClick={leave}>
             <LogOut size={16} /> Sair
@@ -362,6 +367,9 @@ export function IntakeList({ team = false }: { team?: boolean }) {
                 </div>
                 <Link href="/equipa/notificacoes" className="p-text-link">
                   Notificações <Mail size={18} />
+                </Link>
+                <Link href="/equipa/dashboard" className="p-text-link">
+                  draftandrise dashboard <ChevronRight size={18} />
                 </Link>
               </div>
             )}
