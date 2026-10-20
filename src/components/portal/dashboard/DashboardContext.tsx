@@ -89,6 +89,9 @@ interface DashboardContextType {
   syncCloud: () => Promise<{ ok: boolean; error?: string }>;
   exportBackup: () => void;
   exportCSV: () => void;
+  exportIdeasCSV: () => void;
+  exportEventsCSV: () => void;
+  clearTrashNotes: () => void;
   importBackup: (jsonData: string) => boolean;
   loadDemoData: () => void;
   clearAllData: () => void;
@@ -892,8 +895,113 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-    showToast('Ficheiro CSV exportado com sucesso!', 'success');
+    showToast('Ficheiro CSV de carteira exportado com sucesso!', 'success');
   }, [db.companies, showToast]);
+
+  const exportIdeasCSV = useCallback(() => {
+    const sanitizeCSVCell = (val: unknown): string => {
+      if (val === null || val === undefined) return '""';
+      let str = String(val).trim();
+      if (/^[=+\-@%]/.test(str)) {
+        str = "'" + str;
+      }
+      return `"${str.replace(/"/g, '""')}"`;
+    };
+
+    const headers = [
+      'Título da Ideia',
+      'Categoria',
+      'Estado',
+      'Autor',
+      'Empresa Associada',
+      'Imagens Anexadas',
+      'Data de Criação',
+      'Conteúdo / Notas'
+    ];
+
+    const rows = (db.ideas || []).map(i => {
+      const comp = i.companyId ? db.companies.find(c => c.id === i.companyId)?.name || '—' : 'Geral';
+      return [
+        sanitizeCSVCell(i.title || ''),
+        sanitizeCSVCell(i.category || 'geral'),
+        sanitizeCSVCell(i.status || 'ideia'),
+        sanitizeCSVCell(i.author || 'Equipa'),
+        sanitizeCSVCell(comp),
+        sanitizeCSVCell(i.images?.length ? `${i.images.length} imagem(ns)` : '0'),
+        sanitizeCSVCell(i.createdAt ? i.createdAt.slice(0, 10) : '—'),
+        sanitizeCSVCell((i.content || '').replace(/\r?\n/g, ' '))
+      ].join(';');
+    });
+
+    const csvContent = '\uFEFF' + [headers.map(h => `"${h}"`).join(';'), ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `draftandrise-ideias-${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    showToast('Ficheiro CSV de ideias exportado com sucesso!', 'success');
+  }, [db.ideas, db.companies, showToast]);
+
+  const exportEventsCSV = useCallback(() => {
+    const sanitizeCSVCell = (val: unknown): string => {
+      if (val === null || val === undefined) return '""';
+      let str = String(val).trim();
+      if (/^[=+\-@%]/.test(str)) {
+        str = "'" + str;
+      }
+      return `"${str.replace(/"/g, '""')}"`;
+    };
+
+    const headers = [
+      'Título do Evento',
+      'Data Início',
+      'Hora',
+      'Data Fim',
+      'Tipo de Evento',
+      'Prioridade',
+      'Estado',
+      'Empresa / Cliente',
+      'Autor',
+      'Descrição'
+    ];
+
+    const rows = (db.events || []).map(e => {
+      const comp = e.companyId ? db.companies.find(c => c.id === e.companyId)?.name || '—' : 'Geral';
+      return [
+        sanitizeCSVCell(e.title || ''),
+        sanitizeCSVCell(e.date || ''),
+        sanitizeCSVCell(e.time || '—'),
+        sanitizeCSVCell(e.endDate || '—'),
+        sanitizeCSVCell(e.type || 'geral'),
+        sanitizeCSVCell(e.priority || 'media'),
+        sanitizeCSVCell(e.completed ? 'Concluído' : 'Pendente'),
+        sanitizeCSVCell(comp),
+        sanitizeCSVCell(e.author || 'Equipa'),
+        sanitizeCSVCell((e.description || '').replace(/\r?\n/g, ' '))
+      ].join(';');
+    });
+
+    const csvContent = '\uFEFF' + [headers.map(h => `"${h}"`).join(';'), ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `draftandrise-agenda-${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    showToast('Ficheiro CSV de agenda exportado com sucesso!', 'success');
+  }, [db.events, db.companies, showToast]);
+
+  const clearTrashNotes = useCallback(() => {
+    persist({ ...db, trashNotes: [] });
+    showToast('Lixeira de notas esvaziada com sucesso.', 'info');
+  }, [db, persist, showToast]);
 
   const importBackup = useCallback((jsonData: string) => {
     try {
@@ -995,7 +1103,8 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
           : (db.events || []),
         staleDays: typeof parsed.staleDays === 'number' ? parsed.staleDays : db.staleDays,
         theme: parsed.theme === 'dark' ? 'dark' : 'light',
-        sync: parsed.sync && typeof parsed.sync === 'object' ? { ...db.sync, ...parsed.sync } : db.sync
+        sync: parsed.sync && typeof parsed.sync === 'object' ? { ...db.sync, ...parsed.sync } : db.sync,
+        agency: parsed.agency && typeof parsed.agency === 'object' ? { ...db.agency, ...parsed.agency } : db.agency
       };
 
       persist(cleanDb);
@@ -1073,6 +1182,9 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         syncCloud,
         exportBackup,
         exportCSV,
+        exportIdeasCSV,
+        exportEventsCSV,
+        clearTrashNotes,
         importBackup,
         loadDemoData,
         clearAllData

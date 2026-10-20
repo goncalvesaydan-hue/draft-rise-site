@@ -168,6 +168,16 @@ export interface CalendarEvent {
   updatedAt: string;
 }
 
+export interface AgencySettings {
+  name: string;
+  email: string;
+  phone?: string;
+  currency: string;
+  defaultDueDay: number;
+  defaultCadence: number;
+  alertDaysBeforeDue: number;
+}
+
 export interface AppDatabase {
   companies: Company[];
   tags: Tag[];
@@ -187,6 +197,7 @@ export interface AppDatabase {
     password: string;
     room: string;
   };
+  agency?: AgencySettings;
 }
 
 export type NavigationTab = 

@@ -69,6 +69,16 @@ export const DEFAULT_LOSS_REASONS: string[] = [
   'Outro'
 ];
 
+export const DEFAULT_AGENCY_SETTINGS = {
+  name: 'Draft & Rise',
+  email: 'contacto@draftandrise.com',
+  phone: '+351 912 345 678',
+  currency: 'EUR',
+  defaultDueDay: 5,
+  defaultCadence: 7,
+  alertDaysBeforeDue: 3
+};
+
 export const WEEKDAYS = [
   { id: 1, short: 'SEG', label: 'Segunda-feira', color: '#10b981' },
   { id: 2, short: 'TER', label: 'Terça-feira', color: '#3b82f6' },

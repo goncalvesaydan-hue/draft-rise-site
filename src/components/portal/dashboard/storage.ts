@@ -4,7 +4,8 @@ import {
   DEFAULT_ANALYSIS_POINTS,
   DEFAULT_TAGS,
   DEFAULT_LOSS_REASONS,
-  DEFAULT_CHECKLIST_ITEMS
+  DEFAULT_CHECKLIST_ITEMS,
+  DEFAULT_AGENCY_SETTINGS
 } from './constants';
 import { generateId } from './utils';
 
@@ -32,7 +33,8 @@ export function createInitialDatabase(): AppDatabase {
       key: '',
       password: '',
       room: 'gbp-team-default'
-    }
+    },
+    agency: DEFAULT_AGENCY_SETTINGS
   };
 }
 
@@ -157,7 +159,11 @@ export async function loadDatabase(): Promise<AppDatabase> {
         ...c
       })),
       ideas: Array.isArray(dbData.ideas) ? dbData.ideas : [],
-      events: Array.isArray(dbData.events) ? dbData.events : []
+      events: Array.isArray(dbData.events) ? dbData.events : [],
+      agency: {
+        ...DEFAULT_AGENCY_SETTINGS,
+        ...(dbData.agency || {})
+      }
     };
   }
 
