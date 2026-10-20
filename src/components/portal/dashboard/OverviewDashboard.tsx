@@ -113,19 +113,19 @@ export const OverviewDashboard: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* Editorial Hero Banner — Estilo Autêntico Draft & Rise */}
-      <section className="bg-[#dce9ee] rounded-2xl p-6 sm:p-10 border border-[#c9dbe2] relative">
+      <section className="bg-[#dce9ee] dark:bg-[#1a282e] rounded-2xl p-6 sm:p-10 border border-[#c9dbe2] dark:border-[#2a3e47] relative transition-colors">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <div className="max-w-2xl space-y-3">
-            <div className="flex items-center gap-2.5 text-xs font-semibold text-[#202d32]">
+            <div className="flex items-center gap-2.5 text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7]">
               <span className="w-2 h-2 rounded-full bg-[#ff6a36]" />
               <span>Painel Operacional · Draft &amp; Rise</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-semibold tracking-[-0.05em] text-[#202d32] leading-[1.05]">
+            <h1 className="text-3xl sm:text-5xl font-semibold tracking-[-0.05em] text-[#202d32] dark:text-[#f5f7f7] leading-[1.05]">
               Resultados locais.<br />Controlo absoluto<span className="text-[#c74418]">.</span>
             </h1>
 
-            <p className="text-sm sm:text-base text-[#566266] leading-relaxed pt-1">
+            <p className="text-sm sm:text-base text-[#566266] dark:text-[#9cb0b7] leading-relaxed pt-1">
               Supervisão central de clientes ativos, avenças recorrentes e cadência de publicações no Google Maps.
             </p>
           </div>
@@ -144,7 +144,7 @@ export const OverviewDashboard: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('semana')}
-              className="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-white hover:bg-[#f6f7f4] border border-[#d8dddc] text-xs font-semibold text-[#202d32] hover:border-[#ff6a36] transition-colors cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-white dark:bg-[#25353d] hover:bg-[#f6f7f4] dark:hover:bg-[#2c3f48] border border-[#d8dddc] dark:border-[#354852] text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] hover:border-[#ff6a36] transition-colors cursor-pointer shadow-xs"
             >
               <Calendar size={14} className="text-[#ff6a36]" />
               <span>Rotina Semanal</span>
@@ -152,7 +152,7 @@ export const OverviewDashboard: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('financeiro')}
-              className="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-white hover:bg-[#f6f7f4] border border-[#d8dddc] text-xs font-semibold text-[#202d32] hover:border-[#236a50] transition-colors cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-white dark:bg-[#25353d] hover:bg-[#f6f7f4] dark:hover:bg-[#2c3f48] border border-[#d8dddc] dark:border-[#354852] text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] hover:border-[#236a50] transition-colors cursor-pointer shadow-xs"
             >
               <BadgeEuro size={14} className="text-[#236a50]" />
               <span>Avenças</span>
@@ -166,95 +166,95 @@ export const OverviewDashboard: React.FC = () => {
         {/* Clientes Ativos */}
         <div 
           onClick={() => setActiveTab('clientes')}
-          className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#ff6a36] transition-all cursor-pointer flex flex-col justify-between"
+          className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] hover:bg-[#fcfcfa] dark:hover:bg-[#223136] hover:border-[#ff6a36] transition-all cursor-pointer flex flex-col justify-between"
         >
           <div className="flex items-center justify-between">
             <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
               Carteira Ativa
             </span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] dark:bg-[#25353d] text-[#202d32] dark:text-[#f5f7f7] grid place-items-center">
               <Users size={14} className="sm:hidden" />
               <Users size={16} className="hidden sm:block" />
             </div>
           </div>
           <div className="my-1.5 sm:my-3">
-            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32] dark:text-[#f5f7f7]">
               {activeClients.length}
             </div>
           </div>
-          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] flex items-center justify-between text-[10px] sm:text-xs text-[#566266]">
+          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] dark:border-[#2a3a41] flex items-center justify-between text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7]">
             <span>{paidClients.length} em dia</span>
-            <span className="font-semibold text-[#202d32]">{paidPercentage}% regular</span>
+            <span className="font-semibold text-[#202d32] dark:text-[#f5f7f7]">{paidPercentage}% regular</span>
           </div>
         </div>
 
         {/* Faturação Recorrente (MRR) */}
         <div 
           onClick={() => setActiveTab('financeiro')}
-          className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#236a50] transition-all cursor-pointer flex flex-col justify-between"
+          className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] hover:bg-[#fcfcfa] dark:hover:bg-[#223136] hover:border-[#236a50] transition-all cursor-pointer flex flex-col justify-between"
         >
           <div className="flex items-center justify-between">
             <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
               Avenças Mensais
             </span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] dark:bg-[#25353d] text-[#202d32] dark:text-[#f5f7f7] grid place-items-center">
               <BadgeEuro size={14} className="sm:hidden" />
               <BadgeEuro size={16} className="hidden sm:block" />
             </div>
           </div>
           <div className="my-1.5 sm:my-3">
-            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32] dark:text-[#f5f7f7]">
               {formatCurrency(totalMrr)}
             </div>
           </div>
-          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] flex items-center justify-between text-[10px] sm:text-xs text-[#566266]">
+          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] dark:border-[#2a3a41] flex items-center justify-between text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7]">
             <span>ARR:</span>
-            <span className="font-semibold text-[#202d32] truncate">{formatCurrency(annualProjection)}</span>
+            <span className="font-semibold text-[#202d32] dark:text-[#f5f7f7] truncate">{formatCurrency(annualProjection)}</span>
           </div>
         </div>
 
         {/* Funil de Prospecção */}
         <div 
           onClick={() => setActiveTab('prospeccao')}
-          className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#ff6a36] transition-all cursor-pointer flex flex-col justify-between"
+          className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] hover:bg-[#fcfcfa] dark:hover:bg-[#223136] hover:border-[#ff6a36] transition-all cursor-pointer flex flex-col justify-between"
         >
           <div className="flex items-center justify-between">
             <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
               Em Negociação
             </span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] dark:bg-[#25353d] text-[#202d32] dark:text-[#f5f7f7] grid place-items-center">
               <Target size={14} className="sm:hidden" />
               <Target size={16} className="hidden sm:block" />
             </div>
           </div>
           <div className="my-1.5 sm:my-3">
-            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32] dark:text-[#f5f7f7]">
               {prospects.length}
             </div>
           </div>
-          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] flex items-center justify-between text-[10px] sm:text-xs text-[#566266]">
+          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] dark:border-[#2a3a41] flex items-center justify-between text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7]">
             <span>Conversão:</span>
-            <span className="font-semibold text-[#202d32]">{conversionRate}%</span>
+            <span className="font-semibold text-[#202d32] dark:text-[#f5f7f7]">{conversionRate}%</span>
           </div>
         </div>
 
         {/* Alertas */}
-        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
               Atenção Requerida
             </span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] dark:bg-[#25353d] text-[#202d32] dark:text-[#f5f7f7] grid place-items-center">
               <AlertTriangle size={14} className="sm:hidden" />
               <AlertTriangle size={16} className="hidden sm:block" />
             </div>
           </div>
           <div className="my-1.5 sm:my-3">
-            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32] dark:text-[#f5f7f7]">
               {latePosts.length + overdueReminders.length}
             </div>
           </div>
-          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] flex items-center justify-between text-[10px] sm:text-xs text-[#566266]">
+          <div className="pt-2 sm:pt-3 border-t border-[#d8dddc] dark:border-[#2a3a41] flex items-center justify-between text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7]">
             <span>{latePosts.length} posts atrasados</span>
             <span>{overdueReminders.length} lembretes</span>
           </div>
@@ -266,19 +266,19 @@ export const OverviewDashboard: React.FC = () => {
         {/* Coluna 1 & 2: Distribuição do Funil e Monitor Google Maps */}
         <div className="lg:col-span-2 space-y-6">
           {/* Distribuição das Etapas */}
-          <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#fcfcfa]">
+          <div className="p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#fcfcfa] dark:bg-[#162024] transition-colors">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
                   Ciclo de Vendas
                 </span>
-                <h2 className="text-lg font-semibold text-[#202d32] tracking-tight">
+                <h2 className="text-lg font-semibold text-[#202d32] dark:text-[#f5f7f7] tracking-tight">
                   Distribuição do Funil
                 </h2>
               </div>
               <button
                 onClick={() => setActiveTab('prospeccao')}
-                className="text-xs font-medium text-[#202d32] hover:text-[#c43f17] inline-flex items-center gap-1 cursor-pointer"
+                className="text-xs font-medium text-[#202d32] dark:text-[#f5f7f7] hover:text-[#c43f17] dark:hover:text-[#ff6a36] inline-flex items-center gap-1 cursor-pointer transition-colors"
               >
                 <span>Ver quadro</span>
                 <ArrowRight size={13} />
@@ -292,13 +292,13 @@ export const OverviewDashboard: React.FC = () => {
                   <div 
                     key={stage.id} 
                     onClick={() => setActiveTab('prospeccao')}
-                    className="p-4 rounded-lg border border-[#d8dddc] bg-[#f6f7f4] hover:bg-white hover:border-[#ff6a36] transition-colors cursor-pointer"
+                    className="p-4 rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] hover:bg-white dark:hover:bg-[#223136] hover:border-[#ff6a36] transition-colors cursor-pointer"
                   >
-                    <div className="text-[11px] font-semibold text-[#566266] flex items-center gap-1.5">
+                    <div className="text-[11px] font-semibold text-[#566266] dark:text-[#9cb0b7] flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full" style={{ backgroundColor: stage.color }} />
                       <span className="truncate">{stage.label}</span>
                     </div>
-                    <div className="text-2xl font-semibold text-[#202d32] mt-2">
+                    <div className="text-2xl font-semibold text-[#202d32] dark:text-[#f5f7f7] mt-2">
                       {count}
                     </div>
                   </div>
@@ -308,19 +308,19 @@ export const OverviewDashboard: React.FC = () => {
           </div>
 
           {/* Cadência no Google Meu Negócio */}
-          <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#fcfcfa]">
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#d8dddc]">
+          <div className="p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#fcfcfa] dark:bg-[#162024] transition-colors">
+            <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#d8dddc] dark:border-[#2a3a41]">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
                   Google Business Profile
                 </span>
-                <h2 className="text-lg font-semibold text-[#202d32] tracking-tight">
+                <h2 className="text-lg font-semibold text-[#202d32] dark:text-[#f5f7f7] tracking-tight">
                   Cadência de Publicações
                 </h2>
               </div>
 
               {latePosts.length > 0 && (
-                <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#f6f7f4] border border-[#d8dddc] text-[#c43f17]">
+                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#fff4ef] dark:bg-[#2f1f1a] border border-[#ff6a36]/30 text-[#b5431c] dark:text-[#ff8f66]">
                   {latePosts.length} em atraso
                 </span>
               )}
@@ -331,18 +331,18 @@ export const OverviewDashboard: React.FC = () => {
                 {latePosts.map(({ company: c, diffDays, cadence }) => (
                   <div 
                     key={c.id} 
-                    className="p-4 rounded-lg border border-[#d8dddc] bg-[#f6f7f4] flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-[#ff6a36] transition-colors"
+                    className="p-4 rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-[#ff6a36] transition-colors"
                   >
                     <div 
                       onClick={() => setSelectedCompanyId(c.id)}
                       className="cursor-pointer flex-1"
                     >
-                      <div className="font-semibold text-sm text-[#202d32] hover:text-[#ff6a36]">
+                      <div className="font-semibold text-sm text-[#202d32] dark:text-[#f5f7f7] hover:text-[#ff6a36]">
                         {c.name}
-                        <span className="text-xs font-normal text-[#566266] ml-2">({c.city})</span>
+                        <span className="text-xs font-normal text-[#566266] dark:text-[#9cb0b7] ml-2">({c.city})</span>
                       </div>
-                      <div className="text-xs text-[#566266] mt-1">
-                        Sem publicação há <strong className="text-[#c43f17]">{diffDays} dias</strong> (objetivo: a cada {cadence} dias)
+                      <div className="text-xs text-[#566266] dark:text-[#9cb0b7] mt-1">
+                        Sem publicação há <strong className="text-[#c43f17] dark:text-[#ff8f66]">{diffDays} dias</strong> (objetivo: a cada {cadence} dias)
                       </div>
                     </div>
 
@@ -352,7 +352,7 @@ export const OverviewDashboard: React.FC = () => {
                           href={`https://wa.me/${c.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(`Olá ${c.name}, da equipa Draft & Rise! Estamos a preparar as próximas publicações no vosso Perfil do Google. Têm novidades ou fotos desta semana que queiram partilhar?`)}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-3 py-1.5 rounded-full border border-[#202d32]/20 hover:border-[#ff6a36] hover:text-[#ff6a36] text-xs font-medium text-[#202d32] inline-flex items-center gap-1.5 transition-colors"
+                          className="px-3 py-1.5 rounded-full border border-[#202d32]/20 dark:border-[#2a3a41] hover:border-[#ff6a36] hover:text-[#ff6a36] text-xs font-medium text-[#202d32] dark:text-[#f5f7f7] inline-flex items-center gap-1.5 transition-colors"
                         >
                           <MessageSquare size={13} />
                           <span>WhatsApp</span>
@@ -370,8 +370,8 @@ export const OverviewDashboard: React.FC = () => {
                 ))}
               </div>
             ) : (
-              <div className="p-8 text-center bg-[#f6f7f4] rounded-lg border border-[#d8dddc]">
-                <p className="text-xs text-[#566266]">
+              <div className="p-8 text-center bg-[#f6f7f4] dark:bg-[#1c272c] rounded-lg border border-[#d8dddc] dark:border-[#2a3a41]">
+                <p className="text-xs text-[#566266] dark:text-[#9cb0b7]">
                   Todas as empresas ativas têm publicações no Google em dia.
                 </p>
               </div>
@@ -380,13 +380,13 @@ export const OverviewDashboard: React.FC = () => {
         </div>
 
         {/* Coluna 3: Lembretes Operacionais da Equipa */}
-        <div className="p-6 rounded-xl border border-[#d8dddc] bg-[#fcfcfa] flex flex-col justify-between">
+        <div className="p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#fcfcfa] dark:bg-[#162024] flex flex-col justify-between transition-colors">
           <div className="space-y-4">
-            <div className="border-b border-[#d8dddc] pb-3">
+            <div className="border-b border-[#d8dddc] dark:border-[#2a3a41] pb-3">
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
                 Tarefas &amp; Agenda
               </span>
-              <h2 className="text-lg font-semibold text-[#202d32] tracking-tight">
+              <h2 className="text-lg font-semibold text-[#202d32] dark:text-[#f5f7f7] tracking-tight">
                 Lembretes Internos
               </h2>
             </div>
@@ -399,13 +399,13 @@ export const OverviewDashboard: React.FC = () => {
                   placeholder="Novo lembrete para hoje..."
                   value={newReminderText}
                   onChange={(e) => setNewReminderText(e.target.value)}
-                  className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                  className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#1c272c] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                 />
                 <div className="flex gap-2">
                   <select
                     value={newReminderCompanyId || companies[0]?.id}
                     onChange={(e) => setNewReminderCompanyId(e.target.value)}
-                    className="flex-1 p-2 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                    className="flex-1 p-2 bg-[#f6f7f4] dark:bg-[#1c272c] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                   >
                     {companies.map(c => (
                       <option key={c.id} value={c.id}>{c.name}</option>
@@ -423,25 +423,25 @@ export const OverviewDashboard: React.FC = () => {
 
             {/* Lista Hoje */}
             <div className="space-y-2 pt-2">
-              <div className="text-xs font-semibold text-[#566266] uppercase tracking-wider">
+              <div className="text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider">
                 Hoje ({todayReminders.length})
               </div>
               {todayReminders.length > 0 ? (
                 todayReminders.map(r => (
                   <div 
                     key={r.id} 
-                    className="p-3 rounded-lg border border-[#d8dddc] bg-[#f6f7f4] text-xs flex items-start justify-between gap-2"
+                    className="p-3 rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] text-xs flex items-start justify-between gap-2"
                   >
                     <div 
                       onClick={() => setSelectedCompanyId(r.companyId)}
                       className="cursor-pointer flex-1"
                     >
-                      <div className="font-semibold text-[#202d32]">{r.companyName}</div>
-                      <div className="text-[#566266] mt-0.5">{r.note}</div>
+                      <div className="font-semibold text-[#202d32] dark:text-[#f5f7f7]">{r.companyName}</div>
+                      <div className="text-[#566266] dark:text-[#9cb0b7] mt-0.5">{r.note}</div>
                     </div>
                     <button
                       onClick={() => handleToggleReminder(r.companyId, r.id)}
-                      className="w-6 h-6 rounded-md border border-[#d8dddc] bg-white grid place-items-center text-[#202d32] hover:bg-[#236a50] hover:text-white hover:border-[#236a50] transition-colors cursor-pointer"
+                      className="w-6 h-6 rounded-md border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#223136] grid place-items-center text-[#202d32] dark:text-[#f5f7f7] hover:bg-[#236a50] hover:text-white hover:border-[#236a50] transition-colors cursor-pointer"
                       title="Concluir"
                     >
                       <Check size={12} />
@@ -449,31 +449,31 @@ export const OverviewDashboard: React.FC = () => {
                   </div>
                 ))
               ) : (
-                <p className="text-xs text-[#566266] py-2">Sem tarefas marcadas para hoje.</p>
+                <p className="text-xs text-[#566266] dark:text-[#9cb0b7] py-2">Sem tarefas marcadas para hoje.</p>
               )}
             </div>
 
             {/* Atrasados */}
             {overdueReminders.length > 0 && (
-              <div className="space-y-2 pt-3 border-t border-[#d8dddc]">
-                <div className="text-xs font-semibold text-[#c43f17] uppercase tracking-wider">
+              <div className="space-y-2 pt-3 border-t border-[#d8dddc] dark:border-[#2a3a41]">
+                <div className="text-xs font-semibold text-[#c43f17] dark:text-[#ff8f66] uppercase tracking-wider">
                   Em Atraso ({overdueReminders.length})
                 </div>
                 {overdueReminders.slice(0, 3).map(r => (
                   <div 
                     key={r.id} 
-                    className="p-3 rounded-lg border border-[#c43f17]/30 bg-[#f6f7f4] text-xs flex items-start justify-between gap-2"
+                    className="p-3 rounded-lg border border-[#c43f17]/30 dark:border-[#ff6a36]/30 bg-[#f6f7f4] dark:bg-[#1c272c] text-xs flex items-start justify-between gap-2"
                   >
                     <div 
                       onClick={() => setSelectedCompanyId(r.companyId)}
                       className="cursor-pointer flex-1"
                     >
-                      <div className="font-semibold text-[#c43f17]">{r.companyName}</div>
-                      <div className="text-[#566266] mt-0.5">{r.note}</div>
+                      <div className="font-semibold text-[#c43f17] dark:text-[#ff8f66]">{r.companyName}</div>
+                      <div className="text-[#566266] dark:text-[#9cb0b7] mt-0.5">{r.note}</div>
                     </div>
                     <button
                       onClick={() => handleToggleReminder(r.companyId, r.id)}
-                      className="w-6 h-6 rounded-md border border-[#d8dddc] bg-white grid place-items-center text-[#202d32] hover:bg-[#236a50] hover:text-white hover:border-[#236a50] transition-colors cursor-pointer"
+                      className="w-6 h-6 rounded-md border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#223136] grid place-items-center text-[#202d32] dark:text-[#f5f7f7] hover:bg-[#236a50] hover:text-white hover:border-[#236a50] transition-colors cursor-pointer"
                       title="Concluir"
                     >
                       <Check size={12} />
@@ -484,10 +484,10 @@ export const OverviewDashboard: React.FC = () => {
             )}
           </div>
 
-          <div className="pt-4 mt-4 border-t border-[#d8dddc]">
+          <div className="pt-4 mt-4 border-t border-[#d8dddc] dark:border-[#2a3a41]">
             <button
               onClick={() => setActiveTab('semana')}
-              className="w-full py-2.5 rounded-full bg-white hover:bg-[#f6f7f4] border border-[#d8dddc] text-xs font-semibold text-[#202d32] hover:border-[#ff6a36] transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+              className="w-full py-2.5 rounded-full bg-white dark:bg-[#1c272c] hover:bg-[#f6f7f4] dark:hover:bg-[#223136] border border-[#d8dddc] dark:border-[#2a3a41] text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] hover:border-[#ff6a36] transition-colors cursor-pointer flex items-center justify-center gap-1.5"
             >
               <span>Consultar rotina completa</span>
               <ArrowRight size={13} className="text-[#ff6a36]" />

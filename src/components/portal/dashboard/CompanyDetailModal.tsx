@@ -298,12 +298,12 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
 
   return (
     <div className="fixed inset-0 z-50 bg-[#202d32]/75 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto">
-      <div className="bg-[#fcfcfa] w-full max-w-5xl rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-[#d8dddc] animate-in zoom-in-95 duration-150 max-h-[94vh]">
+      <div className="company-detail-modal bg-[#fcfcfa] dark:bg-[#141c20] text-[#202d32] dark:text-[#f5f7f7] w-full max-w-5xl rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-[#d8dddc] dark:border-[#2a3a41] animate-in zoom-in-95 duration-150 max-h-[94vh]">
         
         {/* ========================================================
             HEADER EXECUTIVO — IDENTIDADE DRAFT & RISE
         ======================================================== */}
-        <div className="p-4 sm:p-6 bg-[#202d32] text-white border-b border-[#35454b] shrink-0">
+        <div className="p-4 sm:p-6 bg-[#202d32] dark:bg-[#11181b] text-white border-b border-[#35454b] dark:border-[#2a3a41] shrink-0">
           <div className="flex items-start justify-between gap-4">
             
             {/* Esquerda: Identificação da Empresa */}
@@ -410,7 +410,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
         {/* ========================================================
             BARRA DE NAVEGAÇÃO DE SEPARADORES (PILLS DE ALTA VISIBILIDADE)
         ======================================================== */}
-        <div className="px-3 sm:px-6 py-2 border-b border-[#d8dddc] bg-[#f6f7f4] flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar select-none shrink-0">
+        <div className="px-3 sm:px-6 py-2 border-b border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#192327] flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar select-none shrink-0">
           {navTabs.map((tab) => {
             const isActive = activeTab === tab.id;
             const Icon = tab.icon;
@@ -421,18 +421,18 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
                   isActive
-                    ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs shadow-[#ff6a36]/25'
-                    : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#ff6a36] hover:text-[#202d32]'
+                    ? 'bg-[#ff6a36] !text-white border-[#ff6a36] shadow-xs shadow-[#ff6a36]/25'
+                    : 'bg-white dark:bg-[#1c272c] text-[#566266] dark:text-[#9cb0b7] border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
                 }`}
               >
-                <Icon size={13} className={isActive ? 'text-white' : 'text-[#8c999e]'} />
+                <Icon size={13} className={isActive ? 'text-white' : 'text-[#8c999e] dark:text-[#70848c]'} />
                 <span>{tab.label}</span>
                 {tab.badge && (
                   <span
                     className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
                       isActive
                         ? 'bg-white/20 text-white'
-                        : 'bg-[#f6f7f4] text-[#566266] border border-[#d8dddc]'
+                        : 'bg-[#f6f7f4] dark:bg-[#25353d] text-[#566266] dark:text-[#9cb0b7] border border-[#d8dddc] dark:border-[#2a3a41]'
                     }`}
                   >
                     {tab.badge}
@@ -446,7 +446,7 @@ _Relatório oficial emitido pela equipa Draft & Rise · Marketing Digital & SEO 
         {/* ========================================================
             CORPO DO MODAL (DIVISÕES E SECÇÕES INTERNAS)
         ======================================================== */}
-        <div className="flex-1 p-5 sm:p-6 overflow-y-auto space-y-6 bg-[#fcfcfa]">
+        <div className="flex-1 p-5 sm:p-6 overflow-y-auto space-y-6 bg-[#fcfcfa] dark:bg-[#141c20]">
           
           {/* ----------------------------------------------------
               SEPARADOR 1: RESUMO & CONTACTOS

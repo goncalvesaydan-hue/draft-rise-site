@@ -432,37 +432,37 @@ export const SettingsView: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 settings-view">
       {/* ========================================================
           1. HEADER PRINCIPAL COM STATUS DO SISTEMA
       ======================================================== */}
-      <div className="pb-4 border-b border-[#d8dddc] flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="pb-4 border-b border-[#d8dddc] dark:border-[#2a3a41] flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
             Sistema &amp; Plataforma
           </span>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-[#202d32] tracking-tight mt-0.5">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-[#202d32] dark:text-[#f5f7f7] tracking-tight mt-0.5">
             Definições &amp; Controlo Central<span className="text-[#c74418]">.</span>
           </h1>
-          <p className="text-xs sm:text-sm text-[#566266] mt-1">
+          <p className="text-xs sm:text-sm text-[#566266] dark:text-[#9cb0b7] mt-1">
             Gestão operacional da agência, equipa, taxonomia, cópias de segurança e nuvem.
           </p>
         </div>
 
         {/* Badges de Resumo em Tempo Real */}
         <div className="flex flex-wrap items-center gap-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#f6f7f4] border border-[#d8dddc] text-xs font-medium text-[#202d32]">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#f6f7f4] dark:bg-[#1c272c] border border-[#d8dddc] dark:border-[#2a3a41] text-xs font-medium text-[#202d32] dark:text-[#f5f7f7]">
             <Database size={13} className="text-[#ff6a36]" />
             <span>{systemStats.totalCompanies} empresas</span>
-            <span className="text-[#8c999e]">({systemStats.clientCount} clientes)</span>
+            <span className="text-[#8c999e] dark:text-[#70848c]">({systemStats.clientCount} clientes)</span>
           </div>
 
           <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium ${
             db.sync.enabled 
-              ? 'bg-[#236a50]/10 border-[#236a50]/30 text-[#236a50]' 
-              : 'bg-[#f6f7f4] border-[#d8dddc] text-[#566266]'
+              ? 'bg-[#236a50]/10 dark:bg-[#236a50]/20 border-[#236a50]/30 dark:border-[#236a50]/50 text-[#236a50] dark:text-[#34b785]' 
+              : 'bg-[#f6f7f4] dark:bg-[#1c272c] border-[#d8dddc] dark:border-[#2a3a41] text-[#566266] dark:text-[#9cb0b7]'
           }`}>
-            <Cloud size={13} className={db.sync.enabled ? 'text-[#236a50]' : 'text-[#8c999e]'} />
+            <Cloud size={13} className={db.sync.enabled ? 'text-[#236a50] dark:text-[#34b785]' : 'text-[#8c999e] dark:text-[#70848c]'} />
             <span>{db.sync.enabled ? 'Nuvem Ativa' : 'Modo Local (IndexedDB)'}</span>
           </div>
         </div>
@@ -471,15 +471,15 @@ export const SettingsView: React.FC = () => {
       {/* ========================================================
           2. NAVEGAÇÃO POR ABAS INTERNAS (ESTILO SEGMENTADO)
       ======================================================== */}
-      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 border-b border-[#d8dddc]">
+      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 border-b border-[#d8dddc] dark:border-[#2a3a41]">
         <button
           type="button"
           onClick={() => setActiveSubTab('geral')}
           style={activeSubTab === 'geral' ? { color: '#ffffff' } : undefined}
           className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold shrink-0 transition-all cursor-pointer ${
             activeSubTab === 'geral'
-              ? 'bg-[#202d32] !text-white shadow-xs'
-              : 'text-[#566266] hover:text-[#202d32] hover:bg-[#f6f7f4]'
+              ? 'bg-[#202d32] dark:bg-[#f5f7f7] !text-white dark:!text-[#141c20] shadow-xs'
+              : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7] hover:bg-[#f6f7f4] dark:hover:bg-[#1c272c]'
           }`}
         >
           <Building2 size={14} className="shrink-0" />
@@ -492,13 +492,13 @@ export const SettingsView: React.FC = () => {
           style={activeSubTab === 'equipa' ? { color: '#ffffff' } : undefined}
           className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold shrink-0 transition-all cursor-pointer ${
             activeSubTab === 'equipa'
-              ? 'bg-[#202d32] !text-white shadow-xs'
-              : 'text-[#566266] hover:text-[#202d32] hover:bg-[#f6f7f4]'
+              ? 'bg-[#202d32] dark:bg-[#f5f7f7] !text-white dark:!text-[#141c20] shadow-xs'
+              : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7] hover:bg-[#f6f7f4] dark:hover:bg-[#1c272c]'
           }`}
         >
           <Users size={14} className="shrink-0" />
           <span>Equipa &amp; Permissões</span>
-          <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-white/20">6</span>
+          <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-white/20 dark:bg-black/20">6</span>
         </button>
 
         <button
@@ -507,8 +507,8 @@ export const SettingsView: React.FC = () => {
           style={activeSubTab === 'taxonomia' ? { color: '#ffffff' } : undefined}
           className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold shrink-0 transition-all cursor-pointer ${
             activeSubTab === 'taxonomia'
-              ? 'bg-[#202d32] !text-white shadow-xs'
-              : 'text-[#566266] hover:text-[#202d32] hover:bg-[#f6f7f4]'
+              ? 'bg-[#202d32] dark:bg-[#f5f7f7] !text-white dark:!text-[#141c20] shadow-xs'
+              : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7] hover:bg-[#f6f7f4] dark:hover:bg-[#1c272c]'
           }`}
         >
           <Sliders size={14} className="shrink-0" />
@@ -521,8 +521,8 @@ export const SettingsView: React.FC = () => {
           style={activeSubTab === 'sincronizacao' ? { color: '#ffffff' } : undefined}
           className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold shrink-0 transition-all cursor-pointer ${
             activeSubTab === 'sincronizacao'
-              ? 'bg-[#202d32] !text-white shadow-xs'
-              : 'text-[#566266] hover:text-[#202d32] hover:bg-[#f6f7f4]'
+              ? 'bg-[#202d32] dark:bg-[#f5f7f7] !text-white dark:!text-[#141c20] shadow-xs'
+              : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7] hover:bg-[#f6f7f4] dark:hover:bg-[#1c272c]'
           }`}
         >
           <Cloud size={14} className="shrink-0" />
@@ -538,8 +538,8 @@ export const SettingsView: React.FC = () => {
           style={activeSubTab === 'dados' ? { color: '#ffffff' } : undefined}
           className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold shrink-0 transition-all cursor-pointer ${
             activeSubTab === 'dados'
-              ? 'bg-[#202d32] !text-white shadow-xs'
-              : 'text-[#566266] hover:text-[#202d32] hover:bg-[#f6f7f4]'
+              ? 'bg-[#202d32] dark:bg-[#f5f7f7] !text-white dark:!text-[#141c20] shadow-xs'
+              : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7] hover:bg-[#f6f7f4] dark:hover:bg-[#1c272c]'
           }`}
         >
           <Database size={14} className="shrink-0" />
@@ -554,18 +554,18 @@ export const SettingsView: React.FC = () => {
         <form onSubmit={handleSaveAgencySettings} className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Bloco A: Identidade da Agência */}
-            <div className="p-5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] space-y-4">
-              <div className="border-b border-[#d8dddc] pb-3">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <div className="p-5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] space-y-4">
+              <div className="border-b border-[#d8dddc] dark:border-[#2a3a41] pb-3">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                   Identidade Institucional
                 </span>
-                <h2 className="text-base font-semibold text-[#202d32] mt-0.5">Perfil da Agência</h2>
-                <p className="text-xs text-[#566266]">Dados utilizados nas notificações, exports e cabeçalhos operacionais.</p>
+                <h2 className="text-base font-semibold text-[#202d32] dark:text-[#f5f7f7] mt-0.5">Perfil da Agência</h2>
+                <p className="text-xs text-[#566266] dark:text-[#9cb0b7]">Dados utilizados nas notificações, exports e cabeçalhos operacionais.</p>
               </div>
 
               <div className="space-y-3.5">
                 <div>
-                  <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                     Nome da Empresa / Marca
                   </label>
                   <input
@@ -573,13 +573,13 @@ export const SettingsView: React.FC = () => {
                     value={agencyName}
                     onChange={(e) => setAgencyName(e.target.value)}
                     placeholder="Draft & Rise"
-                    className="w-full p-2.5 text-xs bg-white border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                    className="w-full p-2.5 text-xs bg-white dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                       Email Operacional
                     </label>
                     <input
@@ -587,12 +587,12 @@ export const SettingsView: React.FC = () => {
                       value={agencyEmail}
                       onChange={(e) => setAgencyEmail(e.target.value)}
                       placeholder="contacto@draftandrise.com"
-                      className="w-full p-2.5 text-xs bg-white border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                      className="w-full p-2.5 text-xs bg-white dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                       Telefone / WhatsApp
                     </label>
                     <input
@@ -600,20 +600,20 @@ export const SettingsView: React.FC = () => {
                       value={agencyPhone}
                       onChange={(e) => setAgencyPhone(e.target.value)}
                       placeholder="+351 912 345 678"
-                      className="w-full p-2.5 text-xs bg-white border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                      className="w-full p-2.5 text-xs bg-white dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                       Moeda Padrão
                     </label>
                     <select
                       value={currency}
                       onChange={(e) => setCurrency(e.target.value)}
-                      className="w-full p-2.5 text-xs bg-white border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36] cursor-pointer"
+                      className="w-full p-2.5 text-xs bg-white dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36] cursor-pointer"
                     >
                       <option value="EUR">Euro (€ - EUR)</option>
                       <option value="USD">Dólar ($ - USD)</option>
@@ -623,14 +623,14 @@ export const SettingsView: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                       Fuso Horário
                     </label>
                     <input
                       type="text"
                       disabled
                       value="Europe/Lisbon (WET/WEST)"
-                      className="w-full p-2.5 text-xs bg-[#f0f2f1] border border-[#d8dddc] rounded-lg text-[#566266] cursor-not-allowed"
+                      className="w-full p-2.5 text-xs bg-[#f0f2f1] dark:bg-[#11181b] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#566266] dark:text-[#70848c] cursor-not-allowed"
                     />
                   </div>
                 </div>
@@ -638,22 +638,22 @@ export const SettingsView: React.FC = () => {
             </div>
 
             {/* Bloco B: Parâmetros Operacionais de Gestão */}
-            <div className="p-5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] space-y-4">
-              <div className="border-b border-[#d8dddc] pb-3">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <div className="p-5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] space-y-4">
+              <div className="border-b border-[#d8dddc] dark:border-[#2a3a41] pb-3">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                   Automações &amp; Cadência
                 </span>
-                <h2 className="text-base font-semibold text-[#202d32] mt-0.5">Regras Operacionais</h2>
-                <p className="text-xs text-[#566266]">Define os limiares de inatividade, datas padrão e alertas automáticos.</p>
+                <h2 className="text-base font-semibold text-[#202d32] dark:text-[#f5f7f7] mt-0.5">Regras Operacionais</h2>
+                <p className="text-xs text-[#566266] dark:text-[#9cb0b7]">Define os limiares de inatividade, datas padrão e alertas automáticos.</p>
               </div>
 
               <div className="space-y-3.5">
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <label className="text-xs font-semibold text-[#566266] uppercase tracking-wider">
+                    <label className="text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider">
                       Dias para Lead Estagnada
                     </label>
-                    <span className="text-xs font-mono font-bold text-[#b5431c]">{staleDays} dias</span>
+                    <span className="text-xs font-mono font-bold text-[#b5431c] dark:text-[#ff8f66]">{staleDays} dias</span>
                   </div>
                   <input
                     type="range"
@@ -664,14 +664,14 @@ export const SettingsView: React.FC = () => {
                     onChange={(e) => setStaleDays(Number(e.target.value))}
                     className="w-full accent-[#ff6a36] cursor-pointer"
                   />
-                  <p className="text-[11px] text-[#8c999e] mt-0.5">
+                  <p className="text-[11px] text-[#8c999e] dark:text-[#70848c] mt-0.5">
                     Leads sem contacto há mais de {staleDays} dias são marcadas com aviso de atenção no funil.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                   <div>
-                    <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                       Dia Vencimento Avenças
                     </label>
                     <input
@@ -680,13 +680,13 @@ export const SettingsView: React.FC = () => {
                       max="31"
                       value={defaultDueDay}
                       onChange={(e) => setDefaultDueDay(Number(e.target.value))}
-                      className="w-full p-2.5 text-xs bg-white border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                      className="w-full p-2.5 text-xs bg-white dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                     />
-                    <p className="text-[10px] text-[#8c999e] mt-1">Dia sugerido ao fechar novo cliente (ex: dia 5)</p>
+                    <p className="text-[10px] text-[#8c999e] dark:text-[#70848c] mt-1">Dia sugerido ao fechar novo cliente (ex: dia 5)</p>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                       Cadência de Posts GBP
                     </label>
                     <input
@@ -695,14 +695,14 @@ export const SettingsView: React.FC = () => {
                       max="30"
                       value={defaultCadence}
                       onChange={(e) => setDefaultCadence(Number(e.target.value))}
-                      className="w-full p-2.5 text-xs bg-white border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                      className="w-full p-2.5 text-xs bg-white dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                     />
-                    <p className="text-[10px] text-[#8c999e] mt-1">Frequência em dias para novas postagens no perfil</p>
+                    <p className="text-[10px] text-[#8c999e] dark:text-[#70848c] mt-1">Frequência em dias para novas postagens no perfil</p>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                     Aviso Prévio de Avenças (Dias)
                   </label>
                   <input
@@ -711,9 +711,9 @@ export const SettingsView: React.FC = () => {
                     max="15"
                     value={alertDaysBeforeDue}
                     onChange={(e) => setAlertDaysBeforeDue(Number(e.target.value))}
-                    className="w-full p-2.5 text-xs bg-white border border-[#d8dddc] rounded-lg text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                    className="w-full p-2.5 text-xs bg-white dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
                   />
-                  <p className="text-[10px] text-[#8c999e] mt-1">
+                  <p className="text-[10px] text-[#8c999e] dark:text-[#70848c] mt-1">
                     Mostra avisos na agenda e no painel {alertDaysBeforeDue} dias antes do vencimento da mensalidade.
                   </p>
                 </div>
@@ -721,18 +721,18 @@ export const SettingsView: React.FC = () => {
             </div>
 
             {/* Bloco C: Aparência & Tema (Claro, Noturno e Sistema) */}
-            <div className="lg:col-span-2 p-5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] space-y-4">
-              <div className="border-b border-[#d8dddc] pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="lg:col-span-2 p-5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#162024] space-y-4 transition-colors">
+              <div className="border-b border-[#d8dddc] dark:border-[#2a3a41] pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
                     Interface &amp; Ergonomia
                   </span>
-                  <h2 className="text-base font-semibold text-[#202d32] mt-0.5">Aparência &amp; Tema do Dashboard</h2>
-                  <p className="text-xs text-[#566266]">
+                  <h2 className="text-base font-semibold text-[#202d32] dark:text-[#f5f7f7] mt-0.5">Aparência &amp; Tema do Dashboard</h2>
+                  <p className="text-xs text-[#566266] dark:text-[#9cb0b7]">
                     Alterna entre o visual claro editorial, modo noturno ergonómico ou sincronização automática com o sistema.
                   </p>
                 </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border bg-white border-[#d8dddc] text-[#202d32] shrink-0 self-start sm:self-auto">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border bg-white dark:bg-[#1c272c] border-[#d8dddc] dark:border-[#2a3a41] text-[#202d32] dark:text-[#f5f7f7] shrink-0 self-start sm:self-auto">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a36]" />
                   <span>
                     {theme === 'system' 
@@ -749,10 +749,10 @@ export const SettingsView: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setTheme('light')}
-                  className={`p-4 rounded-xl border text-left transition-all cursor-pointer relative flex flex-col justify-between ${
+                  className={`theme-card-light p-4 rounded-xl border text-left transition-all cursor-pointer relative flex flex-col justify-between ${
                     theme === 'light'
                       ? 'bg-white border-[#ff6a36] shadow-sm ring-1 ring-[#ff6a36]'
-                      : 'bg-white/80 border-[#d8dddc] hover:border-[#202d32]'
+                      : 'bg-white/90 border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36]'
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -764,8 +764,8 @@ export const SettingsView: React.FC = () => {
                     )}
                   </div>
                   <div className="mt-3">
-                    <div className="text-xs font-bold text-[#202d32]">Modo Claro</div>
-                    <div className="text-[11px] text-[#566266] mt-0.5">
+                    <div className="text-xs font-bold text-[#202d32] theme-text-light dark:!text-[#202d32]">Modo Claro</div>
+                    <div className="text-[11px] text-[#566266] theme-text-light dark:!text-[#566266] mt-0.5">
                       Fundo papel editorial e contraste diurno padrão
                     </div>
                   </div>
@@ -778,7 +778,7 @@ export const SettingsView: React.FC = () => {
                   className={`p-4 rounded-xl border text-left transition-all cursor-pointer relative flex flex-col justify-between ${
                     theme === 'dark'
                       ? 'bg-[#141c20] border-[#ff6a36] shadow-sm ring-1 ring-[#ff6a36] text-white'
-                      : 'bg-[#1c272c] border-[#2a3a41] hover:border-[#ff6a36]'
+                      : 'bg-[#1c272c] border-[#2a3a41] hover:border-[#ff6a36] text-white'
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -803,21 +803,21 @@ export const SettingsView: React.FC = () => {
                   onClick={() => setTheme('system')}
                   className={`p-4 rounded-xl border text-left transition-all cursor-pointer relative flex flex-col justify-between ${
                     theme === 'system'
-                      ? 'bg-white border-[#236a50] shadow-sm ring-1 ring-[#236a50]'
-                      : 'bg-white/80 border-[#d8dddc] hover:border-[#202d32]'
+                      ? 'bg-white dark:bg-[#1c272c] border-[#236a50] shadow-sm ring-1 ring-[#236a50]'
+                      : 'bg-white/80 dark:bg-[#1c272c] border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#236a50]'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="w-8 h-8 rounded-lg bg-[#f6f7f4] border border-[#d8dddc] grid place-items-center text-[#236a50]">
+                    <div className="w-8 h-8 rounded-lg bg-[#f6f7f4] dark:bg-[#223136] border border-[#d8dddc] dark:border-[#2a3a41] grid place-items-center text-[#236a50] dark:text-[#4ade80]">
                       <Monitor size={16} />
                     </div>
                     {theme === 'system' && (
-                      <span className="w-2 h-2 rounded-full bg-[#236a50]" />
+                      <span className="w-2 h-2 rounded-full bg-[#236a50] dark:bg-[#4ade80]" />
                     )}
                   </div>
                   <div className="mt-3">
-                    <div className="text-xs font-bold text-[#202d32]">Automático (Sistema)</div>
-                    <div className="text-[11px] text-[#566266] mt-0.5">
+                    <div className="text-xs font-bold text-[#202d32] dark:text-[#f5f7f7]">Automático (Sistema)</div>
+                    <div className="text-[11px] text-[#566266] dark:text-[#9cb0b7] mt-0.5">
                       Adapta-se ao tema do teu computador ou telemóvel
                     </div>
                   </div>

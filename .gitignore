@@ -44,6 +44,7 @@ next-env.d.ts
 .data/
 playwright-report/
 test-results/
+scratch/
 /exports/
 /alterações/
 !.env.example

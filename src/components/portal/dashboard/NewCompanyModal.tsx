@@ -103,9 +103,9 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
 
   return (
     <div className="fixed inset-0 z-50 bg-[#202d32]/70 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-[#fcfcfa] w-full max-w-lg rounded-2xl shadow-xl overflow-hidden border border-[#d8dddc] flex flex-col max-h-[92vh]">
+      <div className="bg-[#fcfcfa] dark:bg-[#1c272c] w-full max-w-lg rounded-2xl shadow-xl overflow-hidden border border-[#d8dddc] dark:border-[#2a3a41] flex flex-col max-h-[92vh]">
         {/* Header */}
-        <div className="p-5 bg-[#202d32] text-white flex items-center justify-between border-b border-[#35454b]">
+        <div className="p-5 bg-[#202d32] dark:bg-[#141c20] text-white flex items-center justify-between border-b border-[#35454b] dark:border-[#2a3a41]">
           <div className="flex items-center gap-2.5">
             <Building2 size={18} className="text-[#ff6a36]" />
             <h2 className="font-semibold text-sm">
@@ -124,12 +124,12 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
         <form onSubmit={handleSubmit} className="p-6 space-y-4 overflow-y-auto">
           {/* Switcher & Bot Import */}
           <div className="flex items-center gap-2">
-            <div className="inline-flex flex-1 p-1 rounded-full bg-[#f6f7f4] border border-[#d8dddc]">
+            <div className="inline-flex flex-1 p-1 rounded-full bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41]">
               <button
                 type="button"
                 onClick={() => setArea('prospect')}
                 className={`flex-1 py-1.5 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
-                  area === 'prospect' ? 'bg-[#ff6a36] text-white shadow-xs' : 'text-[#566266] hover:text-[#202d32]'
+                  area === 'prospect' ? 'bg-[#ff6a36] !text-white shadow-xs' : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
                 }`}
               >
                 Prospecção (Lead)
@@ -138,7 +138,7 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
                 type="button"
                 onClick={() => setArea('client')}
                 className={`flex-1 py-1.5 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
-                  area === 'client' ? 'bg-[#ff6a36] text-white shadow-xs' : 'text-[#566266] hover:text-[#202d32]'
+                  area === 'client' ? 'bg-[#ff6a36] !text-white shadow-xs' : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
                 }`}
               >
                 Cliente Ativo
@@ -151,7 +151,7 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
                 if (!showIntakePicker) loadIntakes();
                 setShowIntakePicker(!showIntakePicker);
               }}
-              className="px-3 py-1.5 rounded-full border border-[#d8dddc] hover:border-[#ff6a36] text-xs font-semibold text-[#202d32] hover:text-[#ff6a36] bg-[#f6f7f4] transition-colors inline-flex items-center gap-1.5 cursor-pointer shrink-0"
+              className="px-3 py-1.5 rounded-full border border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] hover:text-[#ff6a36] bg-[#f6f7f4] dark:bg-[#141c20] hover:bg-white dark:hover:bg-[#25353d] transition-colors inline-flex items-center gap-1.5 cursor-pointer shrink-0"
               title="Importar dados de questionário submetido no site"
             >
               <Bot size={13} className="text-[#ff6a36]" />
@@ -161,14 +161,14 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
 
           {/* Intake Selector Panel */}
           {showIntakePicker && (
-            <div className="p-3 bg-[#f6f7f4] rounded-xl border border-[#d8dddc] space-y-2">
+            <div className="p-3 bg-[#f6f7f4] dark:bg-[#141c20] rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] space-y-2">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-[#202d32]">Questionários Recebidos no Site</span>
-                <span className="text-[11px] text-[#566266]">{intakes.length} disponíveis</span>
+                <span className="font-semibold text-[#202d32] dark:text-[#f5f7f7]">Questionários Recebidos no Site</span>
+                <span className="text-[11px] text-[#566266] dark:text-[#9cb0b7]">{intakes.length} disponíveis</span>
               </div>
 
               {loadingIntakes ? (
-                <p className="text-xs text-[#8c999e] py-2 text-center">A carregar questionários...</p>
+                <p className="text-xs text-[#8c999e] dark:text-[#70848c] py-2 text-center">A carregar questionários...</p>
               ) : intakes.length > 0 ? (
                 <div className="space-y-1.5 max-h-36 overflow-y-auto">
                   {intakes.map((it) => {
@@ -178,11 +178,11 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
                       <div
                         key={it.id}
                         onClick={() => handleSelectIntake(it)}
-                        className="p-2 bg-white rounded-lg border border-[#d8dddc] hover:border-[#ff6a36] text-xs flex items-center justify-between cursor-pointer transition-colors"
+                        className="p-2 bg-white dark:bg-[#1c272c] rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] text-xs flex items-center justify-between cursor-pointer transition-colors"
                       >
                         <div>
-                          <strong className="text-[#202d32] block">{compName}</strong>
-                          <span className="text-[11px] text-[#566266]">{compCity || 'Portugal'} · {it.status}</span>
+                          <strong className="text-[#202d32] dark:text-[#f5f7f7] block">{compName}</strong>
+                          <span className="text-[11px] text-[#566266] dark:text-[#9cb0b7]">{compCity || 'Portugal'} · {it.status}</span>
                         </div>
                         <span className="text-[11px] font-semibold text-[#ff6a36]">Preencher</span>
                       </div>
@@ -190,7 +190,7 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
                   })}
                 </div>
               ) : (
-                <p className="text-xs text-[#8c999e] py-2 text-center">
+                <p className="text-xs text-[#8c999e] dark:text-[#70848c] py-2 text-center">
                   Nenhum questionário encontrado ou sessão expirada.
                 </p>
               )}
@@ -198,7 +198,7 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
           )}
 
           <div>
-            <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+            <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
               Nome da Empresa *
             </label>
             <input
@@ -207,19 +207,19 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
               placeholder="Ex.: Clínica Dentária São Bento"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+              className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-sm text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                 Categoria / Nicho *
               </label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs sm:text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs sm:text-sm text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36]"
               >
                 {db.categories.map((c, i) => (
                   <option key={i} value={c}>{c}</option>
@@ -228,7 +228,7 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                 Cidade *
               </label>
               <input
@@ -236,14 +236,14 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
                 placeholder="Ex.: Lisboa, Porto..."
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs sm:text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs sm:text-sm text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                 Telefone
               </label>
               <input
@@ -251,12 +251,12 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
                 placeholder="Ex.: 912 345 678"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs sm:text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs sm:text-sm text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+              <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                 WhatsApp
               </label>
               <input
@@ -264,13 +264,13 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
                 placeholder="Ex.: 912 345 678"
                 value={whatsapp}
                 onChange={(e) => setWhatsapp(e.target.value)}
-                className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs sm:text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs sm:text-sm text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+            <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
               Website
             </label>
             <input
@@ -278,14 +278,14 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
               placeholder="https://..."
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
-              className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-xs sm:text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+              className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-xs sm:text-sm text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
             />
           </div>
 
           {area === 'client' && (
-            <div className="pt-2 border-t border-[#d8dddc] grid grid-cols-2 gap-3">
+            <div className="pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41] grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+                <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                   Avença Mensal (€)
                 </label>
                 <input
@@ -293,12 +293,12 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
                   placeholder="150"
                   value={monthlyFee}
                   onChange={(e) => setMonthlyFee(Number(e.target.value))}
-                  className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-sm font-semibold text-[#202d32]"
+                  className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-sm font-semibold text-[#202d32] dark:text-[#f5f7f7]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#566266] uppercase tracking-wider mb-1">
+                <label className="block text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] uppercase tracking-wider mb-1">
                   Dia Vencimento
                 </label>
                 <input
@@ -307,17 +307,17 @@ export const NewCompanyModal: React.FC<NewCompanyModalProps> = ({ isOpen, onClos
                   max={31}
                   value={dueDay}
                   onChange={(e) => setDueDay(Number(e.target.value))}
-                  className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-lg text-sm font-semibold text-[#202d32]"
+                  className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#141c20] border border-[#d8dddc] dark:border-[#2a3a41] rounded-lg text-sm font-semibold text-[#202d32] dark:text-[#f5f7f7]"
                 />
               </div>
             </div>
           )}
 
-          <div className="flex justify-end gap-2 pt-3 border-t border-[#d8dddc]">
+          <div className="flex justify-end gap-2 pt-3 border-t border-[#d8dddc] dark:border-[#2a3a41]">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-full border border-[#d8dddc] text-xs font-medium text-[#566266] hover:bg-[#f6f7f4] hover:text-[#202d32] transition-colors cursor-pointer"
+              className="px-4 py-2 rounded-full border border-[#d8dddc] dark:border-[#2a3a41] text-xs font-medium text-[#566266] dark:text-[#9cb0b7] hover:bg-[#f6f7f4] dark:hover:bg-[#25353d] hover:text-[#202d32] dark:hover:text-[#f5f7f7] transition-colors cursor-pointer"
             >
               Cancelar
             </button>

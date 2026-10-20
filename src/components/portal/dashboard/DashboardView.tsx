@@ -59,9 +59,9 @@ export const DashboardView: React.FC = () => {
   }
 
   return (
-    <div className={`flex min-h-screen transition-colors duration-200 ${
-      effectiveTheme === 'dark' ? 'dark bg-[#141c20] text-[#f5f7f7]' : 'bg-[#fcfcfa] text-[#202d32]'
-    } font-sans antialiased`}>
+    <div className={`flex min-h-screen transition-colors duration-200 bg-[#fcfcfa] dark:bg-[#141c20] text-[#202d32] dark:text-[#f5f7f7] font-sans antialiased ${
+      effectiveTheme === 'dark' ? 'dark' : ''
+    }`}>
       {/* Sidebar fixo */}
       <DashboardSidebar />
 

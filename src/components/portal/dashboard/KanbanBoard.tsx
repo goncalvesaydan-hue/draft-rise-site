@@ -97,15 +97,15 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Bar — Editorial Heading */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-[#d8dddc]">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-[#d8dddc] dark:border-[#2a3a41] transition-colors">
         <div>
           <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
             Pipeline de Vendas
           </span>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-[#202d32] tracking-tight mt-0.5">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-[#202d32] dark:text-[#f5f7f7] tracking-tight mt-0.5">
             Funil de Prospecção<span className="text-[#c74418]">.</span>
           </h1>
-          <p className="text-xs sm:text-sm text-[#566266] mt-1">
+          <p className="text-xs sm:text-sm text-[#566266] dark:text-[#9cb0b7] mt-1">
             Gestão de leads e negociações em curso ({filtered.length} ativas).
           </p>
         </div>
@@ -113,16 +113,16 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
         {/* Toolbar & Filter */}
         <div className="flex items-center gap-3 flex-wrap">
           {categories.length > 0 && (
-            <div className="flex items-center gap-1.5 bg-[#f6f7f4] border border-[#d8dddc] px-3 py-1.5 rounded-full text-xs text-[#566266]">
+            <div className="flex items-center gap-1.5 bg-[#f6f7f4] dark:bg-[#1c272c] border border-[#d8dddc] dark:border-[#2a3a41] px-3 py-1.5 rounded-full text-xs text-[#566266] dark:text-[#9cb0b7] transition-colors">
               <Filter size={12} />
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="bg-transparent text-[#202d32] font-medium focus:outline-none cursor-pointer"
+                className="bg-transparent text-[#202d32] dark:text-[#f5f7f7] font-medium focus:outline-none cursor-pointer"
               >
-                <option value="all">Todas as categorias</option>
+                <option value="all" className="bg-white dark:bg-[#1c272c] text-[#202d32] dark:text-[#f5f7f7]">Todas as categorias</option>
                 {categories.map((cat, idx) => (
-                  <option key={idx} value={cat}>{cat}</option>
+                  <option key={idx} value={cat} className="bg-white dark:bg-[#1c272c] text-[#202d32] dark:text-[#f5f7f7]">{cat}</option>
                 ))}
               </select>
             </div>
@@ -150,31 +150,31 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
               onDragOver={(e) => handleDragOver(e, stage.id)}
               onDragLeave={() => setHoveredColumn(null)}
               onDrop={(e) => handleDrop(e, stage.id)}
-              className={`w-[84vw] max-w-[320px] sm:w-80 shrink-0 bg-[#f6f7f4] rounded-xl flex flex-col max-h-[78vh] transition-colors border snap-center ${
+              className={`w-[84vw] max-w-[320px] sm:w-80 shrink-0 bg-[#f6f7f4] dark:bg-[#162024] rounded-xl flex flex-col max-h-[78vh] transition-colors border snap-center ${
                 isHovered 
-                  ? 'border-[#ff6a36] bg-[#fff8f5]' 
-                  : 'border-[#d8dddc]'
+                  ? 'border-[#ff6a36] bg-[#fff8f5] dark:bg-[#2a1d18]' 
+                  : 'border-[#d8dddc] dark:border-[#2a3a41]'
               }`}
             >
               {/* Column Header */}
-              <div className="p-3.5 border-b border-[#d8dddc] flex items-center justify-between bg-white rounded-t-xl">
+              <div className="p-3.5 border-b border-[#d8dddc] dark:border-[#2a3a41] flex items-center justify-between bg-white dark:bg-[#1c272c] rounded-t-xl transition-colors">
                 <div className="flex items-center gap-2">
                   <span 
                     className="w-2 h-2 rounded-full" 
                     style={{ backgroundColor: stage.color }} 
                   />
-                  <h2 className="font-semibold text-xs text-[#202d32] tracking-tight">
+                  <h2 className="font-semibold text-xs text-[#202d32] dark:text-[#f5f7f7] tracking-tight">
                     {stage.label}
                   </h2>
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[11px] font-mono text-[#566266] bg-[#f6f7f4] px-2 py-0.5 rounded-full border border-[#d8dddc]">
+                  <span className="text-[11px] font-mono text-[#566266] dark:text-[#9cb0b7] bg-[#f6f7f4] dark:bg-[#223136] px-2 py-0.5 rounded-full border border-[#d8dddc] dark:border-[#2a3a41]">
                     {stageCompanies.length}
                   </span>
                   <button
                     onClick={() => onOpenNewModal('prospect')}
-                    className="w-6 h-6 rounded-md hover:bg-[#ff6a36]/10 hover:text-[#ff6a36] text-[#566266] flex items-center justify-center transition-colors cursor-pointer"
+                    className="w-6 h-6 rounded-md hover:bg-[#ff6a36]/10 hover:text-[#ff6a36] text-[#566266] dark:text-[#9cb0b7] flex items-center justify-center transition-colors cursor-pointer"
                     title={`Adicionar lead em ${stage.label}`}
                   >
                     <Plus size={13} />
@@ -195,36 +195,36 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                       draggable
                       onDragStart={(e) => handleDragStart(e, c.id)}
                       onClick={() => setSelectedCompanyId(c.id)}
-                      className={`bg-white p-4 rounded-lg border border-[#d8dddc] hover:border-[#ff6a36] transition-all cursor-grab active:cursor-grabbing group relative ${
+                      className={`bg-white dark:bg-[#1c272c] p-4 rounded-lg border border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] dark:hover:border-[#ff6a36] transition-all cursor-grab active:cursor-grabbing group relative ${
                         draggedId === c.id ? 'opacity-40 scale-98' : 'opacity-100'
                       }`}
                     >
                       {/* Top Row: Category & Dropdown */}
                       <div className="flex items-center justify-between text-xs mb-1.5">
-                        <span className="text-[10px] font-semibold text-[#b5431c] tracking-wider uppercase truncate max-w-[170px]">
+                        <span className="text-[10px] font-semibold text-[#b5431c] dark:text-[#ff8f66] tracking-wider uppercase truncate max-w-[170px]">
                           {c.category}
                         </span>
 
                         <div className="relative" onClick={(e) => e.stopPropagation()}>
                           <button
                             onClick={() => setActiveCardMenuId(isMenuOpen ? null : c.id)}
-                            className="p-1 rounded text-[#8c999e] hover:text-[#ff6a36] hover:bg-[#f6f7f4] transition-colors"
+                            className="p-1 rounded text-[#8c999e] dark:text-[#70848c] hover:text-[#ff6a36] hover:bg-[#f6f7f4] dark:hover:bg-[#223136] transition-colors"
                             title="Mover etapa"
                           >
                             <MoreVertical size={13} />
                           </button>
 
                           {isMenuOpen && (
-                            <div className="absolute right-0 top-6 z-30 w-44 bg-white rounded-lg shadow-lg border border-[#d8dddc] py-1 text-xs">
-                              <div className="px-3 py-1 text-[10px] font-bold uppercase text-[#8c999e] tracking-wider border-b border-[#eef2f2]">
+                            <div className="absolute right-0 top-6 z-30 w-44 bg-white dark:bg-[#1c272c] rounded-lg shadow-lg border border-[#d8dddc] dark:border-[#2a3a41] py-1 text-xs">
+                              <div className="px-3 py-1 text-[10px] font-bold uppercase text-[#8c999e] dark:text-[#70848c] tracking-wider border-b border-[#eef2f2] dark:border-[#2a3a41]">
                                 Mover para:
                               </div>
                               {PIPELINE_STAGES.map((s) => (
                                 <button
                                   key={s.id}
                                   onClick={() => handleMoveViaDropdown(c.id, s.id)}
-                                  className={`w-full text-left px-3 py-1.5 flex items-center justify-between hover:bg-[#f6f7f4] transition-colors cursor-pointer ${
-                                    c.status === s.id ? 'font-semibold text-[#ff6a36]' : 'text-[#566266]'
+                                  className={`w-full text-left px-3 py-1.5 flex items-center justify-between hover:bg-[#f6f7f4] dark:hover:bg-[#223136] transition-colors cursor-pointer ${
+                                    c.status === s.id ? 'font-semibold text-[#ff6a36]' : 'text-[#566266] dark:text-[#9cb0b7]'
                                   }`}
                                 >
                                   <span>{s.label}</span>
@@ -237,22 +237,22 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                       </div>
 
                       {/* Company Name */}
-                      <div className="font-semibold text-[#202d32] text-sm group-hover:text-[#ff6a36] transition-colors">
+                      <div className="font-semibold text-[#202d32] dark:text-[#f5f7f7] text-sm group-hover:text-[#ff6a36] transition-colors">
                         {c.name}
                       </div>
 
                       {/* City & Age */}
-                      <div className="flex items-center justify-between text-xs text-[#566266] mt-1">
+                      <div className="flex items-center justify-between text-xs text-[#566266] dark:text-[#9cb0b7] mt-1">
                         <span>{c.city || 'Portugal'}</span>
-                        <span className="text-[10px] font-mono text-[#8c999e]">
+                        <span className="text-[10px] font-mono text-[#8c999e] dark:text-[#70848c]">
                           {daysInFunnel === 0 ? 'Hoje' : `há ${daysInFunnel}d`}
                         </span>
                       </div>
 
                       {/* Contacts Toolbar */}
                       {(c.whatsapp || c.phone) && (
-                        <div className="flex items-center justify-between mt-3 pt-2 border-t border-[#f0f2f2]">
-                          <span className="text-[11px] font-mono text-[#566266]">
+                        <div className="flex items-center justify-between mt-3 pt-2 border-t border-[#f0f2f2] dark:border-[#2a3a41]">
+                          <span className="text-[11px] font-mono text-[#566266] dark:text-[#9cb0b7]">
                             {c.whatsapp || c.phone}
                           </span>
 
@@ -260,7 +260,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                             {c.phone && (
                               <a
                                 href={`tel:${c.phone}`}
-                                className="p-1 rounded text-[#566266] hover:text-[#202d32] hover:bg-[#f6f7f4] transition-colors"
+                                className="p-1 rounded text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7] hover:bg-[#f6f7f4] dark:hover:bg-[#223136] transition-colors"
                                 title="Ligar"
                               >
                                 <Phone size={13} />
@@ -271,7 +271,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                                 href={`https://wa.me/${c.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(`Olá ${c.name}, da equipa Draft & Rise!`)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-1 rounded text-[#202d32] hover:text-[#c43f17] hover:bg-[#f6f7f4] transition-colors"
+                                className="p-1 rounded text-[#202d32] dark:text-[#f5f7f7] hover:text-[#c43f17] dark:hover:text-[#ff6a36] hover:bg-[#f6f7f4] dark:hover:bg-[#223136] transition-colors"
                                 title="Abrir WhatsApp"
                               >
                                 <MessageSquare size={13} />
@@ -287,7 +287,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                           {companyTags.map(t => (
                             <span
                               key={t!.id}
-                              className="text-[10px] font-medium px-2 py-0.5 rounded-full border border-[#d8dddc] text-[#566266] bg-[#f6f7f4]"
+                              className="text-[10px] font-medium px-2 py-0.5 rounded-full border border-[#d8dddc] dark:border-[#2a3a41] text-[#566266] dark:text-[#9cb0b7] bg-[#f6f7f4] dark:bg-[#223136]"
                             >
                               {t!.name}
                             </span>
@@ -299,7 +299,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
                 })}
 
                 {stageCompanies.length === 0 && (
-                  <div className="py-8 text-center text-xs text-[#8c999e] border border-dashed border-[#d8dddc] rounded-lg bg-white/40">
+                  <div className="py-8 text-center text-xs text-[#8c999e] dark:text-[#70848c] border border-dashed border-[#d8dddc] dark:border-[#2a3a41] rounded-lg bg-white/40 dark:bg-[#1c272c]/40">
                     Sem registos nesta fase
                   </div>
                 )}

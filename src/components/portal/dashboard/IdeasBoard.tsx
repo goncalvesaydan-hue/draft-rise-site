@@ -27,11 +27,11 @@ import { compressImage } from './utils';
 
 // Configurações visuais por Categoria — Paleta Institucional Draft & Rise (Sem emojis)
 export const IDEA_CATEGORY_CONFIG: Record<IdeaCategory, { label: string; badge: string; color: string }> = {
-  oferta: { label: 'Nova Oferta', badge: 'bg-[#ff6a36]/10 text-[#ff6a36] border-[#ff6a36]/25', color: '#ff6a36' },
-  marketing: { label: 'Marketing & Vendas', badge: 'bg-[#236a50]/10 text-[#236a50] border-[#236a50]/25', color: '#236a50' },
-  conteudo: { label: 'Conteúdo & Posts', badge: 'bg-[#0284c7]/10 text-[#0284c7] border-[#0284c7]/25', color: '#0284c7' },
-  processo: { label: 'Processos & SOPs', badge: 'bg-[#7c3aed]/10 text-[#7c3aed] border-[#7c3aed]/25', color: '#7c3aed' },
-  geral: { label: 'Geral', badge: 'bg-[#202d32]/10 text-[#202d32] border-[#202d32]/20', color: '#202d32' }
+  oferta: { label: 'Nova Oferta', badge: 'bg-[#ff6a36]/10 dark:bg-[#ff6a36]/20 text-[#ff6a36] dark:text-[#ff8f66] border-[#ff6a36]/25 dark:border-[#ff6a36]/40', color: '#ff6a36' },
+  marketing: { label: 'Marketing & Vendas', badge: 'bg-[#236a50]/10 dark:bg-[#236a50]/20 text-[#236a50] dark:text-[#34b785] border-[#236a50]/25 dark:border-[#236a50]/40', color: '#236a50' },
+  conteudo: { label: 'Conteúdo & Posts', badge: 'bg-[#0284c7]/10 dark:bg-[#0284c7]/20 text-[#0284c7] dark:text-[#38bdf8] border-[#0284c7]/25 dark:border-[#0284c7]/40', color: '#0284c7' },
+  processo: { label: 'Processos & SOPs', badge: 'bg-[#7c3aed]/10 dark:bg-[#7c3aed]/20 text-[#7c3aed] dark:text-[#c084fc] border-[#7c3aed]/25 dark:border-[#7c3aed]/40', color: '#7c3aed' },
+  geral: { label: 'Geral', badge: 'bg-[#202d32]/10 dark:bg-[#202d32]/30 text-[#202d32] dark:text-[#f5f7f7] border-[#202d32]/20 dark:border-[#2a3a41]', color: '#202d32' }
 };
 
 // Configurações visuais por Estado — Totalmente sem emojis, com ícones SVG discretos e cores funcionais
@@ -39,22 +39,22 @@ export const IDEA_STATUS_CONFIG: Record<IdeaStatus, { label: string; icon: React
   ideia: { 
     label: 'Ideia Nova', 
     icon: Lightbulb, 
-    badge: 'bg-[#fef9c3] text-[#854d0e] border-[#fef08a]' 
+    badge: 'bg-[#fef9c3] dark:bg-amber-950/40 text-[#854d0e] dark:text-amber-300 border-[#fef08a] dark:border-amber-900/50' 
   },
   estudo: { 
     label: 'Em Estudo', 
     icon: Clock, 
-    badge: 'bg-[#dbeafe] text-[#1e40af] border-[#bfdbfe]' 
+    badge: 'bg-[#dbeafe] dark:bg-blue-950/40 text-[#1e40af] dark:text-blue-300 border-[#bfdbfe] dark:border-blue-900/50' 
   },
   aprovada: { 
     label: 'Aprovada', 
     icon: CheckCircle2, 
-    badge: 'bg-[#dcfce7] text-[#166534] border-[#bbf7d0]' 
+    badge: 'bg-[#dcfce7] dark:bg-emerald-950/40 text-[#166534] dark:text-emerald-300 border-[#bbf7d0] dark:border-emerald-900/50' 
   },
   arquivada: { 
     label: 'Arquivada', 
     icon: Archive, 
-    badge: 'bg-[#f1f5f9] text-[#475569] border-[#e2e8f0]' 
+    badge: 'bg-[#f1f5f9] dark:bg-slate-800/50 text-[#475569] dark:text-slate-300 border-[#e2e8f0] dark:border-slate-700/50' 
   }
 };
 
@@ -236,14 +236,14 @@ export const IdeasBoard: React.FC = () => {
         <div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#ff6a36]" />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
               Inovação & Estratégia
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#202d32] mt-1">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#202d32] dark:text-[#f5f7f7] mt-1">
             Bloco de Ideias
           </h1>
-          <p className="text-xs text-[#566266] mt-1">
+          <p className="text-xs text-[#566266] dark:text-[#9cb0b7] mt-1">
             Registo operacional de oportunidades, novas ofertas, campanhas e referências visuais da agência.
           </p>
         </div>
@@ -263,82 +263,82 @@ export const IdeasBoard: React.FC = () => {
           2. INDICADORES (SECTOR CARDS ESTILO DRAFT & RISE)
       ======================================================== */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
               Total de Ideias
             </span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] text-[#202d32] grid place-items-center">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dce9ee] dark:bg-[#25353d] text-[#202d32] dark:text-[#f5f7f7] grid place-items-center">
               <Lightbulb size={14} className="sm:hidden" />
               <Lightbulb size={16} className="hidden sm:block" />
             </div>
           </div>
           <div className="my-1.5 sm:my-2">
-            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32] dark:text-[#f5f7f7]">
               {totalIdeas}
             </div>
           </div>
-          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41] text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7] truncate">
             Todas as categorias
           </div>
         </div>
 
-        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#1e40af]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#1e40af] dark:text-blue-400">
               Em Estudo
             </span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dbeafe] text-[#1e40af] grid place-items-center">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dbeafe] dark:bg-blue-950/60 text-[#1e40af] dark:text-blue-300 grid place-items-center">
               <Clock size={14} className="sm:hidden" />
               <Clock size={16} className="hidden sm:block" />
             </div>
           </div>
           <div className="my-1.5 sm:my-2">
-            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#1e40af]">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#1e40af] dark:text-blue-300">
               {inStudyCount}
             </div>
           </div>
-          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41] text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7] truncate">
             Em fase de análise
           </div>
         </div>
 
-        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#236a50]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#236a50] dark:text-[#34b785]">
               Aprovadas
             </span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dcfce7] text-[#236a50] grid place-items-center">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#dcfce7] dark:bg-emerald-950/60 text-[#236a50] dark:text-emerald-300 grid place-items-center">
               <CheckCircle2 size={14} className="sm:hidden" />
               <CheckCircle2 size={16} className="hidden sm:block" />
             </div>
           </div>
           <div className="my-1.5 sm:my-2">
-            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#236a50]">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#236a50] dark:text-emerald-300">
               {approvedCount}
             </div>
           </div>
-          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41] text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7] truncate">
             Validadas para execução
           </div>
         </div>
 
-        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c] dark:text-[#ff8f66]">
               Com Imagens
             </span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#ffcaa8]/40 text-[#c74418] grid place-items-center">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#ffcaa8]/40 dark:bg-[#ff6a36]/20 text-[#c74418] dark:text-[#ff8f66] grid place-items-center">
               <ImageIcon size={14} className="sm:hidden" />
               <ImageIcon size={16} className="hidden sm:block" />
             </div>
           </div>
           <div className="my-1.5 sm:my-2">
-            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32]">
+            <div className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#202d32] dark:text-[#f5f7f7]">
               {withImagesCount}
             </div>
           </div>
-          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] text-[10px] sm:text-xs text-[#566266] truncate">
+          <div className="pt-1.5 sm:pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41] text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7] truncate">
             Com referências visuais
           </div>
         </div>
@@ -347,23 +347,23 @@ export const IdeasBoard: React.FC = () => {
       {/* ========================================================
           3. BARRA DE FILTROS & PESQUISA (SEGMENTED PILLS CLAROS)
       ======================================================== */}
-      <div className="p-3 sm:p-4 rounded-xl border border-[#d8dddc] bg-white space-y-3 shadow-2xs">
+      <div className="p-3 sm:p-4 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-white dark:bg-[#1c272c] space-y-3 shadow-2xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           {/* Pesquisa Local */}
           <div className="relative flex-1">
-            <Search size={14} className="text-[#8c999e] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search size={14} className="text-[#8c999e] dark:text-[#70848c] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               placeholder="Pesquisar por título, notas ou cliente associado..."
               value={localSearch}
               onChange={(e) => setLocalSearch(e.target.value)}
-              className="w-full !pl-9 pr-8 py-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-xs text-[#202d32] placeholder:text-[#8c999e] focus:outline-none focus:border-[#ff6a36]"
+              className="w-full !pl-9 pr-8 py-2.5 bg-[#f6f7f4] dark:bg-[#192327] border border-[#d8dddc] dark:border-[#2a3a41] rounded-xl text-xs text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
             />
             {localSearch && (
               <button
                 type="button"
                 onClick={() => setLocalSearch('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#8c999e] hover:text-[#ff6a36] cursor-pointer"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#8c999e] dark:text-[#70848c] hover:text-[#ff6a36] cursor-pointer"
                 title="Limpar pesquisa"
               >
                 ✕
@@ -372,15 +372,15 @@ export const IdeasBoard: React.FC = () => {
           </div>
 
           {/* Segmented Control de Estados (Pills com scroll horizontal suave no mobile) */}
-          <div className="inline-flex p-1 rounded-full bg-[#f6f7f4] border border-[#d8dddc] overflow-x-auto no-scrollbar shrink-0 max-w-full">
+          <div className="inline-flex p-1 rounded-full bg-[#f6f7f4] dark:bg-[#192327] border border-[#d8dddc] dark:border-[#2a3a41] overflow-x-auto no-scrollbar shrink-0 max-w-full">
             <button
               type="button"
               onClick={() => setStatusFilter('all')}
               style={statusFilter === 'all' ? { color: '#ffffff' } : {}}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                 statusFilter === 'all'
-                  ? 'bg-[#202d32] !text-white shadow-xs'
-                  : 'text-[#566266] hover:text-[#202d32]'
+                  ? 'bg-[#202d32] dark:bg-[#f5f7f7] !text-white dark:!text-[#141c20] shadow-xs'
+                  : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
               }`}
             >
               Todas ({ideasList.length})
@@ -397,12 +397,12 @@ export const IdeasBoard: React.FC = () => {
                   style={isSelected ? { color: '#ffffff' } : {}}
                   className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-1.5 ${
                     isSelected
-                      ? 'bg-[#202d32] !text-white shadow-xs'
-                      : 'text-[#566266] hover:text-[#202d32]'
+                      ? 'bg-[#202d32] dark:bg-[#f5f7f7] !text-white dark:!text-[#141c20] shadow-xs'
+                      : 'text-[#566266] dark:text-[#9cb0b7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
                   }`}
                 >
                   <span>{conf.label}</span>
-                  <span className={`text-[10px] font-mono ${isSelected ? 'text-[#e3e7ee]' : 'text-[#8c999e]'}`}>
+                  <span className={`text-[10px] font-mono ${isSelected ? 'text-[#e3e7ee] dark:text-[#202d32]' : 'text-[#8c999e] dark:text-[#70848c]'}`}>
                     ({count})
                   </span>
                 </button>
@@ -412,8 +412,8 @@ export const IdeasBoard: React.FC = () => {
         </div>
 
         {/* Linha de Categorias (Botões Pílula com Contraste Perfeito) */}
-        <div className="pt-2 border-t border-[#d8dddc] flex items-center gap-2 overflow-x-auto no-scrollbar text-xs pb-1">
-          <span className="text-[#8c999e] font-bold uppercase text-[10px] tracking-wider shrink-0 mr-1">
+        <div className="pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41] flex items-center gap-2 overflow-x-auto no-scrollbar text-xs pb-1">
+          <span className="text-[#8c999e] dark:text-[#70848c] font-bold uppercase text-[10px] tracking-wider shrink-0 mr-1">
             Categorias:
           </span>
           <button
@@ -422,8 +422,8 @@ export const IdeasBoard: React.FC = () => {
             style={categoryFilter === 'all' ? { color: '#ffffff' } : {}}
             className={`px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
               categoryFilter === 'all'
-                ? 'bg-[#202d32] !text-white shadow-xs'
-                : 'bg-white border border-[#d8dddc] text-[#566266] hover:border-[#202d32] hover:text-[#202d32]'
+                ? 'bg-[#202d32] dark:bg-[#f5f7f7] !text-white dark:!text-[#141c20] shadow-xs'
+                : 'bg-white dark:bg-[#192327] border border-[#d8dddc] dark:border-[#2a3a41] text-[#566266] dark:text-[#9cb0b7] hover:border-[#202d32] dark:hover:border-[#f5f7f7] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
             }`}
           >
             Todas
@@ -440,7 +440,7 @@ export const IdeasBoard: React.FC = () => {
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                   isCatActive
                     ? 'bg-[#ff6a36] !text-white shadow-xs border border-[#ff6a36]'
-                    : 'bg-white border border-[#d8dddc] text-[#566266] hover:border-[#ff6a36] hover:text-[#ff6a36]'
+                    : 'bg-white dark:bg-[#192327] border border-[#d8dddc] dark:border-[#2a3a41] text-[#566266] dark:text-[#9cb0b7] hover:border-[#ff6a36] hover:text-[#ff6a36]'
                 }`}
               >
                 {catConf.label}
@@ -466,12 +466,12 @@ export const IdeasBoard: React.FC = () => {
             return (
               <div
                 key={idea.id}
-                className="rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#ff6a36] hover:shadow-xs transition-all overflow-hidden flex flex-col justify-between group"
+                className="rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] hover:bg-[#fcfcfa] dark:hover:bg-[#223136] hover:border-[#ff6a36] hover:shadow-xs transition-all overflow-hidden flex flex-col justify-between group"
               >
                 {/* Imagem de Capa (se existir) */}
                 {coverImage && (
                   <div 
-                    className="relative w-full h-44 bg-[#e8eae6] overflow-hidden cursor-pointer group/img"
+                    className="relative w-full h-44 bg-[#e8eae6] dark:bg-[#141c20] overflow-hidden cursor-pointer group/img"
                     onClick={() => handleOpenLightbox(idea.images, 0)}
                   >
                     <img 
@@ -517,26 +517,26 @@ export const IdeasBoard: React.FC = () => {
                     {/* Título */}
                     <h2 
                       onClick={() => handleOpenEdit(idea)}
-                      className="font-bold text-base text-[#202d32] group-hover:text-[#ff6a36] transition-colors cursor-pointer leading-snug"
+                      className="font-bold text-base text-[#202d32] dark:text-[#f5f7f7] group-hover:text-[#ff6a36] transition-colors cursor-pointer leading-snug"
                     >
                       {idea.title}
                     </h2>
 
                     {/* Conteúdo / Notas */}
                     {idea.content && (
-                      <p className="text-xs text-[#566266] mt-2 line-clamp-4 leading-relaxed whitespace-pre-line">
+                      <p className="text-xs text-[#566266] dark:text-[#9cb0b7] mt-2 line-clamp-4 leading-relaxed whitespace-pre-line">
                         {idea.content}
                       </p>
                     )}
 
                     {/* Miniaturas adicionais */}
                     {hasImages && idea.images.length > 1 && (
-                      <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-[#d8dddc]">
+                      <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-[#d8dddc] dark:border-[#2a3a41]">
                         {idea.images.map((img, imgIdx) => (
                           <div
                             key={imgIdx}
                             onClick={() => handleOpenLightbox(idea.images, imgIdx)}
-                            className="w-10 h-10 rounded-lg overflow-hidden border border-[#d8dddc] hover:border-[#ff6a36] cursor-pointer shrink-0 transition-transform hover:scale-105"
+                            className="w-10 h-10 rounded-lg overflow-hidden border border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] cursor-pointer shrink-0 transition-transform hover:scale-105"
                           >
                             <img src={img} alt={`Anexo ${imgIdx + 1}`} className="w-full h-full object-cover" />
                           </div>
@@ -546,19 +546,19 @@ export const IdeasBoard: React.FC = () => {
                   </div>
 
                   {/* Rodapé do Cartão */}
-                  <div className="pt-3 border-t border-[#d8dddc] flex items-center justify-between gap-2 text-xs text-[#566266]">
+                  <div className="pt-3 border-t border-[#d8dddc] dark:border-[#2a3a41] flex items-center justify-between gap-2 text-xs text-[#566266] dark:text-[#9cb0b7]">
                     {associatedCompany ? (
                       <button
                         type="button"
                         onClick={() => setSelectedCompanyId(associatedCompany.id)}
-                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#202d32] hover:text-[#ff6a36] transition-colors truncate max-w-[140px]"
+                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#202d32] dark:text-[#f5f7f7] hover:text-[#ff6a36] transition-colors truncate max-w-[140px]"
                         title="Ver ficha da empresa"
                       >
                         <Building2 size={12} className="text-[#ff6a36] shrink-0" />
                         <span className="truncate">{associatedCompany.name}</span>
                       </button>
                     ) : (
-                      <span className="text-[11px] text-[#8c999e]">Ideia Geral</span>
+                      <span className="text-[11px] text-[#8c999e] dark:text-[#70848c]">Ideia Geral</span>
                     )}
 
                     {/* Ações */}
@@ -566,7 +566,7 @@ export const IdeasBoard: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => handleOpenEdit(idea)}
-                        className="p-1.5 text-[#566266] hover:text-[#ff6a36] hover:bg-white rounded-lg transition-colors cursor-pointer"
+                        className="p-1.5 text-[#566266] dark:text-[#9cb0b7] hover:text-[#ff6a36] hover:bg-white dark:hover:bg-[#25353d] rounded-lg transition-colors cursor-pointer"
                         title="Editar ideia"
                       >
                         <Edit3 size={13} />
@@ -578,7 +578,7 @@ export const IdeasBoard: React.FC = () => {
                             deleteIdea(idea.id);
                           }
                         }}
-                        className="p-1.5 text-[#8c999e] hover:text-[#c43f17] hover:bg-white rounded-lg transition-colors cursor-pointer"
+                        className="p-1.5 text-[#8c999e] dark:text-[#70848c] hover:text-[#c43f17] hover:bg-white dark:hover:bg-[#25353d] rounded-lg transition-colors cursor-pointer"
                         title="Eliminar ideia"
                       >
                         <Trash2 size={13} />
@@ -592,14 +592,14 @@ export const IdeasBoard: React.FC = () => {
         </div>
       ) : (
         /* Estado Vazio */
-        <div className="p-12 text-center bg-[#f6f7f4] rounded-xl border border-[#d8dddc] space-y-3">
+        <div className="p-12 text-center bg-[#f6f7f4] dark:bg-[#1c272c] rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] space-y-3">
           <div className="w-12 h-12 rounded-2xl bg-[#ff6a36]/10 text-[#ff6a36] mx-auto flex items-center justify-center">
             <Lightbulb size={22} />
           </div>
-          <h2 className="font-semibold text-base text-[#202d32]">
+          <h2 className="font-semibold text-base text-[#202d32] dark:text-[#f5f7f7]">
             {ideasList.length === 0 ? 'Nenhuma ideia registada' : 'Nenhuma ideia encontrada com os filtros selecionados'}
           </h2>
-          <p className="text-xs text-[#566266] max-w-md mx-auto leading-relaxed">
+          <p className="text-xs text-[#566266] dark:text-[#9cb0b7] max-w-md mx-auto leading-relaxed">
             {ideasList.length === 0
               ? 'Usa este espaço para anotar ideias de campanhas, novas ofertas de serviços ou referências visuais para os clientes da agência.'
               : 'Tenta redefinir a categoria ou o termo de pesquisa.'}
@@ -624,18 +624,18 @@ export const IdeasBoard: React.FC = () => {
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs"
           onPaste={handlePasteEvent}
         >
-          <div className="bg-white rounded-2xl border border-[#d8dddc] shadow-2xl max-w-xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-[#1c272c] rounded-2xl border border-[#d8dddc] dark:border-[#2a3a41] shadow-2xl max-w-xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
             {/* Modal Header */}
-            <div className="p-4 sm:p-5 border-b border-[#d8dddc] flex items-center justify-between bg-[#fcfcfa]">
+            <div className="p-4 sm:p-5 border-b border-[#d8dddc] dark:border-[#2a3a41] flex items-center justify-between bg-[#fcfcfa] dark:bg-[#192327]">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-[#ff6a36]/10 text-[#ff6a36] grid place-items-center">
                   <Lightbulb size={16} />
                 </div>
                 <div>
-                  <h2 className="font-bold text-base text-[#202d32]">
+                  <h2 className="font-bold text-base text-[#202d32] dark:text-[#f5f7f7]">
                     {editingIdeaId ? 'Editar Ideia' : 'Registar Nova Ideia'}
                   </h2>
-                  <p className="text-xs text-[#566266]">
+                  <p className="text-xs text-[#566266] dark:text-[#9cb0b7]">
                     Podes escrever notas e colar imagens diretamente com Cmd+V / Ctrl+V.
                   </p>
                 </div>
@@ -644,7 +644,7 @@ export const IdeasBoard: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsFormOpen(false)}
-                className="w-8 h-8 rounded-lg text-[#566266] hover:bg-[#f6f7f4] hover:text-[#202d32] grid place-items-center transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-lg text-[#566266] dark:text-[#9cb0b7] hover:bg-[#f6f7f4] dark:hover:bg-[#25353d] hover:text-[#202d32] dark:hover:text-[#f5f7f7] grid place-items-center transition-colors cursor-pointer"
                 title="Fechar"
               >
                 <X size={16} />
@@ -655,7 +655,7 @@ export const IdeasBoard: React.FC = () => {
             <form onSubmit={handleSaveIdea} className="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
               {/* Título */}
               <div>
-                <label className="block text-xs font-semibold text-[#202d32] mb-1">
+                <label className="block text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] mb-1">
                   Título da Ideia <span className="text-[#ff6a36]">*</span>
                 </label>
                 <input
@@ -664,20 +664,20 @@ export const IdeasBoard: React.FC = () => {
                   placeholder="Ex: Oferta de Auditoria Google 48h para Clínicas Dentárias"
                   value={formTitle}
                   onChange={(e) => setFormTitle(e.target.value)}
-                  className="w-full p-3 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-xs sm:text-sm text-[#202d32] focus:outline-none focus:border-[#ff6a36]"
+                  className="w-full p-3 bg-[#f6f7f4] dark:bg-[#192327] border border-[#d8dddc] dark:border-[#2a3a41] rounded-xl text-xs sm:text-sm text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36]"
                 />
               </div>
 
               {/* Categoria e Estado em Linha */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-[#202d32] mb-1">
+                  <label className="block text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] mb-1">
                     Categoria
                   </label>
                   <select
                     value={formCategory}
                     onChange={(e) => setFormCategory(e.target.value as IdeaCategory)}
-                    className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36] cursor-pointer"
+                    className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#192327] border border-[#d8dddc] dark:border-[#2a3a41] rounded-xl text-xs text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36] cursor-pointer"
                   >
                     <option value="geral">Geral</option>
                     <option value="oferta">Nova Oferta</option>
@@ -688,13 +688,13 @@ export const IdeasBoard: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#202d32] mb-1">
+                  <label className="block text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] mb-1">
                     Estado da Ideia
                   </label>
                   <select
                     value={formStatus}
                     onChange={(e) => setFormStatus(e.target.value as IdeaStatus)}
-                    className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36] cursor-pointer"
+                    className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#192327] border border-[#d8dddc] dark:border-[#2a3a41] rounded-xl text-xs text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36] cursor-pointer"
                   >
                     <option value="ideia">Ideia Nova (Rascunho)</option>
                     <option value="estudo">Em Estudo / Análise</option>
@@ -706,13 +706,13 @@ export const IdeasBoard: React.FC = () => {
 
               {/* Associação Opcional a Cliente */}
               <div>
-                <label className="block text-xs font-semibold text-[#202d32] mb-1">
+                <label className="block text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] mb-1">
                   Associar a Cliente ou Lead (Opcional)
                 </label>
                 <select
                   value={formCompanyId}
                   onChange={(e) => setFormCompanyId(e.target.value)}
-                  className="w-full p-2.5 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36] cursor-pointer"
+                  className="w-full p-2.5 bg-[#f6f7f4] dark:bg-[#192327] border border-[#d8dddc] dark:border-[#2a3a41] rounded-xl text-xs text-[#202d32] dark:text-[#f5f7f7] focus:outline-none focus:border-[#ff6a36] cursor-pointer"
                 >
                   <option value="">Ideia Geral (Sem cliente associado)</option>
                   {activeCompanies.map(c => (
@@ -726,10 +726,10 @@ export const IdeasBoard: React.FC = () => {
               {/* Descrição */}
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <label className="block text-xs font-semibold text-[#202d32]">
+                  <label className="block text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7]">
                     Notas & Descrição
                   </label>
-                  <span className="text-[11px] text-[#8c999e]">Podes colar prints com Cmd+V</span>
+                  <span className="text-[11px] text-[#8c999e] dark:text-[#70848c]">Podes colar prints com Cmd+V</span>
                 </div>
                 <textarea
                   rows={5}
@@ -737,13 +737,13 @@ export const IdeasBoard: React.FC = () => {
                   value={formContent}
                   onChange={(e) => setFormContent(e.target.value)}
                   onPaste={handlePasteEvent}
-                  className="w-full p-3 bg-[#f6f7f4] border border-[#d8dddc] rounded-xl text-xs text-[#202d32] focus:outline-none focus:border-[#ff6a36] resize-y"
+                  className="w-full p-3 bg-[#f6f7f4] dark:bg-[#192327] border border-[#d8dddc] dark:border-[#2a3a41] rounded-xl text-xs text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36] resize-y"
                 />
               </div>
 
               {/* Secção de Imagens e Anexos */}
               <div>
-                <label className="block text-xs font-semibold text-[#202d32] mb-1.5 flex items-center justify-between">
+                <label className="block text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] mb-1.5 flex items-center justify-between">
                   <span className="flex items-center gap-1.5">
                     <ImageIcon size={14} className="text-[#ff6a36]" />
                     <span>Imagens e Referências Visuais ({formImages.length})</span>
@@ -761,7 +761,7 @@ export const IdeasBoard: React.FC = () => {
                     e.preventDefault();
                     if (e.dataTransfer.files) processImageFiles(e.dataTransfer.files);
                   }}
-                  className="p-5 border-2 border-dashed border-[#d8dddc] hover:border-[#ff6a36] rounded-xl bg-[#fcfcfa] hover:bg-white text-center cursor-pointer transition-colors"
+                  className="p-5 border-2 border-dashed border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] rounded-xl bg-[#fcfcfa] dark:bg-[#192327] hover:bg-white dark:hover:bg-[#223136] text-center cursor-pointer transition-colors"
                 >
                   <input
                     type="file"
@@ -773,12 +773,12 @@ export const IdeasBoard: React.FC = () => {
                     accept="image/*"
                     className="hidden"
                   />
-                  <div className="flex flex-col items-center gap-1.5 text-xs text-[#566266]">
+                  <div className="flex flex-col items-center gap-1.5 text-xs text-[#566266] dark:text-[#9cb0b7]">
                     <Upload size={18} className="text-[#ff6a36]" />
-                    <span className="font-semibold text-[#202d32]">
+                    <span className="font-semibold text-[#202d32] dark:text-[#f5f7f7]">
                       Arrasta imagens para aqui ou clica para selecionar
                     </span>
-                    <span className="text-[11px] text-[#8c999e]">
+                    <span className="text-[11px] text-[#8c999e] dark:text-[#70848c]">
                       Suporta PNG, JPG, WebP. Ou prime <strong>Cmd+V</strong> para colar um screenshot.
                     </span>
                   </div>
@@ -788,7 +788,7 @@ export const IdeasBoard: React.FC = () => {
                 {formImages.length > 0 && (
                   <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5 mt-3">
                     {formImages.map((img, idx) => (
-                      <div key={idx} className="relative group/thumb rounded-lg overflow-hidden border border-[#d8dddc] h-20 bg-[#f6f7f4]">
+                      <div key={idx} className="relative group/thumb rounded-lg overflow-hidden border border-[#d8dddc] dark:border-[#2a3a41] h-20 bg-[#f6f7f4] dark:bg-[#192327]">
                         <img src={img} alt={`Anexo ${idx + 1}`} className="w-full h-full object-cover" />
                         <button
                           type="button"
@@ -805,11 +805,11 @@ export const IdeasBoard: React.FC = () => {
               </div>
 
               {/* Botões de Ação */}
-              <div className="pt-4 border-t border-[#d8dddc] flex items-center justify-end gap-2.5">
+              <div className="pt-4 border-t border-[#d8dddc] dark:border-[#2a3a41] flex items-center justify-end gap-2.5">
                 <button
                   type="button"
                   onClick={() => setIsFormOpen(false)}
-                  className="px-4 py-2.5 rounded-full text-xs font-semibold text-[#566266] hover:bg-[#f6f7f4] border border-[#d8dddc] transition-colors cursor-pointer"
+                  className="px-4 py-2.5 rounded-full text-xs font-semibold text-[#566266] dark:text-[#9cb0b7] hover:bg-[#f6f7f4] dark:hover:bg-[#25353d] border border-[#d8dddc] dark:border-[#2a3a41] transition-colors cursor-pointer"
                 >
                   Cancelar
                 </button>

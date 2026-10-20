@@ -86,7 +86,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onOpenNewModal
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{ paddingLeft: '44px', paddingRight: '40px' }}
-            className="dashboard-search-input w-full !pl-11 !pr-10 py-2.5 bg-[#f6f7f4] border border-[#d8dddc] !rounded-full text-xs sm:text-sm text-[#202d32] placeholder:text-[#8c999e] focus:outline-none focus:border-[#ff6a36] transition-colors"
+            className="dashboard-search-input w-full !pl-11 !pr-10 py-2.5 bg-[#f6f7f4] dark:bg-[#1c272c] border border-[#d8dddc] dark:border-[#2a3a41] !rounded-full text-xs sm:text-sm text-[#202d32] dark:text-[#f5f7f7] placeholder:text-[#8c999e] dark:placeholder:text-[#70848c] focus:outline-none focus:border-[#ff6a36] transition-colors"
           />
           {searchQuery ? (
             <button
@@ -98,7 +98,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onOpenNewModal
               <X size={13} />
             </button>
           ) : (
-            <kbd className="hidden sm:inline-block absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[#8c999e] bg-white dark:bg-[#1c272c] px-1.5 py-0.5 rounded border border-[#d8dddc] dark:border-[#2a3a41] pointer-events-none">
+            <kbd className="hidden sm:inline-block absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[#8c999e] dark:text-[#70848c] bg-white dark:bg-[#1c272c] px-1.5 py-0.5 rounded border border-[#d8dddc] dark:border-[#2a3a41] pointer-events-none">
               /
             </kbd>
           )}
@@ -151,7 +151,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onOpenNewModal
           <button
             onClick={handleSync}
             disabled={syncing}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#202d32] bg-[#f6f7f4] hover:bg-white hover:text-[#ff6a36] border border-[#d8dddc] hover:border-[#ff6a36] rounded-full transition-colors disabled:opacity-50 cursor-pointer shadow-xs"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#202d32] dark:text-[#f5f7f7] bg-[#f6f7f4] dark:bg-[#1c272c] hover:bg-white dark:hover:bg-[#25353d] hover:text-[#ff6a36] border border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] rounded-full transition-colors disabled:opacity-50 cursor-pointer shadow-xs"
             title="Sincronizar"
           >
             <RefreshCw size={12} className={syncing ? 'animate-spin' : ''} />

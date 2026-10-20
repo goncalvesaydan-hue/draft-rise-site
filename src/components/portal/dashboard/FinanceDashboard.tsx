@@ -46,83 +46,83 @@ export const FinanceDashboard: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-[#d8dddc]">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-[#d8dddc] dark:border-[#2a3a41] transition-colors">
         <div>
           <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
             Faturação Recorrente
           </span>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-[#202d32] tracking-tight mt-0.5">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-[#202d32] dark:text-[#f5f7f7] tracking-tight mt-0.5">
             Controlo de Avenças<span className="text-[#c74418]">.</span>
           </h1>
-          <p className="text-xs sm:text-sm text-[#566266] mt-1">
+          <p className="text-xs sm:text-sm text-[#566266] dark:text-[#9cb0b7] mt-1">
             Gestão de mensalidades, vencimentos e histórico de recebimentos.
           </p>
         </div>
 
-        <div className="bg-[#f6f7f4] px-4 py-2 rounded-xl border border-[#d8dddc] text-xs self-start sm:self-auto">
-          <span className="text-[#566266]">Ticket médio: </span>
-          <strong className="text-[#202d32] font-semibold">{formatCurrency(avgTicket)}/mês</strong>
+        <div className="bg-[#f6f7f4] dark:bg-[#1c272c] px-4 py-2 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] text-xs self-start sm:self-auto transition-colors">
+          <span className="text-[#566266] dark:text-[#9cb0b7]">Ticket médio: </span>
+          <strong className="text-[#202d32] dark:text-[#f5f7f7] font-semibold">{formatCurrency(avgTicket)}/mês</strong>
         </div>
       </div>
 
       {/* 4 Cards de Métricas */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] flex flex-col justify-between transition-colors">
           <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
             MRR Total
           </span>
-          <div className="text-2xl sm:text-3xl font-semibold text-[#202d32] mt-1.5 sm:mt-2 tracking-tight">
+          <div className="text-2xl sm:text-3xl font-semibold text-[#202d32] dark:text-[#f5f7f7] mt-1.5 sm:mt-2 tracking-tight">
             {formatCurrency(totalMrr)}
           </div>
-          <p className="text-[10px] sm:text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc] truncate">
+          <p className="text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7] mt-2 pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41] truncate">
             {activeClients.length} contratos ativos
           </p>
         </div>
 
-        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
-          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#236a50]">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] flex flex-col justify-between transition-colors">
+          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#236a50] dark:text-[#4ade80]">
             Recebido no Mês
           </span>
-          <div className="text-2xl sm:text-3xl font-semibold text-[#236a50] mt-1.5 sm:mt-2 tracking-tight">
+          <div className="text-2xl sm:text-3xl font-semibold text-[#236a50] dark:text-[#4ade80] mt-1.5 sm:mt-2 tracking-tight">
             {formatCurrency(paidTotal)}
           </div>
-          <p className="text-[10px] sm:text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc] truncate">
+          <p className="text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7] mt-2 pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41] truncate">
             {paidClients.length}/{activeClients.length} ({collectionRate}%)
           </p>
         </div>
 
-        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
-          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#c43f17]">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] flex flex-col justify-between transition-colors">
+          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#c43f17] dark:text-[#ff8f66]">
             Por Liquidar
           </span>
-          <div className="text-2xl sm:text-3xl font-semibold text-[#c43f17] mt-1.5 sm:mt-2 tracking-tight">
+          <div className="text-2xl sm:text-3xl font-semibold text-[#c43f17] dark:text-[#ff8f66] mt-1.5 sm:mt-2 tracking-tight">
             {formatCurrency(lateTotal + pendingTotal)}
           </div>
-          <p className="text-[10px] sm:text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc] truncate">
+          <p className="text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7] mt-2 pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41] truncate">
             {lateClients.length} atrasados
           </p>
         </div>
 
-        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] flex flex-col justify-between">
-          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#566266]">
+        <div className="p-3.5 sm:p-6 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#f6f7f4] dark:bg-[#1c272c] flex flex-col justify-between transition-colors">
+          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#566266] dark:text-[#9cb0b7]">
             Projeção Anual
           </span>
-          <div className="text-2xl sm:text-3xl font-semibold text-[#202d32] mt-1.5 sm:mt-2 tracking-tight">
+          <div className="text-2xl sm:text-3xl font-semibold text-[#202d32] dark:text-[#f5f7f7] mt-1.5 sm:mt-2 tracking-tight">
             {formatCurrency(annualProjection)}
           </div>
-          <p className="text-[10px] sm:text-xs text-[#566266] mt-2 pt-2 border-t border-[#d8dddc] truncate">
+          <p className="text-[10px] sm:text-xs text-[#566266] dark:text-[#9cb0b7] mt-2 pt-2 border-t border-[#d8dddc] dark:border-[#2a3a41] truncate">
             ARR (MRR × 12)
           </p>
         </div>
       </div>
 
       {/* Barra de Cobrança do Mês */}
-      <div className="p-5 rounded-xl border border-[#d8dddc] bg-[#fcfcfa] space-y-2">
-        <div className="flex items-center justify-between text-xs text-[#566266]">
-          <span>Cobrança do mês corrente: <strong className="text-[#202d32]">{collectionRate}%</strong></span>
+      <div className="p-5 rounded-xl border border-[#d8dddc] dark:border-[#2a3a41] bg-[#fcfcfa] dark:bg-[#162024] space-y-2 transition-colors">
+        <div className="flex items-center justify-between text-xs text-[#566266] dark:text-[#9cb0b7]">
+          <span>Cobrança do mês corrente: <strong className="text-[#202d32] dark:text-[#f5f7f7]">{collectionRate}%</strong></span>
           <span>{formatCurrency(paidTotal)} de {formatCurrency(totalMrr)}</span>
         </div>
-        <div className="h-2 w-full bg-[#f6f7f4] border border-[#d8dddc] rounded-full overflow-hidden">
+        <div className="h-2 w-full bg-[#f6f7f4] dark:bg-[#1c272c] border border-[#d8dddc] dark:border-[#2a3a41] rounded-full overflow-hidden">
           <div 
             style={{ width: `${collectionRate}%` }} 
             className="h-full bg-[#236a50] rounded-full transition-all duration-300"
@@ -131,10 +131,10 @@ export const FinanceDashboard: React.FC = () => {
       </div>
 
       {/* Tabela de Clientes e Pagamentos */}
-      <div className="border border-[#d8dddc] rounded-xl overflow-hidden bg-white">
-        <div className="p-4 bg-[#f6f7f4] border-b border-[#d8dddc] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="border border-[#d8dddc] dark:border-[#2a3a41] rounded-xl overflow-hidden bg-white dark:bg-[#1c272c] transition-colors">
+        <div className="p-4 bg-[#f6f7f4] dark:bg-[#162024] border-b border-[#d8dddc] dark:border-[#2a3a41] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 className="font-semibold text-sm text-[#202d32]">Mensalidades por Cliente</h2>
+            <h2 className="font-semibold text-sm text-[#202d32] dark:text-[#f5f7f7]">Mensalidades por Cliente</h2>
           </div>
 
           {/* Filter Pills com Alta Visibilidade */}
@@ -142,7 +142,7 @@ export const FinanceDashboard: React.FC = () => {
             <button
               onClick={() => setFilter('all')}
               className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border shrink-0 ${
-                filter === 'all' ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs' : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#ff6a36] hover:text-[#202d32]'
+                filter === 'all' ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs' : 'bg-white dark:bg-[#1c272c] text-[#566266] dark:text-[#9cb0b7] border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
               }`}
             >
               Todos ({activeClients.length})
@@ -150,7 +150,7 @@ export const FinanceDashboard: React.FC = () => {
             <button
               onClick={() => setFilter('pago')}
               className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border shrink-0 ${
-                filter === 'pago' ? 'bg-[#236a50] text-white border-[#236a50] shadow-xs' : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#236a50] hover:text-[#236a50]'
+                filter === 'pago' ? 'bg-[#236a50] text-white border-[#236a50] shadow-xs' : 'bg-white dark:bg-[#1c272c] text-[#566266] dark:text-[#9cb0b7] border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#236a50] hover:text-[#236a50]'
               }`}
             >
               Pagos ({paidClients.length})
@@ -158,7 +158,7 @@ export const FinanceDashboard: React.FC = () => {
             <button
               onClick={() => setFilter('pendente')}
               className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border shrink-0 ${
-                filter === 'pendente' ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs' : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#ff6a36] hover:text-[#202d32]'
+                filter === 'pendente' ? 'bg-[#ff6a36] text-white border-[#ff6a36] shadow-xs' : 'bg-white dark:bg-[#1c272c] text-[#566266] dark:text-[#9cb0b7] border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#ff6a36] hover:text-[#202d32] dark:hover:text-[#f5f7f7]'
               }`}
             >
               Pendentes ({pendingClients.length})
@@ -166,7 +166,7 @@ export const FinanceDashboard: React.FC = () => {
             <button
               onClick={() => setFilter('atrasado')}
               className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer border shrink-0 ${
-                filter === 'atrasado' ? 'bg-[#c43f17] text-white border-[#c43f17] shadow-xs' : 'bg-white text-[#566266] border-[#d8dddc] hover:border-[#c43f17] hover:text-[#c43f17]'
+                filter === 'atrasado' ? 'bg-[#c43f17] text-white border-[#c43f17] shadow-xs' : 'bg-white dark:bg-[#1c272c] text-[#566266] dark:text-[#9cb0b7] border-[#d8dddc] dark:border-[#2a3a41] hover:border-[#c43f17] hover:text-[#c43f17]'
               }`}
             >
               Atrasados ({lateClients.length})
@@ -177,7 +177,7 @@ export const FinanceDashboard: React.FC = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
-              <tr className="bg-[#fcfcfa] border-b border-[#d8dddc] text-[10px] font-bold uppercase tracking-wider text-[#566266]">
+              <tr className="bg-[#fcfcfa] dark:bg-[#162024] border-b border-[#d8dddc] dark:border-[#2a3a41] text-[10px] font-bold uppercase tracking-wider text-[#566266] dark:text-[#9cb0b7]">
                 <th className="py-3 px-4">Cliente</th>
                 <th className="py-3 px-4">Localização</th>
                 <th className="py-3 px-4">Vencimento</th>
@@ -186,27 +186,33 @@ export const FinanceDashboard: React.FC = () => {
                 <th className="py-3 px-4 text-right">Ação</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#d8dddc]">
+            <tbody className="divide-y divide-[#d8dddc] dark:divide-[#2a3a41]">
               {filteredClients.map((client) => {
                 const politeMsg = `Olá ${client.name}! Da equipa Draft & Rise, enviamos este lembrete relativo ao vencimento da avença mensal de ${formatCurrency(client.monthlyFee)}. Caso já tenham efetuado a transferência, por favor desconsiderem. Muito obrigado!`;
+
+                const statusBadgeClass = client.paymentStatus === 'pago'
+                  ? 'bg-[#eaf4ed] text-[#236a50] dark:bg-[#153426] dark:text-[#4ade80] border-[#236a50]/30'
+                  : client.paymentStatus === 'atrasado'
+                  ? 'bg-[#fdf2f0] text-[#c43f17] dark:bg-[#3a1814] dark:text-[#f87171] border-[#c43f17]/30'
+                  : 'bg-[#fef9ee] text-[#b57a14] dark:bg-[#34270f] dark:text-[#fbbf24] border-[#d49622]/30';
 
                 return (
                   <tr 
                     key={client.id}
-                    className="hover:bg-[#f6f7f4] transition-colors cursor-pointer group"
+                    className="hover:bg-[#f6f7f4] dark:hover:bg-[#223136] transition-colors cursor-pointer group"
                     onClick={() => setSelectedCompanyId(client.id)}
                   >
-                    <td className="py-3.5 px-4 font-semibold text-[#202d32] group-hover:text-[#ff6a36]">
+                    <td className="py-3.5 px-4 font-semibold text-[#202d32] dark:text-[#f5f7f7] group-hover:text-[#ff6a36]">
                       {client.name}
                     </td>
 
-                    <td className="py-3.5 px-4 text-xs text-[#566266]">{client.city || '—'}</td>
+                    <td className="py-3.5 px-4 text-xs text-[#566266] dark:text-[#9cb0b7]">{client.city || '—'}</td>
 
-                    <td className="py-3.5 px-4 text-xs text-[#202d32]">
+                    <td className="py-3.5 px-4 text-xs text-[#202d32] dark:text-[#f5f7f7]">
                       Dia {client.dueDay || 5}
                     </td>
 
-                    <td className="py-3.5 px-4 font-semibold text-[#202d32]">
+                    <td className="py-3.5 px-4 font-semibold text-[#202d32] dark:text-[#f5f7f7]">
                       {formatCurrency(client.monthlyFee)}
                     </td>
 
@@ -217,11 +223,11 @@ export const FinanceDashboard: React.FC = () => {
                           updateFinance(client.id, client.monthlyFee || 0, client.dueDay || 5, e.target.value as PaymentStatus);
                           showToast(`Estado de ${client.name} atualizado`, 'info');
                         }}
-                        className="text-xs p-1 bg-[#f6f7f4] border border-[#d8dddc] rounded cursor-pointer focus:outline-none focus:border-[#ff6a36]"
+                        className={`text-xs font-semibold px-2 py-1 rounded border cursor-pointer focus:outline-none transition-colors ${statusBadgeClass}`}
                       >
-                        <option value="pago">Pago</option>
-                        <option value="pendente">Pendente</option>
-                        <option value="atrasado">Atrasado</option>
+                        <option value="pago" className="bg-white dark:bg-[#1c272c] text-[#236a50] dark:text-[#4ade80]">Pago</option>
+                        <option value="pendente" className="bg-white dark:bg-[#1c272c] text-[#b57a14] dark:text-[#fbbf24]">Pendente</option>
+                        <option value="atrasado" className="bg-white dark:bg-[#1c272c] text-[#c43f17] dark:text-[#f87171]">Atrasado</option>
                       </select>
                     </td>
 
@@ -232,7 +238,7 @@ export const FinanceDashboard: React.FC = () => {
                             href={`https://wa.me/${client.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(politeMsg)}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1.5 text-[#566266] hover:text-[#ff6a36] hover:bg-white rounded transition-colors"
+                            className="p-1.5 text-[#566266] dark:text-[#9cb0b7] hover:text-[#ff6a36] hover:bg-white dark:hover:bg-[#223136] rounded transition-colors"
                             title="Enviar lembrete amigável via WhatsApp"
                           >
                             <MessageSquare size={14} />
@@ -247,7 +253,7 @@ export const FinanceDashboard: React.FC = () => {
                             Marcar pago
                           </button>
                         ) : (
-                          <span className="text-xs text-[#236a50] font-medium inline-flex items-center gap-1">
+                          <span className="text-xs text-[#236a50] dark:text-[#4ade80] font-medium inline-flex items-center gap-1">
                             <Check size={12} /> Pago
                           </span>
                         )}
@@ -259,7 +265,7 @@ export const FinanceDashboard: React.FC = () => {
 
               {filteredClients.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-[#8c999e]">
+                  <td colSpan={6} className="py-12 text-center text-[#8c999e] dark:text-[#70848c]">
                     Nenhum registo encontrado.
                   </td>
                 </tr>

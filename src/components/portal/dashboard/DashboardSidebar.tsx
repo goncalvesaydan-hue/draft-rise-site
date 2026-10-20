@@ -127,6 +127,7 @@ export const DashboardSidebar: React.FC = () => {
             return (
               <button
                 key={item.id}
+                data-tab={item.id}
                 onClick={() => handleSelectTab(item.id)}
                 className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-colors cursor-pointer ${
                   isActive
