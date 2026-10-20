@@ -188,63 +188,72 @@ export const ClientList: React.FC<ClientListProps> = ({ onOpenNewModal }) => {
 
       {/* Grid Card View — Estilo Sector-Card */}
       {viewMode === 'grid' ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((company) => {
-            const stage = PIPELINE_STAGES.find(s => s.id === company.status);
-            const lastPost = company.posts[0];
-            const daysAgo = lastPost 
-              ? Math.floor((Date.now() - new Date(lastPost.at).getTime()) / (1000 * 60 * 60 * 24))
-              : null;
-            const isLatePost = daysAgo !== null && daysAgo > (company.cadence || 7);
+        filtered.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filtered.map((company) => {
+              const stage = PIPELINE_STAGES.find(s => s.id === company.status);
+              const lastPost = company.posts[0];
+              const daysAgo = lastPost 
+                ? Math.floor((Date.now() - new Date(lastPost.at).getTime()) / (1000 * 60 * 60 * 24))
+                : null;
+              const isLatePost = daysAgo !== null && daysAgo > (company.cadence || 7);
 
-            return (
-              <div
-                key={company.id}
-                onClick={() => setSelectedCompanyId(company.id)}
-                className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#ff6a36] transition-all cursor-pointer group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
-                      {company.category}
-                    </span>
-                    <span className="text-[11px] font-medium text-[#566266] border border-[#d8dddc] bg-white px-2 py-0.5 rounded-full">
-                      {stage?.label || company.status}
-                    </span>
+              return (
+                <div
+                  key={company.id}
+                  onClick={() => setSelectedCompanyId(company.id)}
+                  className="p-6 rounded-xl border border-[#d8dddc] bg-[#f6f7f4] hover:bg-[#fcfcfa] hover:border-[#ff6a36] transition-all cursor-pointer group flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#b5431c]">
+                        {company.category}
+                      </span>
+                      <span className="text-[11px] font-medium text-[#566266] border border-[#d8dddc] bg-white px-2 py-0.5 rounded-full">
+                        {stage?.label || company.status}
+                      </span>
+                    </div>
+
+                    <h2 className="font-semibold text-base text-[#202d32] group-hover:text-[#ff6a36] transition-colors mt-2">
+                      {company.name}
+                    </h2>
+                    <p className="text-xs text-[#566266] mt-0.5">{company.city || 'Portugal'}</p>
+
+                    <div className="mt-4 pt-3 border-t border-[#d8dddc] flex items-center justify-between text-xs">
+                      {company.status === 'cliente' ? (
+                        <>
+                          <span className="text-base font-semibold text-[#202d32]">
+                            {formatCurrency(company.monthlyFee)}
+                            <span className="text-xs font-normal text-[#566266]">/mês</span>
+                          </span>
+                          <span className={`text-[11px] font-medium ${company.paymentStatus === 'pago' ? 'text-[#236a50]' : 'text-[#c43f17]'}`}>
+                            {company.paymentStatus === 'pago' ? 'Em dia' : 'Pendente'} (dia {company.dueDay || 5})
+                          </span>
+                        </>
+                      ) : (
+                        <span className="text-xs text-[#566266]">Em prospecção</span>
+                      )}
+                    </div>
                   </div>
 
-                  <h2 className="font-semibold text-base text-[#202d32] group-hover:text-[#ff6a36] transition-colors mt-2">
-                    {company.name}
-                  </h2>
-                  <p className="text-xs text-[#566266] mt-0.5">{company.city || 'Portugal'}</p>
-
-                  <div className="mt-4 pt-3 border-t border-[#d8dddc] flex items-center justify-between text-xs">
-                    {company.status === 'cliente' ? (
-                      <>
-                        <span className="text-base font-semibold text-[#202d32]">
-                          {formatCurrency(company.monthlyFee)}
-                          <span className="text-xs font-normal text-[#566266]">/mês</span>
-                        </span>
-                        <span className={`text-[11px] font-medium ${company.paymentStatus === 'pago' ? 'text-[#236a50]' : 'text-[#c43f17]'}`}>
-                          {company.paymentStatus === 'pago' ? 'Em dia' : 'Pendente'} (dia {company.dueDay || 5})
-                        </span>
-                      </>
-                    ) : (
-                      <span className="text-xs text-[#566266]">Em prospecção</span>
-                    )}
+                  <div className="mt-4 pt-3 border-t border-[#d8dddc] flex items-center justify-between text-xs text-[#566266]">
+                    <span>{daysAgo !== null ? `Post há ${daysAgo}d` : 'Sem posts'}</span>
+                    <span className="text-[#202d32] font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                      Ver ficha <ArrowRight size={12} />
+                    </span>
                   </div>
                 </div>
-
-                <div className="mt-4 pt-3 border-t border-[#d8dddc] flex items-center justify-between text-xs text-[#566266]">
-                  <span>{daysAgo !== null ? `Post há ${daysAgo}d` : 'Sem posts'}</span>
-                  <span className="text-[#202d32] font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    Ver ficha <ArrowRight size={12} />
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="p-12 text-center bg-[#f6f7f4] rounded-xl border border-[#d8dddc]">
+            <p className="text-sm font-semibold text-[#202d32]">Nenhuma empresa registada</p>
+            <p className="text-xs text-[#566266] mt-1">
+              A base de dados está limpa. Clique em &ldquo;Nova Empresa&rdquo; no canto superior para adicionar a sua primeira lead ou cliente.
+            </p>
+          </div>
+        )
       ) : (
         /* Table View */
         <div className="border border-[#d8dddc] rounded-xl overflow-hidden bg-white">

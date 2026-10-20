@@ -8,10 +8,10 @@ import {
 } from './constants';
 import { generateId } from './utils';
 
-const DB_NAME = 'gbp-team-manager';
+const DB_NAME = 'draftandrise-team-manager-v1';
 const STORE_NAME = 'kv';
 const DB_VERSION = 1;
-const STORAGE_KEY = 'gbp_dashboard_data_v2';
+const STORAGE_KEY = 'draftandrise_dashboard_v1';
 
 export function createInitialDatabase(): AppDatabase {
   return {
@@ -106,6 +106,15 @@ export async function loadDatabase(): Promise<AppDatabase> {
   if (typeof window === 'undefined') {
     return createInitialDatabase();
   }
+
+  // Limpeza de bases ou chaves legadas de demonstração para garantir estado 100% limpo / zerado
+  try {
+    localStorage.removeItem('gbp_dashboard_data_v2');
+    localStorage.removeItem('gbp_dashboard_data_v1');
+    if (window.indexedDB) {
+      window.indexedDB.deleteDatabase('gbp-team-manager');
+    }
+  } catch {}
 
   let dbData: AppDatabase | null = null;
 

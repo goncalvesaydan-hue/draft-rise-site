@@ -98,21 +98,10 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }, 2800);
   }, []);
 
-  // Carregar dados no arranque
+  // Carregar dados no arranque (iniciação 100% limpa / zerada)
   useEffect(() => {
     loadDatabase().then((loaded) => {
-      if (!loaded.companies || loaded.companies.length === 0) {
-        // Inicializar com dados realistas de demonstração para uma experiência rica imediata
-        const initialWithDemo: AppDatabase = {
-          ...loaded,
-          companies: DEMO_COMPANIES,
-          tags: [...DEMO_TAGS, ...loaded.tags.filter(t => !DEMO_TAGS.some(dt => dt.id === t.id))]
-        };
-        setDb(initialWithDemo);
-        saveDatabase(initialWithDemo).catch(() => {});
-      } else {
-        setDb(loaded);
-      }
+      setDb(loaded);
       setLoading(false);
     });
   }, []);
